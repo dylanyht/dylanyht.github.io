@@ -6,26 +6,35 @@
     <description>Recent content on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Apr 2019 10:42:57 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 11:24:49 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Links</title>
+      <link>https://dylanyht.github.io/links/</link>
+      <pubDate>Tue, 30 Apr 2019 11:24:49 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/links/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>https://dylanyht.github.io/about/</link>
-      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      <pubDate>Tue, 30 Apr 2019 11:24:33 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/about/</guid>
-      <description>Hugo is a static site engine written in Go. 哈usID好脆多少 阿杜好脆多少爱USD好脆稍等爱U的食醋</description>
+      <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://dylanyht.github.io/post/test/</link>
+      <link>https://dylanyht.github.io/post/2019/04/29/test/</link>
       <pubDate>Mon, 29 Apr 2019 10:42:57 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/test/</guid>
+      <guid>https://dylanyht.github.io/post/2019/04/29/test/</guid>
       <description></description>
     </item>
     
