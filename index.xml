@@ -6,7 +6,7 @@
     <description>Recent content on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 May 2019 13:14:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 10:09:37 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -26,6 +26,15 @@
       <pubDate>Tue, 30 Apr 2019 11:24:33 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker Registry搭建及配置用户认证</title>
+      <link>https://dylanyht.github.io/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Tue, 07 May 2019 10:09:37 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</guid>
       <description></description>
     </item>
     
