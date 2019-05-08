@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>centos on I am dylan ...</title>
+    <link>https://dylanyht.github.io/tags/centos/</link>
+    <description>Recent content in centos on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 07 May 2019 14:16:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyht.github.io/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos7安装Nginx</title>
+      <link>https://dylanyht.github.io/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/</link>
+      <pubDate>Tue, 07 May 2019 14:16:22 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

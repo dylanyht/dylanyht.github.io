@@ -6,7 +6,7 @@
     <description>Recent content on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 May 2019 10:09:37 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 May 2019 09:12:32 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -26,6 +26,24 @@
       <pubDate>Tue, 30 Apr 2019 11:24:33 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装maven</title>
+      <link>https://dylanyht.github.io/post/2019/05/08/centos7%E5%AE%89%E8%A3%85maven/</link>
+      <pubDate>Wed, 08 May 2019 09:12:32 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/08/centos7%E5%AE%89%E8%A3%85maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装Nginx</title>
+      <link>https://dylanyht.github.io/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/</link>
+      <pubDate>Tue, 07 May 2019 14:16:22 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/</guid>
       <description></description>
     </item>
     
