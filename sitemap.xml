@@ -17,8 +17,57 @@
   
   <url>
     <loc>https://dylanyht.github.io/categories/</loc>
-    <lastmod>2019-05-08T09:12:32+08:00</lastmod>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/categories/kubernetes/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/kubernetes/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/post/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/linux/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</loc>
+    <lastmod>2019-05-08T17:39:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -29,37 +78,13 @@
   </url>
   
   <url>
-    <loc>https://dylanyht.github.io/</loc>
-    <lastmod>2019-05-08T09:12:32+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/post/</loc>
-    <lastmod>2019-05-08T09:12:32+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/</loc>
-    <lastmod>2019-05-08T09:12:32+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/cebtos/</loc>
+    <loc>https://dylanyht.github.io/tags/centos/</loc>
     <lastmod>2019-05-08T09:12:32+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyht.github.io/categories/linux/</loc>
-    <lastmod>2019-05-08T09:12:32+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/linux/</loc>
     <lastmod>2019-05-08T09:12:32+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -75,12 +100,6 @@
     <lastmod>2019-05-07T14:16:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/centos/</loc>
-    <lastmod>2019-05-07T14:16:22+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -110,12 +129,6 @@
   
   <url>
     <loc>https://dylanyht.github.io/categories/%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2019-05-07T10:09:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2019-05-07T10:09:37+08:00</lastmod>
     <priority>0</priority>
   </url>

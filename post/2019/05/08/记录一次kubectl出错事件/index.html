@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker Registry搭建及配置用户认证 - I am dylan ...</title>
+  <title>记录一次kubectl出错事件 - I am dylan ...</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" />
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Docker Registry搭建及配置用户认证" />
+<meta property="og:title" content="记录一次kubectl出错事件" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" />
-<meta property="article:published_time" content="2019-05-07T10:09:37&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-07T10:09:37&#43;08:00"/>
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" />
+<meta property="article:published_time" content="2019-05-08T17:39:59&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-08T17:39:59&#43;08:00"/>
 
-<meta itemprop="name" content="Docker Registry搭建及配置用户认证">
+<meta itemprop="name" content="记录一次kubectl出错事件">
 <meta itemprop="description" content="">
 
 
-<meta itemprop="datePublished" content="2019-05-07T10:09:37&#43;08:00" />
-<meta itemprop="dateModified" content="2019-05-07T10:09:37&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="datePublished" content="2019-05-08T17:39:59&#43;08:00" />
+<meta itemprop="dateModified" content="2019-05-08T17:39:59&#43;08:00" />
+<meta itemprop="wordCount" content="620">
 
 
 
-<meta itemprop="keywords" content="docker,仓库,容器," />
+<meta itemprop="keywords" content="Kubernetes,linux,容器," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker Registry搭建及配置用户认证"/>
+<meta name="twitter:title" content="记录一次kubectl出错事件"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -129,15 +129,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Docker Registry搭建及配置用户认证</h1>
+      <h1 class="post-title">记录一次kubectl出错事件</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-05-07 </span>
+        <span class="post-time"> 2019-05-08 </span>
         <div class="post-category">
-            <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
+            <a href="/categories/kubernetes/"> Kubernetes </a>
             </div>
-          <span class="more-meta"> 0 words </span>
-          <span class="more-meta"> 0 mins read </span>
+          <span class="more-meta"> 620 words </span>
+          <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
     </header>
@@ -149,201 +149,36 @@
 <ul>
 <li>
 <ul>
-<li><a href="#搭建registry">搭建Registry</a>
+<li><a href="#记录一次kubectl出错事件">记录一次kubectl出错事件</a>
 <ul>
-<li><a href="#启动容器">启动容器</a></li>
-<li><a href="#push镜像到私有仓库">push镜像到私有仓库</a></li>
-<li><a href="#其他机器配置连接私有仓库">其他机器配置连接私有仓库</a></li>
-<li><a href="#可能出现错误">可能出现错误</a></li>
+<li><a href="#一-问题">一、 问题</a></li>
+<li><a href="#二-排查">二、排查</a></li>
+<li><a href="#三-解决问题">三、解决问题</a></li>
 </ul></li>
-<li><a href="#设置私有仓库的用户认证">设置私有仓库的用户认证</a></li>
 </ul></li>
 </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h2 id="搭建registry">搭建Registry</h2>
+      <h2 id="记录一次kubectl出错事件">记录一次kubectl出错事件</h2>
 
-<blockquote>
-<p>服务器ip为：172.16.77.71</p>
-</blockquote>
+<h3 id="一-问题">一、 问题</h3>
 
-<p>安装Docker Registry，Docker版本需要1.6以上</p>
+<p>上午还在正常使用的Kubernetes集群 下午使用kubectl命令一直提示The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</p>
+
+<h3 id="二-排查">二、排查</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">[root@k8s-77-71 ~]# docker --version
-Docker version 18.06.1-ce, build e68fc7a</pre></td></tr></table>
+<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
+The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</pre></td></tr></table>
 </div>
 </div>
-<p>docker官方给提供了Registry的镜像  直接拉取</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[root@k8s-77-71 ~]# docker pull registry</pre></td></tr></table>
-</div>
-</div>
-<h3 id="启动容器">启动容器</h3>
-
-<blockquote>
-<p>默认情况下，会将仓库存放于容器内的/var/lib/registry（官网Dockerfile中查看）目录下
-以防容器出问题导致镜像丢失，我们将挂载本地目录到容器的/var/lib/registry下</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker run -itd  --restart always --name docker-hub -p 5000:5000 -v /opt/data/registry:/var/lib/registry registry</pre></td></tr></table>
-</div>
-</div>
-<p>查看私有仓库  目前没有存储镜像 所以显示为空</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">curl -XGET 127.0.0.1:5000/v2/_catalog</pre></td></tr></table>
-</div>
-</div>
-<p>查看镜像版本列表</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">curl -XGET 127.0.0.1:5000/v2/image_name/tags/list</pre></td></tr></table>
-</div>
-</div>
-<h3 id="push镜像到私有仓库">push镜像到私有仓库</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[root@k8s-77-71 ~]# docker tag  mingo 172.16.77.71:5000/mongo
-[root@k8s-77-71 ~]# docker push 172.16.77.71:5000/mongo:latest</pre></td></tr></table>
-</div>
-</div>
-<h3 id="其他机器配置连接私有仓库">其他机器配置连接私有仓库</h3>
-
-<p>每台机器 docker 私有仓库配置vi /etc/docker/daemon.json写入以下内容：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">{
-    &#34;insecure-registries&#34;: [
-        &#34;172.16.77.71:5000&#34;
-    ]
-}</pre></td></tr></table>
-</div>
-</div>
-<p>然后重启docker</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo systemctl   daemon-reload
-systemctl restart docker.service</pre></td></tr></table>
-</div>
-</div>
-<p>注：如果配置多个私有仓库，daemon.json中用“,”隔开</p>
-
-<h3 id="可能出现错误">可能出现错误</h3>
-
-<p>在别的机器上往私有仓库push时可能会出现以下错误</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">error parsing HTTP 400 response body: invalid character &#39;F&#39; looking for beginning of value: &#34;Failed parsing or buffering the chunk-encoded client body.\r\n&#34;</pre></td></tr></table>
-</div>
-</div>
-<p>初步判断应该是docker使用代理导致，解决办法：vim  /etc/systemd/system/docker.service.d/http-proxy.conf</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[Service]
-Environment=&#34;HTTP_PROXY=http://172.16.77.36:8118/&#34; &#34;HTTPS_PROXY=http:// 172.16.77.36:8118&#34; &#34;NO_PROXY=172.16.7.222,172.16.77.71,127.0.0.1,localhost&#34;</pre></td></tr></table>
-</div>
-</div>
-<p>重启daemon</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo systemctl   daemon-reload </pre></td></tr></table>
-</div>
-</div>
-<p>查看参数是否生效</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo  systemctl show docker --property Environment</pre></td></tr></table>
-</div>
-</div>
-<p>重启服务</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo systemctl  restart docker</pre></td></tr></table>
-</div>
-</div>
-<p>重新push</p>
-
-<h2 id="设置私有仓库的用户认证">设置私有仓库的用户认证</h2>
-
-<blockquote>
-<p>私有仓库搭建以后其他所有客户端均可以push、pull， docker官方提供认证方法对docker仓库进行权限保护</p>
-</blockquote>
-
-<p>删除原启动的docker容器</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker stop docker-hub
-docker rm docker-hub</pre></td></tr></table>
-</div>
-</div>
-<p>创建保存账号密码的文件</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">mkdir  /opt/data/auth
-docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/htpasswd</pre></td></tr></table>
-</div>
-</div>
-<p>重新启动容器</p>
+<p>使用docker查看k8s相关容器及apiserver是否正常</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -352,22 +187,125 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">docker run -d -p 5000:5000 --restart=always --name docker-hub \
-    -v /opt/data/registry:/var/lib/registry \
-    -v /opt/data/auth:/auth \
-    -e &#34;REGISTRY_AUTH=htpasswd&#34; \
-    -e &#34;REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm&#34; \
-    -e  REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
-    registry</pre></td></tr></table>
+<pre class="chroma">[docker@k8s-77-53 ~]$ docker ps
+CONTAINER ID        IMAGE                                            COMMAND                   CREATED             STATUS              PORTS                         NAMES
+f1d6f5acd4b2        144ecb80a73c                                     &#34;/usr/sbin/init&#34;          32 hours ago        Up 32 hours                                       k8s_test_test-0_default_4c6c78ec-64a2-11e9-b297-6cae8b77ae08_0
+e2079cd28387        k8s.gcr.io/pause:3.1                             &#34;/pause&#34;                  32 hours ago        Up 32 hours
+b5a315d1477b        40a63db91ef8                                     &#34;kube-apiserver --au…&#34;    3 months ago        Up 3 months                                       k8s_kube-apiserver_kube-apiserver-k8s-77-53_kube-system_467247f0aca129ce9b864d2562c1e575_6
+....</pre></td></tr></table>
 </div>
 </div>
-<p>现在客户端再pull、push会提示报错，无法提交。需要登录私有仓库
-登录：docker login -u username -p userpasswd 172.16.77.71:5000
-退出：docker logout 172.16.77.71:5000
-认证以后无法直接在服务器查看 curl 172.16.77.71:5000/v2/_catalog仓库的镜像，会出现报错，但是可以用浏览器访问（界面不友好，能看到信息很少）</p>
+<p>发现容器一切正常  业务系统也在正常运行  就是kubectl没办法用<br/>
+排查k8s请求</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl -v=8  get nodes
+I0423 16:09:42.199244   26311 loader.go:359] Config loaded from file /etc/kubernetes/admin.conf
+I0423 16:09:42.201189   26311 loader.go:359] Config loaded from file /etc/kubernetes/admin.conf
+I0423 16:09:42.203029   26311 round_trippers.go:416] GET https://172.16.77.53:6443/api?timeout=32s
+I0423 16:09:42.203145   26311 round_trippers.go:423] Request Headers:
+I0423 16:09:42.203179   26311 round_trippers.go:426]     Accept: application/json, */*
+I0423 16:09:42.203212   26311 round_trippers.go:426]     User-Agent: kubectl/v1.13.1 (linux/amd64) kubernetes/eec55b9
+I0423 16:09:42.204660   26311 round_trippers.go:441] Response Status:  in 1 milliseconds
+I0423 16:09:42.204727   26311 round_trippers.go:444] Response Headers:
+I0423 16:09:42.204860   26311 cached_discovery.go:113] skipped caching discovery info due to Get https://172.16.77.53:6443/api?timeout=32s: proxyconnect tcp: dial tcp 172.16.77.36:8118: connect: connection refused</pre></td></tr></table>
+</div>
+</div>
+<p>这里能看的出应该是宿主机代理出现了问题</p>
+
+<h3 id="三-解决问题">三、解决问题</h3>
+
+<p>为了能正常使用kubectl  先把代理注释掉<br/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ vi /etc/profile
+...
+[docker@k8s-77-52 ~]$ source /etc/profile</pre></td></tr></table>
+</div>
+</div>
+<p>再使用kubectl看看是否正常</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
+The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</pre></td></tr></table>
+</div>
+</div>
+<p>发现还是原来的错误<br/>
+经过查看后发现 代理还在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ env | grep -i  proxy
+http_proxy=http://172.16.77.36:8118
+https_proxy=http://172.16.77.36:8118</pre></td></tr></table>
+</div>
+</div>
+<p>使用unset取消</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ unset http_proxy
+[docker@k8s-77-53 ~]$ unset https_proxy</pre></td></tr></table>
+</div>
+</div>
+<p>然后查看代理是否还在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ env | grep -i  proxy
+[docker@k8s-77-53 ~]$</pre></td></tr></table>
+</div>
+</div>
+<p>发现这次取消成功了，然后再查看kubectl是否能正常使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+cp-schema-registry-0           1/1     Running   0          6d6h
+test-0                         1/1     Running   0          31h</pre></td></tr></table>
+</div>
+</div>
+<p>现在已可以正常使用<br />
+<strong>注意：上面那个代理是由于已经写入了系统变量，所以在source之后还在应用。必须得unset或者再重开个ssh窗口才能取消</strong></p>
     </div>
 
     <div class="post-copyright">
@@ -378,7 +316,7 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-05-07
+        2019-05-08
         
     </span>
   </p>
@@ -404,18 +342,14 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
   </div>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/docker/">docker</a>
-          <a href="/tags/%E4%BB%93%E5%BA%93/">仓库</a>
+          <a href="/tags/kubernetes/">Kubernetes</a>
+          <a href="/tags/linux/">linux</a>
           <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Centos7安装Nginx</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/2019/05/06/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAnexus%E5%B9%B6%E9%85%8D%E7%BD%AEdocker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/">
-            <span class="next-text nav-default">使用docker搭建nexus并配置docker私有仓库</span>
+        
+        <a class="next" href="/post/2019/05/08/centos7%E5%AE%89%E8%A3%85maven/">
+            <span class="next-text nav-default">Centos7安装maven</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -428,8 +362,8 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-07 10:09:37 \x2b0800 CST',
-        title: 'Docker Registry搭建及配置用户认证',
+        id: '2019-05-08 17:39:59 \x2b0800 CST',
+        title: '记录一次kubectl出错事件',
         clientID: 'debcea41e9774d4c730e',
         clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
         repo: 'blog-comment',
