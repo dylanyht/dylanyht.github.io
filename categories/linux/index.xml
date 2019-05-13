@@ -6,10 +6,46 @@
     <description>Recent content in linux on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 08 May 2019 09:12:32 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 09:25:18 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sed命令的常用操作</title>
+      <link>https://dylanyht.github.io/post/2019/05/13/sed%E5%91%BD%E4%BB%A4%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Mon, 13 May 2019 09:25:18 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/13/sed%E5%91%BD%E4%BB%A4%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装nfs</title>
+      <link>https://dylanyht.github.io/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/</link>
+      <pubDate>Mon, 13 May 2019 09:10:30 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yum安装python3</title>
+      <link>https://dylanyht.github.io/post/2019/05/13/yum%E5%AE%89%E8%A3%85python3/</link>
+      <pubDate>Mon, 13 May 2019 09:05:09 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/13/yum%E5%AE%89%E8%A3%85python3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装docker</title>
+      <link>https://dylanyht.github.io/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</link>
+      <pubDate>Thu, 09 May 2019 16:48:16 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Centos7安装maven</title>

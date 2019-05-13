@@ -6,10 +6,37 @@
     <description>Recent content in docker on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 May 2019 10:09:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 09:19:10 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker指令</title>
+      <link>https://dylanyht.github.io/post/2019/05/13/docker%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Mon, 13 May 2019 09:19:10 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/13/docker%E6%8C%87%E4%BB%A4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker安装harbor</title>
+      <link>https://dylanyht.github.io/post/2019/05/13/docker%E5%AE%89%E8%A3%85harbor/</link>
+      <pubDate>Mon, 13 May 2019 09:14:04 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/13/docker%E5%AE%89%E8%A3%85harbor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装docker</title>
+      <link>https://dylanyht.github.io/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</link>
+      <pubDate>Thu, 09 May 2019 16:48:16 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Docker Registry搭建及配置用户认证</title>
