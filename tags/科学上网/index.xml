@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>科学上网 on I am dylan ...</title>
+    <link>https://dylanyht.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</link>
+    <description>Recent content in 科学上网 on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 15 May 2019 21:03:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyht.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos7安装配置Shadowsocks客户端</title>
+      <link>https://dylanyht.github.io/post/2019/05/15/centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEshadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF/</link>
+      <pubDate>Wed, 15 May 2019 21:03:46 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/15/centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEshadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Centos7安装配置Shadowsocks客户端 - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/15/centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEshadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Centos7安装配置Shadowsocks客户端" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/15/centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEshadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF/" />
+<meta property="article:published_time" content="2019-05-15T21:03:46&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-15T21:03:46&#43;08:00"/>
+
+<meta itemprop="name" content="Centos7安装配置Shadowsocks客户端">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2019-05-15T21:03:46&#43;08:00" />
+<meta itemprop="dateModified" content="2019-05-15T21:03:46&#43;08:00" />
+<meta itemprop="wordCount" content="0">
+
+
+
+<meta itemprop="keywords" content="linux,centos,ss,科学上网," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos7安装配置Shadowsocks客户端"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Centos7安装配置Shadowsocks客户端</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-05-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> linux </a>
+            </div>
+          <span class="more-meta"> 0 words </span>
+          <span class="more-meta"> 0 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-安装配置shadowsocks客户端">1、安装配置Shadowsocks客户端</a>
+<ul>
+<li><a href="#安装shadowsocks客户端">安装Shadowsocks客户端</a></li>
+<li><a href="#配置shadowsocks客户端">配置Shadowsocks客户端</a>
+<ul>
+<li><a href="#设置成自启动">设置成自启动</a></li>
+<li><a href="#启动shadowsocks客户端">启动Shadowsocks客户端</a></li>
+<li><a href="#填坑操作">填坑操作</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#2-安装配置privoxy">2、安装配置Privoxy</a>
+<ul>
+<li><a href="#安装privoxy">安装Privoxy</a></li>
+<li><a href="#配置privoxy">配置Privoxy</a></li>
+</ul></li>
+<li><a href="#3-验证及优化">3、验证及优化</a>
+<ul>
+<li><a href="#验证是否可用">验证是否可用</a></li>
+<li><a href="#优化">优化</a>
+<ul>
+<li><a href="#解决内网不走代理问题">解决内网不走代理问题</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#4-配置pac模式">4、配置PAC模式</a>
+<ul>
+<li><a href="#测试pac是否正常">测试PAC是否正常</a></li>
+</ul></li>
+<li><a href="#5-小技巧">5、小技巧</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>需求：因工作需要，需要配置一个科学上网服务器 以前搭建过一个，后来由于某种原因不能用了。所以重新搭建一个 此文档做个记录<br />
+服务器：Centos7.x</p>
+</blockquote>
+
+<h1 id="1-安装配置shadowsocks客户端">1、安装配置Shadowsocks客户端</h1>
+
+<h2 id="安装shadowsocks客户端">安装Shadowsocks客户端</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ yum install -y epel-release
+$ yum install -y python-pip
+$ pip install shadowsocks
+# pip 是 Python 的包管理工具，这里我们用 pip 安装 shadowsocks。</pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置shadowsocks客户端">配置Shadowsocks客户端</h2>
+
+<blockquote>
+<p>注意 Shadowsocks的配置文件自己创建</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">mkdir /etc/shadowsocks
+vim /etc/shadowsocks/shadowsocks.json</pre></td></tr></table>
+</div>
+</div>
+<p>添加一下配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{
+  &#34;server&#34;:&#34;x.x.x.x&#34;,             #你的 ss 服务器 地址
+  &#34;server_port&#34;:14131,                #你的 ss 服务器端口
+  &#34;local_address&#34;: &#34;127.0.0.1&#34;,   #本地ip
+  &#34;local_port&#34;:1080,                 #本地端口
+  &#34;password&#34;:&#34;password&#34;,          #连接 ss 密码
+  &#34;timeout&#34;:300,                  #等待超时
+  &#34;method&#34;:&#34;aes-256-cfb&#34;,         #加密方式
+  &#34;fast_open&#34;: false,             #fast_open：true或false。开启fast_open以降低延迟，但要求Linux内核在3.7+。
+  &#34;workers&#34;: 1                    #工作线程数
+                                  
+}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="设置成自启动">设置成自启动</h3>
+
+<blockquote>
+<p>为了方便启动和关闭 这里设置成自启动</p>
+</blockquote>
+
+<p>vim /etc/systemd/system/shadowsocks.service</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[Unit]
+Description=Shadowsocks
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/sslocal -c /etc/shadowsocks/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target</pre></td></tr></table>
+</div>
+</div>
+<h3 id="启动shadowsocks客户端">启动Shadowsocks客户端</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">systemctl enable shadowsocks.service
+systemctl start shadowsocks.service
+systemctl status shadowsocks.service</pre></td></tr></table>
+</div>
+</div>
+<table><tr><td bgcolor=orange>注意：此处可能有坑。<br>
+如果你的加密方式是aes-256-cfb方式就可以跳过这段直接看“安装配置Privovy”的内容。
+如果你的加密方式:chacha20-ietf-poly1305这种就得掉坑里了</td></tr></table>
+
+<blockquote>
+<p>我的ss服务器的加密方式是chacha20-ietf-poly1305</p>
+</blockquote>
+
+<p>在启动Shadowsocks时 启动失败 显示一下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# systemctl status shadowsocks.service
+● shadowsocks.service - Shadowsocks
+   Loaded: loaded (/etc/systemd/system/shadowsocks.service; disabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since 三 2019-05-15 13:01:08 CST; 12s ago
+  Process: 13171 ExecStart=/usr/bin/sslocal -c /etc/shadowsocks/shadowsocks.json (code=exited, status=1/FAILURE)
+ Main PID: 13171 (code=exited, status=1/FAILURE)
+
+5月 15 13:01:08 k8s-77-71 systemd[1]: Started Shadowsocks.
+5月 15 13:01:08 k8s-77-71 sslocal[13171]: INFO: loading config from /etc/shadowsocks/shadowsocks.json
+5月 15 13:01:08 k8s-77-71 sslocal[13171]: 2019-05-15 13:01:08 ERROR    method chacha20-ietf-poly1305 not supported
+5月 15 13:01:08 k8s-77-71 systemd[1]: shadowsocks.service: main process exited, code=exited, status=1/FAILURE
+5月 15 13:01:08 k8s-77-71 systemd[1]: Unit shadowsocks.service entered failed state.
+5月 15 13:01:08 k8s-77-71 systemd[1]: shadowsocks.service failed.</pre></td></tr></table>
+</div>
+</div>
+<p>可以看出 <font color=#FF0000>  method chacha20-ietf-poly1305 not supported </font> 不支持chacha20-ietf-poly1305加密方式</p>
+
+<h3 id="填坑操作">填坑操作</h3>
+
+<blockquote>
+<p>经过一顿谷歌、百度。找到了以下解决办法（当然你也可以找其他解决办法）</p>
+</blockquote>
+
+<p>安装libsodium：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">yum install libsodium -y</pre></td></tr></table>
+</div>
+</div>
+<p>然后再启动，发现还是上面的问题。没有启动起来<br>
+执行以下操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U
+Collecting https://github.com/shadowsocks/shadowsocks/archive/master.zip
+  Downloading https://github.com/shadowsocks/shadowsocks/archive/master.zip (115kB)
+    100% |████████████████████████████████| 122kB 871kB/s
+Installing collected packages: shadowsocks
+  Found existing installation: shadowsocks 2.8.2
+    Uninstalling shadowsocks-2.8.2:
+      Successfully uninstalled shadowsocks-2.8.2
+  Running setup.py install for shadowsocks ... done
+Successfully installed shadowsocks-3.0.0
+You are using pip version 8.1.2, however version 19.1.1 is available.
+You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.</pre></td></tr></table>
+</div>
+</div>
+<p>然后重启一下Shadowsocks再查看状态，可以看到已经正常启动了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# systemctl status shadowsocks.service
+● shadowsocks.service - Shadowsocks
+   Loaded: loaded (/etc/systemd/system/shadowsocks.service; disabled; vendor preset: disabled)
+   Active: active (running) since 三 2019-05-15 13:07:00 CST; 1s ago
+ Main PID: 13249 (sslocal)
+    Tasks: 1
+   Memory: 9.3M
+   CGroup: /system.slice/shadowsocks.service
+           └─13249 /usr/bin/python2 /usr/bin/sslocal -c /etc/shadowsocks/shadowsocks.json
+
+5月 15 13:07:00 k8s-77-71 systemd[1]: Started Shadowsocks.
+5月 15 13:07:00 k8s-77-71 sslocal[13249]: INFO: loading config from /etc/shadowsocks/shadowsocks.json
+5月 15 13:07:01 k8s-77-71 sslocal[13249]: 2019-05-15 13:07:01 INFO     loading libsodium from libsodium.so.23
+5月 15 13:07:01 k8s-77-71 sslocal[13249]: 2019-05-15 13:07:01 INFO     starting local at 127.0.0.1:1080</pre></td></tr></table>
+</div>
+</div>
+<p><strong><em>验证Shadowsocks客户端是都正常运行</em></strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl --socks5 127.0.0.1:1080 http://httpbin.org/ip</pre></td></tr></table>
+</div>
+</div>
+<p>如果Shadowsocks客户端已经正常运行，则结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{
+&#34;origin&#34;: &#34;x.x.x.x&#34; #你的Shadowsock服务器IP
+}</pre></td></tr></table>
+</div>
+</div>
+<h1 id="2-安装配置privoxy">2、安装配置Privoxy</h1>
+
+<blockquote>
+<p>Shadowsocks是一个 socket5 服务，我们需要使用 Privoxy 把流量转到 http/https 上。
+虽然socks代理起来了，但是还不能直接用，需要privoxy转发一下</p>
+</blockquote>
+
+<h2 id="安装privoxy">安装Privoxy</h2>
+
+<p>安装Privoxy</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">yum -y install privoxy</pre></td></tr></table>
+</div>
+</div>
+<p>启动Privoxy</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">systemctl enable privoxy
+systemctl start privoxy
+systemctl status privoxy</pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置privoxy">配置Privoxy</h2>
+
+<p>修改配置文件 /etc/privoxy/config</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# vim /etc/privoxy/config</pre></td></tr></table>
+</div>
+</div>
+<p>确保以下内容没有被注释掉 这两行不在一起</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">listen-address 127.0.0.1:8118 # 8118 是默认端口，不用改  
+forward-socks5t / 127.0.0.1:1080 . #转发到本地端口，注意别忘了最后的.</pre></td></tr></table>
+</div>
+</div>
+<p><font color=#FF0000> 注意：上面listen-address一行。<br>
+如果想让其他机器也通过这台机器连接代理就需要设置成ip:端口 </font></p>
+
+<p>设置http/https代理<br>
+修改配置文件/etc/profile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">vim /etc/profile</pre></td></tr></table>
+</div>
+</div>
+<p>添加以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118</pre></td></tr></table>
+</div>
+</div>
+<p>保存好执行一下：source /etc/profile <br>
+<strong>注意：端口和Privoxy中监听端口保持一致</strong></p>
+
+<h1 id="3-验证及优化">3、验证及优化</h1>
+
+<h2 id="验证是否可用">验证是否可用</h2>
+
+<ul>
+<li>方法一、<br>
+执行 curl www.google.com 返回一大堆HTML 则说明正常</li>
+<li>方法二、<br>
+执行 curl -I www.google.com 。有如下相似显示则说明正常</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"> [root@k8s-77-71 ~]# curl -I www.google.com
+HTTP/1.1 200 OK
+Date: Wed, 15 May 2019 07:08:30 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+P3P: CP=&#34;This is not a P3P policy! See g.co/p3phelp for more info.&#34;
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: 1P_JAR=2019-05-15-07; expires=Fri, 14-Jun-2019 07:08:30 GMT; path=/; domain=.google.com
+Set-Cookie: NID=183=Bpl52R_n_4pib3A-dmbDsxeXYP0qnw0HFqfGpDIrBELfCum44Cbh8VtwrFdKZwJWvTxidcrCDEwnQZf9qgpijF8DoCPHwKuBteNPqwzWIDdhV5ieOvxFQBaZqtBNslmiuoANoQlxkxiQKnCWxilUWM30NtUnGVGux0uQ2DPMFio; expires=Thu, 14-Nov-2019 07:08:30 GMT; path=/; domain=.google.com; HttpOnly
+Transfer-Encoding: chunked
+Accept-Ranges: none
+Vary: Accept-Encoding
+Proxy-Connection: keep-alive
+[root@k8s-77-71 ~]#</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>方法三、<br>
+也是最简单的方法 如果你有桌面环境 直接用浏览器访问Google</li>
+</ul>
+
+<h2 id="优化">优化</h2>
+
+<blockquote>
+<p>在windows或mac下用过Shadowsocks的都知道，Shadowsocks有PAC模式和全局模式<br></p>
+</blockquote>
+
+<ul>
+<li>PAC模式：也就是智能分流模式，只有被墙的才会走代理。</li>
+<li>全局模式：在全局模式下，所有网站默认走代理。</li>
+</ul>
+
+<p><strong><em>上面的默认配置是全局模式</em></strong></p>
+
+<p>配置好Shadowsocks和Privoxy后 服务器访问公司内网服务:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# curl 172.16.77.221:10021
+
+&lt;!DOCTYPE HTML PUBLIC &#34;-//W3C//DTD HTML 4.01//EN&#34; &#34;http://www.w3.org/TR/html4/strict.dtd&#34;&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;title&gt;502 - No server or forwarder data received (Privoxy@k8s-77-71)&lt;/title&gt;
+  &lt;meta http-equiv=&#34;Content-Style-Type&#34; content=&#34;text/css&#34;&gt;
+  &lt;meta http-equiv=&#34;Content-Script-Type&#34; content=&#34;text/javascript&#34;&gt;
+  &lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=UTF-8&#34;&gt;
+  &lt;meta name=&#34;robots&#34; content=&#34;noindex,nofollow&#34;&gt;
+  &lt;link rel=&#34;shortcut icon&#34; href=&#34;http://config.privoxy.org/error-favicon.ico&#34;&gt;
+  &lt;style type=&#34;text/css&#34;&gt;
+......</pre></td></tr></table>
+</div>
+</div>
+<p><font color=#FF0000>  发现无法访问内网服务，显然访问内网服务时也默认走了代理导致。 这显然不符合我们的要求</font></p>
+
+<h3 id="解决内网不走代理问题">解决内网不走代理问题</h3>
+
+<ul>
+<li>方法一、<br />
+设置/etc/privoxy/config</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">vi /etc/privoxy/config</pre></td></tr></table>
+</div>
+</div>
+<p>加入以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">forward    172.16.*.*/     .</pre></td></tr></table>
+</div>
+</div>
+<p>重启Privoxy</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">systemctl restart privoxy</pre></td></tr></table>
+</div>
+</div>
+<p>再访问内网服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# curl 172.16.77.221:10021
+&lt;html&gt;&lt;body&gt;You are being &lt;a href=&#34;http://172.16.77.221:10021/users/sign_in&#34;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;
+[root@k8s-77-71 ~]#</pre></td></tr></table>
+</div>
+</div>
+<p>可以正常访问了<br />
+- 方法二、<br />
+&gt;此方法有个缺点，就是需要一个一个的添加地址 也可以添加域名</p>
+
+<p>配置 /etc/profile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">vim /etc/profile</pre></td></tr></table>
+</div>
+</div>
+<p>加入以下内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">export no_proxy=&#34;172.16.77.221&#34;</pre></td></tr></table>
+</div>
+</div>
+<p>保存后执行 source /etc/profile</p>
+
+<p>再访问内网服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# curl 172.16.77.221:10021
+&lt;html&gt;&lt;body&gt;You are being &lt;a href=&#34;http://172.16.77.221:10021/users/sign_in&#34;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;
+[root@k8s-77-71 ~]#</pre></td></tr></table>
+</div>
+</div>
+<p>也可以达到预期效果。</p>
+
+<h1 id="4-配置pac模式">4、配置PAC模式</h1>
+
+<blockquote>
+<p>由于前面已经配置好全局模式了。先为了验证PAC模式 需要将全局模式的一些配置恢复一下</p>
+</blockquote>
+
+<p>恢复配置：vi /etc/privoxy/config 将前面添加的这两行配置注释掉</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">forward-socks5t / 127.0.0.1:1080 . #转发到本地端口，注意别忘了最后的.
+forward    172.16.*.*/     .</pre></td></tr></table>
+</div>
+</div>
+<p>下载生成Privoxy-action配置的脚本
+&gt;此脚本是在github上找到的  有兴趣的可以去github上看看 <a href="https://github.com/zfl9/gfwlist2privoxy">链接</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">curl -skL https://raw.github.com/zfl9/gfwlist2privoxy/master/gfwlist2privoxy -o gfwlist2privoxy</pre></td></tr></table>
+</div>
+</div>
+<p>生成配置启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# bash gfwlist2privoxy &#39;127.0.0.1:1080&#39;  #注意‘127.0.0.1：1080’为你的sock5代理地址
+Generated file: &#39;gfwlist.action&#39;. Please put it in privoxy config directory.
+Usually, the directory is &#39;/etc/privoxy&#39;. If yes, then exec following command:
+
+mv -f gfwlist.action /etc/privoxy
+echo &#39;actionsfile gfwlist.action&#39; &gt;&gt;/etc/privoxy/config
+service privoxy restart (via SysVinit)
+systemctl restart privoxy.service (via Systemd)
+
+Enjoy it!
+[root@k8s-77-71 ~]#</pre></td></tr></table>
+</div>
+</div>
+<p>根据提示操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# cp -af gfwlist.action /etc/privoxy/
+[root@k8s-77-71 ~]# echo &#39;actionsfile gfwlist.action&#39; &gt;&gt; /etc/privoxy/config
+[root@k8s-77-71 ~]# systemctl restart privoxy.service</pre></td></tr></table>
+</div>
+</div>
+<h2 id="测试pac是否正常">测试PAC是否正常</h2>
+
+<ul>
+<li>测试谷歌，可以正常访问。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# curl -I  www.google.com
+HTTP/1.1 200 OK
+Date: Wed, 15 May 2019 09:51:58 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+P3P: CP=&#34;This is not a P3P policy! See g.co/p3phelp for more info.&#34;
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: 1P_JAR=2019-05-15-09; expires=Fri, 14-Jun-2019 09:51:58 GMT; path=/; domain=.google.com
+Set-Cookie: NID=183=r2vRw0LzqNXglFgwyEeMifKKSLNuP-lQuzmF5QQXjCsVjRqrur9ka8eUom7SF7poH9V3pfajnLx8paBNgDTcX0YTbxqfd49bW-i0aep8KMXuGTq6x2N-mnjHqU8IAaTokKPOtdv5YNBA3idCSh5HQLkw0Tiv7efmtLBwdyYnJgI; expires=Thu, 14-Nov-2019 09:51:58 GMT; path=/; domain=.google.com; HttpOnly
+Transfer-Encoding: chunked
+Accept-Ranges: none
+Vary: Accept-Encoding
+Proxy-Connection: keep-alive
+
+[root@k8s-77-71 ~]#</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>测试内网服务，可以正常访问。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[root@k8s-77-71 ~]# curl 172.16.77.221:10021
+&lt;html&gt;&lt;body&gt;You are being &lt;a href=&#34;http://172.16.77.221:10021/users/sign_in&#34;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;
+[root@k8s-77-71 ~]#</pre></td></tr></table>
+</div>
+</div>
+<h1 id="5-小技巧">5、小技巧</h1>
+
+<ul>
+<li>如果别的机器需要连接此机器的代理只需要在/etc/profile加入代理信息即可</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118</pre></td></tr></table>
+</div>
+</div>
+<p>保存后 source /etc/profile
+- 还可以使用别名方式来选择打开和关闭代理</p>
+
+<p>vim /etc/profile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">alias proxy=&#39;export all_proxy=http://127.0.0.1:8118&#39;
+alias unproxy=&#39;unset all_proxy&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>保存后 source /etc/profile</p>
+
+<p>执行proxy来打开代理<br />
+执行unproxy来关闭代理</p>
+
+<p><strong><em>对于是使用PAC模式还是全局模式，可根据自己的需求来决定</em></strong></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-05-15
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/centos/">centos</a>
+          <a href="/tags/ss/">ss</a>
+          <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/">科学上网</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2019/05/13/sed%E5%91%BD%E4%BB%A4%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
+            <span class="next-text nav-default">Sed命令的常用操作</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-05-15 21:03:46 \x2b0800 CST',
+        title: 'Centos7安装配置Shadowsocks客户端',
+        clientID: 'debcea41e9774d4c730e',
+        clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyht.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
