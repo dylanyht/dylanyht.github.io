@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker安装mysql - I am dylan ...</title>
+  <title>Centos下安装tomcat - I am dylan ...</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/" />
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Docker安装mysql" />
+<meta property="og:title" content="Centos下安装tomcat" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/" />
-<meta property="article:published_time" content="2019-05-22T21:18:04&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-22T21:18:04&#43;08:00"/>
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/" />
+<meta property="article:published_time" content="2019-05-23T15:01:14&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-23T15:01:14&#43;08:00"/>
 
-<meta itemprop="name" content="Docker安装mysql">
+<meta itemprop="name" content="Centos下安装tomcat">
 <meta itemprop="description" content="">
 
 
-<meta itemprop="datePublished" content="2019-05-22T21:18:04&#43;08:00" />
-<meta itemprop="dateModified" content="2019-05-22T21:18:04&#43;08:00" />
+<meta itemprop="datePublished" content="2019-05-23T15:01:14&#43;08:00" />
+<meta itemprop="dateModified" content="2019-05-23T15:01:14&#43;08:00" />
 <meta itemprop="wordCount" content="0">
 
 
 
-<meta itemprop="keywords" content="docker,容器,数据库,mysql,centos,," />
+<meta itemprop="keywords" content="linux,tomcat,centos,," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker安装mysql"/>
+<meta name="twitter:title" content="Centos下安装tomcat"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -129,12 +129,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Docker安装mysql</h1>
+      <h1 class="post-title">Centos下安装tomcat</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-05-22 </span>
+        <span class="post-time"> 2019-05-23 </span>
         <div class="post-category">
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            <a href="/categories/linux/"> linux </a>
             </div>
           <span class="more-meta"> 0 words </span>
           <span class="more-meta"> 0 mins read </span>
@@ -149,14 +149,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#查找镜像">查找镜像</a></li>
-<li><a href="#拉取镜像">拉取镜像</a></li>
-<li><a href="#启动容器">启动容器</a></li>
-<li><a href="#查看运行的容器">查看运行的容器</a></li>
-<li><a href="#进入运行中的容器">进入运行中的容器</a></li>
-<li><a href="#在容器中登录mysql">在容器中登录mysql</a></li>
-<li><a href="#查看用户信息">查看用户信息</a></li>
-<li><a href="#设置远程连接">设置远程连接</a></li>
+<li><a href="#下载">下载</a></li>
+<li><a href="#解压">解压</a></li>
+<li><a href="#tomcat目录结构说明">Tomcat目录结构说明</a></li>
+<li><a href="#tomcat启动-关闭">Tomcat启动、关闭</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -164,86 +160,192 @@
 </div>
     <div class="post-content">
       <blockquote>
-<p>此文档需要在docker安装之后操作</p>
+<p>此文档需要安装配置好jdk后操作，jdk安装可参考<a href="[https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85java/](https://dylanyang.top/post/2019/05/22/centos7安装java/)">电梯直达</a></p>
 </blockquote>
 
-<h2 id="查找镜像">查找镜像</h2>
+<h2 id="下载">下载</h2>
+
+<blockquote>
+<p>官方链接：<a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker search mysql</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.20/bin/apache-tomcat-9.0.20.tar.gz</code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="拉取镜像">拉取镜像</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker pull mysql</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="启动容器">启动容器</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker run -it --restart always --name mysql   -v /opt/mysql/data:/var/lib/mysql -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="m">123456</span> -p <span class="m">3307</span>:3306 -d mysql</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="查看运行的容器">查看运行的容器</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker ps</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="进入运行中的容器">进入运行中的容器</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker <span class="nb">exec</span> -it mysql /bin/bash</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="在容器中登录mysql">在容器中登录mysql</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">mysql -uroot -p123456</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="查看用户信息">查看用户信息</h2>
+<h2 id="解压">解压</h2>
+
+<p>解压到指定目录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="k">select</span>   host,user,plugin,authentication_string   from   mysql.user<span class="p">;</span>
-<span class="c1"># 备注：host为%表示不限制ip localhost表示本机  plugin非mysql_native_password 则需要修改密码</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 opt<span class="o">]</span><span class="c1"># tar xvf apache-tomcat-9.0.20.tar.gz -C /usr/local/</span>
+<span class="o">[</span>root@k8s-77-162 opt<span class="o">]</span><span class="c1"># mv /usr/local/apache-tomcat-9.0.20/ /usr/local/tomcat/</span></code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="设置远程连接">设置远程连接</h2>
+<p>可根据自身需求来决定要不要配置环境变量</p>
+
+<h2 id="tomcat目录结构说明">Tomcat目录结构说明</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># cd /usr/local/tomcat/</span>
+<span class="o">[</span>root@k8s-77-162 tomcat<span class="o">]</span><span class="c1"># ll</span>
+总用量 <span class="m">124</span>
+drwxr-x---. <span class="m">2</span> root root  <span class="m">4096</span> 5月  <span class="m">23</span> <span class="m">11</span>:26 bin <span class="c1">#--启动命令目录</span>
+-rw-r-----. <span class="m">1</span> root root <span class="m">19182</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 BUILDING.txt
+drwx------. <span class="m">3</span> root root   <span class="m">254</span> 5月  <span class="m">23</span> <span class="m">13</span>:53 conf <span class="c1">#--配置文件目录</span>
+-rw-r-----. <span class="m">1</span> root root  <span class="m">5407</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 CONTRIBUTING.md
+drwxr-x---. <span class="m">2</span> root root  <span class="m">4096</span> 5月  <span class="m">23</span> <span class="m">11</span>:26 lib <span class="c1"># --库文件目录</span>
+-rw-r-----. <span class="m">1</span> root root <span class="m">57092</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 LICENSE
+drwxr-x---. <span class="m">2</span> root root   <span class="m">197</span> 5月  <span class="m">23</span> <span class="m">13</span>:53 logs <span class="c1">#--日志文件目录</span>
+-rw-r-----. <span class="m">1</span> root root  <span class="m">2333</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 NOTICE
+-rw-r-----. <span class="m">1</span> root root  <span class="m">3255</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 README.md
+-rw-r-----. <span class="m">1</span> root root  <span class="m">6852</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 RELEASE-NOTES
+-rw-r-----. <span class="m">1</span> root root <span class="m">16262</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 RUNNING.txt
+drwxr-x---. <span class="m">2</span> root root    <span class="m">30</span> 5月  <span class="m">23</span> <span class="m">11</span>:26 temp <span class="c1">#--临时缓存文件</span>
+drwxr-x---. <span class="m">7</span> root root    <span class="m">81</span> 5月   <span class="m">4</span> <span class="m">06</span>:27 webapps <span class="c1">#--web应用家目录</span>
+drwxr-x---. <span class="m">3</span> root root    <span class="m">22</span> 5月  <span class="m">23</span> <span class="m">13</span>:53 work <span class="c1">#--工作缓存目录</span>
+<span class="o">[</span>root@k8s-77-162 tomcat<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="tomcat启动-关闭">Tomcat启动、关闭</h2>
+
+<ul>
+<li>启动</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">ALTER user <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span> IDENTIFIED WITH mysql_native_password BY <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
-FLUSH PRIVILEGES<span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1"># ./startup.sh</span>
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr/java/jdk1.8.0_201/
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
 </div>
 </div>
-<p>然后使用navicat连接</p>
+<ul>
+<li>查看端口</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1"># lsof -i:8080</span>
+COMMAND   PID USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
+java    <span class="m">26910</span> root   54u  IPv6 <span class="m">13896346</span>      0t0  TCP *:webcache <span class="o">(</span>LISTEN<span class="o">)</span>
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>web端访问</li>
+</ul>
+
+<blockquote>
+<p>tomcat默认端口为8080  如果需要修改端口可以进去conf&gt;server.xml修改</p>
+</blockquote>
+
+<p><a href="https://imgchr.com/i/VCI7dJ"><img src="https://s2.ax1x.com/2019/05/23/VCI7dJ.jpg" alt="VCI7dJ.jpg" /></a></p>
+
+<ul>
+<li>关闭</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1"># ./shutdown.sh</span>
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr/java/jdk1.8.0_201/
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
+<p>也可以用下面命令来进行启动关闭</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1"># /usr/local/tomcat/bin/catalina.sh start  #启动</span>
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr/java/jdk1.8.0_201/
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1"># /usr/local/tomcat/bin/catalina.sh stop  #关闭</span>
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr/java/jdk1.8.0_201/
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">
@@ -254,7 +356,7 @@ FLUSH PRIVILEGES<span class="p">;</span></code></pre></td></tr></table>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-05-22
+        2019-05-23
         
     </span>
   </p>
@@ -280,21 +382,15 @@ FLUSH PRIVILEGES<span class="p">;</span></code></pre></td></tr></table>
   </div>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/docker/">docker</a>
-          <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
-          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-          <a href="/tags/mysql/">mysql</a>
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/tomcat/">tomcat</a>
           <a href="/tags/centos/">centos</a>
           <a href="/tags//"></a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Docker安装nginx</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/2019/05/22/docker%E5%AE%89%E8%A3%85jenkins/">
-            <span class="next-text nav-default">Docker安装jenkins</span>
+        
+        <a class="next" href="/post/2019/05/23/linux%E4%B8%8B%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/">
+            <span class="next-text nav-default">Linux下添加新硬盘</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -307,8 +403,8 @@ FLUSH PRIVILEGES<span class="p">;</span></code></pre></td></tr></table>
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-22 21:18:04 \x2b0800 CST',
-        title: 'Docker安装mysql',
+        id: '2019-05-23 15:01:14 \x2b0800 CST',
+        title: 'Centos下安装tomcat',
         clientID: 'debcea41e9774d4c730e',
         clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
         repo: 'blog-comment',

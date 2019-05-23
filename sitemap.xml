@@ -17,19 +17,62 @@
   
   <url>
     <loc>https://dylanyht.github.io/tags/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyht.github.io/categories/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://dylanyht.github.io/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://dylanyht.github.io/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/post/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/centos/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/categories/linux/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/linux/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyht.github.io/tags/tomcat/</loc>
+    <lastmod>2019-05-23T15:01:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -38,36 +81,6 @@
     <lastmod>2019-05-23T10:50:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/post/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/centos/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/categories/linux/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyht.github.io/tags/linux/</loc>
-    <lastmod>2019-05-23T10:50:12+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
