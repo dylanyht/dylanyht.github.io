@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>记录一次kubectl出错事件 - I am dylan ...</title>
+  <title>Linux下添加新硬盘 - I am dylan ...</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" />
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/05/23/linux%E4%B8%8B%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="记录一次kubectl出错事件" />
+<meta property="og:title" content="Linux下添加新硬盘" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" />
-<meta property="article:published_time" content="2019-05-08T17:39:59&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-08T17:39:59&#43;08:00"/>
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/05/23/linux%E4%B8%8B%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/" />
+<meta property="article:published_time" content="2019-05-23T10:50:12&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-23T10:50:12&#43;08:00"/>
 
-<meta itemprop="name" content="记录一次kubectl出错事件">
+<meta itemprop="name" content="Linux下添加新硬盘">
 <meta itemprop="description" content="">
 
 
-<meta itemprop="datePublished" content="2019-05-08T17:39:59&#43;08:00" />
-<meta itemprop="dateModified" content="2019-05-08T17:39:59&#43;08:00" />
+<meta itemprop="datePublished" content="2019-05-23T10:50:12&#43;08:00" />
+<meta itemprop="dateModified" content="2019-05-23T10:50:12&#43;08:00" />
 <meta itemprop="wordCount" content="0">
 
 
 
-<meta itemprop="keywords" content="Kubernetes,linux,容器," />
+<meta itemprop="keywords" content="linux,centos,磁盘," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="记录一次kubectl出错事件"/>
+<meta name="twitter:title" content="Linux下添加新硬盘"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -129,12 +129,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">记录一次kubectl出错事件</h1>
+      <h1 class="post-title">Linux下添加新硬盘</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-05-08 </span>
+        <span class="post-time"> 2019-05-23 </span>
         <div class="post-category">
-            <a href="/categories/kubernetes/"> Kubernetes </a>
+            <a href="/categories/linux/"> linux </a>
             </div>
           <span class="more-meta"> 0 words </span>
           <span class="more-meta"> 0 mins read </span>
@@ -149,57 +149,27 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li><a href="#一-问题">一、 问题</a></li>
-<li><a href="#二-排查">二、排查</a></li>
-<li><a href="#三-解决问题">三、解决问题</a></li>
-</ul></li>
+<li><a href="#查看当前磁盘信息">查看当前磁盘信息</a></li>
+<li><a href="#查看新硬盘">查看新硬盘</a></li>
+<li><a href="#对新硬盘进行分区">对新硬盘进行分区</a></li>
+<li><a href="#查看分区">查看分区</a></li>
+<li><a href="#将分区格式化">将分区格式化</a></li>
+<li><a href="#挂载分区">挂载分区</a></li>
+<li><a href="#添加开机自动挂载">添加开机自动挂载</a></li>
 </ul></li>
 </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h3 id="一-问题">一、 问题</h3>
+      <blockquote>
+<p>此文档在centos7.x下实际操作</p>
+</blockquote>
 
-<p>上午还在正常使用的Kubernetes集群 下午使用kubectl命令一直提示The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</p>
-
-<h3 id="二-排查">二、排查</h3>
+<h2 id="查看当前磁盘信息">查看当前磁盘信息</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
-The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</pre></td></tr></table>
-</div>
-</div>
-<p>使用docker查看k8s相关容器及apiserver是否正常</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ docker ps
-CONTAINER ID        IMAGE                                            COMMAND                   CREATED             STATUS              PORTS                         NAMES
-f1d6f5acd4b2        144ecb80a73c                                     &#34;/usr/sbin/init&#34;          32 hours ago        Up 32 hours                                       k8s_test_test-0_default_4c6c78ec-64a2-11e9-b297-6cae8b77ae08_0
-e2079cd28387        k8s.gcr.io/pause:3.1                             &#34;/pause&#34;                  32 hours ago        Up 32 hours
-b5a315d1477b        40a63db91ef8                                     &#34;kube-apiserver --au…&#34;    3 months ago        Up 3 months                                       k8s_kube-apiserver_kube-apiserver-k8s-77-53_kube-system_467247f0aca129ce9b864d2562c1e575_6
-....</pre></td></tr></table>
-</div>
-</div>
-<p>发现容器一切正常  业务系统也在正常运行  就是kubectl没办法用<br/>
-排查k8s请求</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -209,101 +179,76 @@ b5a315d1477b        40a63db91ef8                                     &#34;kube-a
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span></pre></td>
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl -v=8  get nodes
-I0423 16:09:42.199244   26311 loader.go:359] Config loaded from file /etc/kubernetes/admin.conf
-I0423 16:09:42.201189   26311 loader.go:359] Config loaded from file /etc/kubernetes/admin.conf
-I0423 16:09:42.203029   26311 round_trippers.go:416] GET https://172.16.77.53:6443/api?timeout=32s
-I0423 16:09:42.203145   26311 round_trippers.go:423] Request Headers:
-I0423 16:09:42.203179   26311 round_trippers.go:426]     Accept: application/json, */*
-I0423 16:09:42.203212   26311 round_trippers.go:426]     User-Agent: kubectl/v1.13.1 (linux/amd64) kubernetes/eec55b9
-I0423 16:09:42.204660   26311 round_trippers.go:441] Response Status:  in 1 milliseconds
-I0423 16:09:42.204727   26311 round_trippers.go:444] Response Headers:
-I0423 16:09:42.204860   26311 cached_discovery.go:113] skipped caching discovery info due to Get https://172.16.77.53:6443/api?timeout=32s: proxyconnect tcp: dial tcp 172.16.77.36:8118: connect: connection refused</pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># df -h</span>
+文件系统                 容量  已用  可用 已用% 挂载点
+/dev/mapper/centos-root   50G   33G   18G   <span class="m">66</span>% /
+devtmpfs                 <span class="m">3</span>.9G     <span class="m">0</span>  <span class="m">3</span>.9G    <span class="m">0</span>% /dev
+tmpfs                    <span class="m">3</span>.9G  196K  <span class="m">3</span>.9G    <span class="m">1</span>% /dev/shm
+tmpfs                    <span class="m">3</span>.9G  106M  <span class="m">3</span>.8G    <span class="m">3</span>% /run
+tmpfs                    <span class="m">3</span>.9G     <span class="m">0</span>  <span class="m">3</span>.9G    <span class="m">0</span>% /sys/fs/cgroup
+/dev/mapper/centos-home  147G  <span class="m">7</span>.3G  140G    <span class="m">5</span>% /home
+/dev/sda1               1014M  232M  783M   <span class="m">23</span>% /boot
+overlay                  147G  <span class="m">7</span>.3G  140G    <span class="m">5</span>% /home/docker/docker-data/overlay/7ebd6d30f25e6ec66022ce88a2d9fd94c3a5fa5c51652b14b9b759d6a1b12ac6/merged
+shm                       64M     <span class="m">0</span>   64M    <span class="m">0</span>% /home/docker/docker-data/containers/7ebf213b6bfbeef5bc5732c50157ffe2e6805e42d7e05758ab7c5c2e1f503a38/mounts/shm
+tmpfs                    783M     <span class="m">0</span>  783M    <span class="m">0</span>% /run/user/0
+<span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span>#</code></pre></td></tr></table>
 </div>
 </div>
-<p>这里能看的出应该是宿主机代理出现了问题</p>
+<h2 id="查看新硬盘">查看新硬盘</h2>
 
-<h3 id="三-解决问题">三、解决问题</h3>
+<p>fdisk -l</p>
 
-<p>为了能正常使用kubectl  先把代理注释掉<br/></p>
+<p><a href="https://imgchr.com/i/VCtmQO"><img src="https://s2.ax1x.com/2019/05/23/VCtmQO.jpg" alt="VCtmQO.jpg" /></a></p>
+
+<h2 id="对新硬盘进行分区">对新硬盘进行分区</h2>
+
+<p>fdisk /dev/sdb</p>
+
+<p><a href="https://imgchr.com/i/VCt0Ts"><img src="https://s2.ax1x.com/2019/05/23/VCt0Ts.jpg" alt="VCt0Ts.jpg" /></a></p>
+
+<h2 id="查看分区">查看分区</h2>
+
+<p>fdisk -l</p>
+
+<p><a href="https://imgchr.com/i/VCtztI"><img src="https://s2.ax1x.com/2019/05/23/VCtztI.jpg" alt="VCtztI.jpg" /></a></p>
+
+<h2 id="将分区格式化">将分区格式化</h2>
+
+<p>mkfs -t ext3 /dev/sdb1  #文件系统根据自己的需要选择</p>
+
+<p><a href="https://imgchr.com/i/VCNJE9"><img src="https://s2.ax1x.com/2019/05/23/VCNJE9.jpg" alt="VCNJE9.jpg" /></a></p>
+
+<h2 id="挂载分区">挂载分区</h2>
+
+<p>mount /dev/sdb1 /data</p>
+
+<p><a href="https://imgchr.com/i/VCNfv8"><img src="https://s2.ax1x.com/2019/05/23/VCNfv8.jpg" alt="VCNfv8.jpg" /></a></p>
+
+<h2 id="添加开机自动挂载">添加开机自动挂载</h2>
+
+<p>如果要启动时自动挂载，需要编辑/etc/fstab文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ vi /etc/profile
-...
-[docker@k8s-77-52 ~]$ source /etc/profile</pre></td></tr></table>
-</div>
-</div>
-<p>再使用kubectl看看是否正常</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
-The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</pre></td></tr></table>
-</div>
-</div>
-<p>发现还是原来的错误<br/>
-经过查看后发现 代理还在</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ env | grep -i  proxy
-http_proxy=http://172.16.77.36:8118
-https_proxy=http://172.16.77.36:8118</pre></td></tr></table>
-</div>
-</div>
-<p>使用unset取消</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ unset http_proxy
-[docker@k8s-77-53 ~]$ unset https_proxy</pre></td></tr></table>
-</div>
-</div>
-<p>然后查看代理是否还在</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ env | grep -i  proxy
-[docker@k8s-77-53 ~]$</pre></td></tr></table>
-</div>
-</div>
-<p>发现这次取消成功了，然后再查看kubectl是否能正常使用</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span><span class="lnt">5
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
-NAME                           READY   STATUS    RESTARTS   AGE
-cp-schema-registry-0           1/1     Running   0          6d6h
-test-0                         1/1     Running   0          31h</pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">vim /etc/fstab
+
+<span class="c1">#添加以下内容</span>
+
+/dev/sdb1 /data ext3  defaults <span class="m">0</span> <span class="m">0</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>现在已可以正常使用<br />
-<strong>注意：上面那个代理是由于已经写入了系统变量，所以在source之后还在应用。必须得unset或者再重开个ssh窗口才能取消</strong></p>
+<p>这样以后重启就会自动挂载到/data下</p>
     </div>
 
     <div class="post-copyright">
@@ -314,7 +259,7 @@ test-0                         1/1     Running   0          31h</pre></td></tr><
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-05-08
+        2019-05-23
         
     </span>
   </p>
@@ -340,18 +285,14 @@ test-0                         1/1     Running   0          31h</pre></td></tr><
   </div>
 </div><footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/kubernetes/">Kubernetes</a>
           <a href="/tags/linux/">linux</a>
-          <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+          <a href="/tags/centos/">centos</a>
+          <a href="/tags/%E7%A3%81%E7%9B%98/">磁盘</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Centos7安装docker</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/2019/05/08/centos7%E5%AE%89%E8%A3%85maven/">
-            <span class="next-text nav-default">Centos7安装maven</span>
+        
+        <a class="next" href="/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/">
+            <span class="next-text nav-default">Kubectl远程连接集群</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -364,8 +305,8 @@ test-0                         1/1     Running   0          31h</pre></td></tr><
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-08 17:39:59 \x2b0800 CST',
-        title: '记录一次kubectl出错事件',
+        id: '2019-05-23 10:50:12 \x2b0800 CST',
+        title: 'Linux下添加新硬盘',
         clientID: 'debcea41e9774d4c730e',
         clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
         repo: 'blog-comment',

@@ -6,10 +6,19 @@
     <description>Recent content in Categories on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 May 2019 21:31:31 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 May 2019 10:50:12 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>linux</title>
+      <link>https://dylanyht.github.io/categories/linux/</link>
+      <pubDate>Thu, 23 May 2019 10:50:12 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes</title>
@@ -53,15 +62,6 @@
       <pubDate>Wed, 22 May 2019 20:58:05 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/categories/%E7%BC%96%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://dylanyht.github.io/categories/linux/</link>
-      <pubDate>Wed, 15 May 2019 21:03:46 +0800</pubDate>
-      
-      <guid>https://dylanyht.github.io/categories/linux/</guid>
       <description></description>
     </item>
     

@@ -1,58 +1,56 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on I am dylan ...</title>
+    <title>I am dylan ...</title>
     <link>https://dylanyht.github.io/tags/</link>
-    <description>Recent content in Tags on I am dylan ...</description>
+    <description>Recent content on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 May 2019 21:31:31 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 May 2019 10:50:12 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title></title>
-      <link>https://dylanyht.github.io/tags/</link>
-      <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
+      <title>Docker安装samba共享目录</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</link>
+      <pubDate>Wed, 22 May 2019 21:26:07 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/tags/</guid>
+      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Kubernetes</title>
-      <link>https://dylanyht.github.io/tags/kubernetes/</link>
-      <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
+      <title>Docker安装nginx</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</link>
+      <pubDate>Wed, 22 May 2019 21:20:36 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/tags/kubernetes/</guid>
+      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>linux</title>
-      <link>https://dylanyht.github.io/tags/linux/</link>
-      <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
+      <title>Docker安装mysql</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</link>
+      <pubDate>Wed, 22 May 2019 21:18:04 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/tags/linux/</guid>
+      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>容器</title>
-      <link>https://dylanyht.github.io/tags/%E5%AE%B9%E5%99%A8/</link>
-      <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
+      <title>Centos7安装jenkins</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85jenkins/</link>
+      <pubDate>Wed, 22 May 2019 21:01:21 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85jenkins/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>d, 22 May 2019 21:31:31 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/tags/%E5%AE%B9%E5%99%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>centos</title>
-      <link>https://dylanyht.github.io/tags/centos/</link>
-      <pubDate>Wed, 22 May 2019 21:28:39 +0800</pubDate>
-      
-      <guid>https://dylanyht.github.io/tags/centos/</guid>
       <description></description>
     </item>
     
