@@ -6,10 +6,55 @@
     <description>Recent content in linux on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 May 2019 21:03:46 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 May 2019 21:31:31 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubectl远程连接集群</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</link>
+      <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装jenkins</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85jenkins/</link>
+      <pubDate>Wed, 22 May 2019 21:01:21 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装java</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85java/</link>
+      <pubDate>Wed, 22 May 2019 20:58:05 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装helm</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</link>
+      <pubDate>Wed, 22 May 2019 20:54:50 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装Kompose</title>
+      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</link>
+      <pubDate>Wed, 22 May 2019 18:20:02 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Centos7安装配置Shadowsocks客户端</title>
