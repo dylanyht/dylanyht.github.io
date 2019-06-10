@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker环境下gitlab的迁移和升级 - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Docker环境下gitlab的迁移和升级" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/" />
+<meta property="article:published_time" content="2019-06-10T14:17:14&#43;08:00"/>
+<meta property="article:modified_time" content="2019-06-10T14:17:14&#43;08:00"/>
+
+<meta itemprop="name" content="Docker环境下gitlab的迁移和升级">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2019-06-10T14:17:14&#43;08:00" />
+<meta itemprop="dateModified" content="2019-06-10T14:17:14&#43;08:00" />
+<meta itemprop="wordCount" content="857">
+
+
+
+<meta itemprop="keywords" content="centos,CI/CD,gitlab,Devops,docker,容器," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker环境下gitlab的迁移和升级"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker环境下gitlab的迁移和升级</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-10 </span>
+        <div class="post-category">
+            <a href="/categories/devops/"> Devops </a>
+            </div>
+          <span class="more-meta"> 857 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前期准备">前期准备</a></li>
+<li><a href="#数据备份">数据备份</a></li>
+<li><a href="#还原备份">还原备份</a></li>
+<li><a href="#gitlab版本升级">gitlab版本升级</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>背景：因为gitlab服务器是使用docker搭建的，为了以后迁移gitlab做准备，先在测试环境下测试实操gitlab迁移。此文档是在centos7.x下实际操作</p>
+
+<p>目的：将环境配置和数据内容还原到新的环境中去</p>
+</blockquote>
+
+<h2 id="前期准备">前期准备</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">服务器</th>
+<th>系统版本</th>
+<th>gitlab版本</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">172.16.77.36</td>
+<td>Centos7.x</td>
+<td>11.0.3</td>
+</tr>
+
+<tr>
+<td align="left">172.16.77.162</td>
+<td>Centos7.x</td>
+<td>11.0.3</td>
+</tr>
+</tbody>
+</table>
+
+<p>注意：gitlab迁移最好使用相同版本  迁移后再做升级操作</p>
+
+<h2 id="数据备份">数据备份</h2>
+
+<ul>
+<li>记录gitlab运行命令：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker run --detach <span class="se">\
+</span><span class="se"></span>    --hostname git.xxxxxxxxx.com <span class="se">\
+</span><span class="se"></span>    --publish <span class="m">443</span>:443 --publish <span class="m">10021</span>:80 --publish <span class="m">10022</span>:22 <span class="se">\
+</span><span class="se"></span>    --name gitlab <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/config:/etc/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/logs:/var/log/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/data:/var/opt/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --privileged <span class="se">\
+</span><span class="se"></span>    gitlab/gitlab-ce:11.0.3-ce.0</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>gitlab上的项目</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/VYn8De"><img src="https://s2.ax1x.com/2019/06/03/VYn8De.jpg" alt="VYn8De.jpg" /></a></p>
+
+<ul>
+<li>备份数据库和配置文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-36 ~<span class="o">]</span><span class="c1"># docker exec -t gitlab gitlab-rake gitlab:backup:create</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>查看备份</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-36 ~<span class="o">]</span><span class="c1"># cd /home/docker/data/gitlab/data/backups</span>
+<span class="o">[</span>root@k8s-77-36 backups<span class="o">]</span><span class="c1"># ll</span>
+总用量 <span class="m">18772</span>
+-rw-------. <span class="m">1</span> libstoragemgmt polkitd <span class="m">19220480</span> 6月   <span class="m">3</span> <span class="m">15</span>:52 1559548339_2019_06_03_11.0.3_gitlab_backup.tar
+<span class="o">[</span>root@k8s-77-36 backups<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
+<p>注意：备份文件在/home/docker/data/gitlab/data/backups下</p>
+
+<p>​           配置文件在/home/docker/data/gitlab/config下</p>
+
+<ul>
+<li>在新服务器上启动gitlab：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker run --detach <span class="se">\
+</span><span class="se"></span>    --hostname git.xxxxxxxxx.com <span class="se">\
+</span><span class="se"></span>    --publish <span class="m">443</span>:443 --publish <span class="m">10021</span>:80 --publish <span class="m">10022</span>:22 <span class="se">\
+</span><span class="se"></span>    --name gitlab <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/config:/etc/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/logs:/var/log/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/data:/var/opt/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --privileged <span class="se">\
+</span><span class="se"></span>    gitlab/gitlab-ce:11.0.3-ce.0</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>正常启动后停止gitlab容器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker stop gitlab</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>复制备份</li>
+</ul>
+
+<blockquote>
+<p>将老服务器上的备份文件和配置文件都拷贝到新服务器上对应的目录上</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-36 backups<span class="o">]</span><span class="c1"># pwd</span>
+/home/docker/data/gitlab/data/backups
+<span class="o">[</span>root@k8s-77-36 backups<span class="o">]</span><span class="c1"># scp 1559548339_2019_06_03_11.0.3_gitlab_backup.tar  root@172.16.77.162:/home/docker/data/gitlab/data/backups</span>
+....
+<span class="o">[</span>root@k8s-77-36 gitlab<span class="o">]</span><span class="c1"># scp -r config/  root@172.16.77.162:/home/docker/data/gitlab/config/</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>重新启动容器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker start gitlab</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="还原备份">还原备份</h2>
+
+<ul>
+<li>进入容器 停掉数据库连接</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 进入容器
+docker exec -it gitlab /bin/bash
+gitlab-ctl stop unicorn
+gitlab-ctl stop sidekiq
+
+# 验证
+gitlab-ctl status</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>还原备份</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#恢复数据库</span>
+root@git:/# gitlab-rake gitlab:backup:restore <span class="nv">BACKUP</span><span class="o">=</span>1559548339_2019_06_03_11.0.3
+Unpacking backup ... tar: 1559548339_2019_06_03_11.0.3_gitlab_backup.tar: Cannot open: Permission denied
+tar: Error is not recoverable: exiting now
+unpacking backup failed</code></pre></td></tr></table>
+</div>
+</div>
+<p>出现以上错误是因为备份文件权限不足。直接给足权限，然后在运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">root@git:/var/opt/gitlab/backups# <span class="nb">pwd</span>
+/var/opt/gitlab/backups
+root@git:/var/opt/gitlab/backups# chmod <span class="m">777</span> 1559548339_2019_06_03_11.0.3_gitlab_backup.tar <span class="c1">#修改权限</span>
+root@git:/var/opt/gitlab/backups# ll 1559548339_2019_06_03_11.0.3_gitlab_backup.tar
+-rwxrwxrwx. <span class="m">1</span> root root <span class="m">19220480</span> Jun  <span class="m">3</span> <span class="m">12</span>:42 1559548339_2019_06_03_11.0.3_gitlab_backup.tar*
+root@git:/var/opt/gitlab/backups# gitlab-rake gitlab:backup:restore <span class="nv">BACKUP</span><span class="o">=</span>1559548339_2019_06_03_11.0.3
+...
+Do you want to <span class="k">continue</span> <span class="o">(</span>yes/no<span class="o">)</span>? yes
+...
+Do you want to <span class="k">continue</span> <span class="o">(</span>yes/no<span class="o">)</span>? yes</code></pre></td></tr></table>
+</div>
+</div>
+<p>到此数据恢复完成</p>
+
+<ul>
+<li>重启并验证</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#重启并验证</span>
+gitlab-ctl restart
+gitlab-rake gitlab:check <span class="nv">SANITIZE</span><span class="o">=</span>true</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>查看项目</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/VYucLD"><img src="https://s2.ax1x.com/2019/06/03/VYucLD.jpg" alt="VYucLD.jpg" /></a></p>
+
+<h2 id="gitlab版本升级">gitlab版本升级</h2>
+
+<ul>
+<li>查看当前gitlab系统版本</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># docker exec gitlab bash -c &#34;cat /opt/gitlab/embedded/service/gitlab-rails/VERSION&#34;</span>
+<span class="m">11</span>.0.3</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>拉取新版本的镜像</li>
+</ul>
+
+<blockquote>
+<p>拉取镜像时尽量加上具体tag  这样能更加直观</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># docker pull gitlab/gitlab-ce:11.10.5-ce.0</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>停用旧版本容器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># docker stop gitlab</span>
+gitlab
+<span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># docker rm gitlab</span>
+gitlab</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>启动新容器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker run --detach <span class="se">\
+</span><span class="se"></span>    --hostname git.xxxxxxxx.com <span class="se">\
+</span><span class="se"></span>    --publish <span class="m">443</span>:443 --publish <span class="m">10021</span>:80 --publish <span class="m">10022</span>:22 <span class="se">\
+</span><span class="se"></span>    --name gitlab <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/config:/etc/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/logs:/var/log/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --volume /home/docker/data/gitlab/data:/var/opt/gitlab:Z <span class="se">\
+</span><span class="se"></span>    --privileged <span class="se">\
+</span><span class="se"></span>    gitlab/gitlab-ce:11.10.5-ce.0</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>启动后查看版本</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># docker exec gitlab bash -c &#34;cat /opt/gitlab/embedded/service/gitlab-rails/VERSION&#34;</span>
+<span class="m">11</span>.10.5</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>查看项目</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/VYlkTg"><img src="https://s2.ax1x.com/2019/06/03/VYlkTg.jpg" alt="VYlkTg.jpg" /></a></p>
+
+<p>到此升级完成</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-06-10
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/centos/">centos</a>
+          <a href="/tags/ci/cd/">CI/CD</a>
+          <a href="/tags/gitlab/">gitlab</a>
+          <a href="/tags/devops/">Devops</a>
+          <a href="/tags/docker/">docker</a>
+          <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker相关配置操作</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/">
+            <span class="next-text nav-default">Kubernetes Dashboard部署</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-06-10 14:17:14 \x2b0800 CST',
+        title: 'Docker环境下gitlab的迁移和升级',
+        clientID: 'debcea41e9774d4c730e',
+        clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyht.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
