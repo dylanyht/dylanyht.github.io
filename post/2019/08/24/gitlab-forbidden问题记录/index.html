@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gitlab Forbidden问题记录 - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gitlab Forbidden问题记录" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" />
+<meta property="article:published_time" content="2019-08-24T08:09:53&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-24T08:09:53&#43;08:00"/>
+
+<meta itemprop="name" content="Gitlab Forbidden问题记录">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2019-08-24T08:09:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-24T08:09:53&#43;08:00" />
+<meta itemprop="wordCount" content="504">
+
+
+
+<meta itemprop="keywords" content="gitlab,linux,docker,centos," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gitlab Forbidden问题记录"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gitlab Forbidden问题记录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-24 </span>
+        <div class="post-category">
+            <a href="/categories/gitlab/"> gitlab </a>
+            </div>
+          <span class="more-meta"> 504 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#问题描述">问题描述</a></li>
+<li><a href="#原因查询">原因查询</a></li>
+<li><a href="#解决办法">解决办法</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>记录一次gitlab提示Forbidden的问题</p>
+</blockquote>
+
+<h2 id="问题描述">问题描述</h2>
+
+<p>公司的代码托管在基于docker自建的gitlab上，突然有一天同事反馈说gitlab私服的域名时页面提示Forbidden。但是使用内网ip+端口可以访问。</p>
+
+<h2 id="原因查询">原因查询</h2>
+
+<p>经过google及查询官方文档<a href="https://docs.gitlab.com/ce/security/rack_attack.html">电梯直达</a>，是因为gitlab的防攻击策略导致的，gitlab使用rack_attack做了并发访问的限制</p>
+
+<h2 id="解决办法">解决办法</h2>
+
+<p>修改/etc/gitlab/gitlab.rb配置  由于此文件我已经挂载到本地了 ，所以直接找到对应的目录里进行修改</p>
+
+<p>查找gitlab_rails[&lsquo;rack_attack_git_basic_auth&rsquo;]关键词</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#gitlab_rails[&#39;rack_attack_git_basic_auth&#39;] = {</span>
+<span class="c1">#  &#39;enabled&#39; =&gt; true,</span>
+<span class="c1">#  &#39;ip_whitelist&#39; =&gt; [&#34;127.0.0.1&#34;],</span>
+<span class="c1">#  &#39;maxretry&#39; =&gt; 10, #限制每个ip的git http身份验证尝试次数</span>
+<span class="c1">#  &#39;findtime&#39; =&gt; 60, #60秒后重置每个ip的身份验证</span>
+<span class="c1">#  &#39;bantime&#39; =&gt; 3600 # 禁止一个ip一个小时</span>
+<span class="c1">#}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>将以上内容取消注释修改为以下配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"> gitlab_rails<span class="o">[</span><span class="s1">&#39;rack_attack_git_basic_auth&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="o">{</span>
+   <span class="s1">&#39;enabled&#39;</span> <span class="o">=</span>&gt; true,
+   <span class="s1">&#39;ip_whitelist&#39;</span> <span class="o">=</span>&gt; <span class="o">[</span><span class="s2">&#34;127.0.0.1&#34;</span>,<span class="s2">&#34;gitlab部署ip地址&#34;</span><span class="o">]</span>,
+   <span class="s1">&#39;maxretry&#39;</span> <span class="o">=</span>&gt; <span class="m">200</span>,
+   <span class="s1">&#39;findtime&#39;</span> <span class="o">=</span>&gt; <span class="m">5</span>,
+   <span class="s1">&#39;bantime&#39;</span> <span class="o">=</span>&gt; <span class="m">60</span>
+ <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>配置后进入gitlab容器里执行gitlab-ctl reconfigure即可。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-08-24
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gitlab/">gitlab</a>
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/docker/">docker</a>
+          <a href="/tags/centos/">centos</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kubernetes安装kubeapps</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/08/09/linux%E6%97%A5%E5%B8%B8%E5%91%BD%E4%BB%A4%E4%B8%80/">
+            <span class="next-text nav-default">Linux日常命令一</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-08-24 08:09:53 \x2b0800 CST',
+        title: 'Gitlab Forbidden问题记录',
+        clientID: 'debcea41e9774d4c730e',
+        clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyht.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Centos7安装Oracle11g - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/08/09/centos7%E5%AE%89%E8%A3%85oracle11g/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Centos7安装Oracle11g" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/08/09/centos7%E5%AE%89%E8%A3%85oracle11g/" />
+<meta property="article:published_time" content="2019-08-09T09:18:52&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-09T09:18:52&#43;08:00"/>
+
+<meta itemprop="name" content="Centos7安装Oracle11g">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2019-08-09T09:18:52&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-09T09:18:52&#43;08:00" />
+<meta itemprop="wordCount" content="1624">
+
+
+
+<meta itemprop="keywords" content="linux,centos,oracle,数据库," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos7安装Oracle11g"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Centos7安装Oracle11g</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-09 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 1624 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#一-安装前准备">一、安装前准备</a>
+<ul>
+<li><a href="#1-设置计算机名及关闭防火墙">1、设置计算机名及关闭防火墙</a></li>
+<li><a href="#2-关闭selinux">2、关闭selinux</a></li>
+<li><a href="#3-创建所需要的目录及用户-用户组">3、创建所需要的目录及用户、用户组</a></li>
+<li><a href="#4-将oracle安装包解压及设置目录权限">4、将oracle安装包解压及设置目录权限</a></li>
+<li><a href="#5-修改资源限制">5、修改资源限制</a></li>
+<li><a href="#6-修改oracle用户变量">6、修改oracle用户变量</a></li>
+<li><a href="#7-修改系统语言">7、修改系统语言</a></li>
+</ul></li>
+<li><a href="#二-安装oracle">二、安装oracle</a>
+<ul>
+<li><a href="#使用oracle登录服务器桌面安装">使用oracle登录服务器桌面安装</a></li>
+</ul></li>
+<li><a href="#三-安装监听">三、安装监听</a></li>
+<li><a href="#四-创建数据库">四、创建数据库</a></li>
+<li><a href="#测试">测试</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>此文档在centos7.6下实际操作</p>
+
+<p>oracle相关安装文件：<a href="https://pan.baidu.com/s/1Pa_ipTwDsEq7YrrwaH3kgQ">电梯直达</a> 密码：b9bk</p>
+</blockquote>
+
+<h2 id="一-安装前准备">一、安装前准备</h2>
+
+<h3 id="1-设置计算机名及关闭防火墙">1、设置计算机名及关闭防火墙</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># hostnamectl set-hostname  oracle #设置计算机名称 重新登录即可</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># systemctl stop firewalld.service  #关闭防火墙</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># systemctl disable firewalld.service  #禁止防火墙开机自启</span>
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># systemctl status firewalld.service #查看防火墙状态</span>
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/firewalld.service<span class="p">;</span> disabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+   Active: inactive <span class="o">(</span>dead<span class="o">)</span>
+     Docs: man:firewalld<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+
+6月 <span class="m">04</span> <span class="m">14</span>:13:28 localhost.localdomain systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting firewalld - dynamic firewall daemon...
+6月 <span class="m">04</span> <span class="m">14</span>:14:39 localhost.localdomain systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started firewalld - dynamic firewall daemon.
+8月 <span class="m">01</span> <span class="m">13</span>:43:36 oracle systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopping firewalld - dynamic firewall daemon...
+8月 <span class="m">01</span> <span class="m">13</span>:43:37 oracle systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopped firewalld - dynamic firewall daemon.
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># vim /etc/hosts</span>
+...
+<span class="m">172</span>.16.77.208 oracle  <span class="c1">#添加对应内容 不添加的话在创建监听时可能会卡住</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="2-关闭selinux">2、关闭selinux</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># setenforce 0  #临时关闭</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># sed -i &#39;s/SELINUX=enforcing/SELINUX=disabled/&#39; /etc/selinux/config #永久关闭</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="3-创建所需要的目录及用户-用户组">3、创建所需要的目录及用户、用户组</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># mkdir /u01  #创建oralce安装目录</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># groupadd oinstall #创建oinstall组</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># groupadd dba   #创建dbs组</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># useradd -g oinstall -G dba -m oracle  创建oracle用户并将oracle加入oinstall为主组、dba为附属组</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span>#
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># groups oracle #查看oracle所在的组</span>
+oracle : oinstall dba
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># passwd oracle  #给oracle设置密码  不设置的话图形化界面无法登陆</span>
+更改用户 oracle 的密码 。
+新的 密码：
+无效的密码： 密码少于 <span class="m">8</span> 个字符
+重新输入新的 密码：
+passwd：所有的身份验证令牌已经成功更新。
+<span class="o">[</span>root@oracle ~<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="4-将oracle安装包解压及设置目录权限">4、将oracle安装包解压及设置目录权限</h3>
+
+<p>将前面需要的oracle安装包及一些安装文件上传至/u01/下，然后再进行以下操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># unzip p13390677_112040_Linux-x86-64_1of7.zip &amp;&amp; unzip p13390677_112040_Linux-x86-64_2of7.zip  #解压</span>
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># chown -R oracle:oinstall  /u01/  #设置目录所属用户和组</span>
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># chmod 775 -R /u01/  #设置目录的读写权限</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="5-修改资源限制">5、修改资源限制</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># vim /etc/security/limits.conf</span>
+...
+<span class="c1">#加入以下内容</span>
+oracle soft nproc <span class="m">2047</span>
+oracle hard nproc <span class="m">16384</span>
+oracle soft nofile <span class="m">1024</span>
+oracle hard nofile <span class="m">65536</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="6-修改oracle用户变量">6、修改oracle用户变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># su - oracle</span>
+上一次登录：四 8月  <span class="m">1</span> <span class="m">14</span>:04:47 CST <span class="m">2019</span>:1 上
+<span class="o">[</span>oracle@oracle ~<span class="o">]</span>$ vim .bash_profile
+...
+<span class="c1">#加入以下内容</span>
+ <span class="nb">export</span> <span class="nv">ORACLE_BASE</span><span class="o">=</span>/u01/app/oracle
+ <span class="nb">export</span> <span class="nv">ORACLE_HOME</span><span class="o">=</span>/u01/app/oracle/product/11.2.0/dbhome_1
+ <span class="nb">export</span> <span class="nv">ORACLE_SID</span><span class="o">=</span>kutebl
+ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$ORACLE_HOME</span>/bin:<span class="nv">$PATH</span>
+ <span class="nb">alias</span> <span class="nv">sqlplus</span><span class="o">=</span><span class="s1">&#39;rlwrap sqlplus&#39;</span>
+ <span class="nb">alias</span> <span class="nv">rman</span><span class="o">=</span><span class="s1">&#39;rlwrap rman&#39;</span>
+<span class="o">[</span>oracle@oracle ~<span class="o">]</span>$ <span class="nb">source</span> .bash_profile</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="7-修改系统语言">7、修改系统语言</h3>
+
+<blockquote>
+<p>如果系统是中文的安装oracle时的窗口会是乱码，需要设置成英文</p>
+
+<p><font color=#DC143C> <strong><em>注意：如果系统是中文版本执行此步骤，是英文的话跳过</em></strong> </font></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># locale  #查看系统语言</span>
+<span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+<span class="nv">LC_CTYPE</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_NUMERIC</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_TIME</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_COLLATE</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_MONETARY</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_MESSAGES</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_PAPER</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_NAME</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_ADDRESS</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+<span class="nv">LC_ALL</span><span class="o">=</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># localectl  set-locale LANG=en_US.UTF-8 #将系统设置成英文</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># export LANG=en_US.UTF-8   #写入环境变量</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># locale  #再次查看系统语言</span>
+<span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nv">LC_CTYPE</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_NUMERIC</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_TIME</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_COLLATE</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_MONETARY</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_MESSAGES</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_PAPER</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_NAME</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_ADDRESS</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&#34;en_US.UTF-8&#34;</span>
+<span class="nv">LC_ALL</span><span class="o">=</span>
+<span class="o">[</span>root@oracle ~<span class="o">]</span>#</code></pre></td></tr></table>
+</div>
+</div>
+<p>然后重新登录服务器桌面会出现下图，点击update Names即可</p>
+
+<p><a href="https://imgchr.com/i/eUfSrF"><img src="https://s2.ax1x.com/2019/08/01/eUfSrF.md.jpg" alt="eUfSrF.md.jpg" /></a></p>
+
+<h2 id="二-安装oracle">二、安装oracle</h2>
+
+<h3 id="使用oracle登录服务器桌面安装">使用oracle登录服务器桌面安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># su - oracle</span>
+Last login: Thu Aug  <span class="m">1</span> <span class="m">14</span>:21:41 CST <span class="m">2019</span> on :1
+<span class="o">[</span>oracle@oracle ~<span class="o">]</span>$ <span class="nb">cd</span> /u01/database/
+<span class="o">[</span>oracle@oracle database<span class="o">]</span>$ ./runInstaller -jreLoc /etc/alternatives/jre_1.8.0</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>如下图：</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUhVFs"><img src="https://s2.ax1x.com/2019/08/01/eUhVFs.md.jpg" alt="eUhVFs.md.jpg" /></a></p>
+
+<ul>
+<li>出现以下oracle安装窗口</li>
+</ul>
+
+<p>订阅邮件跳过不填</p>
+
+<p><a href="https://imgchr.com/i/eU4pN9"><img src="https://s2.ax1x.com/2019/08/01/eU4pN9.md.jpg" alt="eU4pN9.md.jpg" /></a></p>
+
+<ul>
+<li>选择忽略更新</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eU48u8"><img src="https://s2.ax1x.com/2019/08/01/eU48u8.md.jpg" alt="eU48u8.md.jpg" /></a></p>
+
+<ul>
+<li>仅安装数据库</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eU5PaQ"><img src="https://s2.ax1x.com/2019/08/01/eU5PaQ.md.jpg" alt="eU5PaQ.md.jpg" /></a></p>
+
+<ul>
+<li>选择单实例安装</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eU5gL8"><img src="https://s2.ax1x.com/2019/08/01/eU5gL8.md.jpg" alt="eU5gL8.md.jpg" /></a></p>
+
+<ul>
+<li>默认下一步</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eU5IWn"><img src="https://s2.ax1x.com/2019/08/01/eU5IWn.md.jpg" alt="eU5IWn.md.jpg" /></a></p>
+
+<ul>
+<li>默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eU5IWn"><img src="https://s2.ax1x.com/2019/08/01/eU5IWn.md.jpg" alt="eU5IWn.md.jpg" /></a></p>
+
+<ul>
+<li>前面已经配置好  默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUIATe"><img src="https://s2.ax1x.com/2019/08/01/eUIATe.md.jpg" alt="eUIATe.md.jpg" /></a></p>
+
+<ul>
+<li>按图设置</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUIult"><img src="https://s2.ax1x.com/2019/08/01/eUIult.md.jpg" alt="eUIult.md.jpg" /></a></p>
+
+<ul>
+<li>按图设置</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUI40O"><img src="https://s2.ax1x.com/2019/08/01/eUI40O.md.jpg" alt="eUI40O.md.jpg" /></a></p>
+
+<ul>
+<li>按图设置</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUIxHS"><img src="https://s2.ax1x.com/2019/08/01/eUIxHS.md.jpg" alt="eUIxHS.md.jpg" /></a></p>
+
+<p>使用root账户执行对应的脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span><span class="c1"># /tmp/CVU_11.2.0.4.0_oracle/runfixup.sh</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>出现下图：</p>
+
+<p><a href="https://imgchr.com/i/eUoBvt"><img src="https://s2.ax1x.com/2019/08/01/eUoBvt.md.jpg" alt="eUoBvt.md.jpg" /></a></p>
+
+<p>按提示解决以上问题</p>
+
+<ul>
+<li>libaio-devel和elfutils-libelf-devel可以直接用yum安装</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle ~<span class="o">]</span>$ yum install -y libaio-devel
+<span class="o">[</span>root@oracle ~<span class="o">]</span>$ yum install -y elfutils-libelf-devel</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>compat-libstdc++和pdksh前面已经上传到/u01/下了，直接使用rpm安装</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># rpm -ivh compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm</span>
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>增加swap</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># dd if=/dev/zero of=/swapfile bs=1024 count=1048576</span>
+<span class="m">1048576</span>+0 records in
+<span class="m">1048576</span>+0 records out
+<span class="m">1073741824</span> bytes <span class="o">(</span><span class="m">1</span>.1 GB<span class="o">)</span> copied, <span class="m">5</span>.87728 s, <span class="m">183</span> MB/s
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># mkswap /swapfile</span>
+Setting up swapspace version <span class="m">1</span>, <span class="nv">size</span> <span class="o">=</span> <span class="m">1048572</span> KiB
+no label, <span class="nv">UUID</span><span class="o">=</span>e338be1a-852c-444c-8108-e56428828740
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># sudo chmod 600 /swapfile</span>
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># swapon /swapfile</span>
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># free -h</span>
+              total        used        free      shared  buff/cache   available
+Mem:            31G        <span class="m">2</span>.1G         19G        102M        <span class="m">9</span>.4G         28G
+Swap:           16G          0B         16G
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># vim /etc/fstab</span>
+...
+/swapfile   swap    swap   default      <span class="m">0</span> <span class="m">0</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>以上操作完成再点击Check Again看到如下图没有任何异常了 点击install</p>
+
+<p><a href="https://imgchr.com/i/eU7B0f"><img src="https://s2.ax1x.com/2019/08/01/eU7B0f.md.jpg" alt="eU7B0f.md.jpg" /></a></p>
+
+<p>安装至86%时出现以下错误：</p>
+
+<p><a href="https://imgchr.com/i/eU74BV"><img src="https://s2.ax1x.com/2019/08/01/eU74BV.md.jpg" alt="eU74BV.md.jpg" /></a></p>
+
+<ul>
+<li>解决方案</li>
+</ul>
+
+<p>在makefile中添加链接libnnz11库的参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># vim /u01/app/oracle/product/11.2.0/dbhome_1/sysman/lib/ins_emagent.mk</span>
+...
+<span class="k">$(</span>SYSMANBIN<span class="k">)</span>emdctl:
+        <span class="k">$(</span>MK_EMAGENT_NMECTL<span class="k">)</span> -lnnz11  <span class="c1">#后加上-lnnz11</span>
+...</code></pre></td></tr></table>
+</div>
+</div>
+<p>然后回到桌面点击retry</p>
+
+<p><a href="https://imgchr.com/i/eUHGD0"><img src="https://s2.ax1x.com/2019/08/01/eUHGD0.md.jpg" alt="eUHGD0.md.jpg" /></a></p>
+
+<p>按提示执行相关脚本   安装完成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># /u01/app/oraInventory/orainstRoot.sh</span>
+<span class="o">[</span>root@oracle u01<span class="o">]</span><span class="c1"># /u01/app/oracle/product/11.2.0/dbhome_1/root.sh</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><a href="https://imgchr.com/i/eUbSrq"><img src="https://s2.ax1x.com/2019/08/01/eUbSrq.md.jpg" alt="eUbSrq.md.jpg" /></a></p>
+
+<h2 id="三-安装监听">三、安装监听</h2>
+
+<p>在oracle用户下执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>oracle@oracle ~<span class="o">]</span>$ netca</code></pre></td></tr></table>
+</div>
+</div>
+<p>弹出窗口后一路默认就可以</p>
+
+<h2 id="四-创建数据库">四、创建数据库</h2>
+
+<p>在oracle用户下执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>oracle@oracle ~<span class="o">]</span>$ dbca</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>出现以下弹窗：</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUbDJg"><img src="https://s2.ax1x.com/2019/08/01/eUbDJg.md.jpg" alt="eUbDJg.md.jpg" /></a></p>
+
+<ul>
+<li>默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUbIW4"><img src="https://s2.ax1x.com/2019/08/01/eUbIW4.md.jpg" alt="eUbIW4.md.jpg" /></a></p>
+
+<ul>
+<li>选择Custom Database</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUq37V"><img src="https://s2.ax1x.com/2019/08/01/eUq37V.md.jpg" alt="eUq37V.md.jpg" /></a></p>
+
+<ul>
+<li>填写实例</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUqB0x"><img src="https://s2.ax1x.com/2019/08/01/eUqB0x.md.jpg" alt="eUqB0x.md.jpg" /></a></p>
+
+<ul>
+<li>默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUqoAf"><img src="https://s2.ax1x.com/2019/08/01/eUqoAf.md.jpg" alt="eUqoAf.md.jpg" /></a></p>
+
+<ul>
+<li>设置密码</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUL8KA"><img src="https://s2.ax1x.com/2019/08/01/eUL8KA.md.jpg" alt="eUL8KA.md.jpg" /></a></p>
+
+<ul>
+<li>默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eULdPS"><img src="https://s2.ax1x.com/2019/08/01/eULdPS.md.jpg" alt="eULdPS.md.jpg" /></a></p>
+
+<ul>
+<li>默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eULIM9"><img src="https://s2.ax1x.com/2019/08/01/eULIM9.md.jpg" alt="eULIM9.md.jpg" /></a></p>
+
+<ul>
+<li>默认 下一步也默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eULXGD"><img src="https://s2.ax1x.com/2019/08/01/eULXGD.md.jpg" alt="eULXGD.md.jpg" /></a></p>
+
+<ul>
+<li>按图设置 下一步默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUOMd0"><img src="https://s2.ax1x.com/2019/08/01/eUOMd0.md.jpg" alt="eUOMd0.md.jpg" /></a></p>
+
+<ul>
+<li>默认</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUOgOA"><img src="https://s2.ax1x.com/2019/08/01/eUOgOA.md.jpg" alt="eUOgOA.md.jpg" /></a></p>
+
+<ul>
+<li>按图设置</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eUOxYT"><img src="https://s2.ax1x.com/2019/08/01/eUOxYT.md.jpg" alt="eUOxYT.md.jpg" /></a></p>
+
+<ul>
+<li>等待安装完成</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/ealgP0"><img src="https://s2.ax1x.com/2019/08/01/ealgP0.md.jpg" alt="ealgP0.md.jpg" /></a></p>
+
+<ul>
+<li>安装完成</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/ea8jMT"><img src="https://s2.ax1x.com/2019/08/01/ea8jMT.md.jpg" alt="ea8jMT.md.jpg" /></a></p>
+
+<h2 id="测试">测试</h2>
+
+<p>安装完成后监听和数据库都是启动状态，可以直接使用客户端连接</p>
+
+<p><a href="https://imgchr.com/i/ea1pdA"><img src="https://s2.ax1x.com/2019/08/01/ea1pdA.md.jpg" alt="ea1pdA.md.jpg" /></a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-08-09
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/centos/">centos</a>
+          <a href="/tags/oracle/">oracle</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/08/09/linux%E6%97%A5%E5%B8%B8%E5%91%BD%E4%BB%A4%E4%B8%80/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux日常命令一</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/08/04/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1tar%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">记录一次tar问题</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-08-09 09:18:52 \x2b0800 CST',
+        title: 'Centos7安装Oracle11g',
+        clientID: 'debcea41e9774d4c730e',
+        clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyht.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

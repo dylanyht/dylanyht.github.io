@@ -6,10 +6,37 @@
     <description>Recent content in Kubernetes on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jun 2019 13:56:52 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 08:14:59 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes安装kubeapps</title>
+      <link>https://dylanyht.github.io/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/</link>
+      <pubDate>Sat, 24 Aug 2019 08:14:59 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes修改nodePort的端口范围</title>
+      <link>https://dylanyht.github.io/post/2019/08/04/kubernetes%E4%BF%AE%E6%94%B9nodeport%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/</link>
+      <pubDate>Sun, 04 Aug 2019 15:38:11 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/08/04/kubernetes%E4%BF%AE%E6%94%B9nodeport%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用kubeasz搭建Kubernetes集群</title>
+      <link>https://dylanyht.github.io/post/2019/08/04/%E4%BD%BF%E7%94%A8kubeasz%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</link>
+      <pubDate>Sun, 04 Aug 2019 15:20:42 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/08/04/%E4%BD%BF%E7%94%A8kubeasz%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes Dashboard部署</title>

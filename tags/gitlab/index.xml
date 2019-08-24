@@ -6,10 +6,19 @@
     <description>Recent content in gitlab on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jun 2019 14:17:14 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 08:09:53 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gitlab Forbidden问题记录</title>
+      <link>https://dylanyht.github.io/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sat, 24 Aug 2019 08:09:53 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Docker环境下gitlab的迁移和升级</title>

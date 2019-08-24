@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-05-06T13:14:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-06T13:14:50&#43;08:00" />
-<meta itemprop="wordCount" content="519">
+<meta itemprop="wordCount" content="0">
 
 
 
@@ -136,8 +136,8 @@
         <div class="post-category">
             <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
             </div>
-          <span class="more-meta"> 519 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 0 words </span>
+          <span class="more-meta"> 0 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
     </header>
@@ -155,10 +155,7 @@
 <li><a href="#登录配置">登录配置</a></li>
 <li><a href="#连接仓库">连接仓库</a></li>
 </ul></li>
-<li><a href="#总结">总结</a>
-<ul>
-<li><a href="#参考文档">参考文档</a></li>
-</ul></li>
+<li><a href="#总结">总结</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -203,18 +200,23 @@
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">docker run -d --name nexus3 \
+ --restart=always \</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">docker run -d --name nexus3 \
- --restart=always \
--p 8081:8081 \
+<pre class="chroma">-p 8081:8081 \
 -p 8082:8082  \
 -p 8083:8083  \
 -p 8084:8084  \
@@ -236,14 +238,23 @@ sonatype/nexus3</pre></td></tr></table>
 
 <p>确保正常启动后 使用浏览器访问http://服务器ip:8081</p>
 
-<p>点击右上角登录 账号密码：admin/admin123
-登录后点击设置界面 选择Repositories，点击Create repository，如图所示
-<img src="https://upload-images.jianshu.io/upload_images/1930101-4728b97975ef6d5e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-选择仓库类型  这里选择hosted类型 如图
-<img src="https://upload-images.jianshu.io/upload_images/1930101-91af1c6709883f0d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-配置仓库
-该仓库指定一个唯一的名称、HTTP的端口、允许交互的API等
- <img src="https://upload-images.jianshu.io/upload_images/1930101-98d7e336d7aff8e9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p>点击右上角登录 账号密码：admin/admin123</p>
+
+<p>登录后点击设置界面 选择Repositories，点击Create repository，如图所示</p>
+
+<p><a href="https://imgchr.com/i/eKpS3V"><img src="https://s2.ax1x.com/2019/07/27/eKpS3V.jpg" alt="eKpS3V.jpg" /></a></p>
+
+<p>选择仓库类型  这里选择hosted类型 如图</p>
+
+<p><a href="https://imgchr.com/i/eKpPuF"><img src="https://s2.ax1x.com/2019/07/27/eKpPuF.jpg" alt="eKpPuF.jpg" /></a></p>
+
+<p>配置仓库</p>
+
+<ul>
+<li>该仓库指定一个唯一的名称、HTTP的端口、允许交互的API等</li>
+</ul>
+
+<p><a href="https://imgchr.com/i/eKpiB4"><img src="https://s2.ax1x.com/2019/07/27/eKpiB4.jpg" alt="eKpiB4.jpg" /></a></p>
 
 <h3 id="连接仓库">连接仓库</h3>
 
@@ -257,17 +268,20 @@ sonatype/nexus3</pre></td></tr></table>
 <pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">    {
     &#34;insecure-registries&#34;: [&#34;172.16.77.71:8082&#34; ]
-    }
-
-    systemctl daemon-reload
-    systemctl restart docker</pre></td></tr></table>
+    }</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">	systemctl daemon-reload
+	systemctl restart docker</pre></td></tr></table>
 </div>
 </div>
 <p>登录仓库</p>
@@ -308,19 +322,13 @@ docker push 172.16.77.71:8082/nginx:0.1</pre></td></tr></table>
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">[root@k8s-77-40 torch]# docker search 172.16.77.71:8082/nginx
-NAME                          DESCRIPTION         STARS               OFFICIAL              AUTOMATED
+NAME                          DESCRIPTION         STARS               OFFICIAL            	AUTOMATED
 172.16.77.71:8082/nginx:0.1                       0</pre></td></tr></table>
 </div>
 </div>
 <h2 id="总结">总结</h2>
 
 <p>到此，使用nexus搭建的docker私有仓库配置完毕。公司常用的镜像可以存放在私有仓库里 毕竟官方的<a href="https://hub.docker.com/">dockerhub</a>太慢</p>
-
-<h3 id="参考文档">参考文档</h3>
-
-<blockquote>
-<p><a href="https://help.sonatype.com/repomanager3">https://help.sonatype.com/repomanager3</a></p>
-</blockquote>
     </div>
 
     <div class="post-copyright">
