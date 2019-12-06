@@ -6,7 +6,7 @@
     <description>Recent content in Tags on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 24 Aug 2019 08:25:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 06 Dec 2019 13:48:46 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyht.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title></title>
       <link>https://dylanyht.github.io/tags/</link>
-      <pubDate>Sat, 24 Aug 2019 08:25:34 +0800</pubDate>
+      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/tags/</guid>
       <description></description>
@@ -23,16 +23,34 @@
     <item>
       <title>centos</title>
       <link>https://dylanyht.github.io/tags/centos/</link>
-      <pubDate>Sat, 24 Aug 2019 08:25:34 +0800</pubDate>
+      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/tags/centos/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>docker</title>
+      <link>https://dylanyht.github.io/tags/docker/</link>
+      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://dylanyht.github.io/tags/gitlab/</link>
+      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      
+      <guid>https://dylanyht.github.io/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>linux</title>
       <link>https://dylanyht.github.io/tags/linux/</link>
-      <pubDate>Sat, 24 Aug 2019 08:25:34 +0800</pubDate>
+      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/tags/linux/</guid>
       <description></description>
@@ -71,24 +89,6 @@
       <pubDate>Sat, 24 Aug 2019 08:14:59 +0800</pubDate>
       
       <guid>https://dylanyht.github.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://dylanyht.github.io/tags/docker/</link>
-      <pubDate>Sat, 24 Aug 2019 08:14:59 +0800</pubDate>
-      
-      <guid>https://dylanyht.github.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gitlab</title>
-      <link>https://dylanyht.github.io/tags/gitlab/</link>
-      <pubDate>Sat, 24 Aug 2019 08:09:53 +0800</pubDate>
-      
-      <guid>https://dylanyht.github.io/tags/gitlab/</guid>
       <description></description>
     </item>
     
