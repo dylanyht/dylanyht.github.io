@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker相关配置操作 - I am dylan ...</title>
+  <title>Centos7增加swap大小 - I am dylan ...</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://dylanyht.github.io/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/" />
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/11/13/centos7%E5%A2%9E%E5%8A%A0swap%E5%A4%A7%E5%B0%8F/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Docker相关配置操作" />
+<meta property="og:title" content="Centos7增加swap大小" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyht.github.io/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/" />
-<meta property="article:published_time" content="2019-06-10T14:20:51&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-10T14:20:51&#43;08:00"/>
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/11/13/centos7%E5%A2%9E%E5%8A%A0swap%E5%A4%A7%E5%B0%8F/" />
+<meta property="article:published_time" content="2019-11-13T11:04:21&#43;08:00"/>
+<meta property="article:modified_time" content="2019-11-13T11:04:21&#43;08:00"/>
 
-<meta itemprop="name" content="Docker相关配置操作">
+<meta itemprop="name" content="Centos7增加swap大小">
 <meta itemprop="description" content="">
 
 
-<meta itemprop="datePublished" content="2019-06-10T14:20:51&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-10T14:20:51&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="datePublished" content="2019-11-13T11:04:21&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-13T11:04:21&#43;08:00" />
+<meta itemprop="wordCount" content="323">
 
 
 
-<meta itemprop="keywords" content="docker,centos,容器," />
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker相关配置操作"/>
+<meta name="twitter:title" content="Centos7增加swap大小"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -129,15 +129,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Docker相关配置操作</h1>
+      <h1 class="post-title">Centos7增加swap大小</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-10 </span>
-        <div class="post-category">
-            <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
-            </div>
-          <span class="more-meta"> 0 words </span>
-          <span class="more-meta"> 0 mins read </span>
+        <span class="post-time"> 2019-11-13 </span>
+        
+          <span class="more-meta"> 323 words </span>
+          <span class="more-meta"> 1 min read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
     </header>
@@ -149,10 +147,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#docker容器时间与宿主机时间同步">docker容器时间与宿主机时间同步</a></li>
-<li><a href="#容器数据共享">容器数据共享</a></li>
-<li><a href="#centos7中docker开启远程访问">Centos7中docker开启远程访问</a></li>
-<li><a href="#centos7更改docker镜像-容器的存储路径">centos7更改docker镜像、容器的存储路径</a></li>
+<li><a href="#创建一个大小为5g的文件">创建一个大小为5G的文件</a></li>
+<li><a href="#将文件变为swap文件">将文件变为swap文件</a></li>
+<li><a href="#启用文件">启用文件</a></li>
+<li><a href="#设置开机自动挂载">设置开机自动挂载</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -160,53 +158,14 @@
 </div>
     <div class="post-content">
       <blockquote>
-<p>此文档会不定期更新</p>
+<p>因为业务需求需要增加swap， 此文档做一下记录。</p>
 </blockquote>
 
-<h2 id="docker容器时间与宿主机时间同步">docker容器时间与宿主机时间同步</h2>
+<h2 id="创建一个大小为5g的文件">创建一个大小为5G的文件</h2>
 
-<ul>
-<li>共享主机的localtime</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  <span class="c1">#创建容器时指定启动参数，挂载localtime文件到到容器内，保证两者的时区是一致的</span>
-  docker run --name &lt;name&gt; -v /etc/localtime:/etc/localtime ...</code></pre></td></tr></table>
-</div>
-</div>
-<ul>
-<li>复制主机的localtime</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  docker cp /etc/localtime 【容器ID或者NAME】:/etc/localtime
-  <span class="c1">#有些服务的时间没对应的话需要重启改服务</span></code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="容器数据共享">容器数据共享</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  授权一个容器访问另一个容器的Volume
-  使用-volumes-from参数来执行docker run</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="centos7中docker开启远程访问">Centos7中docker开启远程访问</h2>
-
-<ul>
-<li>配置远程访问</li>
-</ul>
+<blockquote>
+<p>注意：如果你的系统是一路默认安装的， 那文件系统一般是xfs。  如果是xfs的文件系统，不要使用fallocate来创建swap文件，会报错的。fallocate对于ext4各版本的支持都没什么问题，但是对于xfs不友好。</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
@@ -215,56 +174,36 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  vim /usr/lib/systemd/system/docker.service
-  
-  <span class="c1"># 加入以下内容</span>
-  <span class="o">[</span>Service<span class="o">]</span>
-  <span class="nv">ExecStart</span><span class="o">=</span>
-  <span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-43 ~<span class="o">]</span><span class="c1"># df -T | awk &#39;{print $1,$2,$NF}&#39; | grep &#34;^/dev&#34; #查看文件系统</span>
+/dev/mapper/centos-root xfs /
+/dev/mapper/centos-home xfs /home
+/dev/sda1 xfs /boot
+<span class="o">[</span>root@k8s-77-43 /<span class="o">]</span><span class="c1"># dd if=/dev/zero of=/swapfile bs=1G count=5</span>
+<span class="m">5</span>+0 records in
+<span class="m">5</span>+0 records out
+<span class="m">5368709120</span> bytes <span class="o">(</span><span class="m">5</span>.4 GB<span class="o">)</span> copied, <span class="m">8</span>.90435 s, <span class="m">603</span> MB/s</code></pre></td></tr></table>
 </div>
 </div>
-<ul>
-<li>重新启动docker服务</li>
-</ul>
+<h2 id="将文件变为swap文件">将文件变为swap文件</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  systemctl daemon-reload
-  systemctl restart docker</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-43 ~<span class="o">]</span><span class="c1"># mkswap /swapfile</span>
+Setting up swapspace version <span class="m">1</span>, <span class="nv">size</span> <span class="o">=</span> <span class="m">5242876</span> KiB
+no label, <span class="nv">UUID</span><span class="o">=</span>86ff8b5b-1637-4fda-aa45-0d8c798e4cb5
+<span class="o">[</span>root@k8s-77-43 ~<span class="o">]</span><span class="c1"># chmod 600 /swapfile  #设置文件权限</span></code></pre></td></tr></table>
 </div>
 </div>
-<ul>
-<li>查看docker进程</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  ps -ef<span class="p">|</span>grep docker</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="centos7更改docker镜像-容器的存储路径">centos7更改docker镜像、容器的存储路径</h2>
-
-<ul>
-<li>查看docker镜像、容器的存储路径</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker info <span class="p">|</span> grep <span class="s2">&#34;Docker Root Dir&#34;</span></code></pre></td></tr></table>
-</div>
-</div>
-<ul>
-<li>更改路径</li>
-</ul>
+<h2 id="启用文件">启用文件</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
@@ -272,17 +211,29 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  vi /etc/docker/daemon.json  <span class="c1">#加入以下内容</span>
-  
-  <span class="c1"># 注意：如果daemon.json里面有内容  记得在大括号内容最后加上个“,” 然后在添加大括号里的内容</span>
-  <span class="o">{</span><span class="s2">&#34;data-root&#34;</span>: <span class="s2">&#34;/home/docker/docker-data&#34;</span>
-    <span class="s2">&#34;storage-driver&#34;</span>: <span class="s2">&#34;overlay&#34;</span> <span class="c1">#docker存储方式可按需添加</span>
-  <span class="o">}</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-43 ~<span class="o">]</span><span class="c1"># swapon /swapfile</span>
+<span class="o">[</span>root@k8s-77-43 ~<span class="o">]</span><span class="c1"># free -h  #查看swap已经增加</span>
+              total        used        free      shared  buff/cache   available
+Mem:            15G        935M        <span class="m">9</span>.2G         22M        <span class="m">5</span>.4G         14G
+Swap:           12G         37M         12G</code></pre></td></tr></table>
 </div>
 </div>
+<h2 id="设置开机自动挂载">设置开机自动挂载</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-43 ~<span class="o">]</span><span class="c1"># vim /etc/fstab</span>
+...
+/swapfile    swap    swap    default   <span class="m">0</span> <span class="m">0</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong><em>至此，swap增加完毕</em></strong></p>
     </div>
 
     <div class="post-copyright">
@@ -293,7 +244,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-06-10
+        2019-11-13
         
     </span>
   </p>
@@ -318,19 +269,15 @@
       </label>
   </div>
 </div><footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/docker/">docker</a>
-          <a href="/tags/centos/">centos</a>
-          <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
-          </div>
+      
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/06/10/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%B8%8A%E7%9A%84vm%E5%AE%9E%E4%BE%8B/">
+        <a class="prev" href="/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">远程连接谷歌云上的vm实例</span>
+            <span class="prev-text nav-default">Prometheus监控java应用</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/">
-            <span class="next-text nav-default">Docker环境下gitlab的迁移和升级</span>
+        <a class="next" href="/post/2019/08/24/%E4%B8%80%E4%BA%9B%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84linux%E6%93%8D%E4%BD%9C/">
+            <span class="next-text nav-default">一些工作中用到的linux操作</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -343,8 +290,8 @@
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-10 14:20:51 \x2b0800 CST',
-        title: 'Docker相关配置操作',
+        id: '2019-11-13 11:04:21 \x2b0800 CST',
+        title: 'Centos7增加swap大小',
         clientID: 'debcea41e9774d4c730e',
         clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
         repo: 'blog-comment',

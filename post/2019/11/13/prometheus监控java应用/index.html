@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker相关配置操作 - I am dylan ...</title>
+  <title>Prometheus监控java应用 - I am dylan ...</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://dylanyht.github.io/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/" />
+<link rel="canonical" href="https://dylanyht.github.io/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Docker相关配置操作" />
+<meta property="og:title" content="Prometheus监控java应用" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyht.github.io/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/" />
-<meta property="article:published_time" content="2019-06-10T14:20:51&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-10T14:20:51&#43;08:00"/>
+<meta property="og:url" content="https://dylanyht.github.io/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/" />
+<meta property="article:published_time" content="2019-11-13T15:28:18&#43;08:00"/>
+<meta property="article:modified_time" content="2019-11-13T15:28:18&#43;08:00"/>
 
-<meta itemprop="name" content="Docker相关配置操作">
+<meta itemprop="name" content="Prometheus监控java应用">
 <meta itemprop="description" content="">
 
 
-<meta itemprop="datePublished" content="2019-06-10T14:20:51&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-10T14:20:51&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="datePublished" content="2019-11-13T15:28:18&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-13T15:28:18&#43;08:00" />
+<meta itemprop="wordCount" content="760">
 
 
 
-<meta itemprop="keywords" content="docker,centos,容器," />
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker相关配置操作"/>
+<meta name="twitter:title" content="Prometheus监控java应用"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -129,15 +129,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Docker相关配置操作</h1>
+      <h1 class="post-title">Prometheus监控java应用</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-10 </span>
-        <div class="post-category">
-            <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
-            </div>
-          <span class="more-meta"> 0 words </span>
-          <span class="more-meta"> 0 mins read </span>
+        <span class="post-time"> 2019-11-13 </span>
+        
+          <span class="more-meta"> 760 words </span>
+          <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
     </header>
@@ -149,10 +147,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#docker容器时间与宿主机时间同步">docker容器时间与宿主机时间同步</a></li>
-<li><a href="#容器数据共享">容器数据共享</a></li>
-<li><a href="#centos7中docker开启远程访问">Centos7中docker开启远程访问</a></li>
-<li><a href="#centos7更改docker镜像-容器的存储路径">centos7更改docker镜像、容器的存储路径</a></li>
+<li><a href="#下载jmx-exporter">下载jmx_exporter</a></li>
+<li><a href="#编写jmx-exporter配置文件">编写jmx_exporter配置文件</a></li>
+<li><a href="#配置启动参数">配置启动参数</a></li>
+<li><a href="#prometheus配置">Prometheus配置</a></li>
+<li><a href="#grafana配置">grafana配置</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -160,56 +159,152 @@
 </div>
     <div class="post-content">
       <blockquote>
-<p>此文档会不定期更新</p>
+<p>使用jmx_exporter来监控tomcat,并推送给Prometheus。 此文档用来记录一下</p>
+
+<p>tomcat已经安装好的  不再安装</p>
+
+<p>项目地址：<a href="https://github.com/prometheus/jmx_exporter">电梯直达</a></p>
 </blockquote>
 
-<h2 id="docker容器时间与宿主机时间同步">docker容器时间与宿主机时间同步</h2>
+<h2 id="下载jmx-exporter">下载jmx_exporter</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.12.0/jmx_prometheus_javaagent-0.12.0.jar
+mkdir /usr/local/jmx 
+mv jmx_prometheus_javaagent-0.12.0.jar /usr/local/jmx/</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="编写jmx-exporter配置文件">编写jmx_exporter配置文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/jmx/
+<span class="c1"># 也可以下载官方配置修改 https://github.com/prometheus/jmx_exporter/blob/master/example_configs/tomcat.yml</span>
+vim tomcat.yml
+<span class="c1"># 写入以下内容</span>
+---
+lowercaseOutputLabelNames: <span class="nb">true</span>
+lowercaseOutputName: <span class="nb">true</span>
+rules:
+- pattern: <span class="s1">&#39;Catalina&lt;type=GlobalRequestProcessor, name=\&#34;(\w+-\w+)-(\d+)\&#34;&gt;&lt;&gt;(\w+):&#39;</span>
+  name: tomcat_<span class="nv">$3</span>_total
+  labels:
+    port: <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span>
+    protocol: <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+  help: Tomcat global <span class="nv">$3</span>
+  type: COUNTER
+- pattern: <span class="s1">&#39;Catalina&lt;j2eeType=Servlet, WebModule=//([-a-zA-Z0-9+&amp;@#/%?=~_|!:.,;]*[-a-zA-Z0-9+&amp;@#/%=~_|]), name=([-a-zA-Z0-9+/$%~_-|!.]*), J2EEApplication=none, J2EEServer=none&gt;&lt;&gt;(requestCount|maxTime|processingTime|errorCount):&#39;</span>
+  name: tomcat_servlet_<span class="nv">$3</span>_total
+  labels:
+    module: <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+    servlet: <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span>
+  help: Tomcat servlet <span class="nv">$3</span> total
+  type: COUNTER
+- pattern: <span class="s1">&#39;Catalina&lt;type=ThreadPool, name=&#34;(\w+-\w+)-(\d+)&#34;&gt;&lt;&gt;(currentThreadCount|currentThreadsBusy|keepAliveCount|pollerThreadCount|connectionCount):&#39;</span>
+  name: tomcat_threadpool_<span class="nv">$3</span>
+  labels:
+    port: <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span>
+    protocol: <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+  help: Tomcat threadpool <span class="nv">$3</span>
+  type: GAUGE
+- pattern: <span class="s1">&#39;Catalina&lt;type=Manager, host=([-a-zA-Z0-9+&amp;@#/%?=~_|!:.,;]*[-a-zA-Z0-9+&amp;@#/%=~_|]), context=([-a-zA-Z0-9+/$%~_-|!.]*)&gt;&lt;&gt;(processingTime|sessionCounter|rejectedSessions|expiredSessions):&#39;</span>
+  name: tomcat_session_<span class="nv">$3</span>_total
+  labels:
+    context: <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span>
+    host: <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+  help: Tomcat session <span class="nv">$3</span> total
+  type: COUNTER
+- pattern: <span class="s2">&#34;.*&#34;</span>  <span class="c1">#让所有的jmx metrics全部暴露出来</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置启动参数">配置启动参数</h2>
 
-<ul>
-<li>共享主机的localtime</li>
-</ul>
+<blockquote>
+<p>java应用一般两种启动方式。  一种是jar包启动方式，一种是tomcat方式</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  <span class="c1">#创建容器时指定启动参数，挂载localtime文件到到容器内，保证两者的时区是一致的</span>
-  docker run --name &lt;name&gt; -v /etc/localtime:/etc/localtime ...</code></pre></td></tr></table>
-</div>
-</div>
-<ul>
-<li>复制主机的localtime</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  docker cp /etc/localtime 【容器ID或者NAME】:/etc/localtime
-  <span class="c1">#有些服务的时间没对应的话需要重启改服务</span></code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="容器数据共享">容器数据共享</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  授权一个容器访问另一个容器的Volume
-  使用-volumes-from参数来执行docker run</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="centos7中docker开启远程访问">Centos7中docker开启远程访问</h2>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># jar包方式启动</span>
+java -javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.12.0.jar<span class="o">=</span><span class="m">38081</span>:/usr/local/jmx/tomcat.yml -jar yourJar.jar
+<span class="c1"># tomcat启动 需要配置catalina.sh 我们是用catalina.sh来启动tomcat的</span>  
+vim  your-tomcat/bin/catalina.sh
+  <span class="c1">#加入以下内容</span>
+<span class="nv">JAVA_OPTS</span><span class="o">=</span><span class="s2">&#34;-javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.12.0.jar=38081:/usr/local/jmx/tomcat.yml&#34;</span>
 
-<ul>
-<li>配置远程访问</li>
-</ul>
+<span class="c1">#如果你是使用startup.sh来启动tomcat 可以配置setenv.sh文件</span>
+<span class="c1">#注意setenv.sh和catalina.sh 二选一配置  不要配置重复了</span>
+cat &gt; your-tomcat/bin/setenv.sh <span class="s">&lt;&lt; EOF
+</span><span class="s">JAVA_OPTS=&#34;-javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.12.0.jar=38081:/usr/local/jmx/tomcat.yml&#34;
+</span><span class="s">EOF</span>
+
+<span class="c1">#配置好 重启tomcat</span>
+web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="prometheus配置">Prometheus配置</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -217,72 +312,21 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  vim /usr/lib/systemd/system/docker.service
-  
-  <span class="c1"># 加入以下内容</span>
-  <span class="o">[</span>Service<span class="o">]</span>
-  <span class="nv">ExecStart</span><span class="o">=</span>
-  <span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c">## prometheus.yml文件配置</span><span class="w">
+</span><span class="w"> </span>-<span class="w"> </span>job_name<span class="p">:</span><span class="w"> </span><span class="s1">&#39;tomcat&#39;</span><span class="w">
+</span><span class="w">    </span>static_configs<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>targets<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;172.16.7.124:38081&#39;</span><span class="p">]</span><span class="w">
+</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
+</span><span class="w">        </span>appname<span class="p">:</span><span class="w"> </span><span class="s1">&#39;tomcat&#39;</span></code></pre></td></tr></table>
 </div>
 </div>
-<ul>
-<li>重新启动docker服务</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  systemctl daemon-reload
-  systemctl restart docker</code></pre></td></tr></table>
-</div>
-</div>
-<ul>
-<li>查看docker进程</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  ps -ef<span class="p">|</span>grep docker</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="centos7更改docker镜像-容器的存储路径">centos7更改docker镜像、容器的存储路径</h2>
+<h2 id="grafana配置">grafana配置</h2>
 
-<ul>
-<li>查看docker镜像、容器的存储路径</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker info <span class="p">|</span> grep <span class="s2">&#34;Docker Root Dir&#34;</span></code></pre></td></tr></table>
-</div>
-</div>
-<ul>
-<li>更改路径</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  vi /etc/docker/daemon.json  <span class="c1">#加入以下内容</span>
-  
-  <span class="c1"># 注意：如果daemon.json里面有内容  记得在大括号内容最后加上个“,” 然后在添加大括号里的内容</span>
-  <span class="o">{</span><span class="s2">&#34;data-root&#34;</span>: <span class="s2">&#34;/home/docker/docker-data&#34;</span>
-    <span class="s2">&#34;storage-driver&#34;</span>: <span class="s2">&#34;overlay&#34;</span> <span class="c1">#docker存储方式可按需添加</span>
-  <span class="o">}</span></code></pre></td></tr></table>
-</div>
-</div>
+<p>关于jmx的监控，grafana官方有个模板提供<a href="https://grafana.com/grafana/dashboards/8563">电梯直达</a>，导入grafana中，稍微修改就可使用</p>
+
+<p>完成图展示：</p>
+
+<p><a href="https://imgchr.com/i/MGryc9"><img src="https://s2.ax1x.com/2019/11/13/MGryc9.md.png" alt="MGryc9.md.png" /></a></p>
     </div>
 
     <div class="post-copyright">
@@ -293,7 +337,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-06-10
+        2019-11-13
         
     </span>
   </p>
@@ -318,19 +362,11 @@
       </label>
   </div>
 </div><footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/docker/">docker</a>
-          <a href="/tags/centos/">centos</a>
-          <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
-          </div>
+      
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/06/10/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%B0%B7%E6%AD%8C%E4%BA%91%E4%B8%8A%E7%9A%84vm%E5%AE%9E%E4%BE%8B/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">远程连接谷歌云上的vm实例</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/">
-            <span class="next-text nav-default">Docker环境下gitlab的迁移和升级</span>
+        
+        <a class="next" href="/post/2019/11/13/centos7%E5%A2%9E%E5%8A%A0swap%E5%A4%A7%E5%B0%8F/">
+            <span class="next-text nav-default">Centos7增加swap大小</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -343,8 +379,8 @@
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-10 14:20:51 \x2b0800 CST',
-        title: 'Docker相关配置操作',
+        id: '2019-11-13 15:28:18 \x2b0800 CST',
+        title: 'Prometheus监控java应用',
         clientID: 'debcea41e9774d4c730e',
         clientSecret: '32b1db7d58ab42858a2cf9be1d8e5aab5c324a5e',
         repo: 'blog-comment',
