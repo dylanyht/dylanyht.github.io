@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>harbor on I am dylan ...</title>
-    <link>https://dylanyht.github.io/tags/harbor/</link>
+    <link>https://dylanyang.top/tags/harbor/</link>
     <description>Recent content in harbor on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 13 May 2019 09:14:04 +0800</lastBuildDate>
     
-	<atom:link href="https://dylanyht.github.io/tags/harbor/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylanyang.top/tags/harbor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker安装harbor</title>
-      <link>https://dylanyht.github.io/post/2019/05/13/docker%E5%AE%89%E8%A3%85harbor/</link>
+      <link>https://dylanyang.top/post/2019/05/13/docker%E5%AE%89%E8%A3%85harbor/</link>
       <pubDate>Mon, 13 May 2019 09:14:04 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/13/docker%E5%AE%89%E8%A3%85harbor/</guid>
+      <guid>https://dylanyang.top/post/2019/05/13/docker%E5%AE%89%E8%A3%85harbor/</guid>
       <description></description>
     </item>
     

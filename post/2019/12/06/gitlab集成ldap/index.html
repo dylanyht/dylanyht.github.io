@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://dylanyht.github.io/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/" />
+<link rel="canonical" href="https://dylanyang.top/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,7 +41,7 @@
 <meta property="og:title" content="Gitlab集成LDAP" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyht.github.io/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/" />
+<meta property="og:url" content="https://dylanyang.top/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/" />
 <meta property="article:published_time" content="2019-12-06T13:48:46&#43;08:00"/>
 <meta property="article:modified_time" content="2019-12-06T13:48:46&#43;08:00"/>
 
@@ -145,11 +145,156 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#配置ldap">配置ldap</a></li>
+<li><a href="#登录配置">登录配置</a></li>
+</ul></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      
+      <blockquote>
+<p>因为有需求需要把公司的LDAP接入到Gitlab中，此文档做为记录</p>
+
+<p>gitlab已经安装安装好<a href="https://dylanyang.top/post/2019/05/22/docker安装gitlab/">电梯直达</a></p>
+</blockquote>
+
+<h2 id="配置ldap">配置ldap</h2>
+
+<ul>
+<li>找到gitlab的gitlab.rb文件挂载位置，编辑gitlab.rb文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">......
+<span class="c1">#修改一下配置</span>
+ gitlab_rails<span class="o">[</span><span class="s1">&#39;ldap_enabled&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c1">###! **remember to close this block with &#39;EOS&#39; below**</span>
+ gitlab_rails<span class="o">[</span><span class="s1">&#39;ldap_servers&#39;</span><span class="o">]</span> <span class="o">=</span> YAML.load <span class="s">&lt;&lt;-&#39;EOS&#39;
+</span><span class="s">   main: # &#39;main&#39; is the GitLab &#39;provider ID&#39; of this LDAP server
+</span><span class="s">     label: &#39;LDAP&#39;
+</span><span class="s">     host: &#39;XXX.XXX.XXX.XXX&#39; #ldap服务器IP地址
+</span><span class="s">     port: 10389  #ldap端口
+</span><span class="s">     uid: &#39;cn&#39;
+</span><span class="s">     bind_dn: &#39;uid=Admin,ou=users,ou=system&#39;  #管理员登录用户名
+</span><span class="s">     password: &#39;password&#39; #登录密码
+</span><span class="s">     encryption: &#39;plain&#39; # &#34;start_tls&#34; or &#34;simple_tls&#34; or &#34;plain&#34;
+</span><span class="s">     verify_certificates: true
+</span><span class="s">     smartcard_auth: false
+</span><span class="s">     active_directory: false   # 如果是 Active Directory LDAP server 则设为true
+</span><span class="s">     allow_username_or_email_login: true # 是否允许email登录
+</span><span class="s">     lowercase_usernames: false  # 是否将用户名转为小写
+</span><span class="s">     block_auto_created_users: false  # 是否自动创建用户
+</span><span class="s">     base: &#39;dc=redcollar,dc=com&#39; #从哪个位置搜索用户
+</span><span class="s">     user_filter: &#39;&#39;  #添加过滤属性
+</span><span class="s">     attributes:
+</span><span class="s">       username: [&#39;cn&#39;]  #用户名
+</span><span class="s">       email:    [&#39;email&#39;]
+</span><span class="s">       name:      &#39;cn&#39;
+</span><span class="s">       first_name: &#39;givenName&#39; #姓名 对应gitlab的name
+</span><span class="s">       last_name:  &#39;sn&#39;
+</span><span class="s">#     ## EE only
+</span><span class="s">#     group_base: &#39;&#39;
+</span><span class="s">#     admin_group: &#39;&#39;
+</span><span class="s">#     sync_ssh_keys: false
+</span><span class="s"> EOS</span>
+#</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>配置完成后重启gitlab</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker restart gitlab</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>检查是否配置成功</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker <span class="nb">exec</span> -it gitlab /bin/bash
+root@git:/# gitlab-rake gitlab:ldap:check <span class="c1">#列出前100个用户</span>
+Checking LDAP ...
+
+LDAP: ... Server: ldapmain
+LDAP authentication... Success
+LDAP users with access to your GitLab server <span class="o">(</span>only showing the first <span class="m">100</span> results<span class="o">)</span>
+	DN: <span class="nv">cn</span><span class="o">=</span>XXX,ou<span class="o">=</span>XXX,dc<span class="o">=</span>XXX,dc<span class="o">=</span>XXX	 cn: XXXX
+......
+
+Checking LDAP ... Finished</code></pre></td></tr></table>
+</div>
+</div>
+<p>显示以上内容说明配置成功</p>
+
+<h2 id="登录配置">登录配置</h2>
+
+<p>如图：输入ldap用户名和密码</p>
+
+<p><a href="https://imgchr.com/i/MxBVL8"><img src="https://s2.ax1x.com/2019/11/26/MxBVL8.md.jpg" alt="MxBVL8.md.jpg" /></a></p>
+
+<p>登录后修改相关信息 需要配置邮箱发邮件进行验证，不然没办法做任何操作。前提是你的gitlab必须配置了SMTP发送邮件</p>
+
+<p><a href="https://imgchr.com/i/MxBnoQ"><img src="https://s2.ax1x.com/2019/11/26/MxBnoQ.md.jpg" alt="MxBnoQ.md.jpg" /></a></p>
     </div>
 
     <div class="post-copyright">
@@ -233,7 +378,7 @@
       <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
       <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
       <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
-  <a href="https://dylanyht.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">

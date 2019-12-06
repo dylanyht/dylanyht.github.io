@@ -2,138 +2,138 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>容器 on I am dylan ...</title>
-    <link>https://dylanyht.github.io/tags/%E5%AE%B9%E5%99%A8/</link>
+    <link>https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/</link>
     <description>Recent content in 容器 on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 10 Jun 2019 14:20:51 +0800</lastBuildDate>
     
-	<atom:link href="https://dylanyht.github.io/tags/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker相关配置操作</title>
-      <link>https://dylanyht.github.io/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/</link>
+      <link>https://dylanyang.top/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Mon, 10 Jun 2019 14:20:51 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/</guid>
+      <guid>https://dylanyang.top/post/2019/06/10/docker%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker环境下gitlab的迁移和升级</title>
-      <link>https://dylanyht.github.io/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</link>
+      <link>https://dylanyang.top/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</link>
       <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</guid>
+      <guid>https://dylanyang.top/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubectl远程连接集群</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</link>
+      <link>https://dylanyang.top/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</link>
       <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装SQLserver</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</link>
       <pubDate>Wed, 22 May 2019 21:28:39 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装samba共享目录</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Wed, 22 May 2019 21:26:07 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装nginx</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</link>
       <pubDate>Wed, 22 May 2019 21:20:36 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装mysql</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</link>
       <pubDate>Wed, 22 May 2019 21:18:04 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装jenkins</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85jenkins/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85jenkins/</link>
       <pubDate>Wed, 22 May 2019 21:16:06 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85jenkins/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85jenkins/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装gitlab</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</link>
       <pubDate>Wed, 22 May 2019 21:11:41 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Centos7安装helm</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</link>
+      <link>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</link>
       <pubDate>Wed, 22 May 2019 20:54:50 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Centos7安装Kompose</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</link>
+      <link>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</link>
       <pubDate>Wed, 22 May 2019 18:20:02 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Centos7安装docker</title>
-      <link>https://dylanyht.github.io/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</link>
+      <link>https://dylanyang.top/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</link>
       <pubDate>Thu, 09 May 2019 16:48:16 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</guid>
+      <guid>https://dylanyang.top/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>记录一次kubectl出错事件</title>
-      <link>https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</link>
+      <link>https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</link>
       <pubDate>Wed, 08 May 2019 17:39:59 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</guid>
+      <guid>https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker Registry搭建及配置用户认证</title>
-      <link>https://dylanyht.github.io/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</link>
+      <link>https://dylanyang.top/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</link>
       <pubDate>Tue, 07 May 2019 10:09:37 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</guid>
+      <guid>https://dylanyang.top/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</guid>
       <description></description>
     </item>
     

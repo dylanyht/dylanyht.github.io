@@ -2,93 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on I am dylan ...</title>
-    <link>https://dylanyht.github.io/categories/kubernetes/</link>
+    <link>https://dylanyang.top/categories/kubernetes/</link>
     <description>Recent content in Kubernetes on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 24 Aug 2019 08:14:59 +0800</lastBuildDate>
     
-	<atom:link href="https://dylanyht.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylanyang.top/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kubernetes安装kubeapps</title>
-      <link>https://dylanyht.github.io/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/</link>
+      <link>https://dylanyang.top/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/</link>
       <pubDate>Sat, 24 Aug 2019 08:14:59 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/</guid>
+      <guid>https://dylanyang.top/post/2019/08/24/kubernetes%E5%AE%89%E8%A3%85kubeapps/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes修改nodePort的端口范围</title>
-      <link>https://dylanyht.github.io/post/2019/08/04/kubernetes%E4%BF%AE%E6%94%B9nodeport%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/</link>
+      <link>https://dylanyang.top/post/2019/08/04/kubernetes%E4%BF%AE%E6%94%B9nodeport%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/</link>
       <pubDate>Sun, 04 Aug 2019 15:38:11 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/08/04/kubernetes%E4%BF%AE%E6%94%B9nodeport%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/</guid>
+      <guid>https://dylanyang.top/post/2019/08/04/kubernetes%E4%BF%AE%E6%94%B9nodeport%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/</guid>
       <description></description>
     </item>
     
     <item>
       <title>使用kubeasz搭建Kubernetes集群</title>
-      <link>https://dylanyht.github.io/post/2019/08/04/%E4%BD%BF%E7%94%A8kubeasz%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</link>
+      <link>https://dylanyang.top/post/2019/08/04/%E4%BD%BF%E7%94%A8kubeasz%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</link>
       <pubDate>Sun, 04 Aug 2019 15:20:42 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/08/04/%E4%BD%BF%E7%94%A8kubeasz%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</guid>
+      <guid>https://dylanyang.top/post/2019/08/04/%E4%BD%BF%E7%94%A8kubeasz%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes Dashboard部署</title>
-      <link>https://dylanyht.github.io/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/</link>
+      <link>https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/</link>
       <pubDate>Mon, 10 Jun 2019 13:56:52 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/</guid>
+      <guid>https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>使用kubeadm搭建Kubernetes1.14</title>
-      <link>https://dylanyht.github.io/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/</link>
+      <link>https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/</link>
       <pubDate>Mon, 10 Jun 2019 13:50:55 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/</guid>
+      <guid>https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubectl远程连接集群</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</link>
+      <link>https://dylanyang.top/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</link>
       <pubDate>Wed, 22 May 2019 21:31:31 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/kubectl%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E9%9B%86%E7%BE%A4/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Centos7安装helm</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</link>
+      <link>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</link>
       <pubDate>Wed, 22 May 2019 20:54:50 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85helm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Centos7安装Kompose</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</link>
+      <link>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</link>
       <pubDate>Wed, 22 May 2019 18:20:02 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/</guid>
       <description></description>
     </item>
     
     <item>
       <title>记录一次kubectl出错事件</title>
-      <link>https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</link>
+      <link>https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</link>
       <pubDate>Wed, 08 May 2019 17:39:59 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</guid>
+      <guid>https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/</guid>
       <description></description>
     </item>
     

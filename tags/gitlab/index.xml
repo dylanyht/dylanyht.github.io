@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gitlab on I am dylan ...</title>
-    <link>https://dylanyht.github.io/tags/gitlab/</link>
+    <link>https://dylanyang.top/tags/gitlab/</link>
     <description>Recent content in gitlab on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 06 Dec 2019 13:48:46 +0800</lastBuildDate>
     
-	<atom:link href="https://dylanyht.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylanyang.top/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Gitlab集成LDAP</title>
-      <link>https://dylanyht.github.io/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/</link>
+      <link>https://dylanyang.top/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/</link>
       <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/</guid>
+      <guid>https://dylanyang.top/post/2019/12/06/gitlab%E9%9B%86%E6%88%90ldap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gitlab Forbidden问题记录</title>
-      <link>https://dylanyht.github.io/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+      <link>https://dylanyang.top/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Sat, 24 Aug 2019 08:09:53 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://dylanyang.top/post/2019/08/24/gitlab-forbidden%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker环境下gitlab的迁移和升级</title>
-      <link>https://dylanyht.github.io/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</link>
+      <link>https://dylanyang.top/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</link>
       <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</guid>
+      <guid>https://dylanyang.top/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker安装gitlab</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</link>
       <pubDate>Wed, 22 May 2019 21:11:41 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85gitlab/</guid>
       <description></description>
     </item>
     

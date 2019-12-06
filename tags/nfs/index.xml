@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nfs on I am dylan ...</title>
-    <link>https://dylanyht.github.io/tags/nfs/</link>
+    <link>https://dylanyang.top/tags/nfs/</link>
     <description>Recent content in nfs on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 13 May 2019 09:10:30 +0800</lastBuildDate>
     
-	<atom:link href="https://dylanyht.github.io/tags/nfs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylanyang.top/tags/nfs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Centos7安装nfs</title>
-      <link>https://dylanyht.github.io/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/</link>
+      <link>https://dylanyang.top/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/</link>
       <pubDate>Mon, 13 May 2019 09:10:30 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/</guid>
+      <guid>https://dylanyang.top/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/</guid>
       <description></description>
     </item>
     

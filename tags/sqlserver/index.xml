@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sqlserver on I am dylan ...</title>
-    <link>https://dylanyht.github.io/tags/sqlserver/</link>
+    <link>https://dylanyang.top/tags/sqlserver/</link>
     <description>Recent content in sqlserver on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 22 May 2019 21:28:39 +0800</lastBuildDate>
     
-	<atom:link href="https://dylanyht.github.io/tags/sqlserver/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://dylanyang.top/tags/sqlserver/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker安装SQLserver</title>
-      <link>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</link>
+      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</link>
       <pubDate>Wed, 22 May 2019 21:28:39 +0800</pubDate>
       
-      <guid>https://dylanyht.github.io/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</guid>
+      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/</guid>
       <description></description>
     </item>
     
