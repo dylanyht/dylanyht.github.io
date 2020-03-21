@@ -6,10 +6,19 @@
     <description>Recent content in linux on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 24 Aug 2019 08:25:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 14:47:00 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Centos7修改网卡名称</title>
+      <link>https://dylanyang.top/post/2020/03/21/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</link>
+      <pubDate>Sat, 21 Mar 2020 14:47:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>一些工作中用到的linux操作</title>

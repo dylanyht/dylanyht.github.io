@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prometheus on I am dylan ...</title>
+    <link>https://dylanyang.top/categories/prometheus/</link>
+    <description>Recent content in prometheus on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Mar 2020 13:52:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyang.top/categories/prometheus/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos6安装node_exporter</title>
+      <link>https://dylanyang.top/post/2020/03/21/centos6%E5%AE%89%E8%A3%85node_exporter/</link>
+      <pubDate>Sat, 21 Mar 2020 13:52:17 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/centos6%E5%AE%89%E8%A3%85node_exporter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus监控java应用</title>
+      <link>https://dylanyang.top/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Wed, 13 Nov 2019 15:28:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

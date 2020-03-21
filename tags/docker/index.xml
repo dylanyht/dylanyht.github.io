@@ -6,10 +6,82 @@
     <description>Recent content in docker on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Dec 2019 13:48:46 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 15:23:50 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes常用命令一</title>
+      <link>https://dylanyang.top/post/2020/03/21/kubernetes%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%80/</link>
+      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/kubernetes%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes集群使用CephFS文件存储</title>
+      <link>https://dylanyang.top/post/2020/03/21/kubernetes%E9%9B%86%E7%BE%A4%E4%BD%BF%E7%94%A8cephfs%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</link>
+      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/kubernetes%E9%9B%86%E7%BE%A4%E4%BD%BF%E7%94%A8cephfs%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker镜像修改时区</title>
+      <link>https://dylanyang.top/post/2020/03/21/docker%E9%95%9C%E5%83%8F%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA/</link>
+      <pubDate>Sat, 21 Mar 2020 14:36:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/docker%E9%95%9C%E5%83%8F%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deployment滚动升级</title>
+      <link>https://dylanyang.top/post/2020/03/21/deployment%E6%BB%9A%E5%8A%A8%E5%8D%87%E7%BA%A7/</link>
+      <pubDate>Sat, 21 Mar 2020 14:29:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/deployment%E6%BB%9A%E5%8A%A8%E5%8D%87%E7%BA%A7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用HostAliases向Pod的hosts文件添加解析</title>
+      <link>https://dylanyang.top/post/2020/03/21/%E4%BD%BF%E7%94%A8hostaliases%E5%90%91pod%E7%9A%84hosts%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 21 Mar 2020 14:12:09 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/%E4%BD%BF%E7%94%A8hostaliases%E5%90%91pod%E7%9A%84hosts%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubectl配置连接多个集群</title>
+      <link>https://dylanyang.top/post/2020/03/21/kubectl%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E9%9B%86%E7%BE%A4/</link>
+      <pubDate>Sat, 21 Mar 2020 13:38:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/kubectl%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E9%9B%86%E7%BE%A4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubeadm安装的kubernetes集群证书过期问题处理</title>
+      <link>https://dylanyang.top/post/2020/03/21/kubeadm%E5%AE%89%E8%A3%85%E7%9A%84kubernetes%E9%9B%86%E7%BE%A4%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/</link>
+      <pubDate>Sat, 21 Mar 2020 13:33:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/21/kubeadm%E5%AE%89%E8%A3%85%E7%9A%84kubernetes%E9%9B%86%E7%BE%A4%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gitlab集成SMTP</title>
+      <link>https://dylanyang.top/post/2019/12/06/gitlab%E9%9B%86%E6%88%90smtp/</link>
+      <pubDate>Fri, 06 Dec 2019 14:35:04 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2019/12/06/gitlab%E9%9B%86%E6%88%90smtp/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Gitlab集成LDAP</title>

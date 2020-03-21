@@ -6,7 +6,7 @@
     <description>Recent content in Tags on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Dec 2019 13:48:46 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 15:23:50 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,25 @@
     <item>
       <title></title>
       <link>https://dylanyang.top/tags/</link>
-      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Kubernetes</title>
+      <link>https://dylanyang.top/tags/kubernetes/</link>
+      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>centos</title>
       <link>https://dylanyang.top/tags/centos/</link>
-      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/centos/</guid>
       <description></description>
@@ -32,27 +41,171 @@
     <item>
       <title>docker</title>
       <link>https://dylanyang.top/tags/docker/</link>
-      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>gitlab</title>
-      <link>https://dylanyang.top/tags/gitlab/</link>
-      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      <title>grafana</title>
+      <link>https://dylanyang.top/tags/grafana/</link>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
       
-      <guid>https://dylanyang.top/tags/gitlab/</guid>
+      <guid>https://dylanyang.top/tags/grafana/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
       <link>https://dylanyang.top/tags/linux/</link>
-      <pubDate>Fri, 06 Dec 2019 13:48:46 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loki</title>
+      <link>https://dylanyang.top/tags/loki/</link>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/loki/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>promtail</title>
+      <link>https://dylanyang.top/tags/promtail/</link>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/promtail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ceph</title>
+      <link>https://dylanyang.top/tags/ceph/</link>
+      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ceph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cephfs</title>
+      <link>https://dylanyang.top/tags/cephfs/</link>
+      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/cephfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>centos7</title>
+      <link>https://dylanyang.top/tags/centos7/</link>
+      <pubDate>Sat, 21 Mar 2020 14:47:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/centos7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>alpine</title>
+      <link>https://dylanyang.top/tags/alpine/</link>
+      <pubDate>Sat, 21 Mar 2020 14:36:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/alpine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://dylanyang.top/tags/ubuntu/</link>
+      <pubDate>Sat, 21 Mar 2020 14:36:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deployment</title>
+      <link>https://dylanyang.top/tags/deployment/</link>
+      <pubDate>Sat, 21 Mar 2020 14:29:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/deployment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>exporter</title>
+      <link>https://dylanyang.top/tags/exporter/</link>
+      <pubDate>Sat, 21 Mar 2020 13:52:17 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/exporter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prometheus</title>
+      <link>https://dylanyang.top/tags/prometheus/</link>
+      <pubDate>Sat, 21 Mar 2020 13:52:17 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubeadm</title>
+      <link>https://dylanyang.top/tags/kubeadm/</link>
+      <pubDate>Sat, 21 Mar 2020 13:38:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubeadm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubectl</title>
+      <link>https://dylanyang.top/tags/kubectl/</link>
+      <pubDate>Sat, 21 Mar 2020 13:38:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubectl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>证书</title>
+      <link>https://dylanyang.top/tags/%E8%AF%81%E4%B9%A6/</link>
+      <pubDate>Sat, 21 Mar 2020 13:33:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E8%AF%81%E4%B9%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://dylanyang.top/tags/gitlab/</link>
+      <pubDate>Fri, 06 Dec 2019 14:35:04 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cenots</title>
+      <link>https://dylanyang.top/tags/cenots/</link>
+      <pubDate>Wed, 13 Nov 2019 15:28:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/cenots/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://dylanyang.top/tags/java/</link>
+      <pubDate>Wed, 13 Nov 2019 15:28:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/java/</guid>
       <description></description>
     </item>
     
@@ -80,15 +233,6 @@
       <pubDate>Sat, 24 Aug 2019 08:19:49 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://dylanyang.top/tags/kubernetes/</link>
-      <pubDate>Sat, 24 Aug 2019 08:14:59 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -174,15 +318,6 @@
     </item>
     
     <item>
-      <title>kubeadm</title>
-      <link>https://dylanyang.top/tags/kubeadm/</link>
-      <pubDate>Mon, 10 Jun 2019 13:50:55 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/kubeadm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>nginx</title>
       <link>https://dylanyang.top/tags/nginx/</link>
       <pubDate>Mon, 10 Jun 2019 13:44:14 +0800</pubDate>
@@ -242,15 +377,6 @@
       <pubDate>Wed, 22 May 2019 21:16:06 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/jenkins/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://dylanyang.top/tags/java/</link>
-      <pubDate>Wed, 22 May 2019 20:58:05 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/java/</guid>
       <description></description>
     </item>
     

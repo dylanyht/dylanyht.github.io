@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Grafana日志聚合工具Loki搭建使用 - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2020/03/21/grafana%E6%97%A5%E5%BF%97%E8%81%9A%E5%90%88%E5%B7%A5%E5%85%B7loki%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Grafana日志聚合工具Loki搭建使用" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2020/03/21/grafana%E6%97%A5%E5%BF%97%E8%81%9A%E5%90%88%E5%B7%A5%E5%85%B7loki%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/" />
+<meta property="article:published_time" content="2020-03-21T15:11:30&#43;08:00"/>
+<meta property="article:modified_time" content="2020-03-21T15:11:30&#43;08:00"/>
+
+<meta itemprop="name" content="Grafana日志聚合工具Loki搭建使用">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2020-03-21T15:11:30&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-21T15:11:30&#43;08:00" />
+<meta itemprop="wordCount" content="2176">
+
+
+
+<meta itemprop="keywords" content="linux,centos,grafana,loki,promtail," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Grafana日志聚合工具Loki搭建使用"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Grafana日志聚合工具Loki搭建使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-21 </span>
+        <div class="post-category">
+            <a href="/categories/loki/"> loki </a>
+            </div>
+          <span class="more-meta"> 2176 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#loki">Loki</a>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#整体架构">整体架构</a>
+<ul>
+<li><a href="#日志存储架构">日志存储架构</a></li>
+<li><a href="#读写">读写</a></li>
+<li><a href="#distributor">Distributor</a></li>
+<li><a href="#ingester">Ingester</a></li>
+<li><a href="#querier">Querier</a></li>
+</ul></li>
+<li><a href="#特点">特点</a></li>
+<li><a href="#组成">组成</a></li>
+</ul></li>
+<li><a href="#环境搭建">环境搭建</a>
+<ul>
+<li><a href="#loki-下载">loki 下载</a></li>
+<li><a href="#loki-启动">loki 启动</a></li>
+<li><a href="#配置系统服务">配置系统服务</a></li>
+<li><a href="#promtail-下载">promtail 下载</a></li>
+<li><a href="#promtail-启动">promtail 启动</a></li>
+<li><a href="#配置系统服务-1">配置系统服务</a></li>
+</ul></li>
+<li><a href="#grafana-loki-接入">grafana loki 接入</a>
+<ul>
+<li><a href="#添加data-source">添加Data Source</a></li>
+<li><a href="#grafana-explore">Grafana Explore</a></li>
+<li><a href="#logql-语法">LogQL 语法</a>
+<ul>
+<li><a href="#选择器">选择器</a></li>
+<li><a href="#过滤表达式">过滤表达式</a></li>
+</ul></li>
+<li><a href="#查看更多">查看更多</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><img src="https://s1.ax1x.com/2020/03/21/8WvVk8.jpg" alt="8WvVk8.jpg" /></p>
+
+<h1 id="loki">Loki</h1>
+
+<h2 id="简介">简介</h2>
+
+<p>Loki是 Grafana Labs 团队最新的开源项目，是一个水平可扩展，高可用性，多租户的日志聚合系统。它的设计非常经济高效且易于操作，因为它不会为日志内容编制索引，而是为每个日志流编制一组标签，为 Prometheus和 Kubernetes用户做了相关优化。项目受 Prometheus 启发，类似于 Prometheus 的日志系统。</p>
+
+<h2 id="整体架构">整体架构</h2>
+
+<p><img src="https://s1.ax1x.com/2020/03/21/8RyAWd.png" alt="8RyAWd.png" /></p>
+
+<p>不难看出，Loki的架构非常简单，使用了和prometheus一样的标签来作为索引，也就是说，你通过这些标签既可以查询日志的内容也可以查询到监控的数据，不但减少了两种查询之间的切换成本，也极大地降低了日志索引的存储。
+Loki将使用与prometheus相同的服务发现和标签重新标记库,编写了pormtail, 在k8s中promtail以daemonset方式运行在每个节点中，通过kubernetes api等到日志的正确元数据，并将它们发送到Loki。</p>
+
+<h3 id="日志存储架构">日志存储架构</h3>
+
+<p><img src="https://s1.ax1x.com/2020/03/21/8Ry1YQ.png" alt="8Ry1YQ.png" /></p>
+
+<h3 id="读写">读写</h3>
+
+<p>日志数据的写主要依托的是Distributor和Ingester两个组件, 整体的流程如下：
+<img src="https://s1.ax1x.com/2020/03/21/8Rysp9.png" alt="8Rysp9.png" /></p>
+
+<h3 id="distributor">Distributor</h3>
+
+<p>一旦promtail收集日志并将其发送给loki，Distributor就是第一个接收日志的组件。由于日志的写入量可能很大，所以不能在它们传入时将它们写入数据库。这会毁掉数据库。我们需要批处理和压缩数据。</p>
+
+<p>Loki通过构建压缩数据块来实现这一点，方法是在日志进入时对其进行gzip操作，组件ingester是一个有状态的组件，负责构建和刷新chunck，当chunk达到一定的数量或者时间后，刷新到存储中去。每个流的日志对应一个ingester,当日志到达Distributor后，根据元数据和hash算法计算出应该到哪个ingester上面。
+<img src="https://s1.ax1x.com/2020/03/21/8Ry5fH.png" alt="8Ry5fH.png" />
+此外，为了冗余和弹性，我们将其复制n（默认情况下为3）次。</p>
+
+<h3 id="ingester">Ingester</h3>
+
+<p>ingester接收到日志并开始构建chunk:
+<img src="https://s1.ax1x.com/2020/03/21/8R6J4e.png" alt="8R6J4e.png" />
+基本上就是将日志进行压缩并附加到chunk上面。一旦chunk“填满”（数据达到一定数量或者过了一定期限），ingester将其刷新到数据库。我们对块和索引使用单独的数据库，因为它们存储的数据类型不同。
+<img src="https://s1.ax1x.com/2020/03/21/8R60DP.png" alt="8R60DP.png" />
+刷新一个chunk之后，ingester然后创建一个新的空chunk并将新条目添加到该chunk中。</p>
+
+<h3 id="querier">Querier</h3>
+
+<p>读取就非常简单了，由Querier负责给定一个时间范围和标签选择器，Querier查看索引以确定哪些块匹配，并通过greps将结果显示出来。它还从Ingester获取尚未刷新的最新数据。</p>
+
+<p>对于每个查询，一个查询器将为您显示所有相关日志。实现了查询并行化，提供分布式grep，使即使是大型查询也是足够的。
+<img src="https://s1.ax1x.com/2020/03/21/8R6Rvn.png" alt="8R6Rvn.png" /></p>
+
+<h2 id="特点">特点</h2>
+
+<p>与其他日志聚合系统相比， Loki具有下面的一些特性：</p>
+
+<ul>
+<li>不对日志进行全文索引。通过存储压缩非结构化日志和仅索引元数据，Loki 操作起来会更简单，更省成本。</li>
+<li>通过使用与 Prometheus 相同的标签记录流对日志进行索引和分组，这使得日志的扩展和操作效率更高。</li>
+<li>特别适合储存 Kubernetes Pod 日志; 诸如 Pod 标签之类的元数据会被自动删除和编入索引。</li>
+<li>受 Grafana 原生支持。</li>
+</ul>
+
+<h2 id="组成">组成</h2>
+
+<ul>
+<li>loki是主服务器，负责存储日志和处理查询。</li>
+<li>promtail是代理，负责收集日志并将其发送给 loki。</li>
+<li>Grafana 用于 UI 展示。</li>
+</ul>
+
+<h1 id="环境搭建">环境搭建</h1>
+
+<h2 id="loki-下载">loki 下载</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget https://github.com/grafana/loki/releases/download/v1.3.0/loki-linux-amd64.zip
+mkdir /usr/local/loki
+unzip loki-linux-amd64.zip
+mv loki-linux-amd64 loki
+mv loki /usr/local/loki</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="loki-启动">loki 启动</h2>
+
+<ul>
+<li>loki-local-config.yaml
+官方地址：<a href="https://github.com/grafana/loki/blob/master/docs/configuration/examples.md">https://github.com/grafana/loki/blob/master/docs/configuration/examples.md</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/loki
+vim loki-local-config.yaml
+<span class="c1"># 写入以下内容</span>
+auth_enabled: <span class="nb">false</span>
+
+server:
+  http_listen_port: <span class="m">3100</span>
+
+ingester:
+  lifecycler:
+    address: <span class="m">127</span>.0.0.1
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: <span class="m">1</span>
+    final_sleep: 0s
+  chunk_idle_period: 5m
+  chunk_retain_period: 30s
+  max_transfer_retries: <span class="m">1</span>
+
+schema_config:
+  configs:
+  - from: <span class="m">2018</span>-04-15
+    store: boltdb
+    object_store: filesystem
+    schema: v9
+    index:
+      prefix: index_
+      period: 168h
+
+storage_config:
+  boltdb:
+    directory: /tmp/loki/index
+
+  filesystem:
+    directory: /tmp/loki/chunks
+
+limits_config:
+  enforce_metric_name: <span class="nb">false</span>
+  reject_old_samples: <span class="nb">true</span>
+  reject_old_samples_max_age: 168h
+
+chunk_store_config:
+  max_look_back_period: <span class="m">0</span>
+
+table_manager:
+  chunk_tables_provisioning:
+    inactive_read_throughput: <span class="m">0</span>
+    inactive_write_throughput: <span class="m">0</span>
+    provisioned_read_throughput: <span class="m">0</span>
+    provisioned_write_throughput: <span class="m">0</span>
+  index_tables_provisioning:
+    inactive_read_throughput: <span class="m">0</span>
+    inactive_write_throughput: <span class="m">0</span>
+    provisioned_read_throughput: <span class="m">0</span>
+    provisioned_write_throughput: <span class="m">0</span>
+  retention_deletes_enabled: <span class="nb">false</span>
+  retention_period: <span class="m">0</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>启动命令</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/loki
+./loki -config.file<span class="o">=</span>loki-local-config.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置系统服务">配置系统服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">vim /etc/systemd/system/loki.service
+
+<span class="c1"># 写入以下内容</span>
+
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>loki
+<span class="nv">Wants</span><span class="o">=</span>network-online.target
+<span class="nv">After</span><span class="o">=</span>network-online.target
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Restart</span><span class="o">=</span>on-failure
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/loki/loki --config.file<span class="o">=</span>/usr/local/loki/loki-local-config.yaml
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target</code></pre></td></tr></table>
+</div>
+</div>
+<p>配置好均需要执行以下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl daemon-reload</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>相关启动，停止命令</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl start loki.service
+systemctl status loki.service
+systemctl stop loki.service
+systemctl restart loki.service</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="promtail-下载">promtail 下载</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget https://github.com/grafana/loki/releases/download/v1.3.0/promtail-linux-amd64.zip
+unzip promtail-linux-amd64.zip
+mkdir /usr/local/promtail
+mv promtail-linux-amd64 promtail
+mv promtail /usr/local/promtail</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="promtail-启动">promtail 启动</h2>
+
+<ul>
+<li>promtail-local-config.yaml</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/promtail
+vim promtail-local-config.yaml
+<span class="c1"># 写入以下内容</span>
+server:
+  http_listen_port: <span class="m">9080</span>
+  grpc_listen_port: <span class="m">0</span>
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: system
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: varlogs
+      __path__: /var/log/*</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>启动命令</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/promtail
+./promtail -config.file<span class="o">=</span>promtail-local-config.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置系统服务-1">配置系统服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">vim /etc/systemd/system/promtail.service
+#写入以下内容
+
+
+[Unit]
+Description=promtail
+Wants=network-online.target
+After=network-online.target
+[Service]
+Restart=on-failure
+ExecStart=/usr/local/promtail/promtail --config.file=/usr/local/promtail/promtail-local-config.yaml
+[Install]
+WantedBy=multi-user.target</pre></td></tr></table>
+</div>
+</div>
+<p>配置好执行以下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl daemon-reload</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>相关启动，停止命令</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl start  promtail.service
+systemctl status  promtail.service
+systemctl restart  promtail.service
+systemctl stop  promtail.service</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="grafana-loki-接入">grafana loki 接入</h1>
+
+<h2 id="添加data-source">添加Data Source</h2>
+
+<p><img src="https://s1.ax1x.com/2020/03/21/8RhMGT.png" alt="8RhMGT.png" /></p>
+
+<h2 id="grafana-explore">Grafana Explore</h2>
+
+<p>选择Loki
+<img src="https://s1.ax1x.com/2020/03/21/8Rhtd1.png" alt="8Rhtd1.png" /></p>
+
+<h2 id="logql-语法">LogQL 语法</h2>
+
+<h3 id="选择器">选择器</h3>
+
+<p>对于查询表达式的标签部分，将放在{}中，多个标签表达式用逗号分隔：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{app=&#34;mysql&#34;,name=&#34;mysql-backup&#34;}</pre></td></tr></table>
+</div>
+</div>
+<p>支持的符号有：</p>
+
+<ul>
+<li>= 完全相同。</li>
+<li>!= 不平等。</li>
+<li>=~ 正则表达式匹配。</li>
+<li>!~ 不要正则表达式匹配。</li>
+</ul>
+
+<h3 id="过滤表达式">过滤表达式</h3>
+
+<p>编写日志流选择器后，您可以通过编写搜索表达式进一步过滤结果。搜索表达式可以文本或正则表达式。
+如：</p>
+
+<ul>
+<li>{job=“mysql”} |= “error”</li>
+<li>{name=“kafka”} |~ “tsdb-ops.*io:2003”</li>
+<li>{instance=~“kafka-[23]”,name=“kafka”} != kafka.server:type=ReplicaManager
+支持多个过滤</li>
+
+<li><p>{job=“mysql”} |= “error” != “timeout”
+目前支持的操作符：</p></li>
+
+<li><p>|= line包含字符串。</p></li>
+
+<li><p>!= line不包含字符串。</p></li>
+
+<li><p>|~ line匹配正则表达式。</p></li>
+
+<li><p>!~ line与正则表达式不匹配。
+<img src="https://s1.ax1x.com/2020/03/21/8RImdA.png" alt="8RImdA.png" /></p></li>
+</ul>
+
+<h2 id="查看更多">查看更多</h2>
+
+<p>在查询出来的结果行后面有一个show context （查看上下文）,点击这个按钮，默认展示结果行前10行和后10行。
+<img src="https://s1.ax1x.com/2020/03/21/8RI0zT.png" alt="8RI0zT.png" /></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-21
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/centos/">centos</a>
+          <a href="/tags/grafana/">grafana</a>
+          <a href="/tags/loki/">loki</a>
+          <a href="/tags/promtail/">promtail</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020/03/21/kubernetes%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%80/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kubernetes常用命令一</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020/03/21/kubernetes%E9%9B%86%E7%BE%A4%E4%BD%BF%E7%94%A8cephfs%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/">
+            <span class="next-text nav-default">Kubernetes集群使用CephFS文件存储</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-03-21 15:11:30 \x2b0800 CST',
+        title: 'Grafana日志聚合工具Loki搭建使用',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
