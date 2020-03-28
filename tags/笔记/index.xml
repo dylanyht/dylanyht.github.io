@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>笔记 on I am dylan ...</title>
+    <link>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Mar 2020 11:21:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes笔记之LimitRange</title>
+      <link>https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/</link>
+      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

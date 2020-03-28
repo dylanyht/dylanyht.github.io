@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2020 15:23:50 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 11:21:13 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes笔记之LimitRange</title>
+      <link>https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/</link>
+      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes常用命令一</title>

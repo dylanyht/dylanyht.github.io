@@ -6,7 +6,7 @@
     <description>Recent content in Tags on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2020 15:23:50 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 11:21:13 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title></title>
       <link>https://dylanyang.top/tags/</link>
-      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
+      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/</guid>
       <description></description>
@@ -23,9 +23,27 @@
     <item>
       <title>Kubernetes</title>
       <link>https://dylanyang.top/tags/kubernetes/</link>
-      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
+      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://dylanyang.top/tags/linux/</link>
+      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>笔记</title>
+      <link>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
@@ -53,15 +71,6 @@
       <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/grafana/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://dylanyang.top/tags/linux/</link>
-      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/linux/</guid>
       <description></description>
     </item>
     

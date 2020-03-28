@@ -17,31 +17,62 @@
   
   <url>
     <loc>https://dylanyang.top/tags/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyang.top/categories/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyang.top/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyang.top/categories/kubernetes/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyang.top/tags/kubernetes/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/</loc>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/</loc>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/</loc>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/linux/</loc>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-03-28T11:21:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -50,18 +81,6 @@
     <lastmod>2020-03-21T15:23:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/post/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/</loc>
-    <lastmod>2020-03-21T15:23:50+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -85,12 +104,6 @@
   
   <url>
     <loc>https://dylanyang.top/tags/grafana/</loc>
-    <lastmod>2020-03-21T15:11:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/linux/</loc>
     <lastmod>2020-03-21T15:11:30+08:00</lastmod>
     <priority>0</priority>
   </url>
