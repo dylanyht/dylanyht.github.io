@@ -6,10 +6,64 @@
     <description>Recent content in 笔记 on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Mar 2020 11:21:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2020 17:28:16 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>二进制部署Kubernetes集群</title>
+      <link>https://dylanyang.top/post/2020/04/26/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2kubernetes%E9%9B%86%E7%BE%A4/</link>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/26/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2kubernetes%E9%9B%86%E7%BE%A4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记之Secret</title>
+      <link>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsecret/</link>
+      <pubDate>Sat, 18 Apr 2020 09:18:39 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsecret/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记之configmap</title>
+      <link>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bconfigmap/</link>
+      <pubDate>Sat, 18 Apr 2020 09:14:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bconfigmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记之ResourceQuota</title>
+      <link>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bresourcequota/</link>
+      <pubDate>Sat, 18 Apr 2020 09:11:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bresourcequota/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记之Job/CronJob</title>
+      <link>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/</link>
+      <pubDate>Sat, 18 Apr 2020 09:08:54 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记之subPath</title>
+      <link>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsubpath/</link>
+      <pubDate>Sat, 18 Apr 2020 09:03:43 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsubpath/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes笔记之LimitRange</title>

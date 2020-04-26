@@ -6,7 +6,7 @@
     <description>Recent content in Tags on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Mar 2020 11:21:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2020 17:28:16 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title></title>
       <link>https://dylanyang.top/tags/</link>
-      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/</guid>
       <description></description>
@@ -23,16 +23,25 @@
     <item>
       <title>Kubernetes</title>
       <link>https://dylanyang.top/tags/kubernetes/</link>
-      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>centos</title>
+      <link>https://dylanyang.top/tags/centos/</link>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>linux</title>
       <link>https://dylanyang.top/tags/linux/</link>
-      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/linux/</guid>
       <description></description>
@@ -41,18 +50,27 @@
     <item>
       <title>笔记</title>
       <link>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>centos</title>
-      <link>https://dylanyang.top/tags/centos/</link>
-      <pubDate>Sat, 21 Mar 2020 15:23:50 +0800</pubDate>
+      <title>nginx</title>
+      <link>https://dylanyang.top/tags/nginx/</link>
+      <pubDate>Sat, 28 Mar 2020 14:17:00 +0800</pubDate>
       
-      <guid>https://dylanyang.top/tags/centos/</guid>
+      <guid>https://dylanyang.top/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tcp</title>
+      <link>https://dylanyang.top/tags/tcp/</link>
+      <pubDate>Sat, 28 Mar 2020 14:17:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/tcp/</guid>
       <description></description>
     </item>
     
@@ -323,15 +341,6 @@
       <pubDate>Mon, 10 Jun 2019 13:56:52 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/dashboard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nginx</title>
-      <link>https://dylanyang.top/tags/nginx/</link>
-      <pubDate>Mon, 10 Jun 2019 13:44:14 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/nginx/</guid>
       <description></description>
     </item>
     

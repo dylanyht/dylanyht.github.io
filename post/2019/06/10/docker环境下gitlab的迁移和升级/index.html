@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-06-10T14:17:14&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-10T14:17:14&#43;08:00" />
-<meta itemprop="wordCount" content="857">
+<meta itemprop="wordCount" content="916">
 
 
 
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/devops/"> Devops </a>
             </div>
-          <span class="more-meta"> 857 words </span>
+          <span class="more-meta"> 916 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -320,7 +320,7 @@
 /home/docker/data/gitlab/data/backups
 <span class="o">[</span>root@k8s-77-36 backups<span class="o">]</span><span class="c1"># scp 1559548339_2019_06_03_11.0.3_gitlab_backup.tar  root@172.16.77.162:/home/docker/data/gitlab/data/backups</span>
 ....
-<span class="o">[</span>root@k8s-77-36 gitlab<span class="o">]</span><span class="c1"># scp -r config/  root@172.16.77.162:/home/docker/data/gitlab/config/</span></code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-36 gitlab<span class="o">]</span><span class="c1"># scp -r config/*  root@172.16.77.162:/home/docker/data/gitlab/config/</span></code></pre></td></tr></table>
 </div>
 </div>
 <ul>
@@ -521,7 +521,11 @@ gitlab</code></pre></td></tr></table>
 
 <p><a href="https://imgchr.com/i/VYlkTg"><img src="https://s2.ax1x.com/2019/06/03/VYlkTg.jpg" alt="VYlkTg.jpg" /></a></p>
 
-<p>到此升级完成</p>
+<p>到此升级完成<br />
+<strong><em>注意：如果是跨大版本更新的话请仔细阅读官方文档</em></strong><br />
+如：11.0.3升级到12.10.0  需要11.0.3 &gt; 11.11.8 &gt; 12.0.12 &gt; 12.10.0</p>
+
+<p><a href="https://docs.gitlab.com/ee/policy/maintenance.html#upgrade-recommendations">官方文档</a></p>
     </div>
 
     <div class="post-copyright">

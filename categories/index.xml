@@ -6,7 +6,7 @@
     <description>Recent content in Categories on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Mar 2020 11:21:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2020 17:28:16 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,27 @@
     <item>
       <title>Kubernetes</title>
       <link>https://dylanyang.top/categories/kubernetes/</link>
-      <pubDate>Sat, 28 Mar 2020 11:21:13 +0800</pubDate>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://dylanyang.top/categories/linux/</link>
+      <pubDate>Sat, 18 Apr 2020 08:58:12 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://dylanyang.top/categories/nginx/</link>
+      <pubDate>Sat, 28 Mar 2020 14:17:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/nginx/</guid>
       <description></description>
     </item>
     
@@ -26,15 +44,6 @@
       <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/loki/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://dylanyang.top/categories/linux/</link>
-      <pubDate>Sat, 21 Mar 2020 14:47:00 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/categories/linux/</guid>
       <description></description>
     </item>
     
@@ -89,15 +98,6 @@
       <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nginx</title>
-      <link>https://dylanyang.top/categories/nginx/</link>
-      <pubDate>Mon, 10 Jun 2019 13:44:14 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/categories/nginx/</guid>
       <description></description>
     </item>
     

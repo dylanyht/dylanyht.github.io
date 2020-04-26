@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kubernetes笔记之Job/CronJob - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Kubernetes笔记之Job/CronJob" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/" />
+<meta property="article:published_time" content="2020-04-18T09:08:54&#43;08:00"/>
+<meta property="article:modified_time" content="2020-04-18T09:08:54&#43;08:00"/>
+
+<meta itemprop="name" content="Kubernetes笔记之Job/CronJob">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2020-04-18T09:08:54&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-18T09:08:54&#43;08:00" />
+<meta itemprop="wordCount" content="1219">
+
+
+
+<meta itemprop="keywords" content="linux,kubernetes,笔记," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes笔记之Job/CronJob"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kubernetes笔记之Job/CronJob</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-18 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> kubernetes </a>
+            </div>
+          <span class="more-meta"> 1219 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#job">Job</a>
+<ul>
+<li><a href="#job-spec">Job Spec</a></li>
+<li><a href="#示例">示例</a></li>
+</ul></li>
+<li><a href="#cronjob">CronJob</a>
+<ul>
+<li><a href="#cronjob-spec">CronJob Spec</a></li>
+<li><a href="#示例-1">示例</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>Job负责处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个pod成功结束。</p>
+
+<p>CronJob负责定时任务，在指定的时间周期运行指定的任务</p>
+</blockquote>
+
+<h2 id="job">Job</h2>
+
+<p>Job用于批量处理短暂的一次性任务，并保证指定数量的pod成功结束。</p>
+
+<p>Kubernetes支持以下几种方式：</p>
+
+<ul>
+<li>非并行Job：
+
+<ul>
+<li>通常只运行一个pod，pod成功结束Job就退出。</li>
+</ul></li>
+<li>固定完成次数的并行Job：
+
+<ul>
+<li>并发运行指定数量的pod，直到指定数量的pod成功，job结束。</li>
+</ul></li>
+<li>带有工作队列的并行Job：
+
+<ul>
+<li>用户可以指定并行的pod数量，当任何Pod成功结束后，不会再创建新的pod</li>
+<li>一旦有一个pod成功结束，并且所有的pods都结束了，改job就成功结束。</li>
+<li>一旦有一个pod成功结束，其他pods都会准备推出。</li>
+</ul></li>
+</ul>
+
+<h3 id="job-spec">Job Spec</h3>
+
+<ul>
+<li>Spec.template格式通Pod</li>
+<li>RestartPolicy仅支持Never或OnFailure</li>
+<li>单个Pod时，默认Pod成功运行后Job即结束</li>
+<li>.spec.completions 标志Job结束需要成功运行的pod个数，默认为1</li>
+<li>.spec.parallelism 标志并行运行的pod的个数，默认为1</li>
+<li>.spec.activeDeadLineSeconds 标志失败pod的重试最大时间，超过这个时间不会继续重试</li>
+<li>.spec.backoffLimit 标志指定job失败后进行重试的次数。默认是6次，每次失败后重试会有延迟时间，改时间是指数级增长，最长时间是6min</li>
+</ul>
+
+<h3 id="示例">示例</h3>
+
+<p>yaml：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>batch/v1<span class="w">
+</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Job<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>job-demo<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">
+</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">      </span>name<span class="p">:</span><span class="w"> </span>job-demo<span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>restartPolicy<span class="p">:</span><span class="w"> </span>Never<span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>counter<span class="w">
+</span><span class="w">        </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
+</span><span class="w">        </span>command<span class="p">:</span><span class="w">
+</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;bin/sh&#34;</span><span class="w">
+</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="w">
+</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f job.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<p>查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get job
+NAME       COMPLETIONS   DURATION   AGE
+job-demo   <span class="m">1</span>/1           5s         10m
+$ kubectl get pods
+NAME                              READY   STATUS      RESTARTS   AGE
+......
+job-demo-28v66                    <span class="m">0</span>/1     Completed   <span class="m">0</span>          10m
+......
+<span class="o">[</span>root@k8s-77-40 job<span class="o">]</span><span class="c1"># kubectl logs job-demo-28v66</span>
+<span class="m">9</span>
+<span class="m">8</span>
+<span class="m">7</span>
+<span class="m">6</span>
+<span class="m">5</span>
+<span class="m">4</span>
+<span class="m">3</span>
+<span class="m">2</span>
+<span class="m">1</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="cronjob">CronJob</h2>
+
+<p>cronJob是基于时间进行任务的定时管理：</p>
+
+<ul>
+<li>在特定的时间点运行任务</li>
+<li>反复在指定的时间点运行任务：比如定时进行数据库备份，定时发送邮件等等</li>
+</ul>
+
+<h3 id="cronjob-spec">CronJob Spec</h3>
+
+<ul>
+<li><p>.spec.schedule: 调度，必需字段，指定任务运行周期</p></li>
+
+<li><p>.spec.jobTemplate: Job模板，必需字段，指定需要运行的任务</p></li>
+
+<li><p>.spec.startingDeadlineSeconds: 启动Job的期限（秒级别），该字段是可选的。如果因为任何原因而错过了被调度的时间，那么错过执行时间的Job将被认为是失败的。如果没有指定，则没有期限。</p></li>
+
+<li><p>.spec.concurrencyPolicy: 并发策略，该字段也是可选的。它指定了如何处理被Cron Job创建的Job的并发执行。只允许指定下面策略的一种：</p>
+
+<ul>
+<li>Allow（默认）：允许并发运行Job</li>
+<li>Forid: 禁止并发运行，如果前一个还没有完成，则直接跳过下一个</li>
+<li>Replace： 取消当前正在运行的Job，用一个新的来替换</li>
+</ul></li>
+</ul>
+
+<p>注意，当前策略只能应用于同一个CronJob创建的Job。如果存在多个CronJob，它们创建的Job之间总是允许并发运行</p>
+
+<ul>
+<li>.spec.successfulJobsHistoryLimit 和 .spec.failedJobsHistoryLimit： 历史限制，是可选的字段。它们指定了可以保留多少完成和失败的Job</li>
+</ul>
+
+<h3 id="示例-1">示例</h3>
+
+<blockquote>
+<p><strong>分 时 日 月 星期 要运行的命令</strong> 第1列分钟0～59 第2列小时0～23） 第3列日1～31 第4列月1～12 第5列星期0～7（0和7表示星期天） 第6列要运行的命令</p>
+</blockquote>
+
+<p>Yaml:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>batch/v2alpha1<span class="w">
+</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>CronJob<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>cronjob-demo<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span>schedule<span class="p">:</span><span class="w"> </span><span class="s2">&#34;*/1 * * * *&#34;</span><span class="w">
+</span><span class="w">  </span>jobTemplate<span class="p">:</span><span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>template<span class="p">:</span><span class="w">
+</span><span class="w">        </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">          </span>restartPolicy<span class="p">:</span><span class="w"> </span>OnFailure<span class="w">
+</span><span class="w">          </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>hello<span class="w">
+</span><span class="w">            </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
+</span><span class="w">            </span>args<span class="p">:</span><span class="w">
+</span><span class="w">            </span>-<span class="w"> </span><span class="s2">&#34;bin/sh&#34;</span><span class="w">
+</span><span class="w">            </span>-<span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="w">
+</span><span class="w">            </span>-<span class="w"> </span><span class="s2">&#34;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f job-2.yaml
+$ kubectl get cronjobs
+NAME           SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+cronjob-demo   */1 * * * *   False     <span class="m">0</span>        35s             2m51s</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-04-18
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/kubernetes/">kubernetes</a>
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bresourcequota/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kubernetes笔记之ResourceQuota</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsubpath/">
+            <span class="next-text nav-default">Kubernetes笔记之subPath</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-04-18 09:08:54 \x2b0800 CST',
+        title: 'Kubernetes笔记之Job\/CronJob',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
