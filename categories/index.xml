@@ -6,10 +6,28 @@
     <description>Recent content in Categories on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 26 Apr 2020 17:28:16 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2020 13:34:14 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://dylanyang.top/categories/gitlab/</link>
+      <pubDate>Sat, 09 May 2020 13:34:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://dylanyang.top/categories/docker/</link>
+      <pubDate>Sat, 09 May 2020 13:27:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/docker/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes</title>
@@ -48,15 +66,6 @@
     </item>
     
     <item>
-      <title>docker</title>
-      <link>https://dylanyang.top/categories/docker/</link>
-      <pubDate>Sat, 21 Mar 2020 14:36:18 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/categories/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>prometheus</title>
       <link>https://dylanyang.top/categories/prometheus/</link>
       <pubDate>Sat, 21 Mar 2020 13:52:17 +0800</pubDate>
@@ -66,18 +75,9 @@
     </item>
     
     <item>
-      <title>gitlab</title>
-      <link>https://dylanyang.top/categories/gitlab/</link>
-      <pubDate>Fri, 06 Dec 2019 14:35:04 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/categories/gitlab/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>数据库</title>
       <link>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-      <pubDate>Sat, 24 Aug 2019 08:19:49 +0800</pubDate>
+      <pubDate>Thu, 12 Mar 2020 15:03:59 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>

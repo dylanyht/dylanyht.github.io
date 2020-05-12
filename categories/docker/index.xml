@@ -6,10 +6,19 @@
     <description>Recent content in docker on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2020 14:36:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2020 13:27:31 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker容器动态添加端口</title>
+      <link>https://dylanyang.top/post/2020/05/09/docker%E5%AE%B9%E5%99%A8%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3/</link>
+      <pubDate>Sat, 09 May 2020 13:27:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/05/09/docker%E5%AE%B9%E5%99%A8%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Docker镜像修改时区</title>
