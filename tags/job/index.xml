@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>job on I am dylan ...</title>
+    <link>https://dylanyang.top/tags/job/</link>
+    <description>Recent content in job on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 10 Jul 2020 16:39:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyang.top/tags/job/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用cronjob定时备份mysql数据库</title>
+      <link>https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes笔记之Job/CronJob</title>
+      <link>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/</link>
+      <pubDate>Sat, 18 Apr 2020 09:08:54 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

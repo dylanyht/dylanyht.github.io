@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kube-Prometheus部署 - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Kube-Prometheus部署" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/" />
+<meta property="article:published_time" content="2020-08-02T16:55:40&#43;08:00"/>
+<meta property="article:modified_time" content="2020-08-02T16:55:40&#43;08:00"/>
+
+<meta itemprop="name" content="Kube-Prometheus部署">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2020-08-02T16:55:40&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-02T16:55:40&#43;08:00" />
+<meta itemprop="wordCount" content="0">
+
+
+
+<meta itemprop="keywords" content="kubernetes,prometheus,kube-prometheus,监控," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kube-Prometheus部署"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kube-Prometheus部署</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-02 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%9B%91%E6%8E%A7/"> 监控 </a>
+            </div>
+          <span class="more-meta"> 0 words </span>
+          <span class="more-meta"> 0 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#兼容性参考">兼容性参考</a></li>
+<li><a href="#前期准备">前期准备</a>
+<ul>
+<li><a href="#下载">下载</a></li>
+<li><a href="#配置nodeport">配置NodePort</a></li>
+</ul></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#问题处理">问题处理</a>
+<ul>
+<li><a href="#问题一">问题一</a>
+<ul>
+<li><a href="#prometheus的页面上发现-kube-controller-manager-和-kube-scheduler-的target为0-0-如下图所示">prometheus的页面上发现<code>kube-controller-manager</code>和<code>kube-scheduler</code>的target为0/0，如下图所示</a></li>
+<li><a href="#解决办法">解决办法</a></li>
+</ul></li>
+<li><a href="#问题二">问题二</a></li>
+<li><a href="#问题三">问题三</a>
+<ul>
+<li><a href="#缺少饼形图插件grafana-piechart-panel">缺少饼形图插件grafana-piechart-panel</a></li>
+<li><a href="#解决办法-1">解决办法</a>
+<ul>
+<li><a href="#方法一">方法一</a></li>
+<li><a href="#方法二">方法二</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#参考链接">参考链接</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><a href="https://imgchr.com/i/aOZLSU"><img src="https://s1.ax1x.com/2020/08/11/aOZLSU.jpg" alt="aOZLSU.jpg" /></a></p>
+
+<blockquote>
+<p>此文档用于记录kube-prometheus的部署过程</p>
+
+<p>环境：</p>
+
+<p>​    Kubernetes1.14.3、 安装方式：二进制</p>
+
+<p>​    kube-prometheus-0.3</p>
+</blockquote>
+
+<h2 id="兼容性参考">兼容性参考</h2>
+
+<table>
+<thead>
+<tr>
+<th>kube-prometheus堆栈</th>
+<th>Kubernetes 1.14</th>
+<th>Kubernetes 1.15</th>
+<th>Kubernetes 1.16</th>
+<th>Kubernetes 1.17</th>
+<th>Kubernetes 1.18</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>release-0.3</code></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✗</td>
+</tr>
+
+<tr>
+<td><code>release-0.4</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✔ （v1.16.5 +）</td>
+<td>✔</td>
+<td>✗</td>
+</tr>
+
+<tr>
+<td><code>release-0.5</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✔</td>
+</tr>
+
+<tr>
+<td><code>HEAD</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✔</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="前期准备">前期准备</h2>
+
+<h3 id="下载">下载</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ wget https://github.com/coreos/kube-prometheus/archive/v0.3.0.tar.gz
+$ tar -zxvf v0.3.0.tar.gz</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="配置nodeport">配置NodePort</h3>
+
+<p>为了Kubernetes集群外访问，可以根据情况配置NodePort或者ingress，此处直接修改为NodePort。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> kube-prometheus-0.3.0/manifests
+$ vim prometheus-service.yaml
+......
+  type: NodePort
+  ports:
+  - name: web
+    port: <span class="m">9090</span>
+    targetPort: web
+    nodePort: <span class="m">39090</span>
+......
+
+$ vim grafana-service.yaml
+......
+  type: NodePort
+  ports:
+  - name: http
+    port: <span class="m">3000</span>
+    nodePort: <span class="m">33000</span>
+......
+
+$ vim alertmanager-service.yaml
+......
+  type: NodePort
+  ports:
+  - name: web
+    port: <span class="m">9093</span>
+    nodePort: <span class="m">39093</span>
+.......</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> kube-prometheus-0.3.0/manifests/setup
+$ kubectl apply -f .
+namespace/monitoring created
+customresourcedefinition.apiextensions.k8s.io/alertmanagers.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/podmonitors.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/prometheuses.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/prometheusrules.monitoring.coreos.com created
+customresourcedefinition.apiextensions.k8s.io/servicemonitors.monitoring.coreos.com created
+clusterrole.rbac.authorization.k8s.io/prometheus-operator created
+clusterrolebinding.rbac.authorization.k8s.io/prometheus-operator created
+deployment.apps/prometheus-operator created
+service/prometheus-operator created
+serviceaccount/prometheus-operator created</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> kube-prometheus-0.3.0/manifests
+$ kubectl apply -f .
+alertmanager.monitoring.coreos.com/main created
+secret/alertmanager-main created
+service/alertmanager-main created
+serviceaccount/alertmanager-main created
+servicemonitor.monitoring.coreos.com/alertmanager created
+secret/grafana-datasources created
+configmap/grafana-dashboard-apiserver created
+configmap/grafana-dashboard-cluster-total created
+configmap/grafana-dashboard-controller-manager created
+configmap/grafana-dashboard-k8s-resources-cluster created
+configmap/grafana-dashboard-k8s-resources-namespace created
+configmap/grafana-dashboard-k8s-resources-node created
+configmap/grafana-dashboard-k8s-resources-pod created
+configmap/grafana-dashboard-k8s-resources-workload created
+configmap/grafana-dashboard-k8s-resources-workloads-namespace created
+configmap/grafana-dashboard-kubelet created
+configmap/grafana-dashboard-namespace-by-pod created
+configmap/grafana-dashboard-namespace-by-workload created
+configmap/grafana-dashboard-node-cluster-rsrc-use created
+configmap/grafana-dashboard-node-rsrc-use created
+configmap/grafana-dashboard-nodes created
+configmap/grafana-dashboard-persistentvolumesusage created
+configmap/grafana-dashboard-pod-total created
+configmap/grafana-dashboard-pods created
+configmap/grafana-dashboard-prometheus-remote-write created
+configmap/grafana-dashboard-prometheus created
+configmap/grafana-dashboard-proxy created
+configmap/grafana-dashboard-scheduler created
+configmap/grafana-dashboard-statefulset created
+configmap/grafana-dashboard-workload-total created
+configmap/grafana-dashboards created
+deployment.apps/grafana created
+service/grafana created
+serviceaccount/grafana created
+servicemonitor.monitoring.coreos.com/grafana created
+clusterrole.rbac.authorization.k8s.io/kube-state-metrics created
+clusterrolebinding.rbac.authorization.k8s.io/kube-state-metrics created
+deployment.apps/kube-state-metrics created
+role.rbac.authorization.k8s.io/kube-state-metrics created
+rolebinding.rbac.authorization.k8s.io/kube-state-metrics created
+service/kube-state-metrics created
+serviceaccount/kube-state-metrics created
+servicemonitor.monitoring.coreos.com/kube-state-metrics created
+clusterrole.rbac.authorization.k8s.io/node-exporter created
+clusterrolebinding.rbac.authorization.k8s.io/node-exporter created
+daemonset.apps/node-exporter created
+service/node-exporter created
+serviceaccount/node-exporter created
+servicemonitor.monitoring.coreos.com/node-exporter created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io configured
+clusterrole.rbac.authorization.k8s.io/prometheus-adapter created
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader configured
+clusterrolebinding.rbac.authorization.k8s.io/prometheus-adapter created
+clusterrolebinding.rbac.authorization.k8s.io/resource-metrics:system:auth-delegator created
+clusterrole.rbac.authorization.k8s.io/resource-metrics-server-resources created
+configmap/adapter-config created
+deployment.apps/prometheus-adapter created
+rolebinding.rbac.authorization.k8s.io/resource-metrics-auth-reader created
+service/prometheus-adapter created
+serviceaccount/prometheus-adapter created
+clusterrole.rbac.authorization.k8s.io/prometheus-k8s created
+clusterrolebinding.rbac.authorization.k8s.io/prometheus-k8s created
+servicemonitor.monitoring.coreos.com/prometheus-operator created
+prometheus.monitoring.coreos.com/k8s created
+rolebinding.rbac.authorization.k8s.io/prometheus-k8s-config created
+rolebinding.rbac.authorization.k8s.io/prometheus-k8s created
+rolebinding.rbac.authorization.k8s.io/prometheus-k8s created
+rolebinding.rbac.authorization.k8s.io/prometheus-k8s created
+role.rbac.authorization.k8s.io/prometheus-k8s-config created
+role.rbac.authorization.k8s.io/prometheus-k8s created
+role.rbac.authorization.k8s.io/prometheus-k8s created
+role.rbac.authorization.k8s.io/prometheus-k8s created
+prometheusrule.monitoring.coreos.com/prometheus-k8s-rules created
+service/prometheus-k8s created
+serviceaccount/prometheus-k8s created
+servicemonitor.monitoring.coreos.com/prometheus created
+servicemonitor.monitoring.coreos.com/kube-apiserver created
+servicemonitor.monitoring.coreos.com/coredns created
+servicemonitor.monitoring.coreos.com/kube-controller-manager created
+servicemonitor.monitoring.coreos.com/kube-scheduler created
+servicemonitor.monitoring.coreos.com/kubelet created</code></pre></td></tr></table>
+</div>
+</div>
+<p>查看状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get pods -n monitoring
+NAME                                   READY   STATUS    RESTARTS   AGE
+alertmanager-main-0                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+alertmanager-main-1                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+alertmanager-main-2                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+grafana-5db74b88f4-wl4gv               <span class="m">1</span>/1     Running   <span class="m">0</span>          1h
+kube-state-metrics-54f98c4687-7796f    <span class="m">3</span>/3     Running   <span class="m">0</span>          1h
+node-exporter-s9j2q                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+node-exporter-sjtpz                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+node-exporter-wgh7z                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+node-exporter-wrn9c                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
+prometheus-adapter-8667948d79-dwblv    <span class="m">1</span>/1     Running   <span class="m">0</span>          1h
+prometheus-k8s-0                       <span class="m">3</span>/3     Running   <span class="m">1</span>          1h
+prometheus-k8s-1                       <span class="m">3</span>/3     Running   <span class="m">1</span>          1h
+prometheus-operator-5f759fd859-7xs76   <span class="m">1</span>/1     Running   <span class="m">0</span>          1h</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="问题处理">问题处理</h2>
+
+<blockquote>
+<p>安装完成之后，在使用过程中可能会发现有些问题，这里记录几个常见问题</p>
+</blockquote>
+
+<h3 id="问题一">问题一</h3>
+
+<h4 id="prometheus的页面上发现-kube-controller-manager-和-kube-scheduler-的target为0-0-如下图所示">prometheus的页面上发现<code>kube-controller-manager</code>和<code>kube-scheduler</code>的target为0/0，如下图所示</h4>
+
+<p><img src="https://s1.ax1x.com/2020/06/03/tUMJ9P.png" alt="tUMJ9P.png" /></p>
+
+<h4 id="解决办法">解决办法</h4>
+
+<p>（注意：我的集群是二进制安装，kubeadm部署的集群处理方法有些不同，可以查看文章最后参考链接处理）</p>
+
+<ul>
+<li>所有master修改<code>kube-controller-manager</code>和<code>kube-scheduler</code>的systemd配置文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">  $ vim /etc/systemd/system/kube-controller-manager.service
+  ......
+    --address<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\
+</span><span class="se"></span>    --bind-address<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\
+</span><span class="se"></span>  ......
+  
+  $ systemctl daemon-reload 
+  $ systemctl restart kube-controller-manager.service
+  
+  $ vim /etc/systemd/system/kube-scheduler.service
+  ......
+    --address<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\
+</span><span class="se"></span>  ......
+  
+  $ systemctl daemon-reload 
+  $ systemctl restart systemctl restart kube-scheduler.service</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>### 创建kube-controller-manager和kube-scheduler的svc和ep</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ vim controller-manager-scheduler-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kube-system
+  name: kube-controller-manager
+  labels:
+    k8s-app: kube-controller-manager
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: http-metrics
+    port: <span class="m">10252</span>
+    targetPort: <span class="m">10252</span>
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kube-system
+  name: kube-scheduler
+  labels:
+    k8s-app: kube-scheduler
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: http-metrics
+    port: <span class="m">10251</span>
+    targetPort: <span class="m">10251</span>
+    protocol: TCP
+    
+$ vim controller-manager-scheduler-ep.yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  labels:
+    k8s-app: kube-controller-manager
+  name: kube-controller-manager
+  namespace: kube-system
+subsets:
+- addresses:
+  - ip: <span class="m">172</span>.16.77.86
+  - ip: <span class="m">172</span>.16.77.36
+  ports:
+  - name: http-metrics
+    port: <span class="m">10252</span>
+    protocol: TCP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  labels:
+    k8s-app: kube-scheduler
+  name: kube-scheduler
+  namespace: kube-system
+subsets:
+- addresses:
+  - ip: <span class="m">172</span>.16.77.86
+  - ip: <span class="m">172</span>.16.77.36
+  ports:
+  - name: http-metrics
+    port: <span class="m">10251</span>
+    protocol: TCP
+    
+ $ kubectl apply -f controller-manager-scheduler-svc.yaml
+ $ kubectl apply -f controller-manager-scheduler-ep.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<p>再次查看prometheus页面，显示就正常了</p>
+
+<p><img src="https://s1.ax1x.com/2020/06/03/tUlEQK.png" alt="tUlEQK.png" /></p>
+
+<h3 id="问题二">问题二</h3>
+
+<p>默认的serviceMonitor实际上就只能选三个namespacs，default、Kube-system和monitoring，可以查看一下prometheus-roleSpecificNamespaces.yaml，需要其他的ns自行创建role</p>
+
+<p><img src="https://s1.ax1x.com/2020/06/03/tU3oZD.png" alt="tU3oZD.png" /></p>
+
+<ul>
+<li>示例——增加namespaces为test的serviceMonitor</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建namespaces、role</span>
+$ kubectl create ns <span class="nb">test</span>
+
+$ vim ns-test-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prometheus-k8s
+  namespace: <span class="nb">test</span>
+rules:
+- apiGroups:
+  - <span class="s2">&#34;&#34;</span>
+  resources:
+  - services
+  - endpoints
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+
+$ kubectl apply -f ns-test-role.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<p>在test的命名空间创建个pod之后，查看grafana。可以看到已经有test命名空间了</p>
+
+<p><img src="https://s1.ax1x.com/2020/06/03/tUJ1r6.png" alt="tUJ1r6.png" /></p>
+
+<h3 id="问题三">问题三</h3>
+
+<h4 id="缺少饼形图插件grafana-piechart-panel">缺少饼形图插件grafana-piechart-panel</h4>
+
+<p><img src="https://s1.ax1x.com/2020/06/03/tUtRuq.png" alt="tUtRuq.png" /></p>
+
+<h4 id="解决办法-1">解决办法</h4>
+
+<h5 id="方法一">方法一</h5>
+
+<p>在grafana的pod中，安装grafana-piechart-panel插件，然后去pod所在的node上用docker重启对应容器
+ 注意：插件是安装到grafana数据库的目录，所以重启pod的前提是这个/var/lib/grafana目录持久化了。否则pod重置后还是会提示Panel plugin not found: grafana-piechart-panel</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bash-5.0$ grafana-cli plugins install grafana-piechart-panel
+installing grafana-piechart-panel @ <span class="m">1</span>.5.0
+from: https://grafana.com/api/plugins/grafana-piechart-panel/versions/1.5.0/download
+into: /var/lib/grafana/plugins
+
+✔ Installed grafana-piechart-panel successfully
+
+Restart grafana after installing plugins . &lt;service grafana-server restart&gt;
+<span class="c1"># 注意 虽然上面提示你service grafana-server restart 但是容器里是没有service命令的。要实现重启的目的 需要到该pod所在的node上去执行 docker restart &lt;CONTAINER ID&gt;</span> </code></pre></td></tr></table>
+</div>
+</div>
+<h5 id="方法二">方法二</h5>
+
+<p>添加个<code>initContainer</code>，安装<code>grafana-piechart-panel</code>（目前使用办法）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> kube-prometheus-0.3.0/manifests
+$ vim grafana-deployment.yaml
+......
+   spec: <span class="c1">#在spec下写入一下内容</span>
+      initContainers:
+      - image: grafana/grafana:6.4.3
+        name: grafana-init
+        command:
+        - bash
+        - -c
+        - grafana-cli plugins install grafana-piechart-panel
+        volumeMounts:
+        - mountPath: /var/lib/grafana
+          name: grafana-storage
+          readOnly: <span class="nb">false</span>
+......
+$ kubectl apply -f grafana-deployment.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<p>查看grafana，看到已经正常了</p>
+
+<p><img src="https://s1.ax1x.com/2020/06/03/tU0Sc4.png" alt="tU0Sc4.png" /></p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://zhangguanzhang.github.io/2018/10/12/prometheus-operator/">张馆长的博客</a></p>
+
+<p><a href="https://blog.csdn.net/twingao/article/details/105261641">https://blog.csdn.net/twingao/article/details/105261641</a></p>
+
+<p><a href="https://blog.csdn.net/tangwei0928/article/details/99711322">https://blog.csdn.net/tangwei0928/article/details/99711322</a></p>
+
+<p><a href="https://github.com/coreos/kube-prometheus/issues/305">https://github.com/coreos/kube-prometheus/issues/305</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-08-02
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/kubernetes/">kubernetes</a>
+          <a href="/tags/prometheus/">prometheus</a>
+          <a href="/tags/kube-prometheus/">kube-prometheus</a>
+          <a href="/tags/%E7%9B%91%E6%8E%A7/">监控</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用kubecm管理kubeconfig</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/">
+            <span class="next-text nav-default">Kubernetes1.17.5安装metrics-server插件</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-08-02 16:55:40 \x2b0800 CST',
+        title: 'Kube-Prometheus部署',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

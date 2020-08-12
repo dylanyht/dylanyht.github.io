@@ -6,7 +6,7 @@
     <description>Recent content on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 09 May 2020 13:34:14 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 17:05:11 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/index.xml" rel="self" type="application/rss+xml" />
     
@@ -26,6 +26,87 @@
       <pubDate>Tue, 30 Apr 2019 11:24:33 +0800</pubDate>
       
       <guid>https://dylanyang.top/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用kubecm管理kubeconfig</title>
+      <link>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</link>
+      <pubDate>Thu, 06 Aug 2020 17:05:11 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kube-Prometheus部署</title>
+      <link>https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Sun, 02 Aug 2020 16:55:40 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes1.17.5安装metrics-server插件</title>
+      <link>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Mon, 13 Jul 2020 16:44:37 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用cronjob定时备份mysql数据库</title>
+      <link>https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql5.7开启binlog</title>
+      <link>https://dylanyang.top/post/2020/07/02/mysql5.7%E5%BC%80%E5%90%AFbinlog/</link>
+      <pubDate>Thu, 02 Jul 2020 16:30:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/07/02/mysql5.7%E5%BC%80%E5%90%AFbinlog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nexus 3.x清理docker镜像</title>
+      <link>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Tue, 23 Jun 2020 16:13:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle提示密码快过期的处理</title>
+      <link>https://dylanyang.top/post/2020/06/15/oracle%E6%8F%90%E7%A4%BA%E5%AF%86%E7%A0%81%E5%BF%AB%E8%BF%87%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 15 Jun 2020 15:52:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/15/oracle%E6%8F%90%E7%A4%BA%E5%AF%86%E7%A0%81%E5%BF%AB%E8%BF%87%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker安装sonarqube</title>
+      <link>https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/</link>
+      <pubDate>Wed, 03 Jun 2020 15:20:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>简单的k8s RBAC —(permission-manager)</title>
+      <link>https://dylanyang.top/post/2020/05/21/%E7%AE%80%E5%8D%95%E7%9A%84k8s-rbac-permission-manager/</link>
+      <pubDate>Thu, 21 May 2020 15:14:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/05/21/%E7%AE%80%E5%8D%95%E7%9A%84k8s-rbac-permission-manager/</guid>
       <description></description>
     </item>
     

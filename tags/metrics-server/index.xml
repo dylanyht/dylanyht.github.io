@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>metrics-server on I am dylan ...</title>
+    <link>https://dylanyang.top/tags/metrics-server/</link>
+    <description>Recent content in metrics-server on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 Jul 2020 16:44:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyang.top/tags/metrics-server/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes1.17.5安装metrics-server插件</title>
+      <link>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Mon, 13 Jul 2020 16:44:37 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

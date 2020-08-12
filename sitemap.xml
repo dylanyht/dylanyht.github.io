@@ -17,14 +17,257 @@
   
   <url>
     <loc>https://dylanyang.top/tags/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://dylanyang.top/categories/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/kubecm/</loc>
+    <lastmod>2020-08-06T17:05:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/kubeconfig/</loc>
+    <lastmod>2020-08-06T17:05:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/kubectl/</loc>
+    <lastmod>2020-08-06T17:05:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/categories/kubernetes/</loc>
+    <lastmod>2020-08-06T17:05:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/kubernetes/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</loc>
+    <lastmod>2020-08-06T17:05:11+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2020-08-02T16:55:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/kube-prometheus/</loc>
+    <lastmod>2020-08-02T16:55:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/prometheus/</loc>
+    <lastmod>2020-08-02T16:55:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/categories/%E7%9B%91%E6%8E%A7/</loc>
+    <lastmod>2020-08-02T16:55:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/%E7%9B%91%E6%8E%A7/</loc>
+    <lastmod>2020-08-02T16:55:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2020-07-13T16:44:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/linux/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/metrics-server/</loc>
+    <lastmod>2020-07-13T16:44:37+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/cronjob/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/job/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/mysql/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2020-08-10T16:39:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/07/02/mysql5.7%E5%BC%80%E5%90%AFbinlog/</loc>
+    <lastmod>2020-07-02T16:30:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/centos/</loc>
+    <lastmod>2020-07-02T16:30:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</loc>
+    <lastmod>2020-06-23T16:13:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/nexus/</loc>
+    <lastmod>2020-06-23T16:13:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/categories/%E4%BB%93%E5%BA%93/</loc>
+    <lastmod>2020-06-23T16:13:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/%E4%BB%93%E5%BA%93/</loc>
+    <lastmod>2020-06-23T16:13:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/06/15/oracle%E6%8F%90%E7%A4%BA%E5%AF%86%E7%A0%81%E5%BF%AB%E8%BF%87%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2020-06-15T15:52:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/oracle/</loc>
+    <lastmod>2020-06-15T15:52:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/</loc>
+    <lastmod>2020-06-03T15:20:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/docker/</loc>
+    <lastmod>2020-06-03T15:20:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/sonarqube/</loc>
+    <lastmod>2020-06-03T15:20:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/categories/%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2020-06-03T15:20:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2020-06-03T15:20:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/permission-manager/</loc>
+    <lastmod>2020-05-21T15:14:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/tags/rbac/</loc>
+    <lastmod>2020-05-21T15:14:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dylanyang.top/post/2020/05/21/%E7%AE%80%E5%8D%95%E7%9A%84k8s-rbac-permission-manager/</loc>
+    <lastmod>2020-05-21T15:14:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -35,31 +278,7 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/post/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/centos/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/docker/</loc>
+    <loc>https://dylanyang.top/categories/gitlab/</loc>
     <lastmod>2020-05-09T13:34:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -71,19 +290,7 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/categories/gitlab/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://dylanyang.top/tags/gitlab-runner/</loc>
-    <lastmod>2020-05-09T13:34:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/linux/</loc>
     <lastmod>2020-05-09T13:34:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -104,18 +311,6 @@
   <url>
     <loc>https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2020-05-09T13:27:31+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/kubernetes/</loc>
-    <lastmod>2020-04-26T17:28:16+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/categories/kubernetes/</loc>
-    <lastmod>2020-04-26T17:28:16+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -188,13 +383,13 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/tags/nginx/</loc>
+    <loc>https://dylanyang.top/categories/nginx/</loc>
     <lastmod>2020-03-28T14:17:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dylanyang.top/categories/nginx/</loc>
+    <loc>https://dylanyang.top/tags/nginx/</loc>
     <lastmod>2020-03-28T14:17:00+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -240,13 +435,13 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/tags/loki/</loc>
+    <loc>https://dylanyang.top/categories/loki/</loc>
     <lastmod>2020-03-21T15:11:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dylanyang.top/categories/loki/</loc>
+    <loc>https://dylanyang.top/tags/loki/</loc>
     <lastmod>2020-03-21T15:11:30+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -342,12 +537,6 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/tags/prometheus/</loc>
-    <lastmod>2020-03-21T13:52:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://dylanyang.top/categories/prometheus/</loc>
     <lastmod>2020-03-21T13:52:17+08:00</lastmod>
     <priority>0</priority>
@@ -362,12 +551,6 @@
   
   <url>
     <loc>https://dylanyang.top/tags/kubeadm/</loc>
-    <lastmod>2020-03-21T13:38:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/kubectl/</loc>
     <lastmod>2020-03-21T13:38:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -394,18 +577,6 @@
   
   <url>
     <loc>https://dylanyang.top/tags/postgresql/</loc>
-    <lastmod>2020-03-12T15:03:59+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2020-03-12T15:03:59+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2020-03-12T15:03:59+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -475,12 +646,6 @@
     <lastmod>2019-08-24T08:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/oracle/</loc>
-    <lastmod>2019-08-24T08:19:49+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -596,13 +761,13 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/tags/devops/</loc>
+    <loc>https://dylanyang.top/categories/devops/</loc>
     <lastmod>2019-06-10T14:17:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dylanyang.top/categories/devops/</loc>
+    <loc>https://dylanyang.top/tags/devops/</loc>
     <lastmod>2019-06-10T14:17:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -715,12 +880,6 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/tags/mysql/</loc>
-    <lastmod>2019-05-22T21:18:04+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85jenkins/</loc>
     <lastmod>2019-05-22T21:16:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -755,13 +914,13 @@
   </url>
   
   <url>
-    <loc>https://dylanyang.top/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <loc>https://dylanyang.top/categories/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2019-05-22T20:58:05+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dylanyang.top/categories/%E7%BC%96%E7%A8%8B/</loc>
+    <loc>https://dylanyang.top/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2019-05-22T20:58:05+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -891,18 +1050,6 @@
     <lastmod>2019-05-07T10:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/%E4%BB%93%E5%BA%93/</loc>
-    <lastmod>2019-05-07T10:09:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dylanyang.top/tags/nexus/</loc>
-    <lastmod>2019-05-06T13:14:50+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

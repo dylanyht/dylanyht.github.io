@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubecm on I am dylan ...</title>
+    <link>https://dylanyang.top/tags/kubecm/</link>
+    <description>Recent content in kubecm on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Aug 2020 17:05:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyang.top/tags/kubecm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用kubecm管理kubeconfig</title>
+      <link>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</link>
+      <pubDate>Thu, 06 Aug 2020 17:05:11 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

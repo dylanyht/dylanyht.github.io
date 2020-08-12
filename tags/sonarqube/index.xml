@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sonarqube on I am dylan ...</title>
+    <link>https://dylanyang.top/tags/sonarqube/</link>
+    <description>Recent content in sonarqube on I am dylan ...</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Jun 2020 15:20:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://dylanyang.top/tags/sonarqube/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker安装sonarqube</title>
+      <link>https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/</link>
+      <pubDate>Wed, 03 Jun 2020 15:20:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

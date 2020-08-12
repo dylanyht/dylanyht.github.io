@@ -6,10 +6,37 @@
     <description>Recent content in centos on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 09 May 2020 13:34:14 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2020 16:30:30 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/centos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mysql5.7开启binlog</title>
+      <link>https://dylanyang.top/post/2020/07/02/mysql5.7%E5%BC%80%E5%90%AFbinlog/</link>
+      <pubDate>Thu, 02 Jul 2020 16:30:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/07/02/mysql5.7%E5%BC%80%E5%90%AFbinlog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nexus 3.x清理docker镜像</title>
+      <link>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Tue, 23 Jun 2020 16:13:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle提示密码快过期的处理</title>
+      <link>https://dylanyang.top/post/2020/06/15/oracle%E6%8F%90%E7%A4%BA%E5%AF%86%E7%A0%81%E5%BF%AB%E8%BF%87%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 15 Jun 2020 15:52:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/15/oracle%E6%8F%90%E7%A4%BA%E5%AF%86%E7%A0%81%E5%BF%AB%E8%BF%87%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Docker安装gitlab Runner</title>

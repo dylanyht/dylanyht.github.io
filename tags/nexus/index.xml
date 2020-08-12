@@ -6,10 +6,19 @@
     <description>Recent content in nexus on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 May 2019 13:14:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jun 2020 16:13:31 +0800</lastBuildDate>
     
 	<atom:link href="https://dylanyang.top/tags/nexus/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nexus 3.x清理docker镜像</title>
+      <link>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Tue, 23 Jun 2020 16:13:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>使用docker搭建nexus并配置docker私有仓库</title>

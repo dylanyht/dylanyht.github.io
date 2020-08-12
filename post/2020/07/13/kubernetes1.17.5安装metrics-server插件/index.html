@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kubernetes1.17.5安装metrics-server插件 - I am dylan ...</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Kubernetes1.17.5安装metrics-server插件" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/" />
+<meta property="article:published_time" content="2020-07-13T16:44:37&#43;08:00"/>
+<meta property="article:modified_time" content="2020-07-13T16:44:37&#43;08:00"/>
+
+<meta itemprop="name" content="Kubernetes1.17.5安装metrics-server插件">
+<meta itemprop="description" content="">
+
+
+<meta itemprop="datePublished" content="2020-07-13T16:44:37&#43;08:00" />
+<meta itemprop="dateModified" content="2020-07-13T16:44:37&#43;08:00" />
+<meta itemprop="wordCount" content="0">
+
+
+
+<meta itemprop="keywords" content="kubernetes,metrics-server,linux,,," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes1.17.5安装metrics-server插件"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Dylan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Dylan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kubernetes1.17.5安装metrics-server插件</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-13 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> kubernetes </a>
+            </div>
+          <span class="more-meta"> 0 words </span>
+          <span class="more-meta"> 0 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#前期准备">前期准备</a>
+<ul>
+<li><a href="#生成证书">生成证书</a></li>
+<li><a href="#开启聚合层">开启聚合层</a></li>
+</ul></li>
+<li><a href="#安装metrics-server">安装metrics-server</a></li>
+<li><a href="#验证">验证</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><a href="https://imgchr.com/i/aOEWh8"><img src="https://s1.ax1x.com/2020/08/11/aOEWh8.jpg" alt="aOEWh8.jpg" /></a></p>
+
+<blockquote>
+<p>前段时间二进制安装了个集群，没有安装metrics-server插件，此文档用于记录metrics-server的部署过程。</p>
+
+<p>环境：</p>
+
+<p>k8s版本：1.17.5、部署方式：二进制</p>
+</blockquote>
+
+<h2 id="简介">简介</h2>
+
+<p>从v1.8开始，Kubernetes集群资源监控可以通过Metrics API的形式获取，在1.11就开始逐渐废弃heapster了，采用metrics-server来代替，metrics-server是集群的核心监控数据的聚合器，它是kubelet公开的Summary API中采集指标信息，Metrics-server是扩展的APIServer。</p>
+
+<h2 id="前期准备">前期准备</h2>
+
+<h3 id="生成证书">生成证书</h3>
+
+<blockquote>
+<p>此步骤在ca证书的目录下进行</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ vim aggregator-proxy-csr.json
+<span class="o">{</span>
+  <span class="s2">&#34;CN&#34;</span>: <span class="s2">&#34;aggregator&#34;</span>,
+  <span class="s2">&#34;hosts&#34;</span>: <span class="o">[]</span>,
+  <span class="s2">&#34;key&#34;</span>: <span class="o">{</span>
+    <span class="s2">&#34;algo&#34;</span>: <span class="s2">&#34;rsa&#34;</span>,
+    <span class="s2">&#34;size&#34;</span>: <span class="m">2048</span>
+  <span class="o">}</span>,
+  <span class="s2">&#34;names&#34;</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">&#34;C&#34;</span>: <span class="s2">&#34;CN&#34;</span>,
+      <span class="s2">&#34;ST&#34;</span>: <span class="s2">&#34;QingDao&#34;</span>,
+      <span class="s2">&#34;L&#34;</span>: <span class="s2">&#34;QingDao&#34;</span>,
+      <span class="s2">&#34;O&#34;</span>: <span class="s2">&#34;k8s&#34;</span>,
+      <span class="s2">&#34;OU&#34;</span>: <span class="s2">&#34;System&#34;</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>生成证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">cfssl gencert -ca<span class="o">=</span>ca.pem   -ca-key<span class="o">=</span>ca-key.pem   -config<span class="o">=</span>ca-config.json   -profile<span class="o">=</span>kubernetes aggregator-proxy-csr.json <span class="p">|</span> cfssljson -bare aggregator</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="开启聚合层">开启聚合层</h3>
+
+<ul>
+<li>设置kube-apiserver启动参数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">  <span class="c1"># 具体配置</span>
+  --requestheader-client-ca-file<span class="o">=</span>/etc/kubernetes/ssl/ca.pem <span class="se">\
+</span><span class="se"></span>  --requestheader-allowed-names<span class="o">=</span> <span class="se">\
+</span><span class="se"></span>  --requestheader-extra-headers-prefix<span class="o">=</span>X-Remote-Extra- <span class="se">\
+</span><span class="se"></span>  --requestheader-group-headers<span class="o">=</span>X-Remote-Group <span class="se">\
+</span><span class="se"></span>  --requestheader-username-headers<span class="o">=</span>X-Remote-User <span class="se">\
+</span><span class="se"></span>  --proxy-client-cert-file<span class="o">=</span>/etc/kubernetes/ssl/aggregator.pem <span class="se">\
+</span><span class="se"></span>  --proxy-client-key-file<span class="o">=</span>/etc/kubernetes/ssl/aggregator-key.pem <span class="se">\
+</span><span class="se"></span>  --enable-aggregator-routing<span class="o">=</span><span class="nb">true</span> <span class="err">\</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">--requestheader-client-ca-file:ca 证书
+--requestheader-allowed-names:  客户端证书常用名称列表。允许在--requestheader-username-headers指定的标头中提供用户名，如果为空，则允许在--requestheader-client-ca文件中通过当局验证的任何客户端证书
+ --requestheader-extra-headers-prefix:  要检查的请求标头前缀列表
+ --requestheader-group-headers:  要检查组的请求标头列表
+--requestheader-username-headers:  要检查用户名的请求标头列表
+--proxy-client-cert-file:  用于证明aggregator或kube-apiserver在请求期间发出呼叫的身份的客户端证书
+--proxy-client-key-file:  用于证明聚合器或kube-apiserver的身份的客户端证书的私钥，当它必须在请求期间调用时使用。包括将请求代理给用户api-server和调用webhook admission插件
+--enable-aggregator-routing=true:  打开aggregator路由请求到endpoints IP，而不是集群IP</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>重启kube-apiserver</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ systemctl daemon-reload 
+$ systemctl restart kube-apiserver</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="安装metrics-server">安装metrics-server</h2>
+
+<blockquote>
+<p>由于需要更改yaml文件内容，所以没用官方github上直接kubectl apply -f方式</p>
+</blockquote>
+
+<ul>
+<li>下载yaml文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>编辑yaml文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ vim components.yaml
+......
+        args:
+          - --cert-dir<span class="o">=</span>/tmp
+          - --secure-port<span class="o">=</span><span class="m">4443</span>
+          <span class="c1">#添加以下两行</span>
+          - --kubelet-insecure-tls <span class="c1">#跳过证书校验</span>
+          - --kubelet-preferred-address-types<span class="o">=</span>InternalIP,Hostname,InternalDNS,externalDNS  <span class="c1">#解析到对应ip</span>
+......</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>部署yaml文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f components.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="验证">验证</h2>
+
+<ul>
+<li>查看状态</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get pods -n kube-system <span class="p">|</span>grep metrics
+metrics-server-5799d89f84-dfjgx   <span class="m">1</span>/1     Running   <span class="m">0</span>          3h
+$ kubectl get apiservice <span class="p">|</span> grep metrics
+v1beta1.metrics.k8s.io                 kube-system/metrics-server   True        3h</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>top验证</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl top nodes
+NAME            CPU<span class="o">(</span>cores<span class="o">)</span>   CPU%   MEMORY<span class="o">(</span>bytes<span class="o">)</span>   MEMORY%
+<span class="m">172</span>.16.77.153   20m          <span class="m">0</span>%     2568Mi          <span class="m">16</span>%
+<span class="m">172</span>.16.77.167   75m          <span class="m">0</span>%     8298Mi          <span class="m">52</span>%</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="参考">参考</h2>
+
+<p><a href="https://github.com/kubernetes-sigs/metrics-server">官方文档</a></p>
+
+<p><a href="https://blog.csdn.net/ameng734086045/article/details/88245385">https://blog.csdn.net/ameng734086045/article/details/88245385</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-07-13
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/kubernetes/">kubernetes</a>
+          <a href="/tags/metrics-server/">metrics-server</a>
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags//"></a>
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kube-Prometheus部署</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            <span class="next-text nav-default">使用cronjob定时备份mysql数据库</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-07-13 16:44:37 \x2b0800 CST',
+        title: 'Kubernetes1.17.5安装metrics-server插件',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
