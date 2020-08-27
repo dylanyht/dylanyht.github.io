@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/15/centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEshadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF/" />
@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-05-15T21:03:46&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-15T21:03:46&#43;08:00" />
-<meta itemprop="wordCount" content="0">
+<meta itemprop="wordCount" content="2642">
 
 
 
@@ -136,8 +136,8 @@
         <div class="post-category">
             <a href="/categories/linux/"> linux </a>
             </div>
-          <span class="more-meta"> 0 words </span>
-          <span class="more-meta"> 0 mins read </span>
+          <span class="more-meta"> 2642 words </span>
+          <span class="more-meta"> 6 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
     </header>
@@ -526,9 +526,9 @@ export https_proxy=http://127.0.0.1:8118</pre></td></tr></table>
 <ul>
 <li>方法一、<br>
 执行 curl www.google.com 返回一大堆HTML 则说明正常</li>
-<li>方法二、<br>
-执行 curl -I www.google.com 。有如下相似显示则说明正常</li>
-</ul>
+
+<li><p>方法二、<br>
+执行 curl -I www.google.com 。有如下相似显示则说明正常</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -550,7 +550,7 @@ export https_proxy=http://127.0.0.1:8118</pre></td></tr></table>
 </span><span class="lnt">17
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma"> [root@k8s-77-71 ~]# curl -I www.google.com
+<pre class="chroma">[root@k8s-77-71 ~]# curl -I www.google.com
 HTTP/1.1 200 OK
 Date: Wed, 15 May 2019 07:08:30 GMT
 Expires: -1
@@ -568,10 +568,10 @@ Vary: Accept-Encoding
 Proxy-Connection: keep-alive
 [root@k8s-77-71 ~]#</pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>方法三、<br>
-也是最简单的方法 如果你有桌面环境 直接用浏览器访问Google</li>
+</div></li>
+
+<li><p>方法三、<br>
+也是最简单的方法 如果你有桌面环境 直接用浏览器访问Google</p></li>
 </ul>
 
 <h2 id="优化">优化</h2>
@@ -627,9 +627,8 @@ Proxy-Connection: keep-alive
 <h3 id="解决内网不走代理问题">解决内网不走代理问题</h3>
 
 <ul>
-<li>方法一、<br />
-设置/etc/privoxy/config</li>
-</ul>
+<li><p>方法一、<br />
+设置/etc/privoxy/config</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -637,7 +636,9 @@ Proxy-Connection: keep-alive
 <td class="lntd">
 <pre class="chroma">vi /etc/privoxy/config</pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
+
 <p>加入以下内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -780,8 +781,7 @@ Enjoy it!
 <h2 id="测试pac是否正常">测试PAC是否正常</h2>
 
 <ul>
-<li>测试谷歌，可以正常访问。</li>
-</ul>
+<li><p>测试谷歌，可以正常访问。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -823,10 +823,9 @@ Proxy-Connection: keep-alive
 
 [root@k8s-77-71 ~]#</pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>测试内网服务，可以正常访问。</li>
-</ul>
+</div></li>
+
+<li><p>测试内网服务，可以正常访问。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -838,12 +837,13 @@ Proxy-Connection: keep-alive
 &lt;html&gt;&lt;body&gt;You are being &lt;a href=&#34;http://172.16.77.221:10021/users/sign_in&#34;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;
 [root@k8s-77-71 ~]#</pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
+
 <h1 id="5-小技巧">5、小技巧</h1>
 
 <ul>
-<li>如果别的机器需要连接此机器的代理只需要在/etc/profile加入代理信息即可</li>
-</ul>
+<li><p>如果别的机器需要连接此机器的代理只需要在/etc/profile加入代理信息即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -853,7 +853,9 @@ Proxy-Connection: keep-alive
 <pre class="chroma">export http_proxy=http://127.0.0.1:8118
 export https_proxy=http://127.0.0.1:8118</pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
+
 <p>保存后 source /etc/profile
 - 还可以使用别名方式来选择打开和关闭代理</p>
 

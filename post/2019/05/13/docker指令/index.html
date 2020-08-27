@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.4 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/13/docker%E6%8C%87%E4%BB%A4/" />
@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-05-13T09:19:10&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-13T09:19:10&#43;08:00" />
-<meta itemprop="wordCount" content="1030">
+<meta itemprop="wordCount" content="1029">
 
 
 
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
             </div>
-          <span class="more-meta"> 1030 words </span>
+          <span class="more-meta"> 1029 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -166,6 +166,7 @@
 <li><a href="#compose启动">compose启动</a></li>
 <li><a href="#compose查看">compose查看</a></li>
 <li><a href="#swarm启动">swarm启动</a></li>
+<li><a href="#docker容器做任何操作均无响应-删除僵尸容器-假死容器">docker容器做任何操作均无响应（删除僵尸容器，假死容器）</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -325,8 +326,7 @@ docker network create --driver overlay --opt encrypted --subnet 10.10.19.0/24 ng
 </div>
 </div>
 <ul>
-<li>### docker容器做任何操作均无响应（删除僵尸容器，假死容器）</li>
-</ul>
+<li><h3 id="docker容器做任何操作均无响应-删除僵尸容器-假死容器">docker容器做任何操作均无响应（删除僵尸容器，假死容器）</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -344,21 +344,22 @@ docker network create --driver overlay --opt encrypted --subnet 10.10.19.0/24 ng
 </span><span class="lnt">13
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">    Normal   Killing        2m                       kubelet, k8s-77-83  Killing container with id docker://kafka:Need to kill Pod
-    Warning  FailedKillPod  2m                       kubelet, k8s-77-83  error killing pod: failed to &#34;KillContainer&#34; for &#34;kafka&#34; with KillContainerError: &#34;rpc error: code = Unknown desc = operation timeout: context deadline exceeded&#34;
-    Warning  FailedSync     &lt;invalid&gt; (x5 over 23s)  kubelet, k8s-77-83  error determining status: rpc error: code = DeadlineExceeded desc = context deadline exceeded 
+<pre class="chroma">Normal   Killing        2m                       kubelet, k8s-77-83  Killing container with id docker://kafka:Need to kill Pod
+Warning  FailedKillPod  2m                       kubelet, k8s-77-83  error killing pod: failed to &#34;KillContainer&#34; for &#34;kafka&#34; with KillContainerError: &#34;rpc error: code = Unknown desc = operation timeout: context deadline exceeded&#34;
+Warning  FailedSync     &lt;invalid&gt; (x5 over 23s)  kubelet, k8s-77-83  error determining status: rpc error: code = DeadlineExceeded desc = context deadline exceeded 
 
-    处理方式：在/var/lib/docker/overlay2目录下找到docker对应的容器层文件夹，一般以-init结尾，删除之。注，这里的容器层文件名并不是容器Id。因为对容器执行inspect指令不会得到相应，这里可以采取对容器所使用的镜像inspect，锁定镜像层目录树，然后推敲docker容器的容器层目录文件夹。
-    删除源文件后，采用pstree [-p](显示PID)，找到容器的pid，用ps查询之，会得到类似如下的结果：
+处理方式：在/var/lib/docker/overlay2目录下找到docker对应的容器层文件夹，一般以-init结尾，删除之。注，这里的容器层文件名并不是容器Id。因为对容器执行inspect指令不会得到相应，这里可以采取对容器所使用的镜像inspect，锁定镜像层目录树，然后推敲docker容器的容器层目录文件夹。
+删除源文件后，采用pstree [-p](显示PID)，找到容器的pid，用ps查询之，会得到类似如下的结果：
     
-    root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-containerd-shim -namespace moby -workdir /var/lib/docker/containerd/daemon/io.containerd.runtime.v1.linux/moby/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86 -address /var/run/docker/containerd/docker-containerd.sock -containerd-binary /usr/bin/docker-containerd -runtime-root /var/run/docker/runtime-runc -systemd-cgroup
+root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-containerd-shim -namespace moby -workdir /var/lib/docker/containerd/daemon/io.containerd.runtime.v1.linux/moby/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86 -address /var/run/docker/containerd/docker-containerd.sock -containerd-binary /usr/bin/docker-containerd -runtime-root /var/run/docker/runtime-runc -systemd-cgroup
     
-    注意这里显示了当前container的workdir为***/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86,这个就是container的id
+注意这里显示了当前container的workdir为***/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86,这个就是container的id
     
-    随后就可以使用docker rm的方式删除该容器就行
+随后就可以使用docker rm的方式删除该容器就行
   </pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
     </div>
 
     <div class="post-copyright">
