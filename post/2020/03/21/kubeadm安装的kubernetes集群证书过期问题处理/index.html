@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2020-03-21T13:33:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-21T13:33:13&#43;08:00" />
-<meta itemprop="wordCount" content="623">
+<meta itemprop="wordCount" content="687">
 
 
 
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> Kubernetes </a>
             </div>
-          <span class="more-meta"> 623 words </span>
+          <span class="more-meta"> 687 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -159,6 +159,7 @@
 <li><a href="#重启kubelet">重启kubelet</a></li>
 <li><a href="#kubelet证书过期">kubelet证书过期</a></li>
 </ul></li>
+<li><a href="#参考链接">参考链接</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -202,9 +203,19 @@
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>docker@k8s-77-53 kubernetes<span class="o">]</span>$ kubeadm config view &gt; kubeadm.yaml <span class="c1">#将kubeadm配置写入 kubeadm.yaml文件</span>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>docker@k8s-77-53 kubernetes<span class="o">]</span>$ kubeadm config view &gt; kubeadm.yaml <span class="c1">#将kubeadm配置写入 kubeadm.yaml文件 此命令在证书过期后应该不能用  所以直接写配置文件</span>
+<span class="o">[</span>docker@k8s-77-53 kubernetes<span class="o">]</span>$ vim kubeadm.yaml
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: v1.13.1 <span class="c1">#--&gt;这里改成你集群对应的版本</span>
+imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
 <span class="o">[</span>docker@k8s-77-53 kubernetes<span class="o">]</span>$ kubeadm alpha certs renew all --config kubeadm.yaml <span class="c1">#重新生成证书</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -274,6 +285,9 @@
 <span class="o">[</span>root@k8s-77-53 pki<span class="o">]</span><span class="c1"># systemctl restart kubelet</span></code></pre></td></tr></table>
 </div>
 </div>
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="http://team.jiunile.com/blog/2018/12/k8s-kubeadm-ca-upgdate.html">http://team.jiunile.com/blog/2018/12/k8s-kubeadm-ca-upgdate.html</a></p>
     </div>
 
     <div class="post-copyright">
@@ -384,9 +398,10 @@
   </div>
 
   <span class="copyright-year">
+    <a href="https://beian.miit.gov.cn">鲁ICP备2021012093号</a>
     &copy; 
     2019 - 
-    2020
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

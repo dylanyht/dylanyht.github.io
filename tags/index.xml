@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>I am dylan ...</title>
+    <title>Tags on I am dylan ...</title>
     <link>https://dylanyang.top/tags/</link>
-    <description>Recent content on I am dylan ...</description>
+    <description>Recent content in Tags on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 27 Aug 2020 09:39:49 +0800</lastBuildDate>
@@ -12,92 +12,605 @@
     
     
     <item>
-      <title>使用kubecm管理kubeconfig</title>
-      <link>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</link>
+      <title></title>
+      <link>https://dylanyang.top/tags/</link>
+      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kt-connect</title>
+      <link>https://dylanyang.top/tags/kt-connect/</link>
+      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kt-connect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://dylanyang.top/tags/kubernetes/</link>
+      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>https://dylanyang.top/tags/windows/</link>
+      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubecm</title>
+      <link>https://dylanyang.top/tags/kubecm/</link>
       <pubDate>Thu, 06 Aug 2020 17:05:11 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/</guid>
+      <guid>https://dylanyang.top/tags/kubecm/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Kubernetes1.17.5安装metrics-server插件</title>
-      <link>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</link>
+      <title>kubeconfig</title>
+      <link>https://dylanyang.top/tags/kubeconfig/</link>
+      <pubDate>Thu, 06 Aug 2020 17:05:11 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubeconfig/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubectl</title>
+      <link>https://dylanyang.top/tags/kubectl/</link>
+      <pubDate>Thu, 06 Aug 2020 17:05:11 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubectl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kube-prometheus</title>
+      <link>https://dylanyang.top/tags/kube-prometheus/</link>
+      <pubDate>Sun, 02 Aug 2020 16:55:40 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kube-prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prometheus</title>
+      <link>https://dylanyang.top/tags/prometheus/</link>
+      <pubDate>Sun, 02 Aug 2020 16:55:40 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>监控</title>
+      <link>https://dylanyang.top/tags/%E7%9B%91%E6%8E%A7/</link>
+      <pubDate>Sun, 02 Aug 2020 16:55:40 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E7%9B%91%E6%8E%A7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://dylanyang.top/tags/linux/</link>
       <pubDate>Mon, 13 Jul 2020 16:44:37 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</guid>
+      <guid>https://dylanyang.top/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Kubernetes1.17.5安装metrics-server插件</title>
-      <link>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</link>
+      <title>metrics-server</title>
+      <link>https://dylanyang.top/tags/metrics-server/</link>
       <pubDate>Mon, 13 Jul 2020 16:44:37 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2020/07/13/kubernetes1.17.5%E5%AE%89%E8%A3%85metrics-server%E6%8F%92%E4%BB%B6/</guid>
+      <guid>https://dylanyang.top/tags/metrics-server/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Kubernetes Dashboard部署</title>
-      <link>https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/</link>
+      <title>cronjob</title>
+      <link>https://dylanyang.top/tags/cronjob/</link>
+      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/cronjob/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>job</title>
+      <link>https://dylanyang.top/tags/job/</link>
+      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/job/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://dylanyang.top/tags/mysql/</link>
+      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>centos</title>
+      <link>https://dylanyang.top/tags/centos/</link>
+      <pubDate>Thu, 02 Jul 2020 16:30:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nexus</title>
+      <link>https://dylanyang.top/tags/nexus/</link>
+      <pubDate>Tue, 23 Jun 2020 16:13:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/nexus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>仓库</title>
+      <link>https://dylanyang.top/tags/%E4%BB%93%E5%BA%93/</link>
+      <pubDate>Tue, 23 Jun 2020 16:13:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E4%BB%93%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oracle</title>
+      <link>https://dylanyang.top/tags/oracle/</link>
+      <pubDate>Mon, 15 Jun 2020 15:52:49 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://dylanyang.top/tags/docker/</link>
+      <pubDate>Wed, 03 Jun 2020 15:20:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sonarqube</title>
+      <link>https://dylanyang.top/tags/sonarqube/</link>
+      <pubDate>Wed, 03 Jun 2020 15:20:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/sonarqube/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>质量管理</title>
+      <link>https://dylanyang.top/tags/%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 03 Jun 2020 15:20:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>permission-manager</title>
+      <link>https://dylanyang.top/tags/permission-manager/</link>
+      <pubDate>Thu, 21 May 2020 15:14:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/permission-manager/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rbac</title>
+      <link>https://dylanyang.top/tags/rbac/</link>
+      <pubDate>Thu, 21 May 2020 15:14:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/rbac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://dylanyang.top/tags/gitlab/</link>
+      <pubDate>Sat, 09 May 2020 13:34:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab-runner</title>
+      <link>https://dylanyang.top/tags/gitlab-runner/</link>
+      <pubDate>Sat, 09 May 2020 13:34:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/gitlab-runner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>容器</title>
+      <link>https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sat, 09 May 2020 13:27:31 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>笔记</title>
+      <link>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 26 Apr 2020 17:28:16 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://dylanyang.top/tags/nginx/</link>
+      <pubDate>Sat, 28 Mar 2020 14:17:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tcp</title>
+      <link>https://dylanyang.top/tags/tcp/</link>
+      <pubDate>Sat, 28 Mar 2020 14:17:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/tcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>https://dylanyang.top/tags/grafana/</link>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loki</title>
+      <link>https://dylanyang.top/tags/loki/</link>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/loki/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>promtail</title>
+      <link>https://dylanyang.top/tags/promtail/</link>
+      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/promtail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ceph</title>
+      <link>https://dylanyang.top/tags/ceph/</link>
+      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ceph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cephfs</title>
+      <link>https://dylanyang.top/tags/cephfs/</link>
+      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/cephfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>centos7</title>
+      <link>https://dylanyang.top/tags/centos7/</link>
+      <pubDate>Sat, 21 Mar 2020 14:47:00 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/centos7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>alpine</title>
+      <link>https://dylanyang.top/tags/alpine/</link>
+      <pubDate>Sat, 21 Mar 2020 14:36:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/alpine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://dylanyang.top/tags/ubuntu/</link>
+      <pubDate>Sat, 21 Mar 2020 14:36:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deployment</title>
+      <link>https://dylanyang.top/tags/deployment/</link>
+      <pubDate>Sat, 21 Mar 2020 14:29:56 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/deployment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>exporter</title>
+      <link>https://dylanyang.top/tags/exporter/</link>
+      <pubDate>Sat, 21 Mar 2020 13:52:17 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/exporter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubeadm</title>
+      <link>https://dylanyang.top/tags/kubeadm/</link>
+      <pubDate>Sat, 21 Mar 2020 13:38:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubeadm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>证书</title>
+      <link>https://dylanyang.top/tags/%E8%AF%81%E4%B9%A6/</link>
+      <pubDate>Sat, 21 Mar 2020 13:33:13 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E8%AF%81%E4%B9%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>https://dylanyang.top/tags/postgresql/</link>
+      <pubDate>Thu, 12 Mar 2020 15:03:59 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cenots</title>
+      <link>https://dylanyang.top/tags/cenots/</link>
+      <pubDate>Wed, 13 Nov 2019 15:28:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/cenots/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://dylanyang.top/tags/java/</link>
+      <pubDate>Wed, 13 Nov 2019 15:28:18 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>命令</title>
+      <link>https://dylanyang.top/tags/%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sat, 24 Aug 2019 08:25:34 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E5%91%BD%E4%BB%A4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tar</title>
+      <link>https://dylanyang.top/tags/tar/</link>
+      <pubDate>Sun, 04 Aug 2019 15:43:01 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/tar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nodePort</title>
+      <link>https://dylanyang.top/tags/nodeport/</link>
+      <pubDate>Sun, 04 Aug 2019 15:38:11 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/nodeport/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubeasz</title>
+      <link>https://dylanyang.top/tags/kubeasz/</link>
+      <pubDate>Sun, 04 Aug 2019 15:20:42 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubeasz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Google Cloud</title>
+      <link>https://dylanyang.top/tags/google-cloud/</link>
+      <pubDate>Mon, 10 Jun 2019 14:57:20 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/google-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>科学上网</title>
+      <link>https://dylanyang.top/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</link>
+      <pubDate>Mon, 10 Jun 2019 14:57:20 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI/CD</title>
+      <link>https://dylanyang.top/tags/ci/cd/</link>
+      <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ci/cd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devops</title>
+      <link>https://dylanyang.top/tags/devops/</link>
+      <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dashboard</title>
+      <link>https://dylanyang.top/tags/dashboard/</link>
       <pubDate>Mon, 10 Jun 2019 13:56:52 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/</guid>
+      <guid>https://dylanyang.top/tags/dashboard/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>使用kubeadm搭建Kubernetes1.14</title>
-      <link>https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/</link>
-      <pubDate>Mon, 10 Jun 2019 13:50:55 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Centos下安装tomcat</title>
-      <link>https://dylanyang.top/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/</link>
+      <title>tomcat</title>
+      <link>https://dylanyang.top/tags/tomcat/</link>
       <pubDate>Thu, 23 May 2019 15:01:14 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/</guid>
+      <guid>https://dylanyang.top/tags/tomcat/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Docker安装samba共享目录</title>
-      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</link>
+      <title>磁盘</title>
+      <link>https://dylanyang.top/tags/%E7%A3%81%E7%9B%98/</link>
+      <pubDate>Thu, 23 May 2019 10:50:12 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E7%A3%81%E7%9B%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sqlserver</title>
+      <link>https://dylanyang.top/tags/sqlserver/</link>
+      <pubDate>Wed, 22 May 2019 21:28:39 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/sqlserver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>samba</title>
+      <link>https://dylanyang.top/tags/samba/</link>
       <pubDate>Wed, 22 May 2019 21:26:07 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85samba%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/</guid>
+      <guid>https://dylanyang.top/tags/samba/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Docker安装nginx</title>
-      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</link>
-      <pubDate>Wed, 22 May 2019 21:20:36 +0800</pubDate>
+      <title>jenkins</title>
+      <link>https://dylanyang.top/tags/jenkins/</link>
+      <pubDate>Wed, 22 May 2019 21:16:06 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85nginx/</guid>
+      <guid>https://dylanyang.top/tags/jenkins/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Docker安装mysql</title>
-      <link>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</link>
-      <pubDate>Wed, 22 May 2019 21:18:04 +0800</pubDate>
+      <title>编程</title>
+      <link>https://dylanyang.top/tags/%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Wed, 22 May 2019 20:58:05 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85mysql/</guid>
+      <guid>https://dylanyang.top/tags/%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Centos7安装jenkins</title>
-      <link>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85jenkins/</link>
-      <pubDate>Wed, 22 May 2019 21:01:21 +0800</pubDate>
+      <title>Kompose</title>
+      <link>https://dylanyang.top/tags/kompose/</link>
+      <pubDate>Wed, 22 May 2019 18:20:02 +0800</pubDate>
       
-      <guid>https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85jenkins/</guid>
+      <guid>https://dylanyang.top/tags/kompose/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ss</title>
+      <link>https://dylanyang.top/tags/ss/</link>
+      <pubDate>Wed, 15 May 2019 21:03:46 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>harbor</title>
+      <link>https://dylanyang.top/tags/harbor/</link>
+      <pubDate>Mon, 13 May 2019 09:14:04 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/harbor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nfs</title>
+      <link>https://dylanyang.top/tags/nfs/</link>
+      <pubDate>Mon, 13 May 2019 09:10:30 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://dylanyang.top/tags/python/</link>
+      <pubDate>Mon, 13 May 2019 09:05:09 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maven</title>
+      <link>https://dylanyang.top/tags/maven/</link>
+      <pubDate>Wed, 08 May 2019 09:12:32 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/maven/</guid>
       <description></description>
     </item>
     
