@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nexus on I am dylan ...</title>
@@ -6,11 +6,7 @@
     <description>Recent content in nexus on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 23 Jun 2020 16:13:31 +0800</lastBuildDate>
-    
-	<atom:link href="https://dylanyang.top/tags/nexus/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 23 Jun 2020 16:13:31 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/nexus/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nexus 3.x清理docker镜像</title>
       <link>https://dylanyang.top/post/2020/06/23/nexus-3.x%E6%B8%85%E7%90%86docker%E9%95%9C%E5%83%8F/</link>

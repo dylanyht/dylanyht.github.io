@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="使用cronjob定时备份mysql数据库" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/" />
-<meta property="article:published_time" content="2020-07-10T16:39:13&#43;08:00"/>
-<meta property="article:modified_time" content="2020-08-10T16:39:13&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/07/10/%E4%BD%BF%E7%94%A8cronjob%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BDmysql%E6%95%B0%E6%8D%AE%E5%BA%93/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-07-10T16:39:13&#43;08:00" />
+<meta property="article:modified_time" content="2020-08-10T16:39:13&#43;08:00" />
 
 <meta itemprop="name" content="使用cronjob定时备份mysql数据库">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-07-10T16:39:13&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-07-10T16:39:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-10T16:39:13&#43;08:00" />
 <meta itemprop="wordCount" content="437">
-
-
-
-<meta itemprop="keywords" content="数据库,kubernetes,mysql,linux,cronjob,job," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="数据库,kubernetes,mysql,linux,cronjob,job," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用cronjob定时备份mysql数据库"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,30 +150,24 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#创建storageclass">创建StorageClass</a></li>
-<li><a href="#创建pvc">创建pvc</a></li>
-<li><a href="#创建cronjob">创建cronjob</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#创建storageclass">创建StorageClass</a></li>
+    <li><a href="#创建pvc">创建pvc</a></li>
+    <li><a href="#创建cronjob">创建cronjob</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><a href="https://imgchr.com/i/aOko8g"><img src="https://s1.ax1x.com/2020/08/11/aOko8g.jpg" alt="aOko8g.jpg" /></a></p>
-
+      <p><a href="https://imgchr.com/i/aOko8g"><img src="https://s1.ax1x.com/2020/08/11/aOko8g.jpg" alt="aOko8g.jpg"></a></p>
 <blockquote>
 <p>由于近期有项目上线，mysql部署在k8s中。此文档用来记录使用cronjob来实现定时备份mysql数据库的过程。</p>
-
 <p>环境：centos7.6、Kubernetes1.14.3、 持久化存储为CephFS、mysql5.7.21</p>
 </blockquote>
-
 <h2 id="创建storageclass">创建StorageClass</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -191,18 +189,18 @@ metadata:
   name: mysql-backup-prod
 provisioner: ceph.com/cephfs
 parameters:
-    monitors: <span class="m">172</span>.16.77.53:6789
+    monitors: 172.16.77.53:6789
     adminId: admin
     adminSecretName: ceph-secret-admin-53 <span class="c1">#此处名称要和集群中的ceph密码对应</span>
     adminSecretNamespace: <span class="s2">&#34;storage&#34;</span>
     claimRoot: /volumes/kubernetes/masks-prod/mysql-backup
-$ kubectl apply -f StorageClass.yaml</code></pre></td></tr></table>
+$ kubectl apply -f StorageClass.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="创建pvc">创建pvc</h2>
+</div><h2 id="创建pvc">创建pvc</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -231,13 +229,13 @@ spec:
     requests:
       storage: 2Gi
       
-$ kubectl apply -f pvc.yaml</code></pre></td></tr></table>
+$ kubectl apply -f pvc.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="创建cronjob">创建cronjob</h2>
+</div><h2 id="创建cronjob">创建cronjob</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -307,7 +305,7 @@ spec:
             - -c
             - <span class="p">|</span>
               <span class="nb">set</span> -ex
-              mysqldump --host<span class="o">=</span><span class="m">172</span>.16.xx.xx -P <span class="m">3307</span> --user<span class="o">=</span>root <span class="se">\
+              mysqldump --host<span class="o">=</span>172.16.xx.xx -P <span class="m">3307</span> --user<span class="o">=</span>root <span class="se">\
 </span><span class="se"></span>                        --password<span class="o">=</span><span class="m">123456</span> <span class="se">\
 </span><span class="se"></span>                        --databases masks_s   <span class="se">\
 </span><span class="se"></span>                        &gt; /mysql-backup/mysql-<span class="sb">`</span>date +<span class="s1">&#39;%Y%m%d_%H_%M_%S&#39;</span><span class="sb">`</span>.sql <span class="se">\
@@ -320,10 +318,10 @@ spec:
           - name: mysql-backup
             persistentVolumeClaim:
               claimName: mysql-backup
-$ kubectl apply -f mysql-CronJob.yaml</code></pre></td></tr></table>
+$ kubectl apply -f mysql-CronJob.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>此cronjob会在每天0点备份masks_s数据库，并清除10天之前的备份文件</strong></p>
+</div><p><strong>此cronjob会在每天0点备份masks_s数据库，并清除10天之前的备份文件</strong></p>
     </div>
 
     <div class="post-copyright">
@@ -385,10 +383,9 @@ $ kubectl apply -f mysql-CronJob.yaml</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-07-10 16:39:13 \x2b0800 CST',
+        id: '2020-07-10 16:39:13 \u002b0800 CST',
         title: '使用cronjob定时备份mysql数据库',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -400,6 +397,10 @@ $ kubectl apply -f mysql-CronJob.yaml</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -455,7 +456,10 @@ $ kubectl apply -f mysql-CronJob.yaml</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

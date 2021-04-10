@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/03/12/%E9%87%8D%E7%BD%AEdocker%E5%AE%89%E8%A3%85%E7%9A%84gitlab%E7%9A%84root%E5%AF%86%E7%A0%81/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="重置docker安装的gitlab的root密码" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/03/12/%E9%87%8D%E7%BD%AEdocker%E5%AE%89%E8%A3%85%E7%9A%84gitlab%E7%9A%84root%E5%AF%86%E7%A0%81/" />
-<meta property="article:published_time" content="2020-03-12T14:04:07&#43;08:00"/>
-<meta property="article:modified_time" content="2020-03-12T14:04:07&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/03/12/%E9%87%8D%E7%BD%AEdocker%E5%AE%89%E8%A3%85%E7%9A%84gitlab%E7%9A%84root%E5%AF%86%E7%A0%81/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-12T14:04:07&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-12T14:04:07&#43;08:00" />
 
 <meta itemprop="name" content="重置docker安装的gitlab的root密码">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-03-12T14:04:07&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-12T14:04:07&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-12T14:04:07&#43;08:00" />
 <meta itemprop="wordCount" content="181">
-
-
-
-<meta itemprop="keywords" content="linux,centos,gitlab,docker,容器," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,centos,gitlab,docker,容器," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="重置docker安装的gitlab的root密码"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,27 +150,22 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#进入容器重置密码">进入容器重置密码</a></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#进入容器重置密码">进入容器重置密码</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><img src="https://s1.ax1x.com/2020/05/09/YQjdaV.jpg" alt="YQjdaV.jpg" /></p>
-
+      <p><img src="https://s1.ax1x.com/2020/05/09/YQjdaV.jpg" alt="YQjdaV.jpg"></p>
 <blockquote>
 <p>前几天搭建的测试gitlab，想使用一下，发现密码给忘了。此文档做为重置密码的记录</p>
 </blockquote>
-
 <h2 id="进入容器重置密码">进入容器重置密码</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -189,12 +188,12 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ docker <span class="nb">exec</span> -it gitlab /bin/bash
 $ root@git:/# gitlab-rails console -e production <span class="c1"># 启动Ruby on Rails控制台</span>
 --------------------------------------------------------------------------------
- GitLab:       <span class="m">12</span>.10.0 <span class="o">(</span>869bc26464b<span class="o">)</span> FOSS
- GitLab Shell: <span class="m">12</span>.2.0
- PostgreSQL:   <span class="m">11</span>.7
+ GitLab:       12.10.0 <span class="o">(</span>869bc26464b<span class="o">)</span> FOSS
+ GitLab Shell: 12.2.0
+ PostgreSQL:   11.7
 --------------------------------------------------------------------------------
-Loading production environment <span class="o">(</span>Rails <span class="m">6</span>.0.2<span class="o">)</span>
-irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; <span class="nv">user</span> <span class="o">=</span> User.where<span class="o">(</span>id: <span class="m">1</span><span class="o">)</span>.first <span class="c1">#查找用户</span>
+Loading production environment <span class="o">(</span>Rails 6.0.2<span class="o">)</span>
+irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; <span class="nv">user</span> <span class="o">=</span> User.where<span class="o">(</span>id: 1<span class="o">)</span>.first <span class="c1">#查找用户</span>
 <span class="o">=</span>&gt; <span class="c1">#&lt;User id:1 @root&gt;</span>
 irb<span class="o">(</span>main<span class="o">)</span>:002:0&gt; user.password <span class="o">=</span> <span class="s1">&#39;admin000&#39;</span> <span class="c1">#设置密码</span>
 <span class="o">=</span>&gt; <span class="s2">&#34;admin000&#34;</span>
@@ -203,11 +202,10 @@ irb<span class="o">(</span>main<span class="o">)</span>:003:0&gt; user.password_
 irb<span class="o">(</span>main<span class="o">)</span>:004:0&gt; user.save! <span class="c1">#保存</span>
 Enqueued ActionMailer::DeliveryJob <span class="o">(</span>Job ID: 5827de7f-357b-4c22-b13c-9fd78e02a45e<span class="o">)</span> to Sidekiq<span class="o">(</span>mailers<span class="o">)</span> with arguments: <span class="s2">&#34;DeviseMailer&#34;</span>, <span class="s2">&#34;password_change&#34;</span>, <span class="s2">&#34;deliver_now&#34;</span>, <span class="c1">#&lt;GlobalID:0x00007f17d643fd38 @uri=#&lt;URI::GID gid://gitlab/User/1&gt;&gt;</span>
 <span class="o">=</span>&gt; <span class="nb">true</span>
-irb<span class="o">(</span>main<span class="o">)</span>:005:0&gt; exit</code></pre></td></tr></table>
+irb<span class="o">(</span>main<span class="o">)</span>:005:0&gt; <span class="nb">exit</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="参考链接">参考链接</h2>
-
+</div><h2 id="参考链接">参考链接</h2>
 <p><a href="https://docs.gitlab.com/ce/security/reset_root_password.html">官方文档</a></p>
     </div>
 
@@ -269,10 +267,9 @@ irb<span class="o">(</span>main<span class="o">)</span>:005:0&gt; exit</code></p
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-03-12 14:04:07 \x2b0800 CST',
+        id: '2020-03-12 14:04:07 \u002b0800 CST',
         title: '重置docker安装的gitlab的root密码',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -284,6 +281,10 @@ irb<span class="o">(</span>main<span class="o">)</span>:005:0&gt; exit</code></p
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -339,7 +340,10 @@ irb<span class="o">(</span>main<span class="o">)</span>:005:0&gt; exit</code></p
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

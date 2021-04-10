@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="记录一次kubectl出错事件" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" />
-<meta property="article:published_time" content="2019-05-08T17:39:59&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-08T17:39:59&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1kubectl%E5%87%BA%E9%94%99%E4%BA%8B%E4%BB%B6/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-08T17:39:59&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-08T17:39:59&#43;08:00" />
 
 <meta itemprop="name" content="记录一次kubectl出错事件">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-08T17:39:59&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-08T17:39:59&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-08T17:39:59&#43;08:00" />
-<meta itemprop="wordCount" content="605">
-
-
-
-<meta itemprop="keywords" content="Kubernetes,linux,容器,kubectl," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="606">
+<meta itemprop="keywords" content="Kubernetes,linux,容器,kubectl," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="记录一次kubectl出错事件"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> Kubernetes </a>
             </div>
-          <span class="more-meta"> 605 words </span>
+          <span class="more-meta"> 606 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,60 +150,56 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#一-问题">一、 问题</a></li>
-<li><a href="#二-排查">二、排查</a></li>
-<li><a href="#三-解决问题">三、解决问题</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一-问题">一、 问题</a></li>
+        <li><a href="#二排查">二、排查</a></li>
+        <li><a href="#三解决问题">三、解决问题</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <h3 id="一-问题">一、 问题</h3>
-
 <p>上午还在正常使用的Kubernetes集群 下午使用kubectl命令一直提示The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</p>
-
-<h3 id="二-排查">二、排查</h3>
+<h3 id="二排查">二、排查</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
-The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ kubectl get pods
+The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>使用docker查看k8s相关容器及apiserver是否正常</p>
+</div><p>使用docker查看k8s相关容器及apiserver是否正常</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ docker ps
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ docker ps
 CONTAINER ID        IMAGE                                            COMMAND                   CREATED             STATUS              PORTS                         NAMES
 f1d6f5acd4b2        144ecb80a73c                                     &#34;/usr/sbin/init&#34;          32 hours ago        Up 32 hours                                       k8s_test_test-0_default_4c6c78ec-64a2-11e9-b297-6cae8b77ae08_0
 e2079cd28387        k8s.gcr.io/pause:3.1                             &#34;/pause&#34;                  32 hours ago        Up 32 hours
 b5a315d1477b        40a63db91ef8                                     &#34;kube-apiserver --au…&#34;    3 months ago        Up 3 months                                       k8s_kube-apiserver_kube-apiserver-k8s-77-53_kube-system_467247f0aca129ce9b864d2562c1e575_6
-....</pre></td></tr></table>
+....
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>发现容器一切正常  业务系统也在正常运行  就是kubectl没办法用<br/>
+</div><p>发现容器一切正常  业务系统也在正常运行  就是kubectl没办法用<!-- raw HTML omitted -->
 排查k8s请求</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -209,9 +209,10 @@ b5a315d1477b        40a63db91ef8                                     &#34;kube-a
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span></pre></td>
+</span><span class="lnt">11
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl -v=8  get nodes
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ kubectl -v=8  get nodes
 I0423 16:09:42.199244   26311 loader.go:359] Config loaded from file /etc/kubernetes/admin.conf
 I0423 16:09:42.201189   26311 loader.go:359] Config loaded from file /etc/kubernetes/admin.conf
 I0423 16:09:42.203029   26311 round_trippers.go:416] GET https://172.16.77.53:6443/api?timeout=32s
@@ -220,89 +221,88 @@ I0423 16:09:42.203179   26311 round_trippers.go:426]     Accept: application/jso
 I0423 16:09:42.203212   26311 round_trippers.go:426]     User-Agent: kubectl/v1.13.1 (linux/amd64) kubernetes/eec55b9
 I0423 16:09:42.204660   26311 round_trippers.go:441] Response Status:  in 1 milliseconds
 I0423 16:09:42.204727   26311 round_trippers.go:444] Response Headers:
-I0423 16:09:42.204860   26311 cached_discovery.go:113] skipped caching discovery info due to Get https://172.16.77.53:6443/api?timeout=32s: proxyconnect tcp: dial tcp 172.16.77.36:8118: connect: connection refused</pre></td></tr></table>
-</div>
-</div>
-<p>这里能看的出应该是宿主机代理出现了问题</p>
+I0423 16:09:42.204860   26311 cached_discovery.go:113] skipped caching discovery info due to Get https://172.16.77.53:6443/api?timeout=32s: proxyconnect tcp: dial tcp 172.16.77.36:8118: connect: connection refused
 
-<h3 id="三-解决问题">三、解决问题</h3>
-
-<p>为了能正常使用kubectl  先把代理注释掉<br/></p>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里能看的出应该是宿主机代理出现了问题</p>
+<h3 id="三解决问题">三、解决问题</h3>
+<p>为了能正常使用kubectl  先把代理注释掉<!-- raw HTML omitted --></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ vi /etc/profile
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ vi /etc/profile
 ...
-[docker@k8s-77-52 ~]$ source /etc/profile</pre></td></tr></table>
+[docker@k8s-77-52 ~]$ source /etc/profile
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>再使用kubectl看看是否正常</p>
+</div><p>再使用kubectl看看是否正常</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
-The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ kubectl get pods
+The connection to the server 172.16.77.53:6443 was refused - did you specify the right host or port?
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>发现还是原来的错误<br/>
+</div><p>发现还是原来的错误<!-- raw HTML omitted -->
 经过查看后发现 代理还在</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ env | grep -i  proxy
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ env | grep -i  proxy
 http_proxy=http://172.16.77.36:8118
-https_proxy=http://172.16.77.36:8118</pre></td></tr></table>
+https_proxy=http://172.16.77.36:8118
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>使用unset取消</p>
+</div><p>使用unset取消</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ unset http_proxy
-[docker@k8s-77-53 ~]$ unset https_proxy</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ unset http_proxy
+[docker@k8s-77-53 ~]$ unset https_proxy
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>然后查看代理是否还在</p>
+</div><p>然后查看代理是否还在</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ env | grep -i  proxy
-[docker@k8s-77-53 ~]$</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ env | grep -i  proxy
+[docker@k8s-77-53 ~]$
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>发现这次取消成功了，然后再查看kubectl是否能正常使用</p>
+</div><p>发现这次取消成功了，然后再查看kubectl是否能正常使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[docker@k8s-77-53 ~]$ kubectl get pods
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[docker@k8s-77-53 ~]$ kubectl get pods
 NAME                           READY   STATUS    RESTARTS   AGE
 cp-schema-registry-0           1/1     Running   0          6d6h
-test-0                         1/1     Running   0          31h</pre></td></tr></table>
+test-0                         1/1     Running   0          31h
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>现在已可以正常使用<br />
+</div><p>现在已可以正常使用<br>
 <strong>注意：上面那个代理是由于已经写入了系统变量，所以在source之后还在应用。必须得unset或者再重开个ssh窗口才能取消</strong></p>
     </div>
 
@@ -363,10 +363,9 @@ test-0                         1/1     Running   0          31h</pre></td></tr><
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-08 17:39:59 \x2b0800 CST',
+        id: '2019-05-08 17:39:59 \u002b0800 CST',
         title: '记录一次kubectl出错事件',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -378,6 +377,10 @@ test-0                         1/1     Running   0          31h</pre></td></tr><
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -433,7 +436,10 @@ test-0                         1/1     Running   0          31h</pre></td></tr><
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

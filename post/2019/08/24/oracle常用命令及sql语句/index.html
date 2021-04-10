@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/08/24/oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8Asql%E8%AF%AD%E5%8F%A5/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Oracle常用命令及sql语句" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/08/24/oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8Asql%E8%AF%AD%E5%8F%A5/" />
-<meta property="article:published_time" content="2019-08-24T08:19:49&#43;08:00"/>
-<meta property="article:modified_time" content="2019-08-24T08:19:49&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/08/24/oracle%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8Asql%E8%AF%AD%E5%8F%A5/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-08-24T08:19:49&#43;08:00" />
+<meta property="article:modified_time" content="2019-08-24T08:19:49&#43;08:00" />
 
 <meta itemprop="name" content="Oracle常用命令及sql语句">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-08-24T08:19:49&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-08-24T08:19:49&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-24T08:19:49&#43;08:00" />
 <meta itemprop="wordCount" content="357">
-
-
-
-<meta itemprop="keywords" content="oracle,数据库,linux,centos," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="oracle,数据库,linux,centos," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Oracle常用命令及sql语句"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,13 +150,10 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#常用命令">常用命令</a></li>
-<li><a href="#常用sql语句">常用sql语句</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#常用命令">常用命令</a></li>
+    <li><a href="#常用sql语句">常用sql语句</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -160,276 +161,275 @@
       <blockquote>
 <p>记录一些工作中用到的sql语句  不定期更新</p>
 </blockquote>
-
 <h2 id="常用命令">常用命令</h2>
-
 <ul>
 <li>启动数据库实例</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">startup</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">startup</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>关闭数据库实例</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">shutdown</span> <span class="k">immediate</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">shutdown</span> <span class="k">immediate</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>开启远程监听端口</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">lsnrctl start</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">lsnrctl start
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>管理员登录</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">sqlplus</span> <span class="o">/</span> <span class="k">as</span> <span class="n">sysdba</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">sqlplus</span> <span class="o">/</span> <span class="k">as</span> <span class="n">sysdba</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="常用sql语句">常用sql语句</h2>
-
+</div><h2 id="常用sql语句">常用sql语句</h2>
 <ul>
 <li>查看所有表</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tab</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tab</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看数据库存放目录</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">v$datafile</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">v$datafile</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看服务名</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span> <span class="k">parameter</span> <span class="n">service</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span> <span class="k">parameter</span> <span class="n">service</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看SID</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">instance_name</span> <span class="k">from</span> <span class="n">v$instance</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">instance_name</span> <span class="k">from</span> <span class="n">v$instance</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看数据库名</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">v$database</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">v$database</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看所有用户信息</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">dba_users</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">dba_users</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>只查询用户和密码</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">username</span><span class="p">,</span><span class="n">password</span> <span class="k">from</span> <span class="n">dba_users</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">username</span><span class="p">,</span><span class="n">password</span> <span class="k">from</span> <span class="n">dba_users</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看具有sysdba权限的用户</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">v$pwfile_users</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">v$pwfile_users</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看当前用户信息</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">dba_ustats</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">dba_ustats</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li><p>查看当前用户系统权限</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">select * from user_sys_privs;</pre></td></tr></table>
-</div>
-</div></li>
-
-<li><p>查看当前用户角色</p></li>
+</div><ul>
+<li>查看当前用户系统权限</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">user_role_privs</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">select * from user_sys_privs;
+</code></pre></td></tr></table>
 </div>
+</div><ul>
+<li>查看当前用户角色</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">user_role_privs</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-<ul>
+</div><ul>
 <li>查看指定用户所具有的的系统权限</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">dba_sys_privs</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">dba_sys_privs</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看oracle版本</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">v$version</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">v$version</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看视图信息</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">user_views</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">user_views</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>创建directory</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="n">directory</span> <span class="n">directory_name</span> <span class="k">as</span> <span class="s1">&#39;/etc/test&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="n">directory</span> <span class="n">directory_name</span> <span class="k">as</span> <span class="s1">&#39;/etc/test&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看有那些directory</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">all_directories</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">all_directories</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看字符集</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">userenv</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">)</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">userenv</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">)</span> <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看数据库现有模式，是否归档</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span><span class="p">,</span><span class="n">log_mode</span> <span class="k">from</span> <span class="n">v$database</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span><span class="p">,</span><span class="n">log_mode</span> <span class="k">from</span> <span class="n">v$database</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看所有数据文件</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"> <span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">v$datafile</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"> <span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">v$datafile</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>创建用户并赋权</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sql" data-lang="sql"> <span class="k">create</span> <span class="k">user</span> <span class="n">test</span> <span class="n">identified</span> <span class="k">by</span> <span class="n">bnsbdl</span><span class="p">;</span>
 
- <span class="k">grant</span> <span class="k">connect</span><span class="p">,</span> <span class="n">dba</span> <span class="k">to</span> <span class="n">test</span><span class="p">;</span></code></pre></td></tr></table>
+ <span class="k">grant</span> <span class="k">connect</span><span class="p">,</span> <span class="n">dba</span> <span class="k">to</span> <span class="n">test</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -491,10 +491,9 @@
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-08-24 08:19:49 \x2b0800 CST',
+        id: '2019-08-24 08:19:49 \u002b0800 CST',
         title: 'Oracle常用命令及sql语句',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -506,6 +505,10 @@
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -561,7 +564,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

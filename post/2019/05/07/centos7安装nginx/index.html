@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Centos7安装Nginx" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/" />
-<meta property="article:published_time" content="2019-05-07T14:16:22&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-07T14:16:22&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/07/centos7%E5%AE%89%E8%A3%85nginx/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-07T14:16:22&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-07T14:16:22&#43;08:00" />
 
 <meta itemprop="name" content="Centos7安装Nginx">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-07T14:16:22&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-07T14:16:22&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-07T14:16:22&#43;08:00" />
-<meta itemprop="wordCount" content="608">
-
-
-
-<meta itemprop="keywords" content="linux,centos,nginx," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="610">
+<meta itemprop="keywords" content="linux,centos,nginx," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Centos7安装Nginx"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> linux </a>
             </div>
-          <span class="more-meta"> 608 words </span>
+          <span class="more-meta"> 610 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,87 +150,85 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#安装nginx">安装nginx</a>
-<ul>
-<li><a href="#一-下载安装包">一、下载安装包</a></li>
-<li><a href="#二-解压">二、解压</a></li>
-<li><a href="#三-下载依赖的库文件">三、下载依赖的库文件</a></li>
-<li><a href="#四-进行configure配置">四、进行configure配置</a></li>
-<li><a href="#五-编译安装">五、编译安装</a></li>
-<li><a href="#六-启动nginx">六、启动Nginx</a></li>
-<li><a href="#7-查看">7、查看</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#安装nginx">安装nginx</a>
+      <ul>
+        <li><a href="#一下载安装包">一、下载安装包</a></li>
+        <li><a href="#二解压">二、解压</a></li>
+        <li><a href="#三下载依赖的库文件">三、下载依赖的库文件</a></li>
+        <li><a href="#四进行configure配置">四、进行configure配置</a></li>
+        <li><a href="#五编译安装">五、编译安装</a></li>
+        <li><a href="#六启动nginx">六、启动Nginx</a></li>
+        <li><a href="#7查看">7、查看</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <h2 id="安装nginx">安装nginx</h2>
-
 <blockquote>
-<p>需求：需要在服务器安装nginx<br />
-系统：centos7.X<br />
+<p>需求：需要在服务器安装nginx<br>
+系统：centos7.X<br>
 nginx版本：1.9.9</p>
 </blockquote>
+<h3 id="一下载安装包">一、下载安装包</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载需要用的版本
 
-<h3 id="一-下载安装包">一、下载安装包</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="二解压">二、解压</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载需要用的版本</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">tar -zxvf nginx-1.9.9.tar.gz -C /opt/ //解压到你想放的地方 如果没有特殊需求  可以直接解压到/usr/local
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="二-解压">二、解压</h3>
+</div><h3 id="三下载依赖的库文件">三、下载依赖的库文件</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">tar -zxvf nginx-1.9.9.tar.gz -C /opt/ //解压到你想放的地方 如果没有特殊需求  可以直接解压到/usr/local</pre></td></tr></table>
-</div>
-</div>
-<h3 id="三-下载依赖的库文件">三、下载依赖的库文件</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">yum install pcre
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">yum install pcre
 
 yum install pcre-devel
 
 yum install zlib
 
-yum install zlib-devel</pre></td></tr></table>
+yum install zlib-devel
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="四-进行configure配置">四、进行configure配置</h3>
+</div><h3 id="四进行configure配置">四、进行configure配置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">cd /opt/nginx-1.9.9/
-./configure --prefix=/opt/nginx //(--prefix=...后是最后编译安装的位置)</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /opt/nginx-1.9.9/
+./configure --prefix=/opt/nginx //(--prefix=...后是最后编译安装的位置)
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>执行后会出现以下内容，然后可以进行下一步</p>
+</div><p>执行后会出现以下内容，然后可以进行下一步</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -249,9 +251,9 @@ yum install zlib-devel</pre></td></tr></table>
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">checking for sha1 in system OpenSSL crypto library ... not found
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">checking for sha1 in system OpenSSL crypto library ... not found
 checking for zlib library ... found
 creating objs/Makefile
 
@@ -273,52 +275,54 @@ Configuration summary
   nginx http proxy temporary files: &#34;proxy_temp&#34;
   nginx http fastcgi temporary files: &#34;fastcgi_temp&#34;
   nginx http uwsgi temporary files: &#34;uwsgi_temp&#34;
-  nginx http scgi temporary files: &#34;scgi_temp&#34;</pre></td></tr></table>
+  nginx http scgi temporary files: &#34;scgi_temp&#34;
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="五-编译安装">五、编译安装</h3>
+</div><h3 id="五编译安装">五、编译安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">make &amp;&amp; make install</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">make &amp;&amp; make install
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>出现以下内容说明安装成功</p>
+</div><p>出现以下内容说明安装成功</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span></pre></td>
+</span><span class="lnt">7
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">cp conf/nginx.conf &#39;/opt/nginx/conf/nginx.conf.default&#39;
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+cp conf/nginx.conf &#39;/opt/nginx/conf/nginx.conf.default&#39;
 test -d &#39;/opt/nginx/logs&#39; 		|| mkdir -p &#39;/opt/nginx/logs&#39;
 test -d &#39;/opt/nginx/logs&#39; || 		mkdir -p &#39;/opt/nginx/logs&#39;
 test -d &#39;/opt/nginx/html&#39; 		|| cp -R html &#39;/opt/nginx&#39;
 test -d &#39;/opt/nginx/logs&#39; || 		mkdir -p &#39;/opt/nginx/logs&#39;
-make[1]: 离开目录“/opt/nginx-1.9.9”</pre></td></tr></table>
+make[1]: 离开目录“/opt/nginx-1.9.9”
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="六-启动nginx">六、启动Nginx</h3>
+</div><h3 id="六启动nginx">六、启动Nginx</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">cd /opt/nginx/
-/opt/nginx/sbin/nginx  //无参数启动 （-s  stop）关闭    （-s reload）重启</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /opt/nginx/
+/opt/nginx/sbin/nginx  //无参数启动 （-s  stop）关闭    （-s reload）重启
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="7-查看">7、查看</h3>
+</div><h3 id="7查看">7、查看</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -327,9 +331,9 @@ make[1]: 离开目录“/opt/nginx-1.9.9”</pre></td></tr></table>
 </span><span class="lnt">7
 </span><span class="lnt">8
 </span><span class="lnt">9
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">#查看是否成功启动
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#查看是否成功启动
 [root@k8s-77-189 sbin]# ps -ef | grep nginx
 root      3984 27221  0 19:21 pts/2    00:00:00 grep --color=auto nginx
 root     30101     1  0 18:37 ?        00:00:00 nginx: master process ./nginx
@@ -337,10 +341,10 @@ nobody   30102 30101  0 18:37 ?        00:00:00 nginx: worker process
 [root@k8s-77-189 sbin]# lsof -i:80
 COMMAND   PID   USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
 nginx   30101   root    6u  IPv4 6857072      0t0  TCP *:http (LISTEN)
-nginx   30102 nobody    6u  IPv4 6857072      0t0  TCP *:http (LISTEN)</pre></td></tr></table>
+nginx   30102 nobody    6u  IPv4 6857072      0t0  TCP *:http (LISTEN)
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>成功的话 浏览器访问能看到Welcome to nginx!的页面（<a href="http://ip:80）">http://ip:80）</a></p>
+</div><p>成功的话 浏览器访问能看到Welcome to nginx!的页面（http://ip:80）</p>
     </div>
 
     <div class="post-copyright">
@@ -399,10 +403,9 @@ nginx   30102 nobody    6u  IPv4 6857072      0t0  TCP *:http (LISTEN)</pre></td
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-07 14:16:22 \x2b0800 CST',
+        id: '2019-05-07 14:16:22 \u002b0800 CST',
         title: 'Centos7安装Nginx',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -414,6 +417,10 @@ nginx   30102 nobody    6u  IPv4 6857072      0t0  TCP *:http (LISTEN)</pre></td
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -469,7 +476,10 @@ nginx   30102 nobody    6u  IPv4 6857072      0t0  TCP *:http (LISTEN)</pre></td
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>centos7 on I am dylan ...</title>
@@ -6,11 +6,7 @@
     <description>Recent content in centos7 on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2020 14:47:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://dylanyang.top/tags/centos7/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 21 Mar 2020 14:47:00 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/centos7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Centos7修改网卡名称</title>
       <link>https://dylanyang.top/post/2020/03/21/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</link>

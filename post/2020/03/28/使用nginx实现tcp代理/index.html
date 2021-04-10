@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/03/28/%E4%BD%BF%E7%94%A8nginx%E5%AE%9E%E7%8E%B0tcp%E4%BB%A3%E7%90%86/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="使用nginx实现TCP代理" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/03/28/%E4%BD%BF%E7%94%A8nginx%E5%AE%9E%E7%8E%B0tcp%E4%BB%A3%E7%90%86/" />
-<meta property="article:published_time" content="2020-03-28T14:17:00&#43;08:00"/>
-<meta property="article:modified_time" content="2020-03-28T14:17:00&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/03/28/%E4%BD%BF%E7%94%A8nginx%E5%AE%9E%E7%8E%B0tcp%E4%BB%A3%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-28T14:17:00&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-28T14:17:00&#43;08:00" />
 
 <meta itemprop="name" content="使用nginx实现TCP代理">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-03-28T14:17:00&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-28T14:17:00&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-28T14:17:00&#43;08:00" />
 <meta itemprop="wordCount" content="415">
-
-
-
-<meta itemprop="keywords" content="nginx,linux,centos,tcp," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="nginx,linux,centos,tcp," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用nginx实现TCP代理"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,15 +150,12 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#查看安装的模块">查看安装的模块</a></li>
-<li><a href="#配置stream模块">配置stream模块</a></li>
-<li><a href="#测试">测试</a></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#查看安装的模块">查看安装的模块</a></li>
+    <li><a href="#配置stream模块">配置stream模块</a></li>
+    <li><a href="#测试">测试</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -162,17 +163,14 @@
       <blockquote>
 <p>nginx从1.9.0开始发布ngx_stream_core_module模块，该模块支持tcp代理及负载均衡</p>
 </blockquote>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkdwJ1.jpg" alt="GkdwJ1.jpg" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkdwJ1.jpg" alt="GkdwJ1.jpg"></p>
 <h2 id="查看安装的模块">查看安装的模块</h2>
-
 <blockquote>
 <p>包含&ndash;with-stream即有此模块</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -181,17 +179,15 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">nginx -V <span class="p">|</span>grep stream
 .......
  --with-mail --with-mail_ssl_module --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module
-......</code></pre></td></tr></table>
+......
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>注意：yum安装的nginx默认就有此模块，如果你的nginx是编译安装的默认是不开启此模块的。需要在编译时通过指定&ndash;with-stream参数来启用这个模块</strong></p>
-
+</div><p><strong>注意：yum安装的nginx默认就有此模块，如果你的nginx是编译安装的默认是不开启此模块的。需要在编译时通过指定&ndash;with-stream参数来启用这个模块</strong></p>
 <h2 id="配置stream模块">配置stream模块</h2>
-
 <p>stream模块必须在nginx.conf中配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -214,17 +210,16 @@
         <span class="kn">proxy_timeout</span> <span class="mi">10m</span><span class="p">;</span>
         <span class="kn">proxy_pass</span> <span class="s">mysql</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="测试">测试</h2>
-
+</div><h2 id="测试">测试</h2>
 <ul>
 <li>检查配置及重启</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -233,21 +228,19 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ nginx -t
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf <span class="nb">test</span> is successful
-$ nginx -s reload</code></pre></td></tr></table>
+$ nginx -s reload
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>连接测试</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkUpOe.png" alt="GkUpOe.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkUpOe.png" alt="GkUpOe.png"></p>
 <ul>
 <li>官网比较完整的示例</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -328,11 +321,10 @@ $ nginx -s reload</code></pre></td></tr></table>
         <span class="kn">listen</span> <span class="s">[::1]:12345</span><span class="p">;</span>
         <span class="kn">proxy_pass</span> <span class="s">unix:/tmp/stream.socket</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="参考链接">参考链接</h2>
-
+</div><h2 id="参考链接">参考链接</h2>
 <p><a href="http://nginx.org/en/docs/stream/ngx_stream_core_module.html">官方文档</a></p>
     </div>
 
@@ -393,10 +385,9 @@ $ nginx -s reload</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-03-28 14:17:00 \x2b0800 CST',
+        id: '2020-03-28 14:17:00 \u002b0800 CST',
         title: '使用nginx实现TCP代理',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -408,6 +399,10 @@ $ nginx -s reload</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -463,7 +458,10 @@ $ nginx -s reload</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

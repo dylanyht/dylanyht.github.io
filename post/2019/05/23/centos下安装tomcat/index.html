@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Centos下安装tomcat" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/" />
-<meta property="article:published_time" content="2019-05-23T15:01:14&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-23T15:01:14&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/23/centos%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-23T15:01:14&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-23T15:01:14&#43;08:00" />
 
 <meta itemprop="name" content="Centos下安装tomcat">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-23T15:01:14&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-23T15:01:14&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-23T15:01:14&#43;08:00" />
 <meta itemprop="wordCount" content="604">
-
-
-
-<meta itemprop="keywords" content="linux,tomcat,centos,," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,tomcat,centos,," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Centos下安装tomcat"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,55 +150,48 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#下载">下载</a></li>
-<li><a href="#解压">解压</a></li>
-<li><a href="#tomcat目录结构说明">Tomcat目录结构说明</a></li>
-<li><a href="#tomcat启动-关闭">Tomcat启动、关闭</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#下载">下载</a></li>
+    <li><a href="#解压">解压</a></li>
+    <li><a href="#tomcat目录结构说明">Tomcat目录结构说明</a></li>
+    <li><a href="#tomcat启动关闭">Tomcat启动、关闭</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <blockquote>
-<p>此文档需要安装配置好jdk后操作，jdk安装可参考<a href="https://dylanyang.top/post/2019/05/22/centos7安装java/">电梯直达</a></p>
+<p>此文档需要安装配置好jdk后操作，jdk安装可参考<a href="https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85java/">电梯直达</a></p>
 </blockquote>
-
 <h2 id="下载">下载</h2>
-
 <blockquote>
-<p>官方链接：<a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></p>
+<p>官方链接：https://tomcat.apache.org/download-90.cgi</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.20/bin/apache-tomcat-9.0.20.tar.gz</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.20/bin/apache-tomcat-9.0.20.tar.gz
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="解压">解压</h2>
-
+</div><h2 id="解压">解压</h2>
 <p>解压到指定目录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 opt<span class="o">]</span><span class="c1"># tar xvf apache-tomcat-9.0.20.tar.gz -C /usr/local/</span>
-<span class="o">[</span>root@k8s-77-162 opt<span class="o">]</span><span class="c1"># mv /usr/local/apache-tomcat-9.0.20/ /usr/local/tomcat/</span></code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-162 opt<span class="o">]</span><span class="c1"># mv /usr/local/apache-tomcat-9.0.20/ /usr/local/tomcat/</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可根据自身需求来决定要不要配置环境变量</p>
-
+</div><p>可根据自身需求来决定要不要配置环境变量</p>
 <h2 id="tomcat目录结构说明">Tomcat目录结构说明</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -217,31 +214,30 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># cd /usr/local/tomcat/</span>
 <span class="o">[</span>root@k8s-77-162 tomcat<span class="o">]</span><span class="c1"># ll</span>
 总用量 <span class="m">124</span>
-drwxr-x---. <span class="m">2</span> root root  <span class="m">4096</span> 5月  <span class="m">23</span> <span class="m">11</span>:26 bin <span class="c1">#--启动命令目录</span>
--rw-r-----. <span class="m">1</span> root root <span class="m">19182</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 BUILDING.txt
-drwx------. <span class="m">3</span> root root   <span class="m">254</span> 5月  <span class="m">23</span> <span class="m">13</span>:53 conf <span class="c1">#--配置文件目录</span>
--rw-r-----. <span class="m">1</span> root root  <span class="m">5407</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 CONTRIBUTING.md
-drwxr-x---. <span class="m">2</span> root root  <span class="m">4096</span> 5月  <span class="m">23</span> <span class="m">11</span>:26 lib <span class="c1"># --库文件目录</span>
--rw-r-----. <span class="m">1</span> root root <span class="m">57092</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 LICENSE
-drwxr-x---. <span class="m">2</span> root root   <span class="m">197</span> 5月  <span class="m">23</span> <span class="m">13</span>:53 logs <span class="c1">#--日志文件目录</span>
--rw-r-----. <span class="m">1</span> root root  <span class="m">2333</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 NOTICE
--rw-r-----. <span class="m">1</span> root root  <span class="m">3255</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 README.md
--rw-r-----. <span class="m">1</span> root root  <span class="m">6852</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 RELEASE-NOTES
--rw-r-----. <span class="m">1</span> root root <span class="m">16262</span> 5月   <span class="m">4</span> <span class="m">06</span>:30 RUNNING.txt
-drwxr-x---. <span class="m">2</span> root root    <span class="m">30</span> 5月  <span class="m">23</span> <span class="m">11</span>:26 temp <span class="c1">#--临时缓存文件</span>
-drwxr-x---. <span class="m">7</span> root root    <span class="m">81</span> 5月   <span class="m">4</span> <span class="m">06</span>:27 webapps <span class="c1">#--web应用家目录</span>
-drwxr-x---. <span class="m">3</span> root root    <span class="m">22</span> 5月  <span class="m">23</span> <span class="m">13</span>:53 work <span class="c1">#--工作缓存目录</span>
-<span class="o">[</span>root@k8s-77-162 tomcat<span class="o">]</span>#</code></pre></td></tr></table>
+drwxr-x---. <span class="m">2</span> root root  <span class="m">4096</span> 5月  <span class="m">23</span> 11:26 bin <span class="c1">#--启动命令目录</span>
+-rw-r-----. <span class="m">1</span> root root <span class="m">19182</span> 5月   <span class="m">4</span> 06:30 BUILDING.txt
+drwx------. <span class="m">3</span> root root   <span class="m">254</span> 5月  <span class="m">23</span> 13:53 conf <span class="c1">#--配置文件目录</span>
+-rw-r-----. <span class="m">1</span> root root  <span class="m">5407</span> 5月   <span class="m">4</span> 06:30 CONTRIBUTING.md
+drwxr-x---. <span class="m">2</span> root root  <span class="m">4096</span> 5月  <span class="m">23</span> 11:26 lib <span class="c1"># --库文件目录</span>
+-rw-r-----. <span class="m">1</span> root root <span class="m">57092</span> 5月   <span class="m">4</span> 06:30 LICENSE
+drwxr-x---. <span class="m">2</span> root root   <span class="m">197</span> 5月  <span class="m">23</span> 13:53 logs <span class="c1">#--日志文件目录</span>
+-rw-r-----. <span class="m">1</span> root root  <span class="m">2333</span> 5月   <span class="m">4</span> 06:30 NOTICE
+-rw-r-----. <span class="m">1</span> root root  <span class="m">3255</span> 5月   <span class="m">4</span> 06:30 README.md
+-rw-r-----. <span class="m">1</span> root root  <span class="m">6852</span> 5月   <span class="m">4</span> 06:30 RELEASE-NOTES
+-rw-r-----. <span class="m">1</span> root root <span class="m">16262</span> 5月   <span class="m">4</span> 06:30 RUNNING.txt
+drwxr-x---. <span class="m">2</span> root root    <span class="m">30</span> 5月  <span class="m">23</span> 11:26 temp <span class="c1">#--临时缓存文件</span>
+drwxr-x---. <span class="m">7</span> root root    <span class="m">81</span> 5月   <span class="m">4</span> 06:27 webapps <span class="c1">#--web应用家目录</span>
+drwxr-x---. <span class="m">3</span> root root    <span class="m">22</span> 5月  <span class="m">23</span> 13:53 work <span class="c1">#--工作缓存目录</span>
+<span class="o">[</span>root@k8s-77-162 tomcat<span class="o">]</span><span class="c1">#</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="tomcat启动-关闭">Tomcat启动、关闭</h2>
-
+</div><h2 id="tomcat启动关闭">Tomcat启动、关闭</h2>
 <ul>
 <li>启动</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -258,15 +254,15 @@ Using CATALINA_TMPDIR: /usr/local/tomcat/temp
 Using JRE_HOME:        /usr/java/jdk1.8.0_201/
 Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
 Tomcat started.
-<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1">#</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看端口</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -275,25 +271,22 @@ Tomcat started.
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1"># lsof -i:8080</span>
 COMMAND   PID USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
 java    <span class="m">26910</span> root   54u  IPv6 <span class="m">13896346</span>      0t0  TCP *:webcache <span class="o">(</span>LISTEN<span class="o">)</span>
-<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1">#</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>web端访问</li>
 </ul>
-
 <blockquote>
 <p>tomcat默认端口为8080  如果需要修改端口可以进去conf&gt;server.xml修改</p>
 </blockquote>
-
-<p><a href="https://imgchr.com/i/VCI7dJ"><img src="https://s2.ax1x.com/2019/05/23/VCI7dJ.jpg" alt="VCI7dJ.jpg" /></a></p>
-
+<p><a href="https://imgchr.com/i/VCI7dJ"><img src="https://s2.ax1x.com/2019/05/23/VCI7dJ.jpg" alt="VCI7dJ.jpg"></a></p>
 <ul>
 <li>关闭</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -308,13 +301,13 @@ Using CATALINA_HOME:   /usr/local/tomcat
 Using CATALINA_TMPDIR: /usr/local/tomcat/temp
 Using JRE_HOME:        /usr/java/jdk1.8.0_201/
 Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
-<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1">#</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>也可以用下面命令来进行启动关闭</p>
+</div><p>也可以用下面命令来进行启动关闭</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -343,7 +336,8 @@ Using CATALINA_HOME:   /usr/local/tomcat
 Using CATALINA_TMPDIR: /usr/local/tomcat/temp
 Using JRE_HOME:        /usr/java/jdk1.8.0_201/
 Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
-<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span>#</code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-162 bin<span class="o">]</span><span class="c1">#</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -405,10 +399,9 @@ Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-23 15:01:14 \x2b0800 CST',
+        id: '2019-05-23 15:01:14 \u002b0800 CST',
         title: 'Centos下安装tomcat',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -420,6 +413,10 @@ Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -475,7 +472,10 @@ Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

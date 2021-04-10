@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kubernetes Dashboard部署" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/" />
-<meta property="article:published_time" content="2019-06-10T13:56:52&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-10T13:56:52&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/06/10/kubernetes-dashboard%E9%83%A8%E7%BD%B2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-06-10T13:56:52&#43;08:00" />
+<meta property="article:modified_time" content="2019-06-10T13:56:52&#43;08:00" />
 
 <meta itemprop="name" content="Kubernetes Dashboard部署">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-06-10T13:56:52&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-06-10T13:56:52&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-10T13:56:52&#43;08:00" />
 <meta itemprop="wordCount" content="510">
-
-
-
-<meta itemprop="keywords" content="centos,docker,Kubernetes,dashboard,," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="centos,docker,Kubernetes,dashboard,," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes Dashboard部署"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,19 +150,16 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#下载yaml文件">下载yaml文件</a></li>
-<li><a href="#修改yaml文件里镜像源">修改yaml文件里镜像源</a></li>
-<li><a href="#修改yaml文件中的dashboard-service">修改yaml文件中的Dashboard Service</a></li>
-<li><a href="#启动dashboard">启动Dashboard</a></li>
-<li><a href="#访问dashboard">访问Dashboard</a></li>
-<li><a href="#创建能够访问dashboard的用户">创建能够访问Dashboard的用户</a></li>
-<li><a href="#获取登录的令牌-token">获取登录的令牌(Token)</a></li>
-<li><a href="#面板如下">面板如下</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#下载yaml文件">下载yaml文件</a></li>
+    <li><a href="#修改yaml文件里镜像源">修改yaml文件里镜像源</a></li>
+    <li><a href="#修改yaml文件中的dashboard-service">修改yaml文件中的Dashboard Service</a></li>
+    <li><a href="#启动dashboard">启动Dashboard</a></li>
+    <li><a href="#访问dashboard">访问Dashboard</a></li>
+    <li><a href="#创建能够访问dashboard的用户">创建能够访问Dashboard的用户</a></li>
+    <li><a href="#获取登录的令牌token">获取登录的令牌(Token)</a></li>
+    <li><a href="#面板如下">面板如下</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -166,61 +167,46 @@
       <blockquote>
 <p>Dashboard是Kubernetes官方的一个ui组件，可以在web查看操作Kubernetes</p>
 </blockquote>
-
 <h2 id="下载yaml文件">下载yaml文件</h2>
-
 <blockquote>
 <p>下载官方提供的Dashboard组件的yaml</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">wget https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">wget https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="修改yaml文件里镜像源">修改yaml文件里镜像源</h2>
-
+</div><h2 id="修改yaml文件里镜像源">修改yaml文件里镜像源</h2>
 <blockquote>
-<p>可以科学上网的可以跳过这一步 关于怎么配置科学上网参考<a href="https://dylanyang.top/post/2019/05/15/centos7安装配置shadowsocks客户端/">科学上网</a>一文</p>
+<p>可以科学上网的可以跳过这一步 关于怎么配置科学上网参考<a href="https://dylanyang.top/post/2019/05/15/centos7%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEshadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF/">科学上网</a>一文</p>
 </blockquote>
-
-<p><a href="https://imgchr.com/i/VNVxNn"><img src="https://s2.ax1x.com/2019/06/04/VNVxNn.jpg" alt="VNVxNn.jpg" /></a></p>
-
-<p>如果不能科学上网，就将<font color=#FF0000> k8s.gcr.io </font> 改为<font color=#FF0000> registry.cn-hangzhou.aliyuncs.com/google_containers </font> 后面的涉及地址的可以做相同的修改</p>
-
+<p><a href="https://imgchr.com/i/VNVxNn"><img src="https://s2.ax1x.com/2019/06/04/VNVxNn.jpg" alt="VNVxNn.jpg"></a></p>
+<p>如果不能科学上网，就将<!-- raw HTML omitted --> k8s.gcr.io <!-- raw HTML omitted --> 改为<!-- raw HTML omitted --> registry.cn-hangzhou.aliyuncs.com/google_containers <!-- raw HTML omitted --> 后面的涉及地址的可以做相同的修改</p>
 <h2 id="修改yaml文件中的dashboard-service">修改yaml文件中的Dashboard Service</h2>
-
-<p><a href="https://imgchr.com/i/VyGfYQ"><img src="https://s2.ax1x.com/2019/06/10/VyGfYQ.jpg" alt="VyGfYQ.jpg" /></a></p>
-
+<p><a href="https://imgchr.com/i/VyGfYQ"><img src="https://s2.ax1x.com/2019/06/10/VyGfYQ.jpg" alt="VyGfYQ.jpg"></a></p>
 <p>修改为</p>
-
-<p><a href="https://imgchr.com/i/VyG5Ss"><img src="https://s2.ax1x.com/2019/06/10/VyG5Ss.jpg" alt="VyG5Ss.jpg" /></a></p>
-
+<p><a href="https://imgchr.com/i/VyG5Ss"><img src="https://s2.ax1x.com/2019/06/10/VyG5Ss.jpg" alt="VyG5Ss.jpg"></a></p>
 <h2 id="启动dashboard">启动Dashboard</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f kubernetes-dashboard.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f kubernetes-dashboard.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="访问dashboard">访问Dashboard</h2>
-
+</div><h2 id="访问dashboard">访问Dashboard</h2>
 <p>访问https://&lt;your:ip&gt;:30001</p>
-
 <p>会显示以下界面</p>
-
-<p><a href="https://imgchr.com/i/VyJnXt"><img src="https://s2.ax1x.com/2019/06/10/VyJnXt.jpg" alt="VyJnXt.jpg" /></a></p>
-
+<p><a href="https://imgchr.com/i/VyJnXt"><img src="https://s2.ax1x.com/2019/06/10/VyJnXt.jpg" alt="VyJnXt.jpg"></a></p>
 <h2 id="创建能够访问dashboard的用户">创建能够访问Dashboard的用户</h2>
-
 <p>创建account.yaml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -257,31 +243,31 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: admin-user
-  namespace: kube-system</code></pre></td></tr></table>
+  namespace: kube-system
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>创建对应的用户</p>
+</div><p>创建对应的用户</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f account.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f account.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="获取登录的令牌-token">获取登录的令牌(Token)</h2>
+</div><h2 id="获取登录的令牌token">获取登录的令牌(Token)</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl -n kube-system describe secret <span class="k">$(</span>kubectl -n kube-system get secret <span class="p">|</span> grep admin-user <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl -n kube-system describe secret <span class="k">$(</span>kubectl -n kube-system get secret <span class="p">|</span> grep admin-user <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>显示以下输出：</p>
+</div><p>显示以下输出：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -310,14 +296,12 @@ Type:  kubernetes.io/service-account-token
 <span class="o">====</span>
 ca.crt:     <span class="m">1025</span> bytes
 namespace:  <span class="m">11</span> bytes
-token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............</code></pre></td></tr></table>
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>将token的值输入上</p>
-
+</div><p>将token的值输入上</p>
 <h2 id="面板如下">面板如下</h2>
-
-<p><a href="https://imgchr.com/i/VyrI1K"><img src="https://s2.ax1x.com/2019/06/10/VyrI1K.jpg" alt="VyrI1K.jpg" /></a></p>
+<p><a href="https://imgchr.com/i/VyrI1K"><img src="https://s2.ax1x.com/2019/06/10/VyrI1K.jpg" alt="VyrI1K.jpg"></a></p>
     </div>
 
     <div class="post-copyright">
@@ -378,10 +362,9 @@ token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............</code></
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-10 13:56:52 \x2b0800 CST',
+        id: '2019-06-10 13:56:52 \u002b0800 CST',
         title: 'Kubernetes Dashboard部署',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -393,6 +376,10 @@ token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............</code></
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -448,7 +435,10 @@ token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............</code></
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

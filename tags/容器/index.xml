@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>容器 on I am dylan ...</title>
@@ -6,11 +6,7 @@
     <description>Recent content in 容器 on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 09 May 2020 13:27:31 +0800</lastBuildDate>
-    
-	<atom:link href="https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 09 May 2020 13:27:31 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker容器动态添加端口</title>
       <link>https://dylanyang.top/post/2020/05/09/docker%E5%AE%B9%E5%99%A8%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3/</link>

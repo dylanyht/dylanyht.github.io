@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>kubeadm on I am dylan ...</title>
@@ -6,11 +6,7 @@
     <description>Recent content in kubeadm on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2020 13:38:14 +0800</lastBuildDate>
-    
-	<atom:link href="https://dylanyang.top/tags/kubeadm/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 21 Mar 2020 13:38:14 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/kubeadm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubectl配置连接多个集群</title>
       <link>https://dylanyang.top/post/2020/03/21/kubectl%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E9%9B%86%E7%BE%A4/</link>

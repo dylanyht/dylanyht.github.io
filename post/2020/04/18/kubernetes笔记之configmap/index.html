@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bconfigmap/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kubernetes笔记之configmap" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bconfigmap/" />
-<meta property="article:published_time" content="2020-04-18T09:14:00&#43;08:00"/>
-<meta property="article:modified_time" content="2020-04-18T09:14:00&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bconfigmap/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-18T09:14:00&#43;08:00" />
+<meta property="article:modified_time" content="2020-04-18T09:14:00&#43;08:00" />
 
 <meta itemprop="name" content="Kubernetes笔记之configmap">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-04-18T09:14:00&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-04-18T09:14:00&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-18T09:14:00&#43;08:00" />
-<meta itemprop="wordCount" content="1207">
-
-
-
-<meta itemprop="keywords" content="linux,kubernetes,笔记," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1229">
+<meta itemprop="keywords" content="linux,kubernetes,笔记," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes笔记之configmap"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1207 words </span>
+          <span class="more-meta"> 1229 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,26 +150,25 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#configmap概述">ConfigMap概述</a></li>
-<li><a href="#configmap创建">COnfigMap创建</a>
-<ul>
-<li><a href="#使用key-value字符串创建">使用key-value字符串创建</a></li>
-<li><a href="#使用conf文件创建">使用conf文件创建</a></li>
-<li><a href="#使用目录创建">使用目录创建</a></li>
-<li><a href="#使用yaml文件创建">使用yaml文件创建</a></li>
-</ul></li>
-<li><a href="#使用configmap">使用ConfigMap</a>
-<ul>
-<li><a href="#使用configmap来替代环境变量">使用ConfigMap来替代环境变量</a></li>
-<li><a href="#使用configmap设置命令行参数">使用ConfigMap设置命令行参数</a></li>
-<li><a href="#通过数据卷插件使用confmap">通过数据卷插件使用ConfMap</a></li>
-</ul></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#configmap概述">ConfigMap概述</a></li>
+    <li><a href="#configmap创建">COnfigMap创建</a>
+      <ul>
+        <li><a href="#使用key-value字符串创建">使用key-value字符串创建</a></li>
+        <li><a href="#使用conf文件创建">使用conf文件创建</a></li>
+        <li><a href="#使用目录创建">使用目录创建</a></li>
+        <li><a href="#使用yaml文件创建">使用yaml文件创建</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用configmap">使用ConfigMap</a>
+      <ul>
+        <li><a href="#使用configmap来替代环境变量">使用ConfigMap来替代环境变量</a></li>
+        <li><a href="#使用configmap设置命令行参数">使用ConfigMap设置命令行参数</a></li>
+        <li><a href="#通过数据卷插件使用confmap">通过数据卷插件使用ConfMap</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -173,15 +176,12 @@
       <blockquote>
 <p>很多应用程序需要一些配置通过组合的配置文件，命令行参数和环境变量。这些配置应该与镜像内容分离以保持容器化应用程序的可移植性。ConfigMap API资源提供了将配置数据注入容器的机制，同时保持容器不受kubernetes的影响。ConfigMap可用于存储细粒度信息，如单个属性，或粗粒度信息如整个配置文件或JSON对象</p>
 </blockquote>
-
 <h2 id="configmap概述">ConfigMap概述</h2>
-
 <p>ConfigMap 资源对象使用key-value形式的键值对来配置数据，这些数据可以在pod里面使用，configmap和secrets比较类似，一个比较大的区别是configmap可以比较方便的处理一些非敏感的数据，比如密码之类的还是需要使用secrets来进行管理。</p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -195,38 +195,31 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">kind<span class="p">:</span><span class="w"> </span>ConfigMap<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>example-config<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>default<span class="w">
-</span><span class="w"></span>data<span class="p">:</span><span class="w">
-</span><span class="w">  </span>example.property.<span class="m">1</span><span class="p">:</span><span class="w"> </span>hello<span class="w">
-</span><span class="w">  </span>example.property.<span class="m">2</span><span class="p">:</span><span class="w"> </span>world<span class="w">
-</span><span class="w">  </span>example.property.file<span class="p">:</span><span class="w"> </span>|<span class="sd">-
-</span><span class="sd">    property.1=value-1</span><span class="w">
-</span><span class="w">    </span>property.<span class="m">2</span>=value-<span class="m">2</span><span class="w">
-</span><span class="w">    </span>property.<span class="m">3</span>=value-<span class="m">3</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">example.property.1</span><span class="p">:</span><span class="w"> </span><span class="l">hello</span><span class="w">
+</span><span class="w">  </span><span class="nt">example.property.2</span><span class="p">:</span><span class="w"> </span><span class="l">world</span><span class="w">
+</span><span class="w">  </span><span class="nt">example.property.file</span><span class="p">:</span><span class="w"> </span><span class="p">|-</span><span class="sd">
+</span><span class="sd">    property.1=value-1
+</span><span class="sd">    property.2=value-2
+</span><span class="sd">    property.3=value-3</span><span class="w">    
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>data一栏包括了配置数据，ConfigMap可以被用来保存单个属性，也可以用来保存一个配置文件。配置数据可以通过很多方式在pods里被使用。ConfigMap可以被用来：</p>
-
+</div><p>data一栏包括了配置数据，ConfigMap可以被用来保存单个属性，也可以用来保存一个配置文件。配置数据可以通过很多方式在pods里被使用。ConfigMap可以被用来：</p>
 <p>1、设置环境变量的值</p>
-
 <p>2、在容器里设置命令行参数</p>
-
 <p>3、在数据卷里面创建config文件</p>
-
 <p>用户和系统组件两者都可以在ConfigMap里面存储配置数据</p>
-
 <h2 id="configmap创建">COnfigMap创建</h2>
-
 <p>可以使用 kubectl create configmap 从文件、目录或者key-value字符串创建等创建ConfigMap。也可以通过 kubectl create -f file创建</p>
-
 <h3 id="使用key-value字符串创建">使用key-value字符串创建</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -253,13 +246,13 @@ metadata:
   namespace: default
   resourceVersion: <span class="s2">&#34;1557984&#34;</span>
   selfLink: /api/v1/namespaces/default/configmaps/special-config
-  uid: 50aea7e1-7229-11ea-9fde-005056b24815</code></pre></td></tr></table>
+  uid: 50aea7e1-7229-11ea-9fde-005056b24815
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用conf文件创建">使用conf文件创建</h3>
+</div><h3 id="使用conf文件创建">使用conf文件创建</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -294,13 +287,13 @@ metadata:
   namespace: default
   resourceVersion: <span class="s2">&#34;1558796&#34;</span>
   selfLink: /api/v1/namespaces/default/configmaps/special-config
-  uid: 0d404dae-722a-11ea-9fde-005056b24815</code></pre></td></tr></table>
+  uid: 0d404dae-722a-11ea-9fde-005056b24815
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用目录创建">使用目录创建</h3>
+</div><h3 id="使用目录创建">使用目录创建</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -353,13 +346,13 @@ metadata:
   namespace: default
   resourceVersion: <span class="s2">&#34;1559993&#34;</span>
   selfLink: /api/v1/namespaces/default/configmaps/special-config
-  uid: 22c3dd6a-722b-11ea-9fde-005056b24815</code></pre></td></tr></table>
+  uid: 22c3dd6a-722b-11ea-9fde-005056b24815
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用yaml文件创建">使用yaml文件创建</h3>
+</div><h3 id="使用yaml文件创建">使用yaml文件创建</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -412,17 +405,15 @@ metadata:
   namespace: default
   resourceVersion: <span class="s2">&#34;1560828&#34;</span>
   selfLink: /api/v1/namespaces/default/configmaps/special-config
-  uid: e429af2e-722b-11ea-9fde-005056b24815</code></pre></td></tr></table>
+  uid: e429af2e-722b-11ea-9fde-005056b24815
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="使用configmap">使用ConfigMap</h2>
-
+</div><h2 id="使用configmap">使用ConfigMap</h2>
 <h3 id="使用configmap来替代环境变量">使用ConfigMap来替代环境变量</h3>
-
 <p>ConfigMap：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -432,20 +423,20 @@ metadata:
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>ConfigMap<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>default<span class="w">
-</span><span class="w"></span>data<span class="p">:</span><span class="w">
-</span><span class="w">  </span>special.how<span class="p">:</span><span class="w"> </span>very<span class="w">
-</span><span class="w">  </span>special.type<span class="p">:</span><span class="w"> </span>charm</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">special.how</span><span class="p">:</span><span class="w"> </span><span class="l">very</span><span class="w">
+</span><span class="w">  </span><span class="nt">special.type</span><span class="p">:</span><span class="w"> </span><span class="l">charm</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>Pod:</p>
+</div><p>Pod:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -468,46 +459,45 @@ metadata:
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>dapi-test-pod<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>test-container<span class="w">
-</span><span class="w">      </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">      </span>command<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;env&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="w">      </span>env<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>SPECIAL_LEVEL_KEY<span class="w">
-</span><span class="w">          </span>valueFrom<span class="p">:</span><span class="w">
-</span><span class="w">            </span>configMapKeyRef<span class="p">:</span><span class="w">
-</span><span class="w">              </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">              </span>key<span class="p">:</span><span class="w"> </span>special.how<span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>SPECIAL_TYPE_KEY<span class="w">
-</span><span class="w">          </span>valueFrom<span class="p">:</span><span class="w">
-</span><span class="w">            </span>configMapKeyRef<span class="p">:</span><span class="w">
-</span><span class="w">              </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">              </span>key<span class="p">:</span><span class="w"> </span>special.type<span class="w">
-</span><span class="w">  </span>restartPolicy<span class="p">:</span><span class="w"> </span>Never</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dapi-test-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-container</span><span class="w">
+</span><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;env&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SPECIAL_LEVEL_KEY</span><span class="w">
+</span><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">configMapKeyRef</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">special.how</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SPECIAL_TYPE_KEY</span><span class="w">
+</span><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">configMapKeyRef</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">special.type</span><span class="w">
+</span><span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>pod运行后会输出这几行：</p>
+</div><p>pod运行后会输出这几行：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">SPECIAL_TYPE_KEY</span><span class="o">=</span>charm
-<span class="nv">SPECIAL_LEVEL_KEY</span><span class="o">=</span>very</code></pre></td></tr></table>
+<span class="nv">SPECIAL_LEVEL_KEY</span><span class="o">=</span>very
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用configmap设置命令行参数">使用ConfigMap设置命令行参数</h3>
-
+</div><h3 id="使用configmap设置命令行参数">使用ConfigMap设置命令行参数</h3>
 <p>ConfigMap：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -517,20 +507,20 @@ metadata:
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>ConfigMap<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>default<span class="w">
-</span><span class="w"></span>data<span class="p">:</span><span class="w">
-</span><span class="w">  </span>special.how<span class="p">:</span><span class="w"> </span>very<span class="w">
-</span><span class="w">  </span>special.type<span class="p">:</span><span class="w"> </span>charm</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">special.how</span><span class="p">:</span><span class="w"> </span><span class="l">very</span><span class="w">
+</span><span class="w">  </span><span class="nt">special.type</span><span class="p">:</span><span class="w"> </span><span class="l">charm</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>pod:</p>
+</div><p>pod:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -553,44 +543,43 @@ metadata:
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>dapi-test-pod<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>test-container<span class="w">
-</span><span class="w">      </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">      </span>command<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;echo $(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="w">      </span>env<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>SPECIAL_LEVEL_KEY<span class="w">
-</span><span class="w">          </span>valueFrom<span class="p">:</span><span class="w">
-</span><span class="w">            </span>configMapKeyRef<span class="p">:</span><span class="w">
-</span><span class="w">              </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">              </span>key<span class="p">:</span><span class="w"> </span>special.how<span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>SPECIAL_TYPE_KEY<span class="w">
-</span><span class="w">          </span>valueFrom<span class="p">:</span><span class="w">
-</span><span class="w">            </span>configMapKeyRef<span class="p">:</span><span class="w">
-</span><span class="w">              </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">              </span>key<span class="p">:</span><span class="w"> </span>special.type<span class="w">
-</span><span class="w">  </span>restartPolicy<span class="p">:</span><span class="w"> </span>Never</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dapi-test-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-container</span><span class="w">
+</span><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;echo $(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SPECIAL_LEVEL_KEY</span><span class="w">
+</span><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">configMapKeyRef</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">special.how</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SPECIAL_TYPE_KEY</span><span class="w">
+</span><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">configMapKeyRef</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">special.type</span><span class="w">
+</span><span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>pod运行后会输出以下内容：</p>
+</div><p>pod运行后会输出以下内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">very charm</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">very charm
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="通过数据卷插件使用confmap">通过数据卷插件使用ConfMap</h3>
-
+</div><h3 id="通过数据卷插件使用confmap">通过数据卷插件使用ConfMap</h3>
 <p>ConfigMap:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -600,20 +589,20 @@ metadata:
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>ConfigMap<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>default<span class="w">
-</span><span class="w"></span>data<span class="p">:</span><span class="w">
-</span><span class="w">  </span>special.how<span class="p">:</span><span class="w"> </span>very<span class="w">
-</span><span class="w">  </span>special.type<span class="p">:</span><span class="w"> </span>charm</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">special.how</span><span class="p">:</span><span class="w"> </span><span class="l">very</span><span class="w">
+</span><span class="w">  </span><span class="nt">special.type</span><span class="p">:</span><span class="w"> </span><span class="l">charm</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>Pod-1:</p>
+</div><p>Pod-1:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -632,42 +621,40 @@ metadata:
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>dapi-test-pod<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>test-container<span class="w">
-</span><span class="w">      </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">      </span>command<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;cat /etc/config/special.how&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="w">      </span>volumeMounts<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>config-volume<span class="w">
-</span><span class="w">        </span>mountPath<span class="p">:</span><span class="w"> </span>/etc/config<span class="w">
-</span><span class="w">  </span>volumes<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>config-volume<span class="w">
-</span><span class="w">      </span>configMap<span class="p">:</span><span class="w">
-</span><span class="w">        </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">  </span>restartPolicy<span class="p">:</span><span class="w"> </span>Never</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dapi-test-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-container</span><span class="w">
+</span><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;cat /etc/config/special.how&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-volume</span><span class="w">
+</span><span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/config</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-volume</span><span class="w">
+</span><span class="w">      </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>pod运行后会输出以下内容：</p>
+</div><p>pod运行后会输出以下内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">very</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">very
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>警告：</strong>如果<code>/etc/config/</code>目录中有一些文件，它们将被删除</p>
-
+</div><p>**警告：**如果<code>/etc/config/</code>目录中有一些文件，它们将被删除</p>
 <p>将ConfigMap数据添加到卷中的特定路径</p>
-
 <p>Pod:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -689,41 +676,39 @@ metadata:
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>dapi-test-pod<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>test-container<span class="w">
-</span><span class="w">      </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">      </span>command<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="s2">&#34;cat /etc/config/keys/test&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="w">      </span>volumeMounts<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>config-volume<span class="w">
-</span><span class="w">        </span>mountPath<span class="p">:</span><span class="w"> </span>/etc/config<span class="w">
-</span><span class="w">  </span>volumes<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>config-volume<span class="w">
-</span><span class="w">      </span>configMap<span class="p">:</span><span class="w">
-</span><span class="w">        </span>name<span class="p">:</span><span class="w"> </span>special-config<span class="w">
-</span><span class="w">        </span>items<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>key<span class="p">:</span><span class="w"> </span>special.how<span class="w">
-</span><span class="w">          </span>path<span class="p">:</span><span class="w"> </span>keys/test<span class="w">
-</span><span class="w">  </span>restartPolicy<span class="p">:</span><span class="w"> </span>Never</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dapi-test-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-container</span><span class="w">
+</span><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="s2">&#34;cat /etc/config/keys/test&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-volume</span><span class="w">
+</span><span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/config</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-volume</span><span class="w">
+</span><span class="w">      </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">special-config</span><span class="w">
+</span><span class="w">        </span><span class="nt">items</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">special.how</span><span class="w">
+</span><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">keys/test</span><span class="w">
+</span><span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>pod运行后会输出以下内容：</p>
+</div><p>pod运行后会输出以下内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">very</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">very
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>警告：</strong>如果<code>/etc/config/</code>目录中有一些文件，它们将被删除</p>
-
+</div><p>**警告：**如果<code>/etc/config/</code>目录中有一些文件，它们将被删除</p>
 <h2 id="参考链接">参考链接</h2>
-
 <p><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">官方文档</a></p>
     </div>
 
@@ -783,10 +768,9 @@ metadata:
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-04-18 09:14:00 \x2b0800 CST',
+        id: '2020-04-18 09:14:00 \u002b0800 CST',
         title: 'Kubernetes笔记之configmap',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -798,6 +782,10 @@ metadata:
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -853,7 +841,10 @@ metadata:
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

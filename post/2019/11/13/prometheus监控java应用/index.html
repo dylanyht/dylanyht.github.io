@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Prometheus监控java应用" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/" />
-<meta property="article:published_time" content="2019-11-13T15:28:18&#43;08:00"/>
-<meta property="article:modified_time" content="2019-11-13T15:28:18&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/11/13/prometheus%E7%9B%91%E6%8E%A7java%E5%BA%94%E7%94%A8/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-11-13T15:28:18&#43;08:00" />
+<meta property="article:modified_time" content="2019-11-13T15:28:18&#43;08:00" />
 
 <meta itemprop="name" content="Prometheus监控java应用">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-11-13T15:28:18&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-11-13T15:28:18&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-13T15:28:18&#43;08:00" />
-<meta itemprop="wordCount" content="760">
-
-
-
-<meta itemprop="keywords" content="cenots,prometheus,java," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="652">
+<meta itemprop="keywords" content="cenots,prometheus,java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Prometheus监控java应用"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/prometheus/"> prometheus </a>
             </div>
-          <span class="more-meta"> 760 words </span>
+          <span class="more-meta"> 652 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,45 +150,39 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#下载jmx-exporter">下载jmx_exporter</a></li>
-<li><a href="#编写jmx-exporter配置文件">编写jmx_exporter配置文件</a></li>
-<li><a href="#配置启动参数">配置启动参数</a></li>
-<li><a href="#prometheus配置">Prometheus配置</a></li>
-<li><a href="#grafana配置">grafana配置</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#下载jmx_exporter">下载jmx_exporter</a></li>
+    <li><a href="#编写jmx_exporter配置文件">编写jmx_exporter配置文件</a></li>
+    <li><a href="#配置启动参数">配置启动参数</a></li>
+    <li><a href="#prometheus配置">Prometheus配置</a></li>
+    <li><a href="#grafana配置">grafana配置</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <blockquote>
 <p>使用jmx_exporter来监控tomcat,并推送给Prometheus。 此文档用来记录一下</p>
-
 <p>tomcat已经安装好的  不再安装</p>
-
 <p>项目地址：<a href="https://github.com/prometheus/jmx_exporter">电梯直达</a></p>
 </blockquote>
-
-<h2 id="下载jmx-exporter">下载jmx_exporter</h2>
+<h2 id="下载jmx_exporter">下载jmx_exporter</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.12.0/jmx_prometheus_javaagent-0.12.0.jar
 mkdir /usr/local/jmx 
-mv jmx_prometheus_javaagent-0.12.0.jar /usr/local/jmx/</code></pre></td></tr></table>
+mv jmx_prometheus_javaagent-0.12.0.jar /usr/local/jmx/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="编写jmx-exporter配置文件">编写jmx_exporter配置文件</h2>
+</div><h2 id="编写jmx_exporter配置文件">编写jmx_exporter配置文件</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -259,17 +257,16 @@ rules:
     host: <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
   help: Tomcat session <span class="nv">$3</span> total
   type: COUNTER
-- pattern: <span class="s2">&#34;.*&#34;</span>  <span class="c1">#让所有的jmx metrics全部暴露出来</span></code></pre></td></tr></table>
+- pattern: <span class="s2">&#34;.*&#34;</span>  <span class="c1">#让所有的jmx metrics全部暴露出来</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="配置启动参数">配置启动参数</h2>
-
+</div><h2 id="配置启动参数">配置启动参数</h2>
 <blockquote>
 <p>java应用一般两种启动方式。  一种是jar包启动方式，一种是tomcat方式</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -287,8 +284,8 @@ rules:
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># jar包方式启动</span>
-java -javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.12.0.jar<span class="o">=</span><span class="m">38081</span>:/usr/local/jmx/tomcat.yml -jar yourJar.jar
-<span class="c1"># tomcat启动 需要配置catalina.sh 我们是用catalina.sh来启动tomcat的</span>  
+java -javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.12.0.jar<span class="o">=</span>38081:/usr/local/jmx/tomcat.yml -jar yourJar.jar
+<span class="c1"># tomcat启动 需要配置catalina.sh 我们是用catalina.sh来启动tomcat的  </span>
 vim  your-tomcat/bin/catalina.sh
   <span class="c1">#加入以下内容</span>
 <span class="nv">JAVA_OPTS</span><span class="o">=</span><span class="s2">&#34;-javaagent:/usr/local/jmx/jmx_prometheus_javaagent-0.12.0.jar=38081:/usr/local/jmx/tomcat.yml&#34;</span>
@@ -300,13 +297,13 @@ cat &gt; your-tomcat/bin/setenv.sh <span class="s">&lt;&lt; EOF
 </span><span class="s">EOF</span>
 
 <span class="c1">#配置好 重启tomcat</span>
-web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标</code></pre></td></tr></table>
+web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="prometheus配置">Prometheus配置</h2>
+</div><h2 id="prometheus配置">Prometheus配置</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -315,20 +312,17 @@ web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标</code></pre></
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c">## prometheus.yml文件配置</span><span class="w">
-</span><span class="w"> </span>-<span class="w"> </span>job_name<span class="p">:</span><span class="w"> </span><span class="s1">&#39;tomcat&#39;</span><span class="w">
-</span><span class="w">    </span>static_configs<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>targets<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;172.16.7.124:38081&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">        </span>appname<span class="p">:</span><span class="w"> </span><span class="s1">&#39;tomcat&#39;</span></code></pre></td></tr></table>
+</span><span class="w"> </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;tomcat&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;172.16.7.124:38081&#39;</span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">appname</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;tomcat&#39;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="grafana配置">grafana配置</h2>
-
+</div><h2 id="grafana配置">grafana配置</h2>
 <p>关于jmx的监控，grafana官方有个模板提供<a href="https://grafana.com/grafana/dashboards/8563">电梯直达</a>，导入grafana中，稍微修改就可使用</p>
-
 <p>完成图展示：</p>
-
-<p><a href="https://imgchr.com/i/MGryc9"><img src="https://s2.ax1x.com/2019/11/13/MGryc9.md.png" alt="MGryc9.md.png" /></a></p>
+<p><a href="https://imgchr.com/i/MGryc9"><img src="https://s2.ax1x.com/2019/11/13/MGryc9.md.png" alt="MGryc9.md.png"></a></p>
     </div>
 
     <div class="post-copyright">
@@ -387,10 +381,9 @@ web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标</code></pre></
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-11-13 15:28:18 \x2b0800 CST',
+        id: '2019-11-13 15:28:18 \u002b0800 CST',
         title: 'Prometheus监控java应用',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -402,6 +395,10 @@ web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标</code></pre></
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -457,7 +454,10 @@ web访问http://&lt;your-ip&gt;:38081 即可看到监控的指标</code></pre></
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

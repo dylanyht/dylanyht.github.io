@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker安装sonarqube" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/" />
-<meta property="article:published_time" content="2020-06-03T15:20:56&#43;08:00"/>
-<meta property="article:modified_time" content="2020-06-03T15:20:56&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/06/03/docker%E5%AE%89%E8%A3%85sonarqube/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-06-03T15:20:56&#43;08:00" />
+<meta property="article:modified_time" content="2020-06-03T15:20:56&#43;08:00" />
 
 <meta itemprop="name" content="Docker安装sonarqube">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-06-03T15:20:56&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-06-03T15:20:56&#43;08:00" />
 <meta itemprop="dateModified" content="2020-06-03T15:20:56&#43;08:00" />
-<meta itemprop="wordCount" content="420">
-
-
-
-<meta itemprop="keywords" content="docker,linux,sonarqube,质量管理," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="421">
+<meta itemprop="keywords" content="docker,linux,sonarqube,质量管理," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker安装sonarqube"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86/"> 质量管理 </a>
             </div>
-          <span class="more-meta"> 420 words </span>
+          <span class="more-meta"> 421 words </span>
           <span class="more-meta"> 1 min read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,50 +150,39 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#在postgresql中创建数据库">在postgresql中创建数据库</a></li>
-</ul></li>
-<li><a href="#安装sonarqube">安装sonarqube</a>
-<ul>
-<li><a href="#安装">安装</a></li>
-<li><a href="#web端登录">web端登录</a></li>
-<li><a href="#可能遇到的问题">可能遇到的问题</a>
-<ul>
-<li><a href="#文件权限问题">文件权限问题</a></li>
-<li><a href="#虚拟内存问题">虚拟内存问题</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#在postgresql中创建数据库">在postgresql中创建数据库</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装sonarqube">安装sonarqube</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#web端登录">web端登录</a></li>
+        <li><a href="#可能遇到的问题">可能遇到的问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><a href="https://imgchr.com/i/aLXK7d"><img src="https://s1.ax1x.com/2020/08/11/aLXK7d.jpg" alt="aLXK7d.jpg" /></a></p>
-
+      <p><a href="https://imgchr.com/i/aLXK7d"><img src="https://s1.ax1x.com/2020/08/11/aLXK7d.jpg" alt="aLXK7d.jpg"></a></p>
 <blockquote>
 <p>此文档用于记录安装sonarqube的过程。使用postgresql作为外部数据库，docker安装postgresql过程可以参考<a href="https://dylanyang.top/post/2020/03/12/docker%E5%AE%89%E8%A3%85postgresql/">电梯直达</a>。</p>
 </blockquote>
-
 <h3 id="在postgresql中创建数据库">在postgresql中创建数据库</h3>
-
 <blockquote>
 <p>我这里为了方便直接在数据库连接工具中直接创建了，你也可以在命令行创建</p>
 </blockquote>
-
-<p><img src="https://s1.ax1x.com/2020/05/12/YtxJgI.png" alt="YtxJgI.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/05/12/YtxJgI.png" alt="YtxJgI.png"></p>
 <h2 id="安装sonarqube">安装sonarqube</h2>
-
 <h3 id="安装">安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -200,7 +193,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ docker run -itd --name sonar -p <span class="m">9800</span>:9000 -p <span class="m">9892</span>:9092  <span class="se">\
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ docker run -itd --name sonar -p 9800:9000 -p 9892:9092  <span class="se">\
 </span><span class="se"></span>-v /data/sonar/conf:/opt/sonarqube/conf  <span class="se">\
 </span><span class="se"></span>-v /data/sonar/data:/opt/sonarqube/data <span class="se">\
 </span><span class="se"></span>-v /data/sonar/logs:/opt/sonarqube/logs <span class="se">\
@@ -208,85 +201,76 @@
 </span><span class="se"></span>-e <span class="s2">&#34;SONARQUBE_JDBC_USERNAME=postgres&#34;</span>  <span class="se">\
 </span><span class="se"></span>-e <span class="s2">&#34;SONARQUBE_JDBC_PASSWORD=123456&#34;</span> <span class="se">\
 </span><span class="se"></span>-e <span class="s2">&#34;sonar.jdbc.url=jdbc:postgresql://172.16.xx.xx:5432/sonarqube&#34;</span> <span class="se">\
-</span><span class="se"></span>sonarqube:8.3.1-community</code></pre></td></tr></table>
+</span><span class="se"></span>sonarqube:8.3.1-community
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="web端登录">web端登录</h3>
-
+</div><h3 id="web端登录">web端登录</h3>
 <ul>
-<li>访问<a href="http://ip:9800">http://ip:9800</a></li>
+<li>访问http://ip:9800</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/05/12/YNVTRf.png" alt="YNVTRf.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/05/12/YNVTRf.png" alt="YNVTRf.png"></p>
 <ul>
 <li>登录 账号密码为：admin：admin</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/05/12/YNeJuF.png" alt="YNeJuF.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/05/12/YNeJuF.png" alt="YNeJuF.png"></p>
 <p>具体的使用后期自己研究一下</p>
-
 <h3 id="可能遇到的问题">可能遇到的问题</h3>
-
 <h4 id="文件权限问题">文件权限问题</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">2020</span>-05-12 <span class="m">07</span>:20:58,815 main ERROR Null object returned <span class="k">for</span> RollingFile in Appenders.
-<span class="m">2020</span>-05-12 <span class="m">07</span>:20:58,816 main ERROR Unable to locate appender <span class="s2">&#34;file_es&#34;</span> <span class="k">for</span> logger config <span class="s2">&#34;root&#34;</span>
-<span class="m">2020</span>.05.12 <span class="m">07</span>:20:59 WARN  app<span class="o">[][</span>o.s.a.p.AbstractManagedProcess<span class="o">]</span> Process exited with <span class="nb">exit</span> value <span class="o">[</span>es<span class="o">]</span>: <span class="m">1</span>
-<span class="m">2020</span>.05.12 <span class="m">07</span>:20:59 INFO  app<span class="o">[][</span>o.s.a.SchedulerImpl<span class="o">]</span> Process<span class="o">[</span>es<span class="o">]</span> is stopped
-<span class="m">2020</span>.05.12 <span class="m">07</span>:20:59 INFO  app<span class="o">[][</span>o.s.a.SchedulerImpl<span class="o">]</span> SonarQube is stopped</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">2020-05-12 07:20:58,815 main ERROR Null object returned <span class="k">for</span> RollingFile in Appenders.
+2020-05-12 07:20:58,816 main ERROR Unable to locate appender <span class="s2">&#34;file_es&#34;</span> <span class="k">for</span> logger config <span class="s2">&#34;root&#34;</span>
+2020.05.12 07:20:59 WARN  app<span class="o">[][</span>o.s.a.p.AbstractManagedProcess<span class="o">]</span> Process exited with <span class="nb">exit</span> value <span class="o">[</span>es<span class="o">]</span>: <span class="m">1</span>
+2020.05.12 07:20:59 INFO  app<span class="o">[][</span>o.s.a.SchedulerImpl<span class="o">]</span> Process<span class="o">[</span>es<span class="o">]</span> is stopped
+2020.05.12 07:20:59 INFO  app<span class="o">[][</span>o.s.a.SchedulerImpl<span class="o">]</span> SonarQube is stopped
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>解决：</p>
+</div><p>解决：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查询发现8.x以上的镜像里用户的UID为1000 可以将映射的文件所有者和组改为1000：1000</span>
-$ chown -R <span class="m">1000</span>:1000 data
-<span class="c1">#删除容器 在重启部署一次</span></code></pre></td></tr></table>
+$ chown -R 1000:1000 data
+<span class="c1">#删除容器 在重启部署一次</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="虚拟内存问题">虚拟内存问题</h4>
+</div><h4 id="虚拟内存问题">虚拟内存问题</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">max virtual memory areas vm.max_map_count <span class="o">[</span><span class="m">65530</span><span class="o">]</span> is too low, increase to at least <span class="o">[</span><span class="m">262144</span><span class="o">]</span> sonarqube</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">max virtual memory areas vm.max_map_count <span class="o">[</span>65530<span class="o">]</span> is too low, increase to at least <span class="o">[</span>262144<span class="o">]</span> sonarqube
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>解决：</p>
+</div><p>解决：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 在宿主机上设置</span>
-$ sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span></code></pre></td></tr></table>
+$ sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="参考链接">参考链接</h2>
-
+</div><h2 id="参考链接">参考链接</h2>
 <p><a href="https://hub.docker.com/_/sonarqube">dockerhub</a></p>
-
 <p><a href="https://github.com/SonarSource/docker-sonarqube/blob/2f7290e97a56f71603eff494db0d6b8d34ca426e/8/community/Dockerfile">github</a></p>
-
 <p><a href="https://docs.sonarqube.org/latest/setup/install-server/">官方文档</a></p>
-
 <p><a href="https://github.com/SonarSource/docker-sonarqube/issues/282">https://github.com/SonarSource/docker-sonarqube/issues/282</a></p>
     </div>
 
@@ -347,10 +331,9 @@ $ sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-06-03 15:20:56 \x2b0800 CST',
+        id: '2020-06-03 15:20:56 \u002b0800 CST',
         title: 'Docker安装sonarqube',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -362,6 +345,10 @@ $ sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -417,7 +404,10 @@ $ sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

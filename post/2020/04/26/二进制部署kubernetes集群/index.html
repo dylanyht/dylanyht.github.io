@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/04/26/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2kubernetes%E9%9B%86%E7%BE%A4/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="二进制部署Kubernetes集群" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/04/26/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2kubernetes%E9%9B%86%E7%BE%A4/" />
-<meta property="article:published_time" content="2020-04-26T17:28:16&#43;08:00"/>
-<meta property="article:modified_time" content="2020-04-26T17:28:16&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/04/26/%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2kubernetes%E9%9B%86%E7%BE%A4/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-26T17:28:16&#43;08:00" />
+<meta property="article:modified_time" content="2020-04-26T17:28:16&#43;08:00" />
 
 <meta itemprop="name" content="二进制部署Kubernetes集群">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-04-26T17:28:16&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-04-26T17:28:16&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-26T17:28:16&#43;08:00" />
-<meta itemprop="wordCount" content="9153">
-
-
-
-<meta itemprop="keywords" content="linux,kubernetes,笔记,centos," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="9159">
+<meta itemprop="keywords" content="linux,kubernetes,笔记,centos," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="二进制部署Kubernetes集群"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> Kubernetes </a>
             </div>
-          <span class="more-meta"> 9153 words </span>
+          <span class="more-meta"> 9159 words </span>
           <span class="more-meta"> 19 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,150 +150,54 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#环境说明">环境说明</a>
-<ul>
-<li><a href="#节点说明">节点说明</a></li>
-<li><a href="#kubernetes相关组件简解">Kubernetes相关组件简解</a>
-<ul>
-<li><a href="#master">master</a></li>
-<li><a href="#node">node</a></li>
-</ul></li>
-<li><a href="#软件包版本">软件包版本</a></li>
-</ul></li>
-<li><a href="#系统初始化配置">系统初始化配置</a>
-<ul>
-<li><a href="#关闭防火墙及selinux">关闭防火墙及SELINUX</a></li>
-<li><a href="#关闭swap">关闭swap</a></li>
-<li><a href="#设置系统参数">设置系统参数</a></li>
-<li><a href="#创建相关目录">创建相关目录</a></li>
-<li><a href="#ssh免密设置">ssh免密设置</a></li>
-<li><a href="#安装docker">安装docker</a></li>
-</ul></li>
-<li><a href="#master部署配置">master部署配置</a>
-<ul>
-<li><a href="#安装cfssl">安装cfssl</a></li>
-<li><a href="#下载软件包">下载软件包</a></li>
-<li><a href="#创建etcd证书">创建etcd证书</a>
-<ul>
-<li><a href="#ca证书配置">ca证书配置</a>
-<ul>
-<li><a href="#ca配置">ca配置</a></li>
-<li><a href="#ca证书签名请求">ca证书签名请求</a></li>
-<li><a href="#生成ca证书和私钥">生成ca证书和私钥</a></li>
-</ul></li>
-<li><a href="#etcd证书配置">etcd证书配置</a>
-<ul>
-<li><a href="#创建etcd证书签名请求">创建etcd证书签名请求</a></li>
-<li><a href="#生成etcd证书">生成etcd证书</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#部署etcd">部署etcd</a>
-<ul>
-<li><a href="#配置软件包">配置软件包</a></li>
-<li><a href="#创建etcd的systemd-unit文件">创建etcd的systemd unit文件</a></li>
-<li><a href="#启动etcd服务">启动etcd服务</a></li>
-<li><a href="#验证服务">验证服务</a></li>
-</ul></li>
-<li><a href="#部署flannel">部署flannel</a>
-<ul>
-<li><a href="#向etcd写入集群pod网段信息">向etcd写入集群pod网段信息</a></li>
-<li><a href="#配置软件包-1">配置软件包</a></li>
-<li><a href="#创建flannel的systemd-unit文件">创建flannel的systemd unit文件</a></li>
-<li><a href="#启动flannel">启动flannel</a>
-<ul>
-<li><a href="#解决办法">解决办法</a></li>
-</ul></li>
-<li><a href="#验证flannel服务">验证flannel服务</a></li>
-<li><a href="#配置docker启动指定子网段">配置docker启动指定子网段</a></li>
-<li><a href="#重启docker">重启docker</a></li>
-<li><a href="#将flannel相关文件都拷贝到node节点">将flannel相关文件都拷贝到node节点</a></li>
-<li><a href="#验证flannel网络配置">验证flannel网络配置</a></li>
-</ul></li>
-<li><a href="#部署master相关组件">部署master相关组件</a>
-<ul>
-<li><a href="#创建kubernetes证书">创建kubernetes证书</a></li>
-<li><a href="#生成kubernetes证书和私钥">生成Kubernetes证书和私钥</a></li>
-<li><a href="#创建-tls-bootstrapping-token">创建 TLS Bootstrapping Token</a></li>
-<li><a href="#配置软件包-2">配置软件包</a></li>
-<li><a href="#创建kube-apiserver-的systemd-unit文件">创建kube-apiserver 的systemd unit文件</a></li>
-<li><a href="#启动服务">启动服务</a></li>
-<li><a href="#创建kube-controller-manager的systemd-unit文件">创建kube-controller-manager的systemd unit文件</a></li>
-<li><a href="#启动kube-controller-manager">启动kube-controller-manager</a></li>
-<li><a href="#创建kube-scheduler-的systemd-unit文件">创建kube-scheduler 的systemd unit文件</a></li>
-<li><a href="#启动kube-scheduler">启动kube-scheduler</a></li>
-<li><a href="#创建admin证书">创建admin证书</a>
-<ul>
-<li><a href="#创建admin证书签名请求">创建admin证书签名请求</a></li>
-<li><a href="#生成admin证书和私钥">生成admin证书和私钥</a></li>
-<li><a href="#创建kubectl-kubeconfig文件">创建kubectl kubeconfig文件</a></li>
-</ul></li>
-<li><a href="#验证master节点">验证master节点</a></li>
-</ul></li>
-<li><a href="#node组件配置">node组件配置</a>
-<ul>
-<li><a href="#创建kube-proxy证书">创建kube-proxy证书</a>
-<ul>
-<li><a href="#创建kube-proxy证书签名请求">创建kube-proxy证书签名请求</a></li>
-<li><a href="#生成kube-proxy证书和私钥">生成kube-proxy证书和私钥</a></li>
-</ul></li>
-<li><a href="#创建-kubelet-bootstrap-kubeconfig-文件">创建 kubelet bootstrap.kubeconfig 文件</a></li>
-<li><a href="#创建kubelet-kubeconfig文件">创建kubelet kubeconfig文件</a></li>
-<li><a href="#创建kube-proxy-kubeconfig文件">创建kube-proxy kubeconfig文件</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#node部署配置">node部署配置</a>
-<ul>
-<li><a href="#安装配置kubelet">安装配置kubelet</a>
-<ul>
-<li><a href="#将kubelet-bootstrap用户绑定到系统集群角色">将kubelet-bootstrap用户绑定到系统集群角色</a></li>
-<li><a href="#创建kubelet-的systemd-unit-文件">创建kubelet 的systemd unit 文件</a></li>
-<li><a href="#启动kubelet">启动kubelet</a></li>
-<li><a href="#通过kubelet的证书请求">通过kubelet的证书请求</a></li>
-</ul></li>
-<li><a href="#安装配置kube-proxy">安装配置kube-proxy</a>
-<ul>
-<li><a href="#启动kube-proxy">启动kube-proxy</a></li>
-<li><a href="#验证集群">验证集群</a></li>
-<li><a href="#配置kubectl命令补全">配置kubectl命令补全</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#扩展一">扩展一</a>
-<ul>
-<li><a href="#安装coredns">安装coredns</a>
-<ul>
-<li><a href="#coredns配置安装">coredns配置安装</a></li>
-<li><a href="#验证dns功能">验证DNS功能</a></li>
-</ul></li>
-<li><a href="#kubelet证书过期问题处理">kubelet证书过期问题处理</a>
-<ul>
-<li><a href="#添加参数">添加参数</a></li>
-<li><a href="#创建自动批准相关csr请求的clusterrole">创建自动批准相关CSR请求的ClusterRole</a></li>
-<li><a href="#重启kube-controller-manager-和-kubelet-服务">重启kube-controller-manager 和 kubelet 服务</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#扩展二">扩展二</a>
-<ul>
-<li><a href="#使用bootstrap-token完成tsl-bootstrapping">使用Bootstrap Token完成TSL Bootstrapping</a>
-<ul>
-<li><a href="#创建boostrap-token">创建Boostrap Token</a></li>
-<li><a href="#创建-bootstrap-token-secret">创建 Bootstrap Token Secret</a></li>
-<li><a href="#创建-clusterrole-和-clusterrolebinding">创建 ClusterRole 和 ClusterRoleBinding</a>
-<ul>
-<li><a href="#创建clusterrole">创建ClusterRole</a></li>
-<li><a href="#创建对应的clusterrolebinding">创建对应的ClusterRoleBinding</a></li>
-</ul></li>
-<li><a href="#调整kube-controller-manager">调整kube-controller-manager</a></li>
-<li><a href="#生成boostrap-kubeconfig">生成boostrap.kubeconfig</a></li>
-<li><a href="#生成kubelet-kubeconfig">生成kubelet.kubeconfig</a></li>
-<li><a href="#启动kube-controller-manager-kubelet">启动kube-controller-manager，kubelet</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#环境说明">环境说明</a>
+      <ul>
+        <li><a href="#节点说明">节点说明</a></li>
+        <li><a href="#kubernetes相关组件简解">Kubernetes相关组件简解</a></li>
+        <li><a href="#软件包版本">软件包版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#系统初始化配置">系统初始化配置</a>
+      <ul>
+        <li><a href="#关闭防火墙及selinux">关闭防火墙及SELINUX</a></li>
+        <li><a href="#关闭swap">关闭swap</a></li>
+        <li><a href="#设置系统参数">设置系统参数</a></li>
+        <li><a href="#创建相关目录">创建相关目录</a></li>
+        <li><a href="#ssh免密设置">ssh免密设置</a></li>
+        <li><a href="#安装docker">安装docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#master部署配置">master部署配置</a>
+      <ul>
+        <li><a href="#安装cfssl">安装cfssl</a></li>
+        <li><a href="#下载软件包">下载软件包</a></li>
+        <li><a href="#创建etcd证书">创建etcd证书</a></li>
+        <li><a href="#部署etcd">部署etcd</a></li>
+        <li><a href="#部署flannel">部署flannel</a></li>
+        <li><a href="#部署master相关组件">部署master相关组件</a></li>
+        <li><a href="#node组件配置">node组件配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#node部署配置">node部署配置</a>
+      <ul>
+        <li><a href="#安装配置kubelet">安装配置kubelet</a></li>
+        <li><a href="#安装配置kube-proxy">安装配置kube-proxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#扩展一">扩展一</a>
+      <ul>
+        <li><a href="#安装coredns">安装coredns</a></li>
+        <li><a href="#kubelet证书过期问题处理">kubelet证书过期问题处理</a></li>
+      </ul>
+    </li>
+    <li><a href="#扩展二">扩展二</a>
+      <ul>
+        <li><a href="#使用bootstrap-token完成tsl-bootstrapping">使用Bootstrap Token完成TSL Bootstrapping</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -297,17 +205,12 @@
       <blockquote>
 <p>简单记录一下k8s安装过程，使用TLS Bootstrapping token鉴权。node Authorizer鉴权后期再写</p>
 </blockquote>
-
-<p><img src="https://s1.ax1x.com/2020/04/26/J6rJgI.jpg" alt="J6rJgI.jpg" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/04/26/J6rJgI.jpg" alt="J6rJgI.jpg"></p>
 <h2 id="环境说明">环境说明</h2>
-
 <blockquote>
 <p>由于条件有限，机器只有两台。一台master，一台node。</p>
 </blockquote>
-
 <h3 id="节点说明">节点说明</h3>
-
 <table>
 <thead>
 <tr>
@@ -317,7 +220,6 @@
 <th>系统版本</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>k8s-77-167</td>
@@ -325,7 +227,6 @@
 <td>master</td>
 <td>Centos7.7</td>
 </tr>
-
 <tr>
 <td>k8s-77-153</td>
 <td>172.16.77.153</td>
@@ -334,35 +235,26 @@
 </tr>
 </tbody>
 </table>
-
 <h3 id="kubernetes相关组件简解">Kubernetes相关组件简解</h3>
-
 <h4 id="master">master</h4>
-
 <ul>
 <li><strong>API Server</strong> 主节点上负责提供 Kubernetes API 服务的组件；它是 Kubernetes 控制面的前端</li>
 <li><strong>Controller Manager</strong> 控制管理器。它运行着所有处理集群日常任务的控制器。包括了节点控制器、副本控制器、端点（endpoint）控制器以及服务账户和令牌控制器。每一个控制器都独立工作以维护其所需的状态。</li>
 <li><strong>Schedule</strong> 调度器。主节点上的组件，该组件监视那些新创建的未指定运行节点的 Pod，并选择节点让 Pod 在上面运行。</li>
 </ul>
-
 <h4 id="node">node</h4>
-
 <ul>
-<li><strong>Kubelet</strong> 一个在集群中每个节点上运行的代理。它保证容器都运行在 Pod 中。</li>
-</ul>
-
+<li>
+<p><strong>Kubelet</strong> 一个在集群中每个节点上运行的代理。它保证容器都运行在 Pod 中。</p>
 <p>kubelet 接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。kubelet 不会管理不是由 Kubernetes 创建的容器。</p>
-
-<ul>
-<li><strong>Kube-proxy</strong>  是集群中每个节点上运行的网络代理,实现 Kubernetes <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> 概念的一部分。</li>
-</ul>
-
+</li>
+<li>
+<p><strong>Kube-proxy</strong>  是集群中每个节点上运行的网络代理,实现 Kubernetes <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> 概念的一部分。</p>
 <p>kube-proxy 维护节点上的网络规则。这些网络规则允许从集群内部或外部的网络会话与 Pod 进行网络通信。</p>
-
 <p>如果操作系统提供了数据包过滤层并可用的话，kube-proxy会通过它来实现网络规则。否则，kube-proxy 仅转发流量本身。</p>
-
+</li>
+</ul>
 <h3 id="软件包版本">软件包版本</h3>
-
 <table>
 <thead>
 <tr>
@@ -370,40 +262,33 @@
 <th>地址</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>kubernetes-server-linux-amd64.tar.gz</td>
 <td><a href="https://dl.k8s.io/v1.17.5/kubernetes-server-linux-amd64.tar.gz">https://dl.k8s.io/v1.17.5/kubernetes-server-linux-amd64.tar.gz</a></td>
 </tr>
-
 <tr>
 <td>kubernetes-node-linux-amd64.tar.gz</td>
 <td><a href="https://dl.k8s.io/v1.17.5/kubernetes-node-linux-amd64.tar.gz">https://dl.k8s.io/v1.17.5/kubernetes-node-linux-amd64.tar.gz</a></td>
 </tr>
-
 <tr>
 <td>flannel-v0.12.0-linux-amd64.tar.gz</td>
 <td><a href="https://github.com/coreos/flannel/releases/download/v0.12.0/flannel-v0.12.0-linux-amd64.tar.gz">https://github.com/coreos/flannel/releases/download/v0.12.0/flannel-v0.12.0-linux-amd64.tar.gz</a></td>
 </tr>
-
 <tr>
 <td>etcd-v3.4.7-linux-amd64.tar.gz</td>
 <td><a href="https://github.com/etcd-io/etcd/releases/download/v3.4.7/etcd-v3.4.7-linux-amd64.tar.gz">https://github.com/etcd-io/etcd/releases/download/v3.4.7/etcd-v3.4.7-linux-amd64.tar.gz</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="系统初始化配置">系统初始化配置</h2>
-
 <blockquote>
 <p>以下操作需要在所有节点都进行一遍</p>
 </blockquote>
-
 <h3 id="关闭防火墙及selinux">关闭防火墙及SELINUX</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -412,24 +297,24 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ systemctl stop firewalld <span class="o">&amp;&amp;</span> systemctl disable firewalld
 $ setenforce <span class="m">0</span>
 $ vim /etc/selinux/config
-   <span class="nv">SELINUX</span><span class="o">=</span>disabled</code></pre></td></tr></table>
+   <span class="nv">SELINUX</span><span class="o">=</span>disabled
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="关闭swap">关闭swap</h3>
+</div><h3 id="关闭swap">关闭swap</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ swapoff -a 
-$ sed -i <span class="s1">&#39;/ swap / s/^\(.*\)$/#\1/g&#39;</span> /etc/fstab</code></pre></td></tr></table>
+$ sed -i <span class="s1">&#39;/ swap / s/^\(.*\)$/#\1/g&#39;</span> /etc/fstab
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="设置系统参数">设置系统参数</h3>
+</div><h3 id="设置系统参数">设置系统参数</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -442,6 +327,7 @@ $ sed -i <span class="s1">&#39;/ swap / s/^\(.*\)$/#\1/g&#39;</span> /etc/fstab<
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ cat &gt; /etc/sysctl.d/kubernetes.conf <span class="s">&lt;&lt;EOF
@@ -456,13 +342,14 @@ $ sed -i <span class="s1">&#39;/ swap / s/^\(.*\)$/#\1/g&#39;</span> /etc/fstab<
 </span><span class="s">net.ipv6.conf.all.disable_ipv6=1
 </span><span class="s">EOF</span>
 
-$ sysctl -p  /etc/sysctl.d/kubernetes.conf </code></pre></td></tr></table>
+$ sysctl -p  /etc/sysctl.d/kubernetes.conf 
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建相关目录">创建相关目录</h3>
+</div><h3 id="创建相关目录">创建相关目录</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -475,24 +362,24 @@ $ mkdir -p /opt/k8s/<span class="o">{</span>install,ssl_config<span class="o">}<
 
 <span class="c1">#创建安装目录</span>
 $ mkdir -p /etc/etcd/<span class="o">{</span>config,ssl<span class="o">}</span>
-$ mkdir -p /etc/kubernetes/<span class="o">{</span>config,ssl<span class="o">}</span></code></pre></td></tr></table>
+$ mkdir -p /etc/kubernetes/<span class="o">{</span>config,ssl<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="ssh免密设置">ssh免密设置</h3>
+</div><h3 id="ssh免密设置">ssh免密设置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ ssh-keygen -t rsa
-$ ssh-copy-id <span class="m">172</span>.16.77.153</code></pre></td></tr></table>
+$ ssh-copy-id 172.16.77.153
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="安装docker">安装docker</h3>
+</div><h3 id="安装docker">安装docker</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -537,15 +424,14 @@ $ yum list docker-ce --showduplicates <span class="p">|</span> sort -r
 <span class="c1"># 安装版本 版本：18.09.6</span>
 $ yum install docker-ce-18.09.6 docker-ce-cli-18.09.6 containerd.io -y
 <span class="c1"># 启动docker</span>
-$ systemctl start docker <span class="o">&amp;&amp;</span> systemctl <span class="nb">enable</span> docker</code></pre></td></tr></table>
+$ systemctl start docker <span class="o">&amp;&amp;</span> systemctl <span class="nb">enable</span> docker
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="master部署配置">master部署配置</h2>
-
+</div><h2 id="master部署配置">master部署配置</h2>
 <h3 id="安装cfssl">安装cfssl</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -560,13 +446,13 @@ $ wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64
 $ chmod +x cfssl_linux-amd64 cfssljson_linux-amd64 cfssl-certinfo_linux-amd64
 $ mv cfssl_linux-amd64 /usr/local/bin/cfssl
 $ mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
-$ mv cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo</code></pre></td></tr></table>
+$ mv cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="下载软件包">下载软件包</h3>
+</div><h3 id="下载软件包">下载软件包</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -579,21 +465,18 @@ $ wget --timestamping <span class="se">\
 </span><span class="se"></span> https://github.com/etcd-io/etcd/releases/download/v3.4.7/etcd-v3.4.7-linux-amd64.tar.gz <span class="se">\
 </span><span class="se"></span> https://github.com/coreos/flannel/releases/download/v0.12.0/flannel-v0.12.0-linux-amd64.tar.gz <span class="se">\
 </span><span class="se"></span> https://dl.k8s.io/v1.17.5/kubernetes-server-linux-amd64.tar.gz <span class="se">\
-</span><span class="se"></span> https://dl.k8s.io/v1.17.5/kubernetes-node-linux-amd64.tar.gz</code></pre></td></tr></table>
+</span><span class="se"></span> https://dl.k8s.io/v1.17.5/kubernetes-node-linux-amd64.tar.gz
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建etcd证书">创建etcd证书</h3>
-
+</div><h3 id="创建etcd证书">创建etcd证书</h3>
 <blockquote>
 <p>这里Kubernetes组件和etcd使用一个CA证书，也可以单独创建CA证书</p>
 </blockquote>
-
 <h4 id="ca证书配置">ca证书配置</h4>
-
 <h5 id="ca配置">ca配置</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -636,20 +519,19 @@ $ cat <span class="s">&lt;&lt; EOF | tee ca-config.json
 </span><span class="s">    }
 </span><span class="s">  }
 </span><span class="s">}
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>config.json</code>：可以定义多个profiles，分别指定不同的过期时间、使用场景等参数；后续在签名证书时使用某个profile；</li>
 <li><code>signing</code>: 表示该证书可用于签名其它证书；生成的ca.pem 证书中<code>CA=TRUE</code>；</li>
 <li><code>server auth</code>: 表示client 可以用该CA 对server 提供的证书进行校验；</li>
 <li><code>client auth</code>: 表示server 可以用该CA 对client 提供的证书进行验证。</li>
 </ul>
-
 <h5 id="ca证书签名请求">ca证书签名请求</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -692,29 +574,27 @@ $ cat <span class="s">&lt;&lt; EOF | tee ca-config.json
 </span><span class="s">       &#34;expiry&#34;: &#34;876000h&#34;
 </span><span class="s">    }
 </span><span class="s">}
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>CN</code>: <code>Common Name</code>，kube-apiserver 从证书中提取该字段作为请求的用户名(User Name)；浏览器使用该字段验证网站是否合法；</li>
 <li><code>O</code>: <code>Organization</code>，kube-apiserver 从证书中提取该字段作为请求用户所属的组(Group)；</li>
 </ul>
-
 <h5 id="生成ca证书和私钥">生成ca证书和私钥</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="etcd证书配置">etcd证书配置</h4>
-
+</div><h4 id="etcd证书配置">etcd证书配置</h4>
 <h5 id="创建etcd证书签名请求">创建etcd证书签名请求</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -759,13 +639,13 @@ $ cat <span class="s">&lt;&lt; EOF | tee ca-config.json
 </span><span class="s">    }
 </span><span class="s">  ]
 </span><span class="s">}
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h5 id="生成etcd证书">生成etcd证书</h5>
+</div><h5 id="生成etcd证书">生成etcd证书</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -780,15 +660,14 @@ $ cat <span class="s">&lt;&lt; EOF | tee ca-config.json
 </span><span class="se"></span>  -profile<span class="o">=</span>kubernetes etcd-csr.json <span class="p">|</span> cfssljson -bare etcd
 <span class="c1">#转移证书</span>
 $ cp etcd*.pem /etc/etcd/ssl/
-$ cp ca* /etc/kubernetes/ssl/</code></pre></td></tr></table>
+$ cp ca* /etc/kubernetes/ssl/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="部署etcd">部署etcd</h3>
-
+</div><h3 id="部署etcd">部署etcd</h3>
 <h4 id="配置软件包">配置软件包</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -797,13 +676,13 @@ $ cp ca* /etc/kubernetes/ssl/</code></pre></td></tr></table>
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> /opt/k8s/install
 $ tar -zxvf etcd-v3.4.7-linux-amd64.tar.gz
 $ <span class="nb">cd</span> etcd-v3.4.7-linux-amd64/
-$ cp etcd etcdctl /usr/local/bin/</code></pre></td></tr></table>
+$ cp etcd etcdctl /usr/local/bin/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建etcd的systemd-unit文件">创建etcd的systemd unit文件</h4>
+</div><h4 id="创建etcd的systemd-unit文件">创建etcd的systemd unit文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -876,18 +755,17 @@ $  cat &gt; etcd.service <span class="s">&lt;&lt;EOF
 </span><span class="s">
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>指定<code>etcd</code>的工作目录和数据目录为<code>/var/lib/etcd</code>，需要在启动服务前创建这个目录；</li>
 <li><code>--initial-cluster-state</code>值为<code>new</code>时，<code>--name</code>的参数值必须位于<code>--initial-cluster</code>列表中；</li>
 </ul>
-
 <h4 id="启动etcd服务">启动etcd服务</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -898,13 +776,13 @@ $  cat &gt; etcd.service <span class="s">&lt;&lt;EOF
 $  systemctl daemon-reload
 $  systemctl <span class="nb">enable</span> etcd
 $  systemctl start etcd
-$  systemctl status etcd</code></pre></td></tr></table>
+$  systemctl status etcd
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="验证服务">验证服务</h4>
+</div><h4 id="验证服务">验证服务</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -936,20 +814,19 @@ $ etcdctl  --cacert<span class="o">=</span>/etc/kubernetes/ssl/ca.pem <span clas
 </span><span class="se"></span>  --cert<span class="o">=</span>/etc/etcd/ssl/etcd.pem <span class="se">\
 </span><span class="se"></span>  --key<span class="o">=</span>/etc/etcd/ssl/etcd-key.pem <span class="se">\
 </span><span class="se"></span>  --endpoints<span class="o">=</span><span class="s2">&#34;https://172.16.77.167:2379&#34;</span>  endpoint health
- https://172.16.77.167:2379 is healthy: successfully committed proposal: <span class="nv">took</span> <span class="o">=</span> <span class="m">7</span>.825088ms
+ https://172.16.77.167:2379 is healthy: successfully committed proposal: <span class="nv">took</span> <span class="o">=</span> 7.825088ms
 $ etcdctl  --cacert<span class="o">=</span>/etc/kubernetes/ssl/ca.pem <span class="se">\
 </span><span class="se"></span>  --cert<span class="o">=</span>/etc/etcd/ssl/etcd.pem <span class="se">\
 </span><span class="se"></span>  --key<span class="o">=</span>/etc/etcd/ssl/etcd-key.pem <span class="se">\
 </span><span class="se"></span>  --endpoints<span class="o">=</span><span class="s2">&#34;https://172.16.77.167:2379&#34;</span>  endpoint status
- https://172.16.77.167:2379, 71f7f677733ef3fa, <span class="m">3</span>.4.7, <span class="m">16</span> kB, true, false, <span class="m">4</span>, <span class="m">8</span>, <span class="m">8</span>,</code></pre></td></tr></table>
+ https://172.16.77.167:2379, 71f7f677733ef3fa, 3.4.7, <span class="m">16</span> kB, true, false, 4, 8, 8,
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="部署flannel">部署flannel</h3>
-
+</div><h3 id="部署flannel">部署flannel</h3>
 <h4 id="向etcd写入集群pod网段信息">向etcd写入集群pod网段信息</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -994,28 +871,27 @@ $ etcdctl  --cacert<span class="o">=</span>/etc/kubernetes/ssl/ca.pem <span clas
 </span><span class="se"></span>  --cert<span class="o">=</span>/etc/etcd/ssl/etcd.pem <span class="se">\
 </span><span class="se"></span>  --key<span class="o">=</span>/etc/etcd/ssl/etcd-key.pem <span class="se">\
 </span><span class="se"></span>  --endpoints<span class="o">=</span><span class="s2">&#34;https://172.16.77.167:2379&#34;</span> <span class="se">\
-</span><span class="se"></span> get  /coreos.com/network/config </code></pre></td></tr></table>
+</span><span class="se"></span> get  /coreos.com/network/config 
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>注意：写入的pod网段必须与<code>kube-controller-manager</code> 的 <code>--cluster-cidr</code> 选项值一致</strong></p>
-
+</div><p><strong>注意：写入的pod网段必须与<code>kube-controller-manager</code> 的 <code>--cluster-cidr</code> 选项值一致</strong></p>
 <h4 id="配置软件包-1">配置软件包</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> /opt/k8s/install/
 $ tar -zxvf flannel-v0.12.0-linux-amd64.tar.gz
-$ cp flanneld mk-docker-opts.sh /usr/local/bin/</code></pre></td></tr></table>
+$ cp flanneld mk-docker-opts.sh /usr/local/bin/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建flannel的systemd-unit文件">创建flannel的systemd unit文件</h4>
+</div><h4 id="创建flannel的systemd-unit文件">创建flannel的systemd unit文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1066,22 +942,20 @@ $ cp flanneld mk-docker-opts.sh /usr/local/bin/</code></pre></td></tr></table>
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
 </span><span class="s">RequiredBy=docker.service
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>mk-docker-opts.sh</code>脚本将分配给flanneld 的Pod 子网网段信息写入到<code>/run/flannel/docker</code> 文件中，后续docker 启动时使用这个文件中的参数值为 docker0 网桥</li>
-<li>flanneld 使用系统缺省路由所在的接口和其他节点通信，对于有多个网络接口的机器(内网和公网)，可以用 <code>--iface</code> 选项值指定通信接口(上面的 systemd unit 文件没指定这个选项)<br /></li>
+<li>flanneld 使用系统缺省路由所在的接口和其他节点通信，对于有多个网络接口的机器(内网和公网)，可以用 <code>--iface</code> 选项值指定通信接口(上面的 systemd unit 文件没指定这个选项)</li>
 </ul>
-
 <h4 id="启动flannel">启动flannel</h4>
-
 <blockquote>
 <p>注意：这里有个大坑</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1092,40 +966,36 @@ $ cp flanneld mk-docker-opts.sh /usr/local/bin/</code></pre></td></tr></table>
 $ systemctl daemon-reload
 $ systemctl <span class="nb">enable</span> flanneld
 $ systemctl start flanneld
-$ systemctl status flanneld</code></pre></td></tr></table>
+$ systemctl status flanneld
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>执行到这里发现flannel没有启动起来。有以下报错</p>
+</div><p>执行到这里发现flannel没有启动起来。有以下报错</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">Apr <span class="m">18</span> <span class="m">15</span>:20:45 k8s-77-167 flanneld<span class="o">[</span><span class="m">3932</span><span class="o">]</span>: E0418 <span class="m">15</span>:20:45.227344    <span class="m">3932</span> main.go:386<span class="o">]</span> Couldn<span class="err">&#39;</span>t fetch network config: client: response is invalid json. The endpoint is probably not valid etcd cluster endpoint.
-Apr <span class="m">18</span> <span class="m">15</span>:20:46 k8s-77-167 flanneld<span class="o">[</span><span class="m">3932</span><span class="o">]</span>: timed out</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">Apr <span class="m">18</span> 15:20:45 k8s-77-167 flanneld<span class="o">[</span>3932<span class="o">]</span>: E0418 15:20:45.227344    <span class="m">3932</span> main.go:386<span class="o">]</span> Couldn<span class="err">&#39;</span>t fetch network config: client: response is invalid json. The endpoint is probably not valid etcd cluster endpoint.
+Apr <span class="m">18</span> 15:20:46 k8s-77-167 flanneld<span class="o">[</span>3932<span class="o">]</span>: timed out
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查询文档发现即使是目前最新版本flannel0.12也不支持etcd v3(心里一万个***)，而etcd 3.4.x默认的是v3版本</p>
-
+</div><p>查询文档发现即使是目前最新版本flannel0.12也不支持etcd v3(心里一万个***)，而etcd 3.4.x默认的是v3版本</p>
 <h5 id="解决办法">解决办法</h5>
-
 <ul>
-<li>方法一</li>
-</ul>
-
+<li>
+<p>方法一</p>
 <p>重新安装etcd。版本选择在3.3.10 因为3.3.10默认是v2版本（只要是默认是v2版本就行）</p>
-
-<ul>
-<li>方法二</li>
-</ul>
-
+</li>
+<li>
+<p>方法二</p>
 <p>1、将etcd以api v2版本启动， 在启动参数里加上<code>--enable-v2=true</code>参数。重启etcd</p>
-
 <p>2、以v2版本重新向etcd写入集群pod网段信息。 然后再启动flannel</p>
+</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1138,13 +1008,13 @@ Apr <span class="m">18</span> <span class="m">15</span>:20:46 k8s-77-167 flannel
 </span><span class="se"></span>  --key-file<span class="o">=</span>/etc/etcd/ssl/etcd-key.pem <span class="se">\
 </span><span class="se"></span>  --endpoints<span class="o">=</span><span class="s2">&#34;https://172.16.77.167:2379&#34;</span> <span class="se">\
 </span><span class="se"></span>  <span class="nb">set</span> /coreos.com/network/config  <span class="se">\
-</span><span class="se"></span> <span class="s1">&#39;{ &#34;Network&#34;: &#34;172.18.0.0/16&#34;, &#34;Backend&#34;: {&#34;Type&#34;: &#34;vxlan&#34;}}&#39;</span></code></pre></td></tr></table>
+</span><span class="se"></span> <span class="s1">&#39;{ &#34;Network&#34;: &#34;172.18.0.0/16&#34;, &#34;Backend&#34;: {&#34;Type&#34;: &#34;vxlan&#34;}}&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="验证flannel服务">验证flannel服务</h4>
+</div><h4 id="验证flannel服务">验证flannel服务</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1203,13 +1073,13 @@ $ <span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">2</
 </span><span class="se"></span>  --endpoints<span class="o">=</span><span class="s2">&#34;https://172.16.77.167:2379&#34;</span> <span class="se">\
 </span><span class="se"></span>  get /coreos.com/network/subnets/172.18.41.0-24
   
- <span class="o">{</span><span class="s2">&#34;PublicIP&#34;</span>:<span class="s2">&#34;172.16.77.167&#34;</span>,<span class="s2">&#34;BackendType&#34;</span>:<span class="s2">&#34;vxlan&#34;</span>,<span class="s2">&#34;BackendData&#34;</span>:<span class="o">{</span><span class="s2">&#34;VtepMAC&#34;</span>:<span class="s2">&#34;5e:cc:d2:9d:09:d9&#34;</span><span class="o">}}</span></code></pre></td></tr></table>
+ <span class="o">{</span><span class="s2">&#34;PublicIP&#34;</span>:<span class="s2">&#34;172.16.77.167&#34;</span>,<span class="s2">&#34;BackendType&#34;</span>:<span class="s2">&#34;vxlan&#34;</span>,<span class="s2">&#34;BackendData&#34;</span>:<span class="o">{</span><span class="s2">&#34;VtepMAC&#34;</span>:<span class="s2">&#34;5e:cc:d2:9d:09:d9&#34;</span><span class="o">}}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="配置docker启动指定子网段">配置docker启动指定子网段</h4>
+</div><h4 id="配置docker启动指定子网段">配置docker启动指定子网段</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1276,31 +1146,30 @@ $ <span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">2</
 <span class="nv">KillMode</span><span class="o">=</span>process
 
 <span class="o">[</span>Install<span class="o">]</span>
-<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target</code></pre></td></tr></table>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>flanneld 启动时将网络配置写入到 <code>/run/flannel/docker</code> 文件中的变量 <code>DOCKER_NETWORK_OPTIONS</code>，dockerd 命令行上指定该变量值来设置 docker0 网桥参数</li>
 <li>如果指定了多个 <code>EnvironmentFile</code> 选项，则必须将 <code>/run/flannel/docker</code> 放在最后(确保 docker0 使用 flanneld 生成的 bip 参数)</li>
 </ul>
-
 <h4 id="重启docker">重启docker</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$  systemctl daemon-reload
 $  systemctl restart docker
-$  systemctl status docker</code></pre></td></tr></table>
+$  systemctl status docker
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="将flannel相关文件都拷贝到node节点">将flannel相关文件都拷贝到node节点</h4>
+</div><h4 id="将flannel相关文件都拷贝到node节点">将flannel相关文件都拷贝到node节点</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1313,23 +1182,23 @@ $  systemctl status docker</code></pre></td></tr></table>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ scp -r /etc/kubernetes/ssl <span class="m">172</span>.16.77.153:/etc/kubernetes
-$ scp -r /etc/etcd/ssl <span class="m">172</span>.16.77.153:/etc/etcd
-$ scp /usr/lib/systemd/system/docker.service <span class="m">172</span>.16.77.153:/usr/lib/systemd/system/docker.service
-$ scp /etc/systemd/system/flanneld.service <span class="m">172</span>.16.77.153:/etc/systemd/system/flanneld.service
-$ scp /usr/local/bin/<span class="o">{</span>flanneld,mk-docker-opts.sh<span class="o">}</span> <span class="m">172</span>.16.77.153:/usr/local/bin/
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ scp -r /etc/kubernetes/ssl 172.16.77.153:/etc/kubernetes
+$ scp -r /etc/etcd/ssl 172.16.77.153:/etc/etcd
+$ scp /usr/lib/systemd/system/docker.service 172.16.77.153:/usr/lib/systemd/system/docker.service
+$ scp /etc/systemd/system/flanneld.service 172.16.77.153:/etc/systemd/system/flanneld.service
+$ scp /usr/local/bin/<span class="o">{</span>flanneld,mk-docker-opts.sh<span class="o">}</span> 172.16.77.153:/usr/local/bin/
 
 <span class="c1">#node节点执行</span>
 $ systemctl daemon-reload
 $ systemctl start flanneld
 $ systemctl <span class="nb">enable</span> flanneld
-$ systemctl restart docker</code></pre></td></tr></table>
+$ systemctl restart docker
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="验证flannel网络配置">验证flannel网络配置</h4>
+</div><h4 id="验证flannel网络配置">验证flannel网络配置</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1360,21 +1229,21 @@ $ systemctl restart docker</code></pre></td></tr></table>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ ip a
-<span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
-    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
-    inet <span class="m">127</span>.0.0.1/8 scope host lo
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-<span class="m">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP group default qlen <span class="m">1000</span>
-    link/ether <span class="m">00</span>:50:56:90:be:3b brd ff:ff:ff:ff:ff:ff
-    inet <span class="m">172</span>.16.77.167/24 brd <span class="m">172</span>.16.77.255 scope global noprefixroute eth0
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP group default qlen <span class="m">1000</span>
+    link/ether 00:50:56:90:be:3b brd ff:ff:ff:ff:ff:ff
+    inet 172.16.77.167/24 brd 172.16.77.255 scope global noprefixroute eth0
        valid_lft forever preferred_lft forever
-<span class="m">3</span>: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN group default
-    link/ether <span class="m">02</span>:42:ac:c3:5b:f4 brd ff:ff:ff:ff:ff:ff
-    inet <span class="m">172</span>.18.41.1/24 brd <span class="m">172</span>.18.41.255 scope global docker0
+3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN group default
+    link/ether 02:42:ac:c3:5b:f4 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.41.1/24 brd 172.18.41.255 scope global docker0
        valid_lft forever preferred_lft forever
-<span class="m">4</span>: flannel.1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1450</span> qdisc noqueue state UNKNOWN group default
+4: flannel.1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1450</span> qdisc noqueue state UNKNOWN group default
     link/ether 5e:cc:d2:9d:09:d9 brd ff:ff:ff:ff:ff:ff
-    inet <span class="m">172</span>.18.41.0/32 scope global flannel.1
+    inet 172.18.41.0/32 scope global flannel.1
        valid_lft forever preferred_lft forever
 $ cat /run/flannel/docker
 <span class="nv">DOCKER_OPT_BIP</span><span class="o">=</span><span class="s2">&#34;--bip=172.18.41.1/24&#34;</span>
@@ -1383,22 +1252,20 @@ $ cat /run/flannel/docker
 <span class="nv">DOCKER_NETWORK_OPTIONS</span><span class="o">=</span><span class="s2">&#34; --bip=172.18.41.1/24 --ip-masq=true --mtu=1450&#34;</span>
 
 $ cat /run/flannel/subnet.env
-<span class="nv">FLANNEL_NETWORK</span><span class="o">=</span><span class="m">172</span>.18.0.0/16
-<span class="nv">FLANNEL_SUBNET</span><span class="o">=</span><span class="m">172</span>.18.41.1/24
+<span class="nv">FLANNEL_NETWORK</span><span class="o">=</span>172.18.0.0/16
+<span class="nv">FLANNEL_SUBNET</span><span class="o">=</span>172.18.41.1/24
 <span class="nv">FLANNEL_MTU</span><span class="o">=</span><span class="m">1450</span>
-<span class="nv">FLANNEL_IPMASQ</span><span class="o">=</span>false</code></pre></td></tr></table>
+<span class="nv">FLANNEL_IPMASQ</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="部署master相关组件">部署master相关组件</h3>
-
+</div><h3 id="部署master相关组件">部署master相关组件</h3>
 <h4 id="创建kubernetes证书">创建kubernetes证书</h4>
-
 <ul>
 <li>创建kube-apiserver证书签名请求</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1461,18 +1328,17 @@ $ cat &gt; kubernetes-csr.json <span class="s">&lt;&lt;EOF
 </span><span class="s">    }
 </span><span class="s">  ]
 </span><span class="s">}
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>如果 hosts 字段不为空则需要指定授权使用该证书的 <strong>IP 或域名列表</strong>，所以上面分别指定了当前部署的 master 节点主机 IP 以及apiserver 负载的内部域名</li>
 <li>还需要添加 kube-apiserver 注册的名为 <code>kubernetes</code> 的服务 IP (Service Cluster IP)，一般是 kube-apiserver <code>--service-cluster-ip-range</code> 选项值指定的网段的<strong>第一个IP</strong>，如 “10.254.0.1”</li>
 </ul>
-
 <h4 id="生成kubernetes证书和私钥">生成Kubernetes证书和私钥</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1483,13 +1349,13 @@ $ cat &gt; kubernetes-csr.json <span class="s">&lt;&lt;EOF
 </span><span class="se"></span>  -ca-key<span class="o">=</span>ca-key.pem <span class="se">\
 </span><span class="se"></span>  -config<span class="o">=</span>ca-config.json <span class="se">\
 </span><span class="se"></span>  -profile<span class="o">=</span>kubernetes kubernetes-csr.json <span class="p">|</span> cfssljson -bare kubernetes
-$ cp kubernetes*.pem /etc/kubernetes/ssl/</code></pre></td></tr></table>
+$ cp kubernetes*.pem /etc/kubernetes/ssl/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建-tls-bootstrapping-token">创建 TLS Bootstrapping Token</h4>
+</div><h4 id="创建-tls-bootstrapping-token">创建 TLS Bootstrapping Token</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1502,13 +1368,13 @@ $ cp kubernetes*.pem /etc/kubernetes/ssl/</code></pre></td></tr></table>
 
 $ vim /etc/kubernetes/config/token.csv
 794f6f841f297b6c6ec775636f73544f,kubelet-bootstrap,10001,<span class="s2">&#34;system:kubelet-bootstrap&#34;</span>
-<span class="c1"># 依次是 随机32位字符串 用户名 UID 用户组</span></code></pre></td></tr></table>
+<span class="c1"># 依次是 随机32位字符串 用户名 UID 用户组</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="配置软件包-2">配置软件包</h4>
+</div><h4 id="配置软件包-2">配置软件包</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1519,13 +1385,13 @@ $ vim /etc/kubernetes/config/token.csv
 $ tar -zxvf kubernetes-server-linux-amd64.tar.gz
 $ <span class="nb">cd</span> kubernetes/server/bin
 $ cp kube-apiserver kube-controller-manager kubectl kubelet kube-proxy kube-scheduler /usr/local/bin/
-$ scp kubectl kubelet kube-proxy <span class="m">172</span>.16.77.153:/usr/local/bin/ </code></pre></td></tr></table>
+$ scp kubectl kubelet kube-proxy 172.16.77.153:/usr/local/bin/ 
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建kube-apiserver-的systemd-unit文件">创建kube-apiserver 的systemd unit文件</h4>
+</div><h4 id="创建kube-apiserver-的systemd-unit文件">创建kube-apiserver 的systemd unit文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1614,17 +1480,16 @@ $ scp kubectl kubelet kube-proxy <span class="m">172</span>.16.77.153:/usr/local
 </span><span class="s">
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>--service-cluster-ip-range</code> 指定 Service Cluster IP 地址段，该地址段不能路由可达</li>
 </ul>
-
 <h4 id="启动服务">启动服务</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1635,13 +1500,13 @@ $ scp kubectl kubelet kube-proxy <span class="m">172</span>.16.77.153:/usr/local
 $  systemctl daemon-reload
 $  systemctl <span class="nb">enable</span> kube-apiserver
 $  systemctl start kube-apiserver
-$  systemctl status kube-apiserver</code></pre></td></tr></table>
+$  systemctl status kube-apiserver
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建kube-controller-manager的systemd-unit文件">创建kube-controller-manager的systemd unit文件</h4>
+</div><h4 id="创建kube-controller-manager的systemd-unit文件">创建kube-controller-manager的systemd unit文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1692,27 +1557,33 @@ $  systemctl status kube-apiserver</code></pre></td></tr></table>
 </span><span class="s">
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li><p><code>--address</code> 值必须为 <code>127.0.0.1</code>，因为当前 kube-apiserver 期望 scheduler 和 controller-manager 在同一台机器</p></li>
-
-<li><p><code>--cluster-cidr</code> 指定 Cluster 中 Pod 的 CIDR 范围，该网段在各 Node 间必须路由可达(flanneld保证)</p></li>
-
-<li><p><code>--service-cluster-ip-range</code> 参数指定 Cluster 中 Service 的CIDR范围，该网络在各 Node 间必须路由不可达，必须和 kube-apiserver 中的参数一致</p></li>
-
-<li><p><code>--cluster-signing-*</code> 指定的证书和私钥文件用来签名为 TLS BootStrap 创建的证书和私钥</p></li>
-
-<li><p><code>--root-ca-file</code> 用来对 kube-apiserver 证书进行校验，<strong>指定该参数后，才会在Pod 容器的 ServiceAccount 中放置该 CA 证书文件</strong></p></li>
-
-<li><p><code>--leader-elect=true</code> 部署多台机器组成的 master 集群时选举产生一处于工作状态的 <code>kube-controller-manager</code> 进程</p></li>
+</div><ul>
+<li>
+<p><code>--address</code> 值必须为 <code>127.0.0.1</code>，因为当前 kube-apiserver 期望 scheduler 和 controller-manager 在同一台机器</p>
+</li>
+<li>
+<p><code>--cluster-cidr</code> 指定 Cluster 中 Pod 的 CIDR 范围，该网段在各 Node 间必须路由可达(flanneld保证)</p>
+</li>
+<li>
+<p><code>--service-cluster-ip-range</code> 参数指定 Cluster 中 Service 的CIDR范围，该网络在各 Node 间必须路由不可达，必须和 kube-apiserver 中的参数一致</p>
+</li>
+<li>
+<p><code>--cluster-signing-*</code> 指定的证书和私钥文件用来签名为 TLS BootStrap 创建的证书和私钥</p>
+</li>
+<li>
+<p><code>--root-ca-file</code> 用来对 kube-apiserver 证书进行校验，<strong>指定该参数后，才会在Pod 容器的 ServiceAccount 中放置该 CA 证书文件</strong></p>
+</li>
+<li>
+<p><code>--leader-elect=true</code> 部署多台机器组成的 master 集群时选举产生一处于工作状态的 <code>kube-controller-manager</code> 进程</p>
+</li>
 </ul>
-
 <h4 id="启动kube-controller-manager">启动kube-controller-manager</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1723,13 +1594,13 @@ $  systemctl status kube-apiserver</code></pre></td></tr></table>
 $  systemctl daemon-reload
 $  systemctl <span class="nb">enable</span> kube-controller-manager
 $  systemctl start kube-controller-manager
-$  systemctl status kube-controller-manager</code></pre></td></tr></table>
+$  systemctl status kube-controller-manager
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建kube-scheduler-的systemd-unit文件">创建kube-scheduler 的systemd unit文件</h4>
+</div><h4 id="创建kube-scheduler-的systemd-unit文件">创建kube-scheduler 的systemd unit文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1764,13 +1635,13 @@ $  systemctl status kube-controller-manager</code></pre></td></tr></table>
 </span><span class="s">
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="启动kube-scheduler">启动kube-scheduler</h4>
+</div><h4 id="启动kube-scheduler">启动kube-scheduler</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1781,15 +1652,14 @@ $  systemctl status kube-controller-manager</code></pre></td></tr></table>
 $  systemctl daemon-reload
 $  systemctl <span class="nb">enable</span> kube-scheduler
 $  systemctl start kube-scheduler
-$  systemctl status kube-scheduler</code></pre></td></tr></table>
+$  systemctl status kube-scheduler
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建admin证书">创建admin证书</h4>
-
+</div><h4 id="创建admin证书">创建admin证书</h4>
 <h5 id="创建admin证书签名请求">创建admin证书签名请求</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1830,17 +1700,16 @@ $ cat &gt; admin-csr.json <span class="s">&lt;&lt;EOF
 </span><span class="s">    }
 </span><span class="s">  ]
 </span><span class="s">}
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>admin.pem</code>证书O 字段值为<code>system:masters</code>，<code>kube-apiserver</code> 预定义的 RoleBinding <code>cluster-admin</code> 将 Group <code>system:masters</code> 与 Role <code>cluster-admin</code> 绑定，该 Role 授予了调用<code>kube-apiserver</code> 相关 API 的权限</li>
 </ul>
-
 <h5 id="生成admin证书和私钥">生成admin证书和私钥</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1851,13 +1720,13 @@ $ cat &gt; admin-csr.json <span class="s">&lt;&lt;EOF
 </span><span class="se"></span>  -ca-key<span class="o">=</span>ca-key.pem <span class="se">\
 </span><span class="se"></span>  -config<span class="o">=</span>ca-config.json <span class="se">\
 </span><span class="se"></span>  -profile<span class="o">=</span>kubernetes admin-csr.json <span class="p">|</span> cfssljson -bare admin
-$ cp admin*.pem /etc/kubernetes/ssl/</code></pre></td></tr></table>
+$ cp admin*.pem /etc/kubernetes/ssl/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h5 id="创建kubectl-kubeconfig文件">创建kubectl kubeconfig文件</h5>
+</div><h5 id="创建kubectl-kubeconfig文件">创建kubectl kubeconfig文件</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1908,13 +1777,13 @@ $ kubectl config use-context default --kubeconfig<span class="o">=</span>admin.c
 <span class="c1">### 注意如果上面的所有命令都不带--kubeconfig=admin.config的话，生成的kubeconfig会被直接保存为~/.kube/config</span>
 <span class="c1"># 转移kubeconfig文件 也要将此文件拷贝到运行了kubectl命令的机器的~/.kube/目录中去</span>
 $ mkdir ~/.kube
-$ cp admin.config /root/.kube/config</code></pre></td></tr></table>
+$ cp admin.config /root/.kube/config
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="验证master节点">验证master节点</h4>
+</div><h4 id="验证master节点">验证master节点</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1925,21 +1794,18 @@ $ cp admin.config /root/.kube/config</code></pre></td></tr></table>
 NAME                 STATUS    MESSAGE             ERROR
 scheduler            Healthy   ok
 controller-manager   Healthy   ok
-etcd-0               Healthy   <span class="o">{</span><span class="s2">&#34;health&#34;</span>:<span class="s2">&#34;true&#34;</span><span class="o">}</span></code></pre></td></tr></table>
+etcd-0               Healthy   <span class="o">{</span><span class="s2">&#34;health&#34;</span>:<span class="s2">&#34;true&#34;</span><span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="node组件配置">node组件配置</h3>
-
+</div><h3 id="node组件配置">node组件配置</h3>
 <blockquote>
 <p>由于只在master上安装cfssl。所以node节点的相关证书、config文件先在master生成，然后在拷贝到node上</p>
 </blockquote>
-
 <h4 id="创建kube-proxy证书">创建kube-proxy证书</h4>
-
 <h5 id="创建kube-proxy证书签名请求">创建kube-proxy证书签名请求</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1980,29 +1846,28 @@ $ cat <span class="s">&lt;&lt; EOF | tee kube-proxy-csr.json
 </span><span class="s">    }
 </span><span class="s">  ]
 </span><span class="s">}
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>kube-apiserver</code> 预定义的 RoleBinding <code>system:node-proxier</code> 将User <code>system:kube-proxy</code> 与 Role <code>system:node-proxier</code>绑定，该 Role 授予了调用 <code>kube-apiserver</code> Proxy 相关 API 的权限</li>
 <li>CN 指定该证书的 User 为 <code>system:kube-proxy</code></li>
 </ul>
-
 <h5 id="生成kube-proxy证书和私钥">生成kube-proxy证书和私钥</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>kubernetes kube-proxy-csr.json <span class="p">|</span> cfssljson -bare kube-proxy 
-$ scp kube-proxy*.pem <span class="m">172</span>.16.77.153:/etc/kubernetes/ssl/</code></pre></td></tr></table>
+$ scp kube-proxy*.pem 172.16.77.153:/etc/kubernetes/ssl/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建-kubelet-bootstrap-kubeconfig-文件">创建 kubelet bootstrap.kubeconfig 文件</h4>
+</div><h4 id="创建-kubelet-bootstrapkubeconfig-文件">创建 kubelet bootstrap.kubeconfig 文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2047,13 +1912,13 @@ $ kubectl config set-context default <span class="se">\
 $ kubectl config use-context default --kubeconfig<span class="o">=</span>bootstrap.kubeconfig
 
 <span class="c1">#转移bootstrap.kubeconfig文件</span>
-$ scp bootstrap.kubeconfig <span class="m">172</span>.16.77.153:/etc/kubernetes/config/</code></pre></td></tr></table>
+$ scp bootstrap.kubeconfig 172.16.77.153:/etc/kubernetes/config/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建kubelet-kubeconfig文件">创建kubelet kubeconfig文件</h4>
+</div><h4 id="创建kubelet-kubeconfig文件">创建kubelet kubeconfig文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2094,13 +1959,13 @@ $ kubectl config set-context default <span class="se">\
 $ kubectl config use-context default --kubeconfig<span class="o">=</span>kubelet.kubeconfig
 
 <span class="c1">#转移kubelet.kubeconfig文件</span>
-$ scp kubelet.kubeconfig <span class="m">172</span>.16.77.153:/etc/kubernetes/config/</code></pre></td></tr></table>
+$ scp kubelet.kubeconfig 172.16.77.153:/etc/kubernetes/config/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建kube-proxy-kubeconfig文件">创建kube-proxy kubeconfig文件</h4>
+</div><h4 id="创建kube-proxy-kubeconfig文件">创建kube-proxy kubeconfig文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2145,26 +2010,24 @@ $ kubectl config set-context default <span class="se">\
 $ kubectl config use-context default --kubeconfig<span class="o">=</span>kube-proxy.kubeconfig
 
 <span class="c1">#转移kube-proxy.kubeconfig文件</span>
-$ scp kube-proxy.kubeconfig <span class="m">172</span>.16.77.153:/etc/kubernetes/config/</code></pre></td></tr></table>
+$ scp kube-proxy.kubeconfig 172.16.77.153:/etc/kubernetes/config/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="node部署配置">node部署配置</h2>
-
+</div><h2 id="node部署配置">node部署配置</h2>
 <h3 id="安装配置kubelet">安装配置kubelet</h3>
-
 <h4 id="将kubelet-bootstrap用户绑定到系统集群角色">将kubelet-bootstrap用户绑定到系统集群角色</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding kubelet-bootstrap --clusterrole<span class="o">=</span>system:node-bootstrapper --user<span class="o">=</span>kubelet-bootstrap</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding kubelet-bootstrap --clusterrole<span class="o">=</span>system:node-bootstrapper --user<span class="o">=</span>kubelet-bootstrap
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建kubelet-的systemd-unit-文件">创建kubelet 的systemd unit 文件</h4>
+</div><h4 id="创建kubelet-的systemd-unit-文件">创建kubelet 的systemd unit 文件</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2227,10 +2090,10 @@ $ cat &gt; kubelet.service <span class="s">&lt;&lt;EOF
 </span><span class="s">
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>--cgroup-driver</code>参数，kubelet 用来维护主机的的 cgroups 的，默认是<code>cgroupfs</code>，但是这个地方的值需要你根据docker 的配置来确定（<code>docker info |grep cgroup</code>）</li>
 <li><code>-address</code> 不能设置为 <code>127.0.0.1</code>，否则后续 Pods 访问 kubelet 的 API 接口时会失败，因为 Pods 访问的 <code>127.0.0.1</code>指向自己而不是 kubelet</li>
 <li>如果设置了 <code>--hostname-override</code> 选项，则 <code>kube-proxy</code> 也需要设置该选项，否则会出现找不到 Node 的情况</li>
@@ -2239,11 +2102,10 @@ $ cat &gt; kubelet.service <span class="s">&lt;&lt;EOF
 <li>建议在 <code>--kubeconfig</code> 配置文件中指定 <code>kube-apiserver</code> 地址，如果未指定 <code>--api-servers</code> 选项，则必须指定 <code>--require-kubeconfig</code> 选项后才从配置文件中读取 kue-apiserver 的地址，否则 kubelet 启动后将找不到 kube-apiserver (日志中提示未找到 API Server），<code>kubectl get nodes</code> 不会返回对应的 Node 信息</li>
 <li><code>--cluster-dns</code> 指定 kubedns 的 Service IP(可以先分配，后续创建 kubedns 服务时指定该 IP)，<code>--cluster-domain</code> 指定域名后缀，这两个参数同时指定后才会生效</li>
 </ul>
-
 <h4 id="启动kubelet">启动kubelet</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2254,13 +2116,13 @@ $ cat &gt; kubelet.service <span class="s">&lt;&lt;EOF
 $ systemctl daemon-reload
 $ systemctl <span class="nb">enable</span> kubelet
 $ systemctl start kubelet
-$ systemctl status kubelet</code></pre></td></tr></table>
+$ systemctl status kubelet
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="通过kubelet的证书请求">通过kubelet的证书请求</h4>
+</div><h4 id="通过kubelet的证书请求">通过kubelet的证书请求</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2277,13 +2139,13 @@ $ kubectl certificate approve node-csr-akY5FFofACgSYjgh-5q-Yk9PHrMK53y6duZLy8-Xj
 certificatesigningrequest.certificates.k8s.io/node-csr-akY5FFofACgSYjgh-5q-Yk9PHrMK53y6duZLy8-XjfU approved
 $ kubectl get csr
 NAME                                                   AGE    REQUESTOR           CONDITION
-node-csr-akY5FFofACgSYjgh-5q-Yk9PHrMK53y6duZLy8-XjfU   2m6s   kubelet-bootstrap   Approved,Issued</code></pre></td></tr></table>
+node-csr-akY5FFofACgSYjgh-5q-Yk9PHrMK53y6duZLy8-XjfU   2m6s   kubelet-bootstrap   Approved,Issued
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="安装配置kube-proxy">安装配置kube-proxy</h3>
+</div><h3 id="安装配置kube-proxy">安装配置kube-proxy</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2330,19 +2192,18 @@ $  cat &gt; kube-proxy.service <span class="s">&lt;&lt;EOF
 </span><span class="s">
 </span><span class="s">[Install]
 </span><span class="s">WantedBy=multi-user.target
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li><code>--hostname-override</code> 参数值必须与 kubelet 的值一致，否则 kube-proxy 启动后会找不到该 Node，从而不会创建任何 iptables 规则</li>
 <li><code>--cluster-cidr</code> 必须与 kube-apiserver 的 <code>--service-cluster-ip-range</code> 选项值一致</li>
 <li>kube-proxy 根据 <code>--cluster-cidr</code> 判断集群内部和外部流量，指定 <code>--cluster-cidr</code> 或 <code>--masquerade-all</code> 选项后 kube-proxy 才会对访问 Service IP 的请求做 SNAT</li>
 </ul>
-
 <h4 id="启动kube-proxy">启动kube-proxy</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2353,17 +2214,16 @@ $  cat &gt; kube-proxy.service <span class="s">&lt;&lt;EOF
 $ systemctl daemon-reload
 $ systemctl <span class="nb">enable</span> kube-proxy
 $ systemctl start kube-proxy
-$ systemctl status kube-proxy</code></pre></td></tr></table>
+$ systemctl status kube-proxy
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="验证集群">验证集群</h4>
-
+</div><h4 id="验证集群">验证集群</h4>
 <ul>
 <li>nginx-deployment.yaml</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2385,34 +2245,34 @@ $ systemctl status kube-proxy</code></pre></td></tr></table>
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Deployment<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>nginx-deployment<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
-</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">
-</span><span class="w">      </span>app<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">  </span>replicas<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span><span class="w">  </span>template<span class="p">:</span><span class="w">
-</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">        </span>app<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
-</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">        </span>image<span class="p">:</span><span class="w"> </span>nginx<span class="p">:</span><span class="m">1.15</span>.<span class="m">1</span><span class="w">
-</span><span class="w">        </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>containerPort<span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span>nginx</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:1.15.1</span><span class="w">
+</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>nginx-svc.yaml</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2441,28 +2301,28 @@ spec:
     port: <span class="m">80</span>
     targetPort: <span class="m">80</span>
     name: nginx
-  type: NodePort</code></pre></td></tr></table>
+  type: NodePort
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>创建</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f nginx-deployment.yaml
-$ kubectl apply -f nginx-svc.yaml</code></pre></td></tr></table>
+$ kubectl apply -f nginx-svc.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2473,42 +2333,37 @@ $ kubectl apply -f nginx-svc.yaml</code></pre></td></tr></table>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get svc,pods
 NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
-service/kubernetes      ClusterIP   <span class="m">10</span>.254.0.1      &lt;none&gt;        <span class="m">443</span>/TCP        121m
-service/nginx-service   NodePort    <span class="m">10</span>.254.109.96   &lt;none&gt;        <span class="m">80</span>:33381/TCP   9m14s
+service/kubernetes      ClusterIP   10.254.0.1      &lt;none&gt;        443/TCP        121m
+service/nginx-service   NodePort    10.254.109.96   &lt;none&gt;        80:33381/TCP   9m14s
 
 NAME                                    READY   STATUS    RESTARTS   AGE
-pod/nginx-deployment-68884fc8f8-z9wkp   <span class="m">1</span>/1     Running   <span class="m">0</span>          9m21s</code></pre></td></tr></table>
+pod/nginx-deployment-68884fc8f8-z9wkp   1/1     Running   <span class="m">0</span>          9m21s
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>访问<a href="http://172.16.77.153:33381/，正常就可以访问到nginx欢迎页面">http://172.16.77.153:33381/，正常就可以访问到nginx欢迎页面</a></p>
-
+</div><p>访问http://172.16.77.153:33381/，正常就可以访问到nginx欢迎页面</p>
 <ul>
 <li>master节点无须启动kubelet和kube-proxy服务，如果想从master节点访问service，可以在master节点上启动kube-proxy服务，如果想让pod调度到master节点，可以启动kubelet服务。</li>
 </ul>
-
 <h4 id="配置kubectl命令补全">配置kubectl命令补全</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">source</span> &lt;<span class="o">(</span>kubectl completion bash<span class="o">)</span>
-$ <span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubectl completion bash)&#34;</span> &gt;&gt; ~/.bashrc</code></pre></td></tr></table>
+$ <span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubectl completion bash)&#34;</span> &gt;&gt; ~/.bashrc
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="扩展一">扩展一</h2>
-
+</div><h2 id="扩展一">扩展一</h2>
 <h3 id="安装coredns">安装coredns</h3>
-
 <blockquote>
 <p>下载的kubernetes-server-linux-amd64.tar.gz里包含</p>
 </blockquote>
-
 <h4 id="coredns配置安装">coredns配置安装</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2540,6 +2395,7 @@ $ <span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubectl complet
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
+</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> /opt/k8s/install/kubernetes/
@@ -2572,14 +2428,15 @@ spec:
 $ kubectl apply -f coredns.yaml
 $  kubectl get pods -n kube-system
 NAME                       READY   STATUS    RESTARTS   AGE
-coredns-6bddb9b7d7-bvznv   <span class="m">1</span>/1     Running   <span class="m">0</span>          2m19s
-coredns-6bddb9b7d7-dpqrv   <span class="m">1</span>/1     Running   <span class="m">0</span>          2m19s</code></pre></td></tr></table>
+coredns-6bddb9b7d7-bvznv   1/1     Running   <span class="m">0</span>          2m19s
+coredns-6bddb9b7d7-dpqrv   1/1     Running   <span class="m">0</span>          2m19s
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="验证dns功能">验证DNS功能</h4>
+</div><h4 id="验证dns功能">验证DNS功能</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2617,52 +2474,49 @@ coredns-6bddb9b7d7-dpqrv   <span class="m">1</span>/1     Running   <span class=
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#使用前面部署过的nginx进行测试</span>
 $ kubectl get pod,svc
 NAME                                    READY   STATUS    RESTARTS   AGE
-pod/nginx-deployment-68884fc8f8-p6pmh   <span class="m">1</span>/1     Running   <span class="m">0</span>          8m1s
+pod/nginx-deployment-68884fc8f8-p6pmh   1/1     Running   <span class="m">0</span>          8m1s
 
 NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
-service/kubernetes      ClusterIP   <span class="m">10</span>.254.0.1      &lt;none&gt;        <span class="m">443</span>/TCP        5h32m
-service/nginx-service   NodePort    <span class="m">10</span>.254.109.96   &lt;none&gt;        <span class="m">80</span>:33381/TCP   3h39m
+service/kubernetes      ClusterIP   10.254.0.1      &lt;none&gt;        443/TCP        5h32m
+service/nginx-service   NodePort    10.254.109.96   &lt;none&gt;        80:33381/TCP   3h39m
 <span class="c1"># 部署busybox，测试DNS功能</span>
 $ kubectl run -it --image<span class="o">=</span>busybox:1.28.4 --rm --restart<span class="o">=</span>Never sh
 If you don<span class="err">&#39;</span>t see a <span class="nb">command</span> prompt, try pressing enter.
 / <span class="c1"># nslookup kubernetes</span>
-Server:    <span class="m">10</span>.254.0.2
-Address <span class="m">1</span>: <span class="m">10</span>.254.0.2 kube-dns.kube-system.svc.cluster.local
+Server:    10.254.0.2
+Address 1: 10.254.0.2 kube-dns.kube-system.svc.cluster.local
 
 Name:      kubernetes
-Address <span class="m">1</span>: <span class="m">10</span>.254.0.1 kubernetes.default.svc.cluster.local
+Address 1: 10.254.0.1 kubernetes.default.svc.cluster.local
 / <span class="c1"># nslookup nginx-service</span>
-Server:    <span class="m">10</span>.254.0.2
-Address <span class="m">1</span>: <span class="m">10</span>.254.0.2 kube-dns.kube-system.svc.cluster.local
+Server:    10.254.0.2
+Address 1: 10.254.0.2 kube-dns.kube-system.svc.cluster.local
 
 Name:      nginx-service
-Address <span class="m">1</span>: <span class="m">10</span>.254.109.96 nginx-service.default.svc.cluster.local
+Address 1: 10.254.109.96 nginx-service.default.svc.cluster.local
 / <span class="c1"># nslookup nginx-service.default.svc.cluster.local</span>
-Server:    <span class="m">10</span>.254.0.2
-Address <span class="m">1</span>: <span class="m">10</span>.254.0.2 kube-dns.kube-system.svc.cluster.local
+Server:    10.254.0.2
+Address 1: 10.254.0.2 kube-dns.kube-system.svc.cluster.local
 
 Name:      nginx-service.default.svc.cluster.local
-Address <span class="m">1</span>: <span class="m">10</span>.254.109.96 nginx-service.default.svc.cluster.local
+Address 1: 10.254.109.96 nginx-service.default.svc.cluster.local
 / <span class="c1"># cat /etc/resolv.conf</span>
-nameserver <span class="m">10</span>.254.0.2
+nameserver 10.254.0.2
 search default.svc.cluster.local. svc.cluster.local. cluster.local.
-options ndots:5</code></pre></td></tr></table>
+options ndots:5
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="kubelet证书过期问题处理">kubelet证书过期问题处理</h3>
-
+</div><h3 id="kubelet证书过期问题处理">kubelet证书过期问题处理</h3>
 <blockquote>
 <p>注意：此方式安装的集群kubelet的证书是kubelet启动时发送CSR请求时产生的，由controler manager做实际签署的。默认时间是一年，时间过后会导致node不能与master正常通信</p>
 </blockquote>
-
 <h4 id="添加参数">添加参数</h4>
-
 <ul>
 <li>修改kubelet组件配置</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2673,28 +2527,28 @@ options ndots:5</code></pre></td></tr></table>
 --feature-gates<span class="o">=</span><span class="nv">RotateKubeletServerCertificate</span><span class="o">=</span><span class="nb">true</span>
 --feature-gates<span class="o">=</span><span class="nv">RotateKubeletClientCertificate</span><span class="o">=</span><span class="nb">true</span>
 <span class="c1"># 1.8版本以上包含1.8都支持证书更换自动重载，以下版本只能手动重启服务</span>
---rotate-certificates<span class="o">=</span>true</code></pre></td></tr></table>
+--rotate-certificates<span class="o">=</span><span class="nb">true</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>修改kube-controller-manager配置参数</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 在kube-controller-manager启动参数里加上以下参数</span>
 --feature-gates<span class="o">=</span><span class="nv">RotateKubeletClientCertificate</span><span class="o">=</span>true,RotateKubeletServerCertificate<span class="o">=</span><span class="nb">true</span>
---experimental-cluster-signing-duration<span class="o">=</span>876000h0m0s <span class="c1">#此参数为设置签署的证书有效时间</span></code></pre></td></tr></table>
+--experimental-cluster-signing-duration<span class="o">=</span>876000h0m0s <span class="c1">#此参数为设置签署的证书有效时间</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="创建自动批准相关csr请求的clusterrole">创建自动批准相关CSR请求的ClusterRole</h4>
+</div><h4 id="创建自动批准相关csr请求的clusterrole">创建自动批准相关CSR请求的ClusterRole</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2715,46 +2569,46 @@ rules:
 - apiGroups: <span class="o">[</span><span class="s2">&#34;certificates.k8s.io&#34;</span><span class="o">]</span>
   resources: <span class="o">[</span><span class="s2">&#34;certificatesigningrequests/selfnodeserver&#34;</span><span class="o">]</span>
   verbs: <span class="o">[</span><span class="s2">&#34;create&#34;</span><span class="o">]</span>
-$ kubectl apply -f tls-instructs-csr.yaml</code></pre></td></tr></table>
+$ kubectl apply -f tls-instructs-csr.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>自动批准 kubelet-bootstrap 用户 TLS bootstrapping 首次申请证书的 CSR 请求</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding node-client-auto-approve-csr --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:nodeclient --user<span class="o">=</span>kubelet-bootstrap</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding node-client-auto-approve-csr --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:nodeclient --user<span class="o">=</span>kubelet-bootstrap
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>自动批准 system:nodes 组用户更新 kubelet 自身与 apiserver 通讯证书的 CSR 请求</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding node-client-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeclient --group<span class="o">=</span>system:nodes</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding node-client-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeclient --group<span class="o">=</span>system:nodes
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>自动批准 system:nodes 组用户更新 kubelet 10250 api 端口证书的 CSR 请求</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding node-server-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeserver --group<span class="o">=</span>system:nodes</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create clusterrolebinding node-server-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeserver --group<span class="o">=</span>system:nodes
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="重启kube-controller-manager-和-kubelet-服务">重启kube-controller-manager 和 kubelet 服务</h4>
+</div><h4 id="重启kube-controller-manager-和-kubelet-服务">重启kube-controller-manager 和 kubelet 服务</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2776,35 +2630,31 @@ $ rm -rf kubelet*
 $ systemctl restart kubelet
 <span class="c1">#查看证书有效期</span>
 $ openssl x509 -in kubelet-client-current.pem -noout -text <span class="p">|</span> grep <span class="s2">&#34;Not&#34;</span>
-            Not Before: Apr <span class="m">21</span> <span class="m">07</span>:54:37 <span class="m">2020</span> GMT
-            Not After : Mar <span class="m">28</span> <span class="m">00</span>:51:00 <span class="m">2120</span> GMT</code></pre></td></tr></table>
+            Not Before: Apr <span class="m">21</span> 07:54:37 <span class="m">2020</span> GMT
+            Not After : Mar <span class="m">28</span> 00:51:00 <span class="m">2120</span> GMT
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="扩展二">扩展二</h2>
-
+</div><h2 id="扩展二">扩展二</h2>
 <blockquote>
 <p>此方式只是和上面TLS Bootstrapping Token的方式不一样，结果是一样的。可以二选一操作</p>
 </blockquote>
-
 <h3 id="使用bootstrap-token完成tsl-bootstrapping">使用Bootstrap Token完成TSL Bootstrapping</h3>
-
 <h4 id="创建boostrap-token">创建Boostrap Token</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">echo</span> <span class="s2">&#34;</span><span class="k">$(</span>head -c <span class="m">6</span> /dev/urandom <span class="p">|</span> md5sum <span class="p">|</span> head -c <span class="m">6</span><span class="k">)</span><span class="s2">&#34;</span>.<span class="s2">&#34;</span><span class="k">$(</span>head -c <span class="m">16</span> /dev/urandom <span class="p">|</span> md5sum <span class="p">|</span> head -c <span class="m">16</span><span class="k">)</span><span class="s2">&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">echo</span> <span class="s2">&#34;</span><span class="k">$(</span>head -c <span class="m">6</span> /dev/urandom <span class="p">|</span> md5sum <span class="p">|</span> head -c 6<span class="k">)</span><span class="s2">&#34;</span>.<span class="s2">&#34;</span><span class="k">$(</span>head -c <span class="m">16</span> /dev/urandom <span class="p">|</span> md5sum <span class="p">|</span> head -c 16<span class="k">)</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>Token 必须满足 <code>[a-z0-9]{6}\.[a-z0-9]{16}</code> 格式；以 <code>.</code> 分割，前面的部分被称作 <code>Token ID</code>，<code>Token ID</code> 并不是 “机密信息”，它可以暴露出去；相对的后面的部分称为 <code>Token Secret</code>，它应该是保密的</li>
 </ul>
-
 <h4 id="创建-bootstrap-token-secret">创建 Bootstrap Token Secret</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2833,49 +2683,47 @@ $ openssl x509 -in kubelet-client-current.pem -noout -text <span class="p">|</sp
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">$<span class="w"> </span>vim<span class="w"> </span>bootstrap-token-secret.yaml<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Secret<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">$ vim bootstrap-token-secret.yaml</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="c"># Name MUST be of form &#34;bootstrap-token-&lt;token id&gt;&#34;</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>bootstrap-token-e40252<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>kube-system<span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">bootstrap-token-e40252</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="c"># Type MUST be &#39;bootstrap.kubernetes.io/token&#39;</span><span class="w">
-</span><span class="w"></span>type<span class="p">:</span><span class="w"> </span>bootstrap.kubernetes.io/token<span class="w">
-</span><span class="w"></span>stringData<span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">bootstrap.kubernetes.io/token</span><span class="w">
+</span><span class="w"></span><span class="nt">stringData</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="c"># Human readable description. Optional.</span><span class="w">
-</span><span class="w">  </span>description<span class="p">:</span><span class="w"> </span><span class="s2">&#34;The default bootstrap token generated by &#39;kubeadm init&#39;.&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;The default bootstrap token generated by &#39;kubeadm init&#39;.&#34;</span><span class="w">
 </span><span class="w">
 </span><span class="w">  </span><span class="c"># Token ID and secret. Required.</span><span class="w">
-</span><span class="w">  </span>token-id<span class="p">:</span><span class="w"> </span>e40252<span class="w">
-</span><span class="w">  </span>token-secret<span class="p">:</span><span class="w"> </span>647feb2e573070b3<span class="w">
+</span><span class="w">  </span><span class="nt">token-id</span><span class="p">:</span><span class="w"> </span><span class="l">e40252</span><span class="w">
+</span><span class="w">  </span><span class="nt">token-secret</span><span class="p">:</span><span class="w"> </span><span class="l">647feb2e573070b3</span><span class="w">
 </span><span class="w">
 </span><span class="w">  </span><span class="c"># Expiration. Optional.</span><span class="w">
-</span><span class="w">  </span>expiration<span class="p">:</span><span class="w"> </span><span class="ld">2020-04-24T00:00:11Z</span><span class="w">
+</span><span class="w">  </span><span class="nt">expiration</span><span class="p">:</span><span class="w"> </span><span class="ld">2020-04-24T00:00:11Z</span><span class="w">
 </span><span class="w">
 </span><span class="w">  </span><span class="c"># Allowed usages.</span><span class="w">
-</span><span class="w">  </span>usage-bootstrap-authentication<span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span><span class="w">  </span>usage-bootstrap-signing<span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">usage-bootstrap-authentication</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">usage-bootstrap-signing</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
 </span><span class="w">
 </span><span class="w">  </span><span class="c"># Extra groups to authenticate the token as. Must start with &#34;system:bootstrappers:&#34;</span><span class="w">
-</span><span class="w">  </span>auth-extra-groups<span class="p">:</span><span class="w"> </span>system<span class="p">:</span>bootstrappers<span class="p">:</span>worker<span class="p">,</span>system<span class="p">:</span>bootstrappers<span class="p">:</span>ingress</code></pre></td></tr></table>
+</span><span class="w">  </span><span class="nt">auth-extra-groups</span><span class="p">:</span><span class="w"> </span><span class="l">system:bootstrappers:worker,system:bootstrappers:ingress</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>作为 <code>Bootstrap Token Secret</code> 的 type 必须为 <code>bootstrap.kubernetes.io/token</code>，name 必须为 <code>bootstrap-token-</code> (Token ID 就是上一步创建的 Token 前一部分)</li>
 <li><code>usage-bootstrap-authentication</code>、<code>usage-bootstrap-signing</code> 必须存才且设置为 <code>true</code></li>
 <li><code>expiration</code> 字段是可选的，如果设置则 <code>Secret</code> 到期后将由 Controller Manager 中的 <code>tokencleaner</code> 自动清理</li>
 <li><code>auth-extra-groups</code> 也是可选的，令牌的扩展认证组，组必须以 <code>system:bootstrappers:</code> 开头</li>
 <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/#bootstrap-token-secret-format">官方文档</a></li>
 </ul>
-
 <h4 id="创建-clusterrole-和-clusterrolebinding">创建 ClusterRole 和 ClusterRoleBinding</h4>
-
 <h5 id="创建clusterrole">创建ClusterRole</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2896,17 +2744,16 @@ rules:
 - apiGroups: <span class="o">[</span><span class="s2">&#34;certificates.k8s.io&#34;</span><span class="o">]</span>
   resources: <span class="o">[</span><span class="s2">&#34;certificatesigningrequests/selfnodeserver&#34;</span><span class="o">]</span>
   verbs: <span class="o">[</span><span class="s2">&#34;create&#34;</span><span class="o">]</span>
-$ kubectl apply -f tls-instructs-csr.yaml</code></pre></td></tr></table>
+$ kubectl apply -f tls-instructs-csr.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<h5 id="创建对应的clusterrolebinding">创建对应的ClusterRoleBinding</h5>
-
+</div><h5 id="创建对应的clusterrolebinding">创建对应的ClusterRoleBinding</h5>
 <blockquote>
 <p>需要注意的是 <strong>在使用 <code>Bootstrap Token</code> 进行引导时，Kubelet 组件使用 Token 发起的请求其用户名为 <code>system:bootstrap:</code>，用户组为 <code>system:bootstrappers</code>；so 我们在创建 <code>ClusterRoleBinding</code> 时要绑定到这个用户或者组上</strong>；这里直接绑定在组上</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2929,24 +2776,24 @@ $ kubectl create clusterrolebinding node-client-auto-approve-csr --clusterrole<s
 $ kubectl create clusterrolebinding node-client-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeclient --group<span class="o">=</span>system:nodes
 
 <span class="c1"># 自动批准 system:nodes 组用户更新 kubelet 10250 api 端口证书的 CSR 请求</span>
-$ kubectl create clusterrolebinding node-server-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeserver --group<span class="o">=</span>system:nodes</code></pre></td></tr></table>
+$ kubectl create clusterrolebinding node-server-auto-renew-crt --clusterrole<span class="o">=</span>system:certificates.k8s.io:certificatesigningrequests:selfnodeserver --group<span class="o">=</span>system:nodes
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="调整kube-controller-manager">调整kube-controller-manager</h4>
+</div><h4 id="调整kube-controller-manager">调整kube-controller-manager</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 在启动参数上以下参数</span>
---controllers<span class="o">=</span>*,bootstrapsigner,tokencleaner</code></pre></td></tr></table>
+--controllers<span class="o">=</span>*,bootstrapsigner,tokencleaner
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="生成boostrap-kubeconfig">生成boostrap.kubeconfig</h4>
+</div><h4 id="生成boostrapkubeconfig">生成boostrap.kubeconfig</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2965,29 +2812,29 @@ $ kubectl create clusterrolebinding node-server-auto-renew-crt --clusterrole<spa
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 设置集群参数</span>
-$ kubectl config set-cluster kubernetes <span class="se">\
-</span><span class="se"></span>  --certificate-authority<span class="o">=</span>/etc/kubernetes/ssl/ca.pem <span class="se">\
-</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span><span class="se"></span>  --server<span class="o">=</span>https://172.16.77.167:6443 <span class="se">\
-</span><span class="se"></span>  --kubeconfig<span class="o">=</span>bootstrap.kubeconfig
-<span class="c1"># 设置客户端认证参数</span>
-$ kubectl config set-credentials system:bootstrap:e40252 <span class="se">\
-</span><span class="se"></span>  --token<span class="o">=</span>e40252.647feb2e573070b3 <span class="se">\
-</span><span class="se"></span>  --kubeconfig<span class="o">=</span>bootstrap.kubeconfig
-<span class="c1"># 设置上下文参数</span>
-$ kubectl config set-context default <span class="se">\
-</span><span class="se"></span>  --cluster<span class="o">=</span>kubernetes <span class="se">\
-</span><span class="se"></span>  --user<span class="o">=</span>system:bootstrap:e40252 <span class="se">\
-</span><span class="se"></span>  --kubeconfig<span class="o">=</span>bootstrap.kubeconfig
-<span class="c1"># 设置默认上下文</span>
-$ kubectl config use-context default --kubeconfig<span class="o">=</span>bootstrap.kubeconfig</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 设置集群参数
+$ kubectl config set-cluster kubernetes \
+  --certificate-authority=/etc/kubernetes/ssl/ca.pem \
+  --embed-certs=true \
+  --server=https://172.16.77.167:6443 \
+  --kubeconfig=bootstrap.kubeconfig
+# 设置客户端认证参数
+$ kubectl config set-credentials system:bootstrap:e40252 \
+  --token=e40252.647feb2e573070b3 \
+  --kubeconfig=bootstrap.kubeconfig
+# 设置上下文参数
+$ kubectl config set-context default \
+  --cluster=kubernetes \
+  --user=system:bootstrap:e40252 \
+  --kubeconfig=bootstrap.kubeconfig
+# 设置默认上下文
+$ kubectl config use-context default --kubeconfig=bootstrap.kubeconfig
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="生成kubelet-kubeconfig">生成kubelet.kubeconfig</h4>
+</div><h4 id="生成kubeletkubeconfig">生成kubelet.kubeconfig</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -3022,34 +2869,28 @@ $ kubectl config set-context default <span class="se">\
 </span><span class="se"></span>  --user<span class="o">=</span>kubelet <span class="se">\
 </span><span class="se"></span>  --kubeconfig<span class="o">=</span>kubelet.kubeconfig
 <span class="c1"># 设置默认上下文</span>
-$ kubectl config use-context default --kubeconfig<span class="o">=</span>kubelet.kubeconfig</code></pre></td></tr></table>
+$ kubectl config use-context default --kubeconfig<span class="o">=</span>kubelet.kubeconfig
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="启动kube-controller-manager-kubelet">启动kube-controller-manager，kubelet</h4>
+</div><h4 id="启动kube-controller-managerkubelet">启动kube-controller-manager，kubelet</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ systemctl daemon-reload
 $ systemctl restart kube-controller-manager.service
-$ systemctl restart kubelet.service</code></pre></td></tr></table>
+$ systemctl restart kubelet.service
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="参考链接">参考链接</h2>
-
+</div><h2 id="参考链接">参考链接</h2>
 <p><a href="https://www.qikqiak.com/post/manual-install-high-available-kubernetes-cluster/#%E5%88%9B%E5%BB%BAkube-apiserver-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AFtoken-%E6%96%87%E4%BB%B6">阳明的博客</a></p>
-
 <p><a href="https://cloud.tencent.com/developer/article/1511862">https://cloud.tencent.com/developer/article/1511862</a></p>
-
 <p><a href="https://blog.csdn.net/qq_24794401/article/details/103245796">https://blog.csdn.net/qq_24794401/article/details/103245796</a></p>
-
 <p><a href="https://mritd.me/2018/01/07/kubernetes-tls-bootstrapping-note/">https://mritd.me/2018/01/07/kubernetes-tls-bootstrapping-note/</a></p>
-
 <p><a href="https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/#bootstrap-token-secret-format">https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/#bootstrap-token-secret-format</a></p>
-
 <p><a href="https://mritd.me/2018/08/28/kubernetes-tls-bootstrapping-with-bootstrap-token/">https://mritd.me/2018/08/28/kubernetes-tls-bootstrapping-with-bootstrap-token/</a></p>
     </div>
 
@@ -3110,10 +2951,9 @@ $ systemctl restart kubelet.service</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-04-26 17:28:16 \x2b0800 CST',
+        id: '2020-04-26 17:28:16 \u002b0800 CST',
         title: '二进制部署Kubernetes集群',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -3125,6 +2965,10 @@ $ systemctl restart kubelet.service</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -3180,7 +3024,10 @@ $ systemctl restart kubelet.service</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

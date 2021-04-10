@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/05/09/docker%E5%AE%89%E8%A3%85gitlab-runner/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker安装gitlab Runner" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/05/09/docker%E5%AE%89%E8%A3%85gitlab-runner/" />
-<meta property="article:published_time" content="2020-05-09T13:34:14&#43;08:00"/>
-<meta property="article:modified_time" content="2020-05-09T13:34:14&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/05/09/docker%E5%AE%89%E8%A3%85gitlab-runner/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-05-09T13:34:14&#43;08:00" />
+<meta property="article:modified_time" content="2020-05-09T13:34:14&#43;08:00" />
 
 <meta itemprop="name" content="Docker安装gitlab Runner">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-05-09T13:34:14&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-05-09T13:34:14&#43;08:00" />
 <meta itemprop="dateModified" content="2020-05-09T13:34:14&#43;08:00" />
 <meta itemprop="wordCount" content="480">
-
-
-
-<meta itemprop="keywords" content="docker,linux,gitlab,gitlab-runner,centos," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="docker,linux,gitlab,gitlab-runner,centos," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker安装gitlab Runner"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,26 +150,23 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#镜像拉取并启动">镜像拉取并启动</a></li>
-<li><a href="#runner注册">runner注册</a>
-<ul>
-<li><a href="#添加maven缓存等">添加maven缓存等</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#镜像拉取并启动">镜像拉取并启动</a></li>
+    <li><a href="#runner注册">runner注册</a>
+      <ul>
+        <li><a href="#添加maven缓存等">添加maven缓存等</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><img src="https://s1.ax1x.com/2020/05/09/YQUONd.jpg" alt="YQUONd.jpg" /></p>
-
+      <p><img src="https://s1.ax1x.com/2020/05/09/YQUONd.jpg" alt="YQUONd.jpg"></p>
 <h2 id="镜像拉取并启动">镜像拉取并启动</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -176,13 +177,13 @@
 </span><span class="se"></span>-v /srv/gitlab-runner/config:/etc/gitlab-runner <span class="se">\
 </span><span class="se"></span>-v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
 </span><span class="se"></span>-v /etc/docker/:/etc/docker/ <span class="se">\
-</span><span class="se"></span>gitlab/gitlab-runner:v12.10.0</code></pre></td></tr></table>
+</span><span class="se"></span>gitlab/gitlab-runner:v12.10.0
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="runner注册">runner注册</h2>
+</div><h2 id="runner注册">runner注册</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -203,11 +204,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ docker <span class="nb">exec</span> -it gitlab-runner gitlab-ci-multi-runner register
-Runtime platform                                    <span class="nv">arch</span><span class="o">=</span>amd64 <span class="nv">os</span><span class="o">=</span>linux <span class="nv">pid</span><span class="o">=</span><span class="m">19</span> <span class="nv">revision</span><span class="o">=</span>c553af1a <span class="nv">version</span><span class="o">=</span><span class="m">12</span>.10.0
+Runtime platform                                    <span class="nv">arch</span><span class="o">=</span>amd64 <span class="nv">os</span><span class="o">=</span>linux <span class="nv">pid</span><span class="o">=</span><span class="m">19</span> <span class="nv">revision</span><span class="o">=</span>c553af1a <span class="nv">version</span><span class="o">=</span>12.10.0
 Running in system-mode.
 
 Please enter the gitlab-ci coordinator URL <span class="o">(</span>e.g. https://gitlab.com/<span class="o">)</span>:
-http://172.16.77.40:10024/  <span class="c1">#gitlab地址</span> 
+http://172.16.77.40:10024/  <span class="c1">#gitlab地址 </span>
 Please enter the gitlab-ci token <span class="k">for</span> this runner:
 b3ybNpuJBVBLus3xfXoU <span class="c1">#token 在gitlab的Admin Area&gt;Runners里可以查到</span>
 Please enter the gitlab-ci description <span class="k">for</span> this runner:
@@ -219,19 +220,17 @@ Please enter the executor: ssh, virtualbox, docker-ssh+machine, parallels, docke
 docker  <span class="c1">#执行者</span>
 Please enter the default Docker image <span class="o">(</span>e.g. ruby:2.6<span class="o">)</span>:
 docker:stable <span class="c1">#指定的镜像</span>
-Runner registered successfully. Feel free to start it, but <span class="k">if</span> it<span class="err">&#39;</span>s running already the config should be automatically reloaded!</code></pre></td></tr></table>
+Runner registered successfully. Feel free to start it, but <span class="k">if</span> it<span class="err">&#39;</span>s running already the config should be automatically reloaded!
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>通过以上操作后在gitlab的Admin Area&gt;Runners里就可以看到你刚注册的runner了</p>
-
+</div><p>通过以上操作后在gitlab的Admin Area&gt;Runners里就可以看到你刚注册的runner了</p>
 <h3 id="添加maven缓存等">添加maven缓存等</h3>
-
 <blockquote>
 <p>docker image每次构建都是在独立的container里， maven的 .m2文件并不会被多次构建公用，这里我们可以通过修改gitlab-runner的配置，将maven .m2目录加到volumes中，并增加镜像拉取规则（默认是从远程拉取镜像，这里修改为优先获取本地镜像)</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -250,7 +249,8 @@ $ vim /srv/gitlab-runner/config/config.toml
 ......
 
 <span class="c1"># 重启runner</span>
-$ docker restart gitlab-runner</code></pre></td></tr></table>
+$ docker restart gitlab-runner
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -313,10 +313,9 @@ $ docker restart gitlab-runner</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-05-09 13:34:14 \x2b0800 CST',
+        id: '2020-05-09 13:34:14 \u002b0800 CST',
         title: 'Docker安装gitlab Runner',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -328,6 +327,10 @@ $ docker restart gitlab-runner</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -383,7 +386,10 @@ $ docker restart gitlab-runner</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

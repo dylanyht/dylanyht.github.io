@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kubernetes笔记之Job/CronJob" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/" />
-<meta property="article:published_time" content="2020-04-18T09:08:54&#43;08:00"/>
-<meta property="article:modified_time" content="2020-04-18T09:08:54&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bjob/cronjob/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-18T09:08:54&#43;08:00" />
+<meta property="article:modified_time" content="2020-04-18T09:08:54&#43;08:00" />
 
 <meta itemprop="name" content="Kubernetes笔记之Job/CronJob">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-04-18T09:08:54&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-04-18T09:08:54&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-18T09:08:54&#43;08:00" />
-<meta itemprop="wordCount" content="1219">
-
-
-
-<meta itemprop="keywords" content="linux,kubernetes,笔记,job," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1227">
+<meta itemprop="keywords" content="linux,kubernetes,笔记,job," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes笔记之Job/CronJob"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1219 words </span>
+          <span class="more-meta"> 1227 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,59 +150,51 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#job">Job</a>
-<ul>
-<li><a href="#job-spec">Job Spec</a></li>
-<li><a href="#示例">示例</a></li>
-</ul></li>
-<li><a href="#cronjob">CronJob</a>
-<ul>
-<li><a href="#cronjob-spec">CronJob Spec</a></li>
-<li><a href="#示例-1">示例</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#job">Job</a>
+      <ul>
+        <li><a href="#job-spec">Job Spec</a></li>
+        <li><a href="#示例">示例</a></li>
+      </ul>
+    </li>
+    <li><a href="#cronjob">CronJob</a>
+      <ul>
+        <li><a href="#cronjob-spec">CronJob Spec</a></li>
+        <li><a href="#示例-1">示例</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <blockquote>
 <p>Job负责处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个pod成功结束。</p>
-
 <p>CronJob负责定时任务，在指定的时间周期运行指定的任务</p>
 </blockquote>
-
 <h2 id="job">Job</h2>
-
 <p>Job用于批量处理短暂的一次性任务，并保证指定数量的pod成功结束。</p>
-
 <p>Kubernetes支持以下几种方式：</p>
-
 <ul>
 <li>非并行Job：
-
 <ul>
 <li>通常只运行一个pod，pod成功结束Job就退出。</li>
-</ul></li>
+</ul>
+</li>
 <li>固定完成次数的并行Job：
-
 <ul>
 <li>并发运行指定数量的pod，直到指定数量的pod成功，job结束。</li>
-</ul></li>
+</ul>
+</li>
 <li>带有工作队列的并行Job：
-
 <ul>
 <li>用户可以指定并行的pod数量，当任何Pod成功结束后，不会再创建新的pod</li>
 <li>一旦有一个pod成功结束，并且所有的pods都结束了，改job就成功结束。</li>
 <li>一旦有一个pod成功结束，其他pods都会准备推出。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="job-spec">Job Spec</h3>
-
 <ul>
 <li>Spec.template格式通Pod</li>
 <li>RestartPolicy仅支持Never或OnFailure</li>
@@ -208,13 +204,11 @@
 <li>.spec.activeDeadLineSeconds 标志失败pod的重试最大时间，超过这个时间不会继续重试</li>
 <li>.spec.backoffLimit 标志指定job失败后进行重试的次数。默认是6次，每次失败后重试会有延迟时间，改时间是指数级增长，最长时间是6min</li>
 </ul>
-
 <h3 id="示例">示例</h3>
-
 <p>yaml：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -233,38 +227,38 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>batch/v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Job<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>job-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>template<span class="p">:</span><span class="w">
-</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">      </span>name<span class="p">:</span><span class="w"> </span>job-demo<span class="w">
-</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
-</span><span class="w">      </span>restartPolicy<span class="p">:</span><span class="w"> </span>Never<span class="w">
-</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>counter<span class="w">
-</span><span class="w">        </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">        </span>command<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;bin/sh&#34;</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">job-demo</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">counter</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;bin/sh&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;-c&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>创建：</p>
+</div><p>创建：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f job.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f job.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看：</p>
+</div><p>查看：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -286,11 +280,11 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get job
 NAME       COMPLETIONS   DURATION   AGE
-job-demo   <span class="m">1</span>/1           5s         10m
+job-demo   1/1           5s         10m
 $ kubectl get pods
 NAME                              READY   STATUS      RESTARTS   AGE
 ......
-job-demo-28v66                    <span class="m">0</span>/1     Completed   <span class="m">0</span>          10m
+job-demo-28v66                    0/1     Completed   <span class="m">0</span>          10m
 ......
 <span class="o">[</span>root@k8s-77-40 job<span class="o">]</span><span class="c1"># kubectl logs job-demo-28v66</span>
 <span class="m">9</span>
@@ -301,52 +295,47 @@ job-demo-28v66                    <span class="m">0</span>/1     Completed   <sp
 <span class="m">4</span>
 <span class="m">3</span>
 <span class="m">2</span>
-<span class="m">1</span></code></pre></td></tr></table>
+<span class="m">1</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="cronjob">CronJob</h2>
-
+</div><h2 id="cronjob">CronJob</h2>
 <p>cronJob是基于时间进行任务的定时管理：</p>
-
 <ul>
 <li>在特定的时间点运行任务</li>
 <li>反复在指定的时间点运行任务：比如定时进行数据库备份，定时发送邮件等等</li>
 </ul>
-
 <h3 id="cronjob-spec">CronJob Spec</h3>
-
 <ul>
-<li><p>.spec.schedule: 调度，必需字段，指定任务运行周期</p></li>
-
-<li><p>.spec.jobTemplate: Job模板，必需字段，指定需要运行的任务</p></li>
-
-<li><p>.spec.startingDeadlineSeconds: 启动Job的期限（秒级别），该字段是可选的。如果因为任何原因而错过了被调度的时间，那么错过执行时间的Job将被认为是失败的。如果没有指定，则没有期限。</p></li>
-
-<li><p>.spec.concurrencyPolicy: 并发策略，该字段也是可选的。它指定了如何处理被Cron Job创建的Job的并发执行。只允许指定下面策略的一种：</p>
-
+<li>
+<p>.spec.schedule: 调度，必需字段，指定任务运行周期</p>
+</li>
+<li>
+<p>.spec.jobTemplate: Job模板，必需字段，指定需要运行的任务</p>
+</li>
+<li>
+<p>.spec.startingDeadlineSeconds: 启动Job的期限（秒级别），该字段是可选的。如果因为任何原因而错过了被调度的时间，那么错过执行时间的Job将被认为是失败的。如果没有指定，则没有期限。</p>
+</li>
+<li>
+<p>.spec.concurrencyPolicy: 并发策略，该字段也是可选的。它指定了如何处理被Cron Job创建的Job的并发执行。只允许指定下面策略的一种：</p>
 <ul>
 <li>Allow（默认）：允许并发运行Job</li>
 <li>Forid: 禁止并发运行，如果前一个还没有完成，则直接跳过下一个</li>
 <li>Replace： 取消当前正在运行的Job，用一个新的来替换</li>
-</ul></li>
 </ul>
-
 <p>注意，当前策略只能应用于同一个CronJob创建的Job。如果存在多个CronJob，它们创建的Job之间总是允许并发运行</p>
-
-<ul>
-<li>.spec.successfulJobsHistoryLimit 和 .spec.failedJobsHistoryLimit： 历史限制，是可选的字段。它们指定了可以保留多少完成和失败的Job</li>
+</li>
+<li>
+<p>.spec.successfulJobsHistoryLimit 和 .spec.failedJobsHistoryLimit： 历史限制，是可选的字段。它们指定了可以保留多少完成和失败的Job</p>
+</li>
 </ul>
-
 <h3 id="示例-1">示例</h3>
-
 <blockquote>
 <p><strong>分 时 日 月 星期 要运行的命令</strong> 第1列分钟0～59 第2列小时0～23） 第3列日1～31 第4列月1～12 第5列星期0～7（0和7表示星期天） 第6列要运行的命令</p>
 </blockquote>
-
 <p>Yaml:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -366,30 +355,30 @@ job-demo-28v66                    <span class="m">0</span>/1     Completed   <sp
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>batch/v2alpha1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>CronJob<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>cronjob-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>schedule<span class="p">:</span><span class="w"> </span><span class="s2">&#34;*/1 * * * *&#34;</span><span class="w">
-</span><span class="w">  </span>jobTemplate<span class="p">:</span><span class="w">
-</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
-</span><span class="w">      </span>template<span class="p">:</span><span class="w">
-</span><span class="w">        </span>spec<span class="p">:</span><span class="w">
-</span><span class="w">          </span>restartPolicy<span class="p">:</span><span class="w"> </span>OnFailure<span class="w">
-</span><span class="w">          </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">          </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>hello<span class="w">
-</span><span class="w">            </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">            </span>args<span class="p">:</span><span class="w">
-</span><span class="w">            </span>-<span class="w"> </span><span class="s2">&#34;bin/sh&#34;</span><span class="w">
-</span><span class="w">            </span>-<span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="w">
-</span><span class="w">            </span>-<span class="w"> </span><span class="s2">&#34;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v2alpha1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CronJob</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cronjob-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*/1 * * * *&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">jobTemplate</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">OnFailure</span><span class="w">
+</span><span class="w">          </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello</span><span class="w">
+</span><span class="w">            </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">            </span><span class="nt">args</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span>- <span class="s2">&#34;bin/sh&#34;</span><span class="w">
+</span><span class="w">            </span>- <span class="s2">&#34;-c&#34;</span><span class="w">
+</span><span class="w">            </span>- <span class="s2">&#34;for i in 9 8 7 6 5 4 3 2 1; do echo $i; done&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>创建：</p>
+</div><p>创建：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -398,7 +387,8 @@ job-demo-28v66                    <span class="m">0</span>/1     Completed   <sp
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f job-2.yaml
 $ kubectl get cronjobs
 NAME           SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-cronjob-demo   */1 * * * *   False     <span class="m">0</span>        35s             2m51s</code></pre></td></tr></table>
+cronjob-demo   */1 * * * *   False     <span class="m">0</span>        35s             2m51s
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -460,10 +450,9 @@ cronjob-demo   */1 * * * *   False     <span class="m">0</span>        35s      
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-04-18 09:08:54 \x2b0800 CST',
+        id: '2020-04-18 09:08:54 \u002b0800 CST',
         title: 'Kubernetes笔记之Job\/CronJob',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -475,6 +464,10 @@ cronjob-demo   */1 * * * *   False     <span class="m">0</span>        35s      
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -530,7 +523,10 @@ cronjob-demo   */1 * * * *   False     <span class="m">0</span>        35s      
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

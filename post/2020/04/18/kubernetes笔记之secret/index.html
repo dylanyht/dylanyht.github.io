@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsecret/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kubernetes笔记之Secret" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsecret/" />
-<meta property="article:published_time" content="2020-04-18T09:18:39&#43;08:00"/>
-<meta property="article:modified_time" content="2020-04-18T09:18:39&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Bsecret/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-18T09:18:39&#43;08:00" />
+<meta property="article:modified_time" content="2020-04-18T09:18:39&#43;08:00" />
 
 <meta itemprop="name" content="Kubernetes笔记之Secret">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-04-18T09:18:39&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-04-18T09:18:39&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-18T09:18:39&#43;08:00" />
-<meta itemprop="wordCount" content="1401">
-
-
-
-<meta itemprop="keywords" content="linux,kubernetes,笔记," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1409">
+<meta itemprop="keywords" content="linux,kubernetes,笔记," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes笔记之Secret"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1401 words </span>
+          <span class="more-meta"> 1409 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,20 +150,18 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#secret类型">Secret类型</a></li>
-<li><a href="#opaque-secret">Opaque Secret</a>
-<ul>
-<li><a href="#环境变量">环境变量</a></li>
-<li><a href="#volume挂载">Volume挂载</a></li>
-</ul></li>
-<li><a href="#kubernetes-io-dockerconfigjson">kubernetes.io/dockerconfigjson</a></li>
-<li><a href="#kubernetes-io-service-account-token">Kubernetes.io/service-account-token</a></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#secret类型">Secret类型</a></li>
+    <li><a href="#opaque-secret">Opaque Secret</a>
+      <ul>
+        <li><a href="#环境变量">环境变量</a></li>
+        <li><a href="#volume挂载">Volume挂载</a></li>
+      </ul>
+    </li>
+    <li><a href="#kubernetesiodockerconfigjson">kubernetes.io/dockerconfigjson</a></li>
+    <li><a href="#kubernetesioservice-account-token">Kubernetes.io/service-account-token</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -167,23 +169,18 @@
       <blockquote>
 <p>Secret用来保存敏感信息，例如密码，OAuth token和ssh key等等，将这些信息放在Secret中比放在pod的定义中或者docker镜像中来说更加安全和灵活。</p>
 </blockquote>
-
 <h2 id="secret类型">Secret类型</h2>
-
 <p>Secret主要有三种类型：</p>
-
 <ul>
 <li>opaque： base64编码格式的Secret，用来存储密码，密钥等；但数据也可以通过base64 -decode解码得到原始数据，所以加密性很弱</li>
 <li>Kubernetes.io/dockerconfigjson: 用来存储私有docker registry的认证信息。</li>
 <li>Kubernetes.io/service-account-token：用于被serviceaccount引用，serviceaccount创建时Kubernetes会默认创建对应的secret。pod如果使用了serviceaccount，对应的secret会自动挂载到pod目录/run/secrets/kubernetes.io/serviceaccount中。</li>
 </ul>
-
 <h2 id="opaque-secret">Opaque Secret</h2>
-
 <p>Opaque类型的数据时一个map类型，要求value是base64编码格式，比如我们来创建一个用户为admin，密码为admin000的Secret对象，先把用户名和密码做base64编码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -192,13 +189,13 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">echo</span> -n <span class="s2">&#34;admin&#34;</span> <span class="p">|</span> base64
 <span class="nv">YWRtaW4</span><span class="o">=</span>
 $ <span class="nb">echo</span> -n <span class="s2">&#34;admin000&#34;</span> <span class="p">|</span> base64
-<span class="nv">YWRtaW4wMDA</span><span class="o">=</span></code></pre></td></tr></table>
+<span class="nv">YWRtaW4wMDA</span><span class="o">=</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>yaml文件:</p>
+</div><p>yaml文件:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -208,29 +205,29 @@ $ <span class="nb">echo</span> -n <span class="s2">&#34;admin000&#34;</span> <sp
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Secret<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>mysecret<span class="w">
-</span><span class="w"></span>type<span class="p">:</span><span class="w"> </span>Opaque<span class="w">
-</span><span class="w"></span>data<span class="p">:</span><span class="w">
-</span><span class="w">  </span>username<span class="p">:</span><span class="w"> </span>YWRtaW4=<span class="w">
-</span><span class="w">  </span>password<span class="p">:</span><span class="w"> </span>YWRtaW4wMDA=</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mysecret</span><span class="w">
+</span><span class="w"></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Opaque</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">YWRtaW4=</span><span class="w">
+</span><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">YWRtaW4wMDA=</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>创建：</p>
+</div><p>创建：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create -f secret-demo.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl create -f secret-demo.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看：</p>
+</div><p>查看：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -295,22 +292,19 @@ metadata:
   resourceVersion: <span class="s2">&#34;1769728&#34;</span>
   selfLink: /api/v1/namespaces/default/secrets/mysecret
   uid: 426ea846-72ed-11ea-9fde-005056b24815
-type: Opaque</code></pre></td></tr></table>
+type: Opaque
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>创建好的Secret对象后，有两种方式使用它：</p>
-
+</div><p>创建好的Secret对象后，有两种方式使用它：</p>
 <ul>
 <li>以环境变量的形式</li>
 <li>以Volume的形式挂载</li>
 </ul>
-
 <h3 id="环境变量">环境变量</h3>
-
 <p>Yaml文件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -332,54 +326,53 @@ type: Opaque</code></pre></td></tr></table>
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>secret1-pod<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>secret1<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">    </span>command<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;env&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="w">    </span>env<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>USERNAME<span class="w">
-</span><span class="w">      </span>valueFrom<span class="p">:</span><span class="w">
-</span><span class="w">        </span>secretKeyRef<span class="p">:</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span>mysecret<span class="w">
-</span><span class="w">          </span>key<span class="p">:</span><span class="w"> </span>username<span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>PASSWORD<span class="w">
-</span><span class="w">      </span>valueFrom<span class="p">:</span><span class="w">
-</span><span class="w">        </span>secretKeyRef<span class="p">:</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span>mysecret<span class="w">
-</span><span class="w">          </span>key<span class="p">:</span><span class="w"> </span>password</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret1-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret1</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;env&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">USERNAME</span><span class="w">
+</span><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mysecret</span><span class="w">
+</span><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PASSWORD</span><span class="w">
+</span><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mysecret</span><span class="w">
+</span><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">password</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>创建：</p>
+</div><p>创建：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create -f pod-1.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create -f pod-1.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>pod运行后会有以下内容输出：</p>
+</div><p>pod运行后会有以下内容输出：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">USERNAME</span><span class="o">=</span>admin
-<span class="nv">PASSWORD</span><span class="o">=</span>admin000</code></pre></td></tr></table>
+<span class="nv">PASSWORD</span><span class="o">=</span>admin000
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="volume挂载">Volume挂载</h3>
-
+</div><h3 id="volume挂载">Volume挂载</h3>
 <p>yaml：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -397,50 +390,49 @@ type: Opaque</code></pre></td></tr></table>
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>secret2-pod<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>secret2<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>busybox<span class="w">
-</span><span class="w">    </span>command<span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;ls /etc/secrets&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">    </span>volumeMounts<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>secrets<span class="w">
-</span><span class="w">      </span>mountPath<span class="p">:</span><span class="w"> </span>/etc/secrets<span class="w">
-</span><span class="w">  </span>volumes<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>secrets<span class="w">
-</span><span class="w">    </span>secret<span class="p">:</span><span class="w">
-</span><span class="w">     </span>secretName<span class="p">:</span><span class="w"> </span>mysecret</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret2-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret2</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;ls /etc/secrets&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secrets</span><span class="w">
+</span><span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/secrets</span><span class="w">
+</span><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secrets</span><span class="w">
+</span><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w">
+</span><span class="w">     </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">mysecret</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>创建：</p>
+</div><p>创建：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f pod-2.yaml</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f pod-2.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看日志输出：</p>
+</div><p>查看日志输出：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">password
-username</code></pre></td></tr></table>
+username
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="kubernetes-io-dockerconfigjson">kubernetes.io/dockerconfigjson</h2>
-
+</div><h2 id="kubernetesiodockerconfigjson">kubernetes.io/dockerconfigjson</h2>
 <p>除了上面的Opaque这种类型外，我们还可以来创建docker registry认证的Secret，直接使用kubectl create命令创建即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -448,18 +440,18 @@ username</code></pre></td></tr></table>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$  kubectl create secret docker-registry 53registry --docker-server<span class="o">=</span><span class="m">172</span>.16.xxx.xxx:30882 --docker-username<span class="o">=</span>xxxx --docker-password<span class="o">=</span>xxxxx --docker-email<span class="o">=</span>test@gmail.com
+<pre class="chroma"><code class="language-shell" data-lang="shell">$  kubectl create secret docker-registry 53registry --docker-server<span class="o">=</span>172.16.xxx.xxx:30882 --docker-username<span class="o">=</span>xxxx --docker-password<span class="o">=</span>xxxxx --docker-email<span class="o">=</span>test@gmail.com
 secret/53registry created
 $ kubectl get secrets
 NAME                  TYPE                                  DATA   AGE
 53registry            kubernetes.io/dockerconfigjson        <span class="m">1</span>      9s
-mysecret              Opaque                                <span class="m">2</span>      25m</code></pre></td></tr></table>
+mysecret              Opaque                                <span class="m">2</span>      25m
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看信息：</p>
+</div><p>查看信息：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -508,24 +500,24 @@ metadata:
   resourceVersion: <span class="s2">&#34;1773588&#34;</span>
   selfLink: /api/v1/namespaces/default/secrets/53registry
   uid: c126cc02-72f0-11ea-9fde-005056b24815
-type: kubernetes.io/dockerconfigjson</code></pre></td></tr></table>
+type: kubernetes.io/dockerconfigjson
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可以将data.dockerconfigjson下的内容做一个base64解码，看看里面的数据</p>
+</div><p>可以将data.dockerconfigjson下的内容做一个base64解码，看看里面的数据</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">echo</span> <span class="nv">eyJhdXRocyI6eyIxNzIuMTYuNzcuNTM6MzA4ODIiOnsidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiYWRtaW4wMDAiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiYXV0aCI6IllXUnRhVzQ2WVdSdGFXNHdNREE9In19fQ</span><span class="o">==</span> <span class="p">|</span> base64 -d
-<span class="o">{</span><span class="s2">&#34;auths&#34;</span>:<span class="o">{</span><span class="s2">&#34;172.16.xxx.xxx:30882&#34;</span>:<span class="o">{</span><span class="s2">&#34;username&#34;</span>:<span class="s2">&#34;xxx&#34;</span>,<span class="s2">&#34;password&#34;</span>:<span class="s2">&#34;xxxx&#34;</span>,<span class="s2">&#34;email&#34;</span>:<span class="s2">&#34;test@gmail.com&#34;</span>,<span class="s2">&#34;auth&#34;</span>:<span class="s2">&#34;YWRtaW46YWRtaW4wMDA=&#34;</span><span class="o">}}}</span></code></pre></td></tr></table>
+<span class="o">{</span><span class="s2">&#34;auths&#34;</span>:<span class="o">{</span><span class="s2">&#34;172.16.xxx.xxx:30882&#34;</span>:<span class="o">{</span><span class="s2">&#34;username&#34;</span>:<span class="s2">&#34;xxx&#34;</span>,<span class="s2">&#34;password&#34;</span>:<span class="s2">&#34;xxxx&#34;</span>,<span class="s2">&#34;email&#34;</span>:<span class="s2">&#34;test@gmail.com&#34;</span>,<span class="s2">&#34;auth&#34;</span>:<span class="s2">&#34;YWRtaW46YWRtaW4wMDA=&#34;</span><span class="o">}}}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>测试使用53registry这个Secret能否拉取私有仓库里的镜像</p>
+</div><p>测试使用53registry这个Secret能否拉取私有仓库里的镜像</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -537,22 +529,22 @@ type: kubernetes.io/dockerconfigjson</code></pre></td></tr></table>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>tomcat<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>tomcat<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span><span class="m">172.16</span>.xx.xx<span class="p">:</span><span class="m">30882</span>/tomcat<span class="p">:</span><span class="m">0.0</span>.<span class="m">2</span><span class="w">
-</span><span class="w">  </span>imagePullSecrets<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>53registry</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tomcat</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tomcat</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="m">172.16</span><span class="l">.xx.xx:30882/tomcat:0.0.2</span><span class="w">
+</span><span class="w">  </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">53registry</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>创建：</p>
+</div><p>创建：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -566,20 +558,18 @@ type: kubernetes.io/dockerconfigjson</code></pre></td></tr></table>
 pod/tomcat created
 $ kubectl describe pods tomcat
 .....
-  Normal  Scheduled  19s   default-scheduler      Successfully assigned default/tomcat to <span class="m">172</span>.16.xx.xx
-  Normal  Pulled     18s   kubelet, <span class="m">172</span>.16.xx.xx  Container image <span class="s2">&#34;172.16.xx.xx:30882/tomcat:0.0.2&#34;</span> already present on machine
-  Normal  Created    18s   kubelet, <span class="m">172</span>.16.xx.xx  Created container tomcat
-  Normal  Started    18s   kubelet, <span class="m">172</span>.16.xx.xx  Started container tomcat</code></pre></td></tr></table>
+  Normal  Scheduled  19s   default-scheduler      Successfully assigned default/tomcat to 172.16.xx.xx
+  Normal  Pulled     18s   kubelet, 172.16.xx.xx  Container image <span class="s2">&#34;172.16.xx.xx:30882/tomcat:0.0.2&#34;</span> already present on machine
+  Normal  Created    18s   kubelet, 172.16.xx.xx  Created container tomcat
+  Normal  Started    18s   kubelet, 172.16.xx.xx  Started container tomcat
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可以看到镜像被正常拉取了</p>
-
-<h2 id="kubernetes-io-service-account-token">Kubernetes.io/service-account-token</h2>
-
+</div><p>可以看到镜像被正常拉取了</p>
+<h2 id="kubernetesioservice-account-token">Kubernetes.io/service-account-token</h2>
 <p>另外一种Secret类型就是Kubernetes.io/service-account-token，用于被serviceaccount引用。serviceaccount创建时Kubernetes会默认创建对应的secret。pod如果使用了serviceaccount，对应的secret会自动挂载到pod的<code>/run/secrets/kubernetes.io/serviceaccount</code>目录中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -594,11 +584,10 @@ ca.crt
 namespace
 token
 $ kubectl <span class="nb">exec</span> nginx-7db9fccd9b-kh69g cat /run/secrets/kubernetes.io/serviceaccount/token
-eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tbHd3OGoiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImQzM2Y4NzM5LTZjYjgtMTFlYS05ZmRlLTAwNTA1NmIyNDgxNSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.VP1N2F7hY-WrjCMdj3vqm-XGCRuYKX75xJA0cWFcfeJsds2LBo1f0dHA5YyptUGjj5UiOTHZtuj4Ge2THClcfOkUdi6E73TzrzkK6CPOhFRtEHC6koYjPjJMhMu9KnYg2zY2vEn7YmlzNndv6UF6hFbLk6iq44Y67Q5Jjgx7gtMmS-N8HTzx034mil5E7aCn__wJ_Ij5LkJ0lctHDp0jjNHbZPkfjCGSNRYn0WYl5qe7J6wY_SKE95QrAh4buNfh2s6y3NhMkbC29yy8nU2iVOFlWq-Rp7DMPRRi8hxRDOXMhPyzPaTgwFxZonrLQUTEX7zvqyRE7MPGtkYDO48jbg</code></pre></td></tr></table>
+eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tbHd3OGoiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImQzM2Y4NzM5LTZjYjgtMTFlYS05ZmRlLTAwNTA1NmIyNDgxNSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.VP1N2F7hY-WrjCMdj3vqm-XGCRuYKX75xJA0cWFcfeJsds2LBo1f0dHA5YyptUGjj5UiOTHZtuj4Ge2THClcfOkUdi6E73TzrzkK6CPOhFRtEHC6koYjPjJMhMu9KnYg2zY2vEn7YmlzNndv6UF6hFbLk6iq44Y67Q5Jjgx7gtMmS-N8HTzx034mil5E7aCn__wJ_Ij5LkJ0lctHDp0jjNHbZPkfjCGSNRYn0WYl5qe7J6wY_SKE95QrAh4buNfh2s6y3NhMkbC29yy8nU2iVOFlWq-Rp7DMPRRi8hxRDOXMhPyzPaTgwFxZonrLQUTEX7zvqyRE7MPGtkYDO48jbg
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="参考链接">参考链接</h2>
-
+</div><h2 id="参考链接">参考链接</h2>
 <p><a href="https://k8smeetup.github.io/docs/tasks/inject-data-application/distribute-credentials-secure/">官方文档</a></p>
     </div>
 
@@ -658,10 +647,9 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiw
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-04-18 09:18:39 \x2b0800 CST',
+        id: '2020-04-18 09:18:39 \u002b0800 CST',
         title: 'Kubernetes笔记之Secret',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -673,6 +661,10 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiw
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -728,7 +720,10 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiw
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

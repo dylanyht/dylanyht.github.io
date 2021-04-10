@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker安装SQLserver" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/" />
-<meta property="article:published_time" content="2019-05-22T21:28:39&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-22T21:28:39&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/22/docker%E5%AE%89%E8%A3%85sqlserver/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-22T21:28:39&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-22T21:28:39&#43;08:00" />
 
 <meta itemprop="name" content="Docker安装SQLserver">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-22T21:28:39&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-22T21:28:39&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-22T21:28:39&#43;08:00" />
 <meta itemprop="wordCount" content="466">
-
-
-
-<meta itemprop="keywords" content="docker,容器,sqlserver,centos,数据库," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="docker,容器,sqlserver,centos,数据库," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker安装SQLserver"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,14 +150,11 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#安装">安装</a></li>
-<li><a href="#连接配置">连接配置</a></li>
-<li><a href="#创建数据库-查询数据">创建数据库、查询数据</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#连接配置">连接配置</a></li>
+    <li><a href="#创建数据库查询数据">创建数据库、查询数据</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -161,131 +162,129 @@
       <blockquote>
 <p>此文档需要在docker安装后操作</p>
 </blockquote>
-
 <h2 id="安装">安装</h2>
-
 <ul>
-<li>查询镜像</li>
-</ul>
+<li>
+<p>查询镜像</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker search mssql </code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker search mssql 
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>拉取镜像</li>
-</ul>
+</div></li>
+<li>
+<p>拉取镜像</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker pull mcr.microsoft.com/mssql/server:2017-latest    </code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker pull mcr.microsoft.com/mssql/server:2017-latest    
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>运行镜像</li>
-</ul>
-
+</div></li>
+<li>
+<p>运行镜像</p>
 <blockquote>
 <p>其中SA_PASSWORD=Kute@2018中Kute@2018为SA的密码  可以对应更改</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker run -e <span class="s1">&#39;ACCEPT_EULA=Y&#39;</span> -e <span class="s1">&#39;SA_PASSWORD=Kute@2018&#39;</span> <span class="se">\
-</span><span class="se"></span>  -v /home/docker/data/mssql:/var/opt/mssql <span class="se">\
-</span><span class="se"></span>  -p <span class="m">1433</span>:1433 --name sql1 -h mssql <span class="se">\
-</span><span class="se"></span>  -d mcr.microsoft.com/mssql/server:2017-latest</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker run -e <span class="s1">&#39;ACCEPT_EULA=Y&#39;</span> -e <span class="s1">&#39;SA_PASSWORD=Kute@2018&#39;</span> <span class="se">\
+</span><span class="se"></span>-v /home/docker/data/mssql:/var/opt/mssql <span class="se">\
+</span><span class="se"></span>-p 1433:1433 --name sql1 -h mssql <span class="se">\
+</span><span class="se"></span>-d mcr.microsoft.com/mssql/server:2017-latest
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="连接配置">连接配置</h2>
-
-<ul>
-<li>修改密码   可不进行修改</li>
+</div></li>
 </ul>
+<h2 id="连接配置">连接配置</h2>
+<ul>
+<li>
+<p>修改密码   可不进行修改</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker <span class="nb">exec</span> -it sql1 /opt/mssql-tools/bin/sqlcmd <span class="se">\
-</span><span class="se"></span>  -S localhost -U SA -P <span class="s1">&#39;&lt;YourStrong!Passw0rd&gt;&#39;</span> <span class="se">\
-</span><span class="se"></span>  -Q <span class="s1">&#39;ALTER LOGIN SA WITH PASSWORD=&#34;&lt;YourNewStrong!Passw0rd&gt;&#34;&#39;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker <span class="nb">exec</span> -it sql1 /opt/mssql-tools/bin/sqlcmd <span class="se">\
+</span><span class="se"></span>-S localhost -U SA -P <span class="s1">&#39;&lt;YourStrong!Passw0rd&gt;&#39;</span> <span class="se">\
+</span><span class="se"></span>-Q <span class="s1">&#39;ALTER LOGIN SA WITH PASSWORD=&#34;&lt;YourNewStrong!Passw0rd&gt;&#34;&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>连接进sql server</li>
-</ul>
+</div></li>
+<li>
+<p>连接进sql server</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  sudo docker <span class="nb">exec</span> -it sql1 <span class="s2">&#34;bash&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker <span class="nb">exec</span> -it sql1 <span class="s2">&#34;bash&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>进入容器后，使用sqlcmd进行本地连接。</li>
-</ul>
-
+</div></li>
+<li>
+<p>进入容器后，使用sqlcmd进行本地连接。</p>
 <blockquote>
 <p>默认情况下，Sqlcmd不在路径中，因此您必须指定完整路径。</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P <span class="s1">&#39;&lt;YourNewStrong!Passw0rd&gt;&#39;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P <span class="s1">&#39;&lt;YourNewStrong!Passw0rd&gt;&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="创建数据库-查询数据">创建数据库、查询数据</h2>
-
-<ul>
-<li>进去sql server</li>
+</div></li>
 </ul>
+<h2 id="创建数据库查询数据">创建数据库、查询数据</h2>
+<ul>
+<li>
+<p>进去sql server</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P <span class="s1">&#39;Kute@2018&#39;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P <span class="s1">&#39;Kute@2018&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>创建数据库</li>
-</ul>
+</div></li>
+<li>
+<p>创建数据库</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  CREATE DATABASE TestDB <span class="c1">#创建数据库</span>
-  SELECT Name from sys.Databases <span class="c1">#查询数据库名称</span>
-  <span class="c1">#前两个命令没有立即执行，你必须键入GO新行才能执行以前的命令</span>
-  GO</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">CREATE DATABASE TestDB <span class="c1">#创建数据库</span>
+SELECT Name from sys.Databases <span class="c1">#查询数据库名称</span>
+<span class="c1">#前两个命令没有立即执行，你必须键入GO新行才能执行以前的命令</span>
+GO
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>插入数据</li>
-</ul>
+</div></li>
+<li>
+<p>插入数据</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -297,48 +296,49 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  <span class="c1">#切换到新的TestDB数据库</span>
-  use TestDB
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#切换到新的TestDB数据库</span>
+use TestDB
   
-  <span class="c1">#创建新表Inventory</span>
-  CREATE TABLE Inventory <span class="o">(</span>id INT, name NVARCHAR<span class="o">(</span><span class="m">50</span><span class="o">)</span>, quantity INT<span class="o">)</span>
+<span class="c1">#创建新表Inventory</span>
+CREATE TABLE Inventory <span class="o">(</span>id INT, name NVARCHAR<span class="o">(</span>50<span class="o">)</span>, quantity INT<span class="o">)</span>
   
-  <span class="c1">#将数据插入新表</span>
-  INSERT INTO Inventory VALUES <span class="o">(</span><span class="m">1</span>, <span class="s1">&#39;banana&#39;</span>, <span class="m">150</span><span class="o">)</span><span class="p">;</span> INSERT INTO Inventory VALUES <span class="o">(</span><span class="m">2</span>, <span class="s1">&#39;orange&#39;</span>, <span class="m">154</span><span class="o">)</span><span class="p">;</span>
-  <span class="c1">#键入GO以执行以前的命令</span>
-  GO</code></pre></td></tr></table>
+<span class="c1">#将数据插入新表</span>
+INSERT INTO Inventory VALUES <span class="o">(</span>1, <span class="s1">&#39;banana&#39;</span>, 150<span class="o">)</span><span class="p">;</span> INSERT INTO Inventory VALUES <span class="o">(</span>2, <span class="s1">&#39;orange&#39;</span>, 154<span class="o">)</span><span class="p">;</span>
+<span class="c1">#键入GO以执行以前的命令</span>
+GO
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>查询数据</li>
-</ul>
+</div></li>
+<li>
+<p>查询数据</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  <span class="c1">#该查询返回Inventory数量大于152 的表中的行</span>
-  SELECT * FROM Inventory WHERE quantity &gt; <span class="m">152</span><span class="p">;</span>
-  <span class="c1">#键入GO以执行以前的命令</span>
-  GO</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#该查询返回Inventory数量大于152 的表中的行</span>
+SELECT * FROM Inventory WHERE quantity &gt; 152<span class="p">;</span>
+<span class="c1">#键入GO以执行以前的命令</span>
+GO
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>退出会话</li>
-</ul>
+</div></li>
+<li>
+<p>退出会话</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  QUIT</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">QUIT
+</code></pre></td></tr></table>
 </div>
-</div>
-<hr />
-
+</div></li>
+</ul>
+<hr>
 <p>参考：<a href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-2017&amp;pivots=cs1-bash#docker-demo">官方文档</a></p>
     </div>
 
@@ -400,10 +400,9 @@
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-22 21:28:39 \x2b0800 CST',
+        id: '2019-05-22 21:28:39 \u002b0800 CST',
         title: 'Docker安装SQLserver',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -415,6 +414,10 @@
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -470,7 +473,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

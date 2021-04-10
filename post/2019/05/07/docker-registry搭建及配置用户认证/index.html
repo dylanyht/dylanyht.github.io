@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker Registry搭建及配置用户认证" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" />
-<meta property="article:published_time" content="2019-05-07T10:09:37&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-07T10:09:37&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/07/docker-registry%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-07T10:09:37&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-07T10:09:37&#43;08:00" />
 
 <meta itemprop="name" content="Docker Registry搭建及配置用户认证">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-07T10:09:37&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-07T10:09:37&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-07T10:09:37&#43;08:00" />
-<meta itemprop="wordCount" content="823">
-
-
-
-<meta itemprop="keywords" content="docker,仓库,容器," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="791">
+<meta itemprop="keywords" content="docker,仓库,容器," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker Registry搭建及配置用户认证"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
             </div>
-          <span class="more-meta"> 823 words </span>
+          <span class="more-meta"> 791 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,224 +150,101 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#搭建registry">搭建Registry</a>
-<ul>
-<li><a href="#启动容器">启动容器</a></li>
-<li><a href="#push镜像到私有仓库">push镜像到私有仓库</a></li>
-<li><a href="#其他机器配置连接私有仓库">其他机器配置连接私有仓库</a></li>
-<li><a href="#可能出现错误">可能出现错误</a></li>
-</ul></li>
-<li><a href="#设置私有仓库的用户认证">设置私有仓库的用户认证</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#搭建registry">搭建Registry</a>
+      <ul>
+        <li><a href="#启动容器">启动容器</a></li>
+        <li><a href="#push镜像到私有仓库">push镜像到私有仓库</a></li>
+        <li><a href="#其他机器配置连接私有仓库">其他机器配置连接私有仓库</a></li>
+        <li><a href="#可能出现错误">可能出现错误</a></li>
+      </ul>
+    </li>
+    <li><a href="#设置私有仓库的用户认证">设置私有仓库的用户认证</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <h2 id="搭建registry">搭建Registry</h2>
-
 <blockquote>
 <p>服务器ip为：172.16.77.71</p>
 </blockquote>
-
 <p>安装Docker Registry，Docker版本需要1.6以上</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[root@k8s-77-71 ~]# docker --version
-Docker version 18.06.1-ce, build e68fc7a</pre></td></tr></table>
-</div>
-</div>
+<pre><code>[root@k8s-77-71 ~]# docker --version
+Docker version 18.06.1-ce, build e68fc7a
+</code></pre>
 <p>docker官方给提供了Registry的镜像  直接拉取</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[root@k8s-77-71 ~]# docker pull registry</pre></td></tr></table>
-</div>
-</div>
+<pre><code>[root@k8s-77-71 ~]# docker pull registry
+</code></pre>
 <h3 id="启动容器">启动容器</h3>
-
 <blockquote>
 <p>默认情况下，会将仓库存放于容器内的/var/lib/registry（官网Dockerfile中查看）目录下
 以防容器出问题导致镜像丢失，我们将挂载本地目录到容器的/var/lib/registry下</p>
 </blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker run -itd  --restart always --name docker-hub -p 5000:5000 -v /opt/data/registry:/var/lib/registry registry</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker run -itd  --restart always --name docker-hub -p 5000:5000 -v /opt/data/registry:/var/lib/registry registry
+</code></pre>
 <p>查看私有仓库  目前没有存储镜像 所以显示为空</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">curl -XGET 127.0.0.1:5000/v2/_catalog</pre></td></tr></table>
-</div>
-</div>
+<pre><code>curl -XGET 127.0.0.1:5000/v2/_catalog
+</code></pre>
 <p>查看镜像版本列表</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">curl -XGET 127.0.0.1:5000/v2/image_name/tags/list</pre></td></tr></table>
-</div>
-</div>
+<pre><code>curl -XGET 127.0.0.1:5000/v2/image_name/tags/list
+</code></pre>
 <h3 id="push镜像到私有仓库">push镜像到私有仓库</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[root@k8s-77-71 ~]# docker tag  mingo 172.16.77.71:5000/mongo
-[root@k8s-77-71 ~]# docker push 172.16.77.71:5000/mongo:latest</pre></td></tr></table>
-</div>
-</div>
+<pre><code>[root@k8s-77-71 ~]# docker tag  mingo 172.16.77.71:5000/mongo
+[root@k8s-77-71 ~]# docker push 172.16.77.71:5000/mongo:latest
+</code></pre>
 <h3 id="其他机器配置连接私有仓库">其他机器配置连接私有仓库</h3>
-
 <p>每台机器 docker 私有仓库配置vi /etc/docker/daemon.json写入以下内容：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">{
-    &#34;insecure-registries&#34;: [
-        &#34;172.16.77.71:5000&#34;
-    ]
-}</pre></td></tr></table>
-</div>
-</div>
+<pre><code>{
+	&quot;insecure-registries&quot;: [
+        &quot;172.16.77.71:5000&quot;
+	]
+}
+</code></pre>
 <p>然后重启docker</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo systemctl   daemon-reload
-systemctl restart docker.service</pre></td></tr></table>
-</div>
-</div>
+<pre><code>sudo systemctl   daemon-reload
+systemctl restart docker.service
+</code></pre>
 <p>注：如果配置多个私有仓库，daemon.json中用“,”隔开</p>
-
 <h3 id="可能出现错误">可能出现错误</h3>
-
 <p>在别的机器上往私有仓库push时可能会出现以下错误</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">error parsing HTTP 400 response body: invalid character &#39;F&#39; looking for beginning of value: &#34;Failed parsing or buffering the chunk-encoded client body.\r\n&#34;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>error parsing HTTP 400 response body: invalid character 'F' looking for beginning of value: &quot;Failed parsing or buffering the chunk-encoded client body.\r\n&quot;
+</code></pre>
 <p>初步判断应该是docker使用代理导致，解决办法：vim  /etc/systemd/system/docker.service.d/http-proxy.conf</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[Service]
-Environment=&#34;HTTP_PROXY=http://172.16.77.36:8118/&#34; &#34;HTTPS_PROXY=http:// 172.16.77.36:8118&#34; &#34;NO_PROXY=172.16.7.222,172.16.77.71,127.0.0.1,localhost&#34;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>[Service]
+Environment=&quot;HTTP_PROXY=http://172.16.77.36:8118/&quot; &quot;HTTPS_PROXY=http://	172.16.77.36:8118&quot; &quot;NO_PROXY=172.16.7.222,172.16.77.71,127.0.0.1,localhost&quot;
+</code></pre>
 <p>重启daemon</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo systemctl   daemon-reload </pre></td></tr></table>
-</div>
-</div>
+<pre><code>sudo systemctl   daemon-reload 
+</code></pre>
 <p>查看参数是否生效</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo  systemctl show docker --property Environment</pre></td></tr></table>
-</div>
-</div>
+<pre><code>sudo  systemctl show docker --property Environment
+</code></pre>
 <p>重启服务</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo systemctl  restart docker</pre></td></tr></table>
-</div>
-</div>
+<pre><code>sudo systemctl  restart docker
+</code></pre>
 <p>重新push</p>
-
 <h2 id="设置私有仓库的用户认证">设置私有仓库的用户认证</h2>
-
 <blockquote>
 <p>私有仓库搭建以后其他所有客户端均可以push、pull， docker官方提供认证方法对docker仓库进行权限保护</p>
 </blockquote>
-
 <p>删除原启动的docker容器</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker stop docker-hub
-docker rm docker-hub</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker stop docker-hub
+docker rm docker-hub
+</code></pre>
 <p>创建保存账号密码的文件</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">mkdir  /opt/data/auth
-docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/htpasswd</pre></td></tr></table>
-</div>
-</div>
+<pre><code>mkdir  /opt/data/auth
+docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/htpasswd
+</code></pre>
 <p>重新启动容器</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker run -d -p 5000:5000 --restart=always --name docker-hub \
-    -v /opt/data/registry:/var/lib/registry \
-    -v /opt/data/auth:/auth \
-    -e &#34;REGISTRY_AUTH=htpasswd&#34; \
-    -e &#34;REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm&#34; \
-    -e  REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
-    registry</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker run -d -p 5000:5000 --restart=always --name docker-hub \
+	-v /opt/data/registry:/var/lib/registry \
+	-v /opt/data/auth:/auth \
+	-e &quot;REGISTRY_AUTH=htpasswd&quot; \
+	-e &quot;REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm&quot; \
+	-e  REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+	registry
+</code></pre>
 <p>现在客户端再pull、push会提示报错，无法提交。需要登录私有仓库
 登录：docker login -u username -p userpasswd 172.16.77.71:5000
 退出：docker logout 172.16.77.71:5000
@@ -426,10 +307,9 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-07 10:09:37 \x2b0800 CST',
+        id: '2019-05-07 10:09:37 \u002b0800 CST',
         title: 'Docker Registry搭建及配置用户认证',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -441,6 +321,10 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -496,7 +380,10 @@ docker run  --entrypoint htpasswd registry -Bbn  username  userpasswd &gt; auth/
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

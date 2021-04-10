@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="使用kubecm管理kubeconfig" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/" />
-<meta property="article:published_time" content="2020-08-06T17:05:11&#43;08:00"/>
-<meta property="article:modified_time" content="2020-08-06T17:05:11&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/08/06/%E4%BD%BF%E7%94%A8kubecm%E7%AE%A1%E7%90%86kubeconfig/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-08-06T17:05:11&#43;08:00" />
+<meta property="article:modified_time" content="2020-08-06T17:05:11&#43;08:00" />
 
 <meta itemprop="name" content="使用kubecm管理kubeconfig">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-08-06T17:05:11&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-08-06T17:05:11&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-06T17:05:11&#43;08:00" />
-<meta itemprop="wordCount" content="1647">
-
-
-
-<meta itemprop="keywords" content="kubernetes,kubecm,kubectl,kubeconfig,," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1595">
+<meta itemprop="keywords" content="kubernetes,kubecm,kubectl,kubeconfig,," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用kubecm管理kubeconfig"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1647 words </span>
+          <span class="more-meta"> 1595 words </span>
           <span class="more-meta"> 4 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,45 +150,39 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#kubecm">kubecm</a></li>
-<li><a href="#kubeconfig文件结构">kubeconfig文件结构</a></li>
-<li><a href="#kubecm安装">kubecm安装</a></li>
-<li><a href="#命令行自动补全">命令行自动补全</a>
-<ul>
-<li><a href="#bash">bash</a></li>
-<li><a href="#zsh">zsh</a></li>
-</ul></li>
-<li><a href="#kubecm使用">kubecm使用</a>
-<ul>
-<li><a href="#查看">查看</a></li>
-<li><a href="#添加">添加</a></li>
-<li><a href="#删除">删除</a></li>
-<li><a href="#合并">合并</a></li>
-<li><a href="#重命名">重命名</a></li>
-<li><a href="#切换">切换</a></li>
-</ul></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#kubecm">kubecm</a></li>
+    <li><a href="#kubeconfig文件结构">kubeconfig文件结构</a></li>
+    <li><a href="#kubecm安装">kubecm安装</a></li>
+    <li><a href="#命令行自动补全">命令行自动补全</a>
+      <ul>
+        <li><a href="#bash">bash</a></li>
+        <li><a href="#zsh">zsh</a></li>
+      </ul>
+    </li>
+    <li><a href="#kubecm使用">kubecm使用</a>
+      <ul>
+        <li><a href="#查看">查看</a></li>
+        <li><a href="#添加">添加</a></li>
+        <li><a href="#删除">删除</a></li>
+        <li><a href="#合并">合并</a></li>
+        <li><a href="#重命名">重命名</a></li>
+        <li><a href="#切换">切换</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><a href="https://imgchr.com/i/aOn3Zj"><img src="https://s1.ax1x.com/2020/08/11/aOn3Zj.jpg" alt="aOn3Zj.jpg" /></a></p>
-
+      <p><a href="https://imgchr.com/i/aOn3Zj"><img src="https://s1.ax1x.com/2020/08/11/aOn3Zj.jpg" alt="aOn3Zj.jpg"></a></p>
 <blockquote>
 <p>kubecm是国内某位大神自己写的项目，可以合并多个kubeconfig文件，切换集群等。<a href="https://github.com/sunny0826/kubecm">项目地址</a>。如果你是用的bash环境，需要安装至少0.8.2版本（之前版本在bash环境下无法命令补全，联系作者修复后的版本为0.8.2）。</p>
-
 <p>此文档环境： centos7.6  、kubectl1.14.8、kubecm0.8.2</p>
 </blockquote>
-
 <h2 id="kubecm">kubecm</h2>
-
 <p><a href="https://github.com/sunny0826/kubecm">kubecm</a> 由 golang 编写，支持 <code>Mac</code> <code>Linux</code> 和 <code>windows</code> 平台，<code>delete</code> <code>rename</code> <code>switch</code> 提供比较实用的交互式的操作，目前的功能包括：</p>
-
 <ul>
 <li>add ：添加新的 <code>kubeconfig</code> 到 <code>$HOME/.kube/config</code> 中</li>
 <li>completion ：命令行自动补全功能</li>
@@ -193,13 +191,11 @@
 <li>rename：重名指定的 <code>context</code>，提供交互式和指定重命名两种方式</li>
 <li>switch：交互式切换 <code>context</code></li>
 </ul>
-
 <h2 id="kubeconfig文件结构">kubeconfig文件结构</h2>
-
 <p><code>kubeconfig</code> 文件主要由下面几部分构成： 集群参数、用户参数、上下文参数、当前上下文</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -218,76 +214,76 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>clusters<span class="p">:</span><span class="w"> </span><span class="c">#集群参数</span><span class="w">
-</span><span class="w"></span>-<span class="w"> </span>cluster<span class="p">:</span><span class="w">
-</span><span class="w">    </span>certificate-authority-data<span class="p">:</span><span class="w"> 
-</span><span class="w">    </span>server<span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//<span class="m">172.16</span>.xx.xx<span class="p">:</span><span class="m">6443</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>cluster1<span class="w">
-</span><span class="w"></span>contexts<span class="p">:</span><span class="w"> </span><span class="c">#上下文参数</span><span class="w">
-</span><span class="w"></span>-<span class="w"> </span>context<span class="p">:</span><span class="w">
-</span><span class="w">    </span>cluster<span class="p">:</span><span class="w"> </span>cluster1<span class="w">
-</span><span class="w">    </span>user<span class="p">:</span><span class="w"> </span>admin<span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>context-cluster1-admin<span class="w"> </span><span class="c">#集群上下文名称</span><span class="w">
-</span><span class="w"></span>current-context<span class="p">:</span><span class="w"> </span>context-cluster1-admin<span class="w"> </span><span class="c"># 当前上下文</span><span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Config<span class="w">
-</span><span class="w"></span>preferences<span class="p">:</span><span class="w"> </span>{}<span class="w">
-</span><span class="w"></span>users<span class="p">:</span><span class="w"> </span><span class="c">#用户参数</span><span class="w">
-</span><span class="w"></span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>admin<span class="w">
-</span><span class="w">  </span>user<span class="p">:</span><span class="w">
-</span><span class="w">    </span>client-certificate-data<span class="p">:</span><span class="w"> 
-</span><span class="w">    </span>client-key-data<span class="p">:</span><span class="w"> </span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">clusters</span><span class="p">:</span><span class="w"> </span><span class="c">#集群参数</span><span class="w">
+</span><span class="w"></span>- <span class="nt">cluster</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">certificate-authority-data</span><span class="p">:</span><span class="w"> 
+</span><span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l">https://172.16.xx.xx:6443</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cluster1</span><span class="w">
+</span><span class="w"></span><span class="nt">contexts</span><span class="p">:</span><span class="w"> </span><span class="c">#上下文参数</span><span class="w">
+</span><span class="w"></span>- <span class="nt">context</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l">cluster1</span><span class="w">
+</span><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">context-cluster1-admin</span><span class="w"> </span><span class="c">#集群上下文名称</span><span class="w">
+</span><span class="w"></span><span class="nt">current-context</span><span class="p">:</span><span class="w"> </span><span class="l">context-cluster1-admin</span><span class="w"> </span><span class="c"># 当前上下文</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Config</span><span class="w">
+</span><span class="w"></span><span class="nt">preferences</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w"></span><span class="nt">users</span><span class="p">:</span><span class="w"> </span><span class="c">#用户参数</span><span class="w">
+</span><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
+</span><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">client-certificate-data</span><span class="p">:</span><span class="w"> 
+</span><span class="w">    </span><span class="nt">client-key-data</span><span class="p">:</span><span class="w"> 
+</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="kubecm安装">kubecm安装</h2>
+</div><h2 id="kubecm安装">kubecm安装</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ wget https://github.com/sunny0826/kubecm/releases/download/v0.8.2/kubecm_0.8.2_Linux_x86_64.tar.gz
 $ tar -zxvf kubecm_0.8.2_Linux_x86_64.tar.gz
-$ mv kubecm /usr/local/bin/</code></pre></td></tr></table>
+$ mv kubecm /usr/local/bin/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="命令行自动补全">命令行自动补全</h2>
-
+</div><h2 id="命令行自动补全">命令行自动补全</h2>
 <h3 id="bash">bash</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">source</span> &lt;<span class="o">(</span>kubecm completion bash<span class="o">)</span>
 $ <span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubecm completion bash)&#34;</span> &gt;&gt; ~/.bashrc
-$ <span class="nb">source</span>  ~/.bashrc</code></pre></td></tr></table>
+$ <span class="nb">source</span>  ~/.bashrc
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="zsh">zsh</h3>
+</div><h3 id="zsh">zsh</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">source</span> &lt;<span class="o">(</span>kubecm completion zsh<span class="o">)</span>
 $ <span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubecm completion zsh)&#34;</span> &gt;&gt; ~/.zshrc
-$ <span class="nb">source</span>  ~/.zshrc</code></pre></td></tr></table>
+$ <span class="nb">source</span>  ~/.zshrc
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="kubecm使用">kubecm使用</h2>
-
+</div><h2 id="kubecm使用">kubecm使用</h2>
 <h3 id="查看">查看</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -304,13 +300,13 @@ $ +------------+---------------------------+-------------+----------+-----------
 +<span class="o">============</span>+<span class="o">===========================</span>+<span class="o">=============</span>+<span class="o">==========</span>+<span class="o">==============</span>+
 <span class="p">|</span>      *     <span class="p">|</span>   context-cluster1-admin  <span class="p">|</span>   cluster1  <span class="p">|</span>   admin  <span class="p">|</span>              <span class="p">|</span>
 +------------+---------------------------+-------------+----------+--------------+
-...</code></pre></td></tr></table>
+...
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="添加">添加</h3>
+</div><h3 id="添加">添加</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -361,13 +357,13 @@ $ kubecm add -f config-aliyun -c
 <span class="p">|</span>            <span class="p">|</span>       config-aliyun       <span class="p">|</span>   cluster-bh6mb7k26h  <span class="p">|</span>   user-bh6mb7k26h  <span class="p">|</span>              <span class="p">|</span>
 +------------+---------------------------+-----------------------+--------------------+--------------+
 <span class="p">|</span>      *     <span class="p">|</span>   context-cluster1-admin  <span class="p">|</span>        cluster1       <span class="p">|</span>        admin       <span class="p">|</span>              <span class="p">|</span>
-+------------+---------------------------+-----------------------+--------------------+--------------+</code></pre></td></tr></table>
++------------+---------------------------+-----------------------+--------------------+--------------+
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="删除">删除</h3>
+</div><h3 id="删除">删除</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -400,13 +396,13 @@ User:           admin
 
 <span class="c1"># 删除指定context</span>
 $  kubecm delete config-aliyun
-Context Delete:「config-aliyun」</code></pre></td></tr></table>
+Context Delete:「config-aliyun」
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="合并">合并</h3>
+</div><h3 id="合并">合并</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -426,6 +422,7 @@ Context Delete:「config-aliyun」</code></pre></td></tr></table>
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 合并 all_config 目录中的 kubeconfig,该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件</span>
@@ -447,13 +444,14 @@ $ kubecm
 +------------+---------------+-----------------------+--------------------+--------------+
 <span class="p">|</span>      *     <span class="p">|</span>   config-202  <span class="p">|</span>   cluster-h55g4kbd78  <span class="p">|</span>   user-h55g4kbd78  <span class="p">|</span>              <span class="p">|</span>
 +------------+---------------+-----------------------+--------------------+--------------+
-...</code></pre></td></tr></table>
+...
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="重命名">重命名</h3>
+</div><h3 id="重命名">重命名</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -516,13 +514,13 @@ Rename <span class="nb">test</span> to dev
 <span class="p">|</span>            <span class="p">|</span>   config-154  <span class="p">|</span>   cluster-8ft42c2chh  <span class="p">|</span>   user-8ft42c2chh  <span class="p">|</span>              <span class="p">|</span>
 +------------+---------------+-----------------------+--------------------+--------------+
 <span class="p">|</span>      *     <span class="p">|</span>      dev      <span class="p">|</span>   cluster-h55g4kbd78  <span class="p">|</span>   user-h55g4kbd78  <span class="p">|</span>              <span class="p">|</span>
-+------------+---------------+-----------------------+--------------------+--------------+</code></pre></td></tr></table>
++------------+---------------+-----------------------+--------------------+--------------+
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="切换">切换</h3>
+</div><h3 id="切换">切换</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -565,11 +563,10 @@ Select Namespace:
 ↑ 🚩  default *
    demo
    dev
-↓  exdns</code></pre></td></tr></table>
+↓  exdns
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="参考链接">参考链接</h2>
-
+</div><h2 id="参考链接">参考链接</h2>
 <p><a href="https://github.com/sunny0826/kubecm">github</a></p>
     </div>
 
@@ -631,10 +628,9 @@ Select Namespace:
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-08-06 17:05:11 \x2b0800 CST',
+        id: '2020-08-06 17:05:11 \u002b0800 CST',
         title: '使用kubecm管理kubeconfig',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -646,6 +642,10 @@ Select Namespace:
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -701,7 +701,10 @@ Select Namespace:
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

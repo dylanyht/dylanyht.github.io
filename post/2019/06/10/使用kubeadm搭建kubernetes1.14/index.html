@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="使用kubeadm搭建Kubernetes1.14" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/" />
-<meta property="article:published_time" content="2019-06-10T13:50:55&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-10T13:50:55&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/06/10/%E4%BD%BF%E7%94%A8kubeadm%E6%90%AD%E5%BB%BAkubernetes1.14/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-06-10T13:50:55&#43;08:00" />
+<meta property="article:modified_time" content="2019-06-10T13:50:55&#43;08:00" />
 
 <meta itemprop="name" content="使用kubeadm搭建Kubernetes1.14">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-06-10T13:50:55&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-06-10T13:50:55&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-10T13:50:55&#43;08:00" />
-<meta itemprop="wordCount" content="1954">
-
-
-
-<meta itemprop="keywords" content="centos,docker,Kubernetes,kubeadm,," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1971">
+<meta itemprop="keywords" content="centos,docker,Kubernetes,kubeadm,," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用kubeadm搭建Kubernetes1.14"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> Kubernetes </a>
             </div>
-          <span class="more-meta"> 1954 words </span>
+          <span class="more-meta"> 1971 words </span>
           <span class="more-meta"> 4 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,22 +150,20 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#环境">环境</a></li>
-<li><a href="#前期准备">前期准备</a></li>
-<li><a href="#安装-kubeadm-kubelet-kubectl">安装 kubeadm、kubelet、kubectl</a></li>
-<li><a href="#配置-kubelet">配置 kubelet</a></li>
-<li><a href="#集群安装">集群安装</a>
-<ul>
-<li><a href="#初始化">初始化</a></li>
-</ul></li>
-<li><a href="#安装pod-network">安装Pod Network</a></li>
-<li><a href="#添加节点">添加节点</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#环境">环境</a></li>
+    <li><a href="#前期准备">前期准备</a></li>
+    <li><a href="#安装-kubeadmkubeletkubectl">安装 kubeadm、kubelet、kubectl</a></li>
+    <li><a href="#配置-kubelet">配置 kubelet</a></li>
+    <li><a href="#集群安装">集群安装</a>
+      <ul>
+        <li><a href="#初始化">初始化</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装pod-network">安装Pod Network</a></li>
+    <li><a href="#添加节点">添加节点</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -169,71 +171,67 @@
       <blockquote>
 <p>前段时间Kubernetes 1.14GA版本发布，而且还有了生产级别的windows节点支持。此文档使用kubeadm搭建Kubernetes1.14 做个记录。此文档在安装了docker的centos7.x的版本下实际操作</p>
 </blockquote>
-
 <h2 id="环境">环境</h2>
-
 <p>此次准备两台机器用于安装。后面可以按需求增加节点</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">172</span>.16.77.189
-<span class="m">172</span>.16.77.162</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">172.16.77.189
+172.16.77.162
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="前期准备">前期准备</h2>
-
+</div><h2 id="前期准备">前期准备</h2>
 <blockquote>
 <p>前期准备很重要，不然后面的安装可能会出现意想不到的坑。</p>
 </blockquote>
-
 <ul>
 <li>禁用防火墙</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">systemctl stop firewalld.service
-systemctl disable firewalld.service</code></pre></td></tr></table>
+systemctl disable firewalld.service
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>关闭swap</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">swapoff -a
-sed -i <span class="s1">&#39;/swap/d&#39;</span>  /etc/fstab</code></pre></td></tr></table>
+sed -i <span class="s1">&#39;/swap/d&#39;</span>  /etc/fstab
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>禁用SELINUX</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">setenforce <span class="m">0</span>
-sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;</span> /etc/selinux/config</code></pre></td></tr></table>
+sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;</span> /etc/selinux/config
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>配置k8s.conf</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -244,26 +242,25 @@ sed -i <span class="s1">&#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;</span> /
 </span><span class="s">net.bridge.bridge-nf-call-ip6tables = 1
 </span><span class="s">net.bridge.bridge-nf-call-iptables = 1
 </span><span class="s">net.ipv4.ip_forward = 1
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>执行以下命令，使其生效。</p>
+</div><p>执行以下命令，使其生效。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">modprobe br_netfilter
-sysctl -p /etc/sysctl.d/k8s.conf</code></pre></td></tr></table>
+sysctl -p /etc/sysctl.d/k8s.conf
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="安装-kubeadm-kubelet-kubectl">安装 kubeadm、kubelet、kubectl</h2>
-
+</div><h2 id="安装-kubeadmkubeletkubectl">安装 kubeadm、kubelet、kubectl</h2>
 <p>在确保docker安装之后再进行以下操作。安装kubeadm，指定yum源安装：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -284,13 +281,13 @@ sysctl -p /etc/sysctl.d/k8s.conf</code></pre></td></tr></table>
 </span><span class="s">repo_gpgcheck=1
 </span><span class="s">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 </span><span class="s">exclude=kube*
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><em>注意：以上的源需要科学上网。如果不能科学上网的话，可以使用阿里云的源进行安装：</em></p>
+</div><p><em>注意：以上的源需要科学上网。如果不能科学上网的话，可以使用阿里云的源进行安装：</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -311,77 +308,77 @@ sysctl -p /etc/sysctl.d/k8s.conf</code></pre></td></tr></table>
 </span><span class="s">repo_gpgcheck=0
 </span><span class="s">gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
 </span><span class="s">        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-</span><span class="s">EOF</span></code></pre></td></tr></table>
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong><em>安装</em></strong></p>
+</div><p><em><strong>安装</strong></em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">yum install -y kubelet kubeadm kubectl --disableexcludes<span class="o">=</span>kubernetes
-systemctl <span class="nb">enable</span> kubelet <span class="o">&amp;&amp;</span> systemctl start kubelet</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="配置-kubelet">配置 kubelet</h2>
+systemctl <span class="nb">enable</span> kubelet <span class="o">&amp;&amp;</span> systemctl start kubelet
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置-kubelet">配置 kubelet</h2>
 <blockquote>
-<p><font color=#DC143C> 如果和docker的cgroup-driver一致，则可跳过这一步</font></p>
+<p><!-- raw HTML omitted --> 如果和docker的cgroup-driver一致，则可跳过这一步<!-- raw HTML omitted --></p>
 </blockquote>
-
 <p>kubelet的cgroup-driver参数要和docker的cgroup-driver保持一致:</p>
-
 <p>查看docker的cgroup-driver</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># docker info |grep Cgroup</span>
 Cgroup Driver: systemd  
-<span class="c1">#注意：有的可能是Cgroup Driver: cgroupfs</span></code></pre></td></tr></table>
+<span class="c1">#注意：有的可能是Cgroup Driver: cgroupfs</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看配置文件：/var/lib/kubelet/kubeadm-flags.env</p>
+</div><p>查看配置文件：/var/lib/kubelet/kubeadm-flags.env</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># cat /var/lib/kubelet/kubeadm-flags.env</span>
 <span class="nv">KUBELET_KUBEADM_ARGS</span><span class="o">=</span>--cgroup-driver<span class="o">=</span>systemd --network-plugin<span class="o">=</span>cni --pod-infra-container-image<span class="o">=</span>registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.1
-<span class="c1">#与docker的cgroup-driver参数保持一致</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>如果你使用其他CRI 请参考<a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/">此处</a>进行对应修改</p>
+<span class="c1">#与docker的cgroup-driver参数保持一致</span>
 
-<p><strong><em><font color=#DC143C> 以上所有，master节点和node节点都需要配置</font></em></strong></p>
-
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你使用其他CRI 请参考<a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/">此处</a>进行对应修改</p>
+<p><em><strong><!-- raw HTML omitted --> 以上所有，master节点和node节点都需要配置<!-- raw HTML omitted --></strong></em></p>
 <h2 id="集群安装">集群安装</h2>
-
 <h3 id="初始化">初始化</h3>
-
 <p>在master节点上使用kubeadm命令进行初始化</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm init   --pod-network-cidr<span class="o">=</span><span class="m">10</span>.244.0.0/16 --apiserver-advertise-address<span class="o">=</span><span class="m">172</span>.16.77.189</code></pre></td></tr></table>
-</div>
-</div>
-<p>这里选择flannel作为pod的网络插件，所以指定–pod-network-cidr=10.244.0.0/16 。然后是apiserver的通信地址，就是master节点的ip地址。注意：以上命令会在gcr拉取一些镜像 如果你不能科学上网，可能会因为镜像拉取不下来而导致初始化失败。可以加上<font color=#DC143C> &ndash;image-repository  registry.cn-hangzhou.aliyuncs.com/google_containers</font>来使用阿里云拉取镜像。如果需要指定版本需要使用&ndash;kubernetes-version=v1.14.0参数</p>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm init   --pod-network-cidr<span class="o">=</span>10.244.0.0/16 --apiserver-advertise-address<span class="o">=</span>172.16.77.189
 
+</code></pre></td></tr></table>
+</div>
+</div><p>这里选择flannel作为pod的网络插件，所以指定–pod-network-cidr=10.244.0.0/16 。然后是apiserver的通信地址，就是master节点的ip地址。注意：以上命令会在gcr拉取一些镜像 如果你不能科学上网，可能会因为镜像拉取不下来而导致初始化失败。可以加上<!-- raw HTML omitted --> &ndash;image-repository  registry.cn-hangzhou.aliyuncs.com/google_containers<!-- raw HTML omitted -->来使用阿里云拉取镜像。如果需要指定版本需要使用&ndash;kubernetes-version=v1.14.0参数</p>
 <p>最后出现以下相似内容说明初始化成功</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -399,6 +396,7 @@ Cgroup Driver: systemd
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># kubeadm init   --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=172.16.77.189</span>
@@ -417,85 +415,94 @@ Run <span class="s2">&#34;kubectl apply -f [podnetwork].yaml&#34;</span> with on
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join <span class="m">172</span>.16.77.189:6443 --token ye60xn.k9ogcgs2hffr9k97 <span class="se">\
-</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:277074c8da66ff7008af7ba0b637806facca21e441a5650fc54a83a0a1397bb5</code></pre></td></tr></table>
-</div>
-</div>
-<p>记录下以上内容，里面有配置如何使用<code>kubectl</code>访问集群的方式及将节点加入集群的命令</p>
+kubeadm join 172.16.77.189:6443 --token ye60xn.k9ogcgs2hffr9k97 <span class="se">\
+</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:277074c8da66ff7008af7ba0b637806facca21e441a5650fc54a83a0a1397bb5
 
+</code></pre></td></tr></table>
+</div>
+</div><p>记录下以上内容，里面有配置如何使用<code>kubectl</code>访问集群的方式及将节点加入集群的命令</p>
 <p>在master节点上做以下操作操作</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># mkdir -p $HOME/.kube</span>
 <span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span>
-<span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># sudo chown $(id -u):$(id -g) $HOME/.kube/config</span></code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># sudo chown $(id -u):$(id -g) $HOME/.kube/config</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>配置好之后可以使用kubectl来查看集群了</p>
+</div><p>配置好之后可以使用kubectl来查看集群了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># kubectl get nodes</span>
 NAME         STATUS   ROLES    AGE     VERSION
-k8s-77-189   Ready    master   5h30m   v1.14.2</code></pre></td></tr></table>
+k8s-77-189   Ready    master   5h30m   v1.14.2
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>如果你集群安装过程中遇到了其他问题，可以使用下面的命令来重置：</p>
+</div><p>如果你集群安装过程中遇到了其他问题，可以使用下面的命令来重置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm reset
 ifconfig cni0 down <span class="o">&amp;&amp;</span> ip link delete cni0
 ifconfig flannel.1 down <span class="o">&amp;&amp;</span> ip link delete flannel.1
-rm -rf /var/lib/cni/</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="安装pod-network">安装Pod Network</h2>
+rm -rf /var/lib/cni/
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装pod-network">安装Pod Network</h2>
 <p>安装<code>flannel</code>网络插件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span>
-<span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># kubectl apply -f  kube-flannel.yml</span></code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># kubectl apply -f  kube-flannel.yml</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>如果是多个网卡的话，需要在<code>kube-flannel.yml</code>中使用<code>--iface</code>参数指定集群主机内网网卡的名称，否则可能会出现dns无法解析。<code>flanneld</code>启动参数加上<code>--iface=&lt;iface-name&gt;</code></p>
+</div><p>如果是多个网卡的话，需要在<code>kube-flannel.yml</code>中使用<code>--iface</code>参数指定集群主机内网网卡的名称，否则可能会出现dns无法解析。<code>flanneld</code>启动参数加上<code>--iface=&lt;iface-name&gt;</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">args<span class="p">:</span><span class="w">
-</span><span class="w"></span>-<span class="w"> </span>--ip-masq<span class="w">
-</span><span class="w"></span>-<span class="w"> </span>--kube-subnet-mgr<span class="w">
-</span><span class="w"></span>-<span class="w"> </span>--iface=eth0</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">args</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- --<span class="l">ip-masq</span><span class="w">
+</span><span class="w"></span>- --<span class="l">kube-subnet-mgr</span><span class="w">
+</span><span class="w"></span>- --<span class="l">iface=eth0</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>安装完成后使用<code>kubectl get pods</code>命令可以查看到集群中的组件运行状态，如果都是<code>Running</code>状态的话，那么恭喜你，你的<code>master</code>节点安装成功了。</p>
+</div><p>安装完成后使用<code>kubectl get pods</code>命令可以查看到集群中的组件运行状态，如果都是<code>Running</code>状态的话，那么恭喜你，你的<code>master</code>节点安装成功了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -505,26 +512,27 @@ rm -rf /var/lib/cni/</code></pre></td></tr></table>
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># kubectl get pods --all-namespaces</span>
 NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
-kube-system   coredns-d5947d4b-jmvbf               <span class="m">1</span>/1     Running   <span class="m">0</span>          3m29s
-kube-system   coredns-d5947d4b-tplqp               <span class="m">1</span>/1     Running   <span class="m">0</span>          3m29s
-kube-system   etcd-k8s-77-189                      <span class="m">1</span>/1     Running   <span class="m">0</span>          2m33s
-kube-system   kube-apiserver-k8s-77-189            <span class="m">1</span>/1     Running   <span class="m">0</span>          2m22s
-kube-system   kube-controller-manager-k8s-77-189   <span class="m">1</span>/1     Running   <span class="m">0</span>          2m22s
-kube-system   kube-flannel-ds-amd64-7wdl8          <span class="m">1</span>/1     Running   <span class="m">0</span>          64s
-kube-system   kube-proxy-9jsrh                     <span class="m">1</span>/1     Running   <span class="m">0</span>          3m29s
-kube-system   kube-scheduler-k8s-77-189            <span class="m">1</span>/1     Running   <span class="m">0</span>          2m24s</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="添加节点">添加节点</h2>
+kube-system   coredns-d5947d4b-jmvbf               1/1     Running   <span class="m">0</span>          3m29s
+kube-system   coredns-d5947d4b-tplqp               1/1     Running   <span class="m">0</span>          3m29s
+kube-system   etcd-k8s-77-189                      1/1     Running   <span class="m">0</span>          2m33s
+kube-system   kube-apiserver-k8s-77-189            1/1     Running   <span class="m">0</span>          2m22s
+kube-system   kube-controller-manager-k8s-77-189   1/1     Running   <span class="m">0</span>          2m22s
+kube-system   kube-flannel-ds-amd64-7wdl8          1/1     Running   <span class="m">0</span>          64s
+kube-system   kube-proxy-9jsrh                     1/1     Running   <span class="m">0</span>          3m29s
+kube-system   kube-scheduler-k8s-77-189            1/1     Running   <span class="m">0</span>          2m24s
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="添加节点">添加节点</h2>
 <p>将集群安装之前所有的环境配置完成后，就可以将node加入集群了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -545,6 +553,7 @@ kube-system   kube-scheduler-k8s-77-189            <span class="m">1</span>/1   
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># kubeadm join 172.16.77.189:6443 --token ye60xn.k9ogcgs2hffr9k97 \</span>
@@ -552,7 +561,7 @@ kube-system   kube-scheduler-k8s-77-189            <span class="m">1</span>/1   
 <span class="o">[</span>preflight<span class="o">]</span> Running pre-flight checks
 	<span class="o">[</span>WARNING Service-Docker<span class="o">]</span>: docker service is not enabled, please run <span class="s1">&#39;systemctl enable docker.service&#39;</span>
 	<span class="o">[</span>WARNING Hostname<span class="o">]</span>: hostname <span class="s2">&#34;k8s-77-162&#34;</span> could not be reached
-	<span class="o">[</span>WARNING Hostname<span class="o">]</span>: hostname <span class="s2">&#34;k8s-77-162&#34;</span>: lookup k8s-77-162 on <span class="m">172</span>.16.170.198:53: server misbehaving
+	<span class="o">[</span>WARNING Hostname<span class="o">]</span>: hostname <span class="s2">&#34;k8s-77-162&#34;</span>: lookup k8s-77-162 on 172.16.170.198:53: server misbehaving
 <span class="o">[</span>preflight<span class="o">]</span> Reading configuration from the cluster...
 <span class="o">[</span>preflight<span class="o">]</span> FYI: You can look at this config file with <span class="s1">&#39;kubectl -n kube-system get cm kubeadm-config -oyaml&#39;</span>
 <span class="o">[</span>kubelet-start<span class="o">]</span> Downloading configuration <span class="k">for</span> the kubelet from the <span class="s2">&#34;kubelet-config-1.14&#34;</span> ConfigMap in the kube-system namespace
@@ -567,43 +576,45 @@ This node has joined the cluster:
 
 Run <span class="s1">&#39;kubectl get nodes&#39;</span> on the control-plane to see this node join the cluster.
 
-<span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span>#</code></pre></td></tr></table>
+<span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1">#</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>显示上面输出，说明已经加入到集群了。不过此时还不能使用kubectl来获取集群信息。需要将主节点的config文件拷贝到当前节点上</p>
+</div><p>显示上面输出，说明已经加入到集群了。不过此时还不能使用kubectl来获取集群信息。需要将主节点的config文件拷贝到当前节点上</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># mkdir -p $HOME/.kube</span>
-<span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># scp root@172.16.77.189:/root/.kube/config $HOME/.kube</span>
-config                                                                                                                      <span class="m">100</span>% <span class="m">5449</span>     <span class="m">4</span>.3MB/s   <span class="m">00</span>:00</code></pre></td></tr></table>
-</div>
-</div>
-<p>查看集群信息</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># mkdir -p $HOME/.kube</span>
+<span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># scp root@172.16.77.189:/root/.kube/config $HOME/.kube</span>
+config                                                                                                                      100% <span class="m">5449</span>     4.3MB/s   00:00
+
+</code></pre></td></tr></table>
+</div>
+</div><p>查看集群信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># kubectl get nodes</span>
 NAME         STATUS   ROLES    AGE     VERSION
 k8s-77-162   Ready    &lt;none&gt;   7m39s   v1.14.2
-k8s-77-189   Ready    master   10h     v1.14.2</code></pre></td></tr></table>
-</div>
-</div>
-<p>到此集群就算是部署成功了</p>
+k8s-77-189   Ready    master   10h     v1.14.2
 
+</code></pre></td></tr></table>
+</div>
+</div><p>到此集群就算是部署成功了</p>
 <h2 id="参考">参考</h2>
-
 <p><a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/">官方</a></p>
-
 <p><a href="https://www.qikqiak.com/post/use-kubeadm-install-kubernetes-1.10/">阳明的博客</a></p>
     </div>
 
@@ -665,10 +676,9 @@ k8s-77-189   Ready    master   10h     v1.14.2</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-06-10 13:50:55 \x2b0800 CST',
+        id: '2019-06-10 13:50:55 \u002b0800 CST',
         title: '使用kubeadm搭建Kubernetes1.14',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -680,6 +690,10 @@ k8s-77-189   Ready    master   10h     v1.14.2</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -735,7 +749,10 @@ k8s-77-189   Ready    master   10h     v1.14.2</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

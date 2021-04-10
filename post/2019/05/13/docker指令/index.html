@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/13/docker%E6%8C%87%E4%BB%A4/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker指令" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/13/docker%E6%8C%87%E4%BB%A4/" />
-<meta property="article:published_time" content="2019-05-13T09:19:10&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-13T09:19:10&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/13/docker%E6%8C%87%E4%BB%A4/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-13T09:19:10&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-13T09:19:10&#43;08:00" />
 
 <meta itemprop="name" content="Docker指令">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-13T09:19:10&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-13T09:19:10&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-13T09:19:10&#43;08:00" />
-<meta itemprop="wordCount" content="1029">
-
-
-
-<meta itemprop="keywords" content="linux,docker," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1014">
+<meta itemprop="keywords" content="linux,docker," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker指令"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/%E5%AE%B9%E5%99%A8/"> 容器 </a>
             </div>
-          <span class="more-meta"> 1029 words </span>
+          <span class="more-meta"> 1014 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,30 +150,28 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#登录中央仓库">登录中央仓库</a></li>
-<li><a href="#把容器打包成镜像">把容器打包成镜像</a></li>
-<li><a href="#上传镜像到私服仓库">上传镜像到私服仓库</a></li>
-<li><a href="#退出容器且关闭">退出容器且关闭</a></li>
-<li><a href="#退出容器但不关闭">退出容器但不关闭</a></li>
-<li><a href="#查看容器">查看容器</a></li>
-<li><a href="#从容器到宿主机拷贝文件">从容器到宿主机拷贝文件</a></li>
-<li><a href="#从宿主机到容器拷贝文件">从宿主机到容器拷贝文件</a></li>
-<li><a href="#进入docker容器">进入docker容器</a></li>
-<li><a href="#运行镜像并添加端口">运行镜像并添加端口</a></li>
-<li><a href="#docker从dockerfile建立镜像">docker从dockerfile建立镜像</a></li>
-<li><a href="#创建自定义网络">创建自定义网络</a></li>
-<li><a href="#compose启动">compose启动</a></li>
-<li><a href="#compose查看">compose查看</a></li>
-<li><a href="#swarm启动">swarm启动</a></li>
-<li><a href="#docker容器做任何操作均无响应-删除僵尸容器-假死容器">docker容器做任何操作均无响应（删除僵尸容器，假死容器）</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#登录中央仓库">登录中央仓库</a></li>
+        <li><a href="#把容器打包成镜像">把容器打包成镜像</a></li>
+        <li><a href="#上传镜像到私服仓库">上传镜像到私服仓库</a></li>
+        <li><a href="#退出容器且关闭">退出容器且关闭</a></li>
+        <li><a href="#退出容器但不关闭">退出容器但不关闭</a></li>
+        <li><a href="#查看容器">查看容器</a></li>
+        <li><a href="#从容器到宿主机拷贝文件">从容器到宿主机拷贝文件</a></li>
+        <li><a href="#从宿主机到容器拷贝文件">从宿主机到容器拷贝文件</a></li>
+        <li><a href="#进入docker容器">进入docker容器</a></li>
+        <li><a href="#运行镜像并添加端口">运行镜像并添加端口</a></li>
+        <li><a href="#docker从dockerfile建立镜像">docker从dockerfile建立镜像</a></li>
+        <li><a href="#创建自定义网络">创建自定义网络</a></li>
+        <li><a href="#compose启动">compose启动</a></li>
+        <li><a href="#compose查看">compose查看</a></li>
+        <li><a href="#swarm启动">swarm启动</a></li>
+        <li><a href="#docker容器做任何操作均无响应删除僵尸容器假死容器">docker容器做任何操作均无响应（删除僵尸容器，假死容器）</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -177,159 +179,65 @@
       <blockquote>
 <p>此文档会不定期补充</p>
 </blockquote>
-
 <h3 id="登录中央仓库">登录中央仓库</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker login -u admin -p admin000</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker login -u admin -p admin000
+</code></pre>
 <h3 id="把容器打包成镜像">把容器打包成镜像</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker commit [-a &#34;sora&#34;](作者) [-m &#34;hadoop-image&#34;](备注) b8f2600a49e7(容器名或id) 172.16.7.222:8082/centos7-tools-jdk8-git:0.0.6(镜像名:tag)</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker commit [-a &quot;sora&quot;](作者) [-m &quot;hadoop-image&quot;](备注) b8f2600a49e7(容器名或id) 172.16.7.222:8082/centos7-tools-jdk8-git:0.0.6(镜像名:tag)
+</code></pre>
 <h3 id="上传镜像到私服仓库">上传镜像到私服仓库</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker push 172.16.7.222:8082/centos7-tools-jdk8-git:0.0.7</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker push 172.16.7.222:8082/centos7-tools-jdk8-git:0.0.7
+</code></pre>
 <h3 id="退出容器且关闭">退出容器且关闭</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">ctrl+d 退出容器且关闭, docker ps 查看无</pre></td></tr></table>
-</div>
-</div>
+<pre><code>ctrl+d 退出容器且关闭, docker ps 查看无
+</code></pre>
 <h3 id="退出容器但不关闭">退出容器但不关闭</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">ctrl+p+q 退出容器但不关闭</pre></td></tr></table>
-</div>
-</div>
+<pre><code>ctrl+p+q 退出容器但不关闭
+</code></pre>
 <h3 id="查看容器">查看容器</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker ps [-a](所有的容器)</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker ps [-a](所有的容器)
+</code></pre>
 <h3 id="从容器到宿主机拷贝文件">从容器到宿主机拷贝文件</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker cp testtomcat：/usr/local/tomcat/webapps/test/js/test.js /opt 从容器到宿主机拷贝文件</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker cp testtomcat：/usr/local/tomcat/webapps/test/js/test.js /opt 从容器到宿主机拷贝文件
+</code></pre>
 <h3 id="从宿主机到容器拷贝文件">从宿主机到容器拷贝文件</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker cp /opt testtomcat：/usr/local/tomcat/webapps/test/js/test.js  从宿主机到容器拷贝文件</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker cp /opt testtomcat：/usr/local/tomcat/webapps/test/js/test.js  从宿主机到容器拷贝文件
+</code></pre>
 <h3 id="进入docker容器">进入docker容器</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker attach 44fc0f0582d9 进入docker容器</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker attach 44fc0f0582d9 进入docker容器
+</code></pre>
 <h3 id="运行镜像并添加端口">运行镜像并添加端口</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker run -d -p 8000:80  foo/live /bin/bash</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker run -d -p 8000:80  foo/live /bin/bash
+</code></pre>
 <h3 id="docker从dockerfile建立镜像">docker从dockerfile建立镜像</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker build -t myopenresty -f trusty/Dockerfile .</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker build -t myopenresty -f trusty/Dockerfile .
+</code></pre>
 <h3 id="创建自定义网络">创建自定义网络</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker network create --subnet=172.18.0.0/16 mynetwork
-
+<pre><code>docker network create --subnet=172.18.0.0/16 mynetwork
+    
 启动时：docker run -itd --name networkTest1 --net mynetwork --ip 172.18.0.2 centos:latest /bin/bash
-
+    
 创建overlay网络
-
-docker network create --driver overlay --opt encrypted --subnet 10.10.19.0/24 ngx_net</pre></td></tr></table>
-</div>
-</div>
+    
+docker network create --driver overlay --opt encrypted --subnet 10.10.19.0/24 ngx_net
+</code></pre>
 <h3 id="compose启动">compose启动</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker-compose up</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker-compose up
+</code></pre>
 <h3 id="compose查看">compose查看</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker-compose ps</pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker-compose ps
+</code></pre>
 <h3 id="swarm启动">swarm启动</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">docker strack </pre></td></tr></table>
-</div>
-</div>
+<pre><code>docker strack 
+</code></pre>
 <ul>
-<li><h3 id="docker容器做任何操作均无响应-删除僵尸容器-假死容器">docker容器做任何操作均无响应（删除僵尸容器，假死容器）</h3>
+<li>
+<h3 id="docker容器做任何操作均无响应删除僵尸容器假死容器">docker容器做任何操作均无响应（删除僵尸容器，假死容器）</h3>
+</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -342,24 +250,28 @@ docker network create --driver overlay --opt encrypted --subnet 10.10.19.0/24 ng
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span></pre></td>
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">Normal   Killing        2m                       kubelet, k8s-77-83  Killing container with id docker://kafka:Need to kill Pod
-Warning  FailedKillPod  2m                       kubelet, k8s-77-83  error killing pod: failed to &#34;KillContainer&#34; for &#34;kafka&#34; with KillContainerError: &#34;rpc error: code = Unknown desc = operation timeout: context deadline exceeded&#34;
-Warning  FailedSync     &lt;invalid&gt; (x5 over 23s)  kubelet, k8s-77-83  error determining status: rpc error: code = DeadlineExceeded desc = context deadline exceeded 
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
 
-处理方式：在/var/lib/docker/overlay2目录下找到docker对应的容器层文件夹，一般以-init结尾，删除之。注，这里的容器层文件名并不是容器Id。因为对容器执行inspect指令不会得到相应，这里可以采取对容器所使用的镜像inspect，锁定镜像层目录树，然后推敲docker容器的容器层目录文件夹。
-删除源文件后，采用pstree [-p](显示PID)，找到容器的pid，用ps查询之，会得到类似如下的结果：
+    Normal   Killing        2m                       kubelet, k8s-77-83  Killing container with id docker://kafka:Need to kill Pod
+    Warning  FailedKillPod  2m                       kubelet, k8s-77-83  error killing pod: failed to &#34;KillContainer&#34; for &#34;kafka&#34; with KillContainerError: &#34;rpc error: code = Unknown desc = operation timeout: context deadline exceeded&#34;
+    Warning  FailedSync     &lt;invalid&gt; (x5 over 23s)  kubelet, k8s-77-83  error determining status: rpc error: code = DeadlineExceeded desc = context deadline exceeded 
+
+    处理方式：在/var/lib/docker/overlay2目录下找到docker对应的容器层文件夹，一般以-init结尾，删除之。注，这里的容器层文件名并不是容器Id。因为对容器执行inspect指令不会得到相应，这里可以采取对容器所使用的镜像inspect，锁定镜像层目录树，然后推敲docker容器的容器层目录文件夹。
+    删除源文件后，采用pstree [-p](显示PID)，找到容器的pid，用ps查询之，会得到类似如下的结果：
     
-root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-containerd-shim -namespace moby -workdir /var/lib/docker/containerd/daemon/io.containerd.runtime.v1.linux/moby/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86 -address /var/run/docker/containerd/docker-containerd.sock -containerd-binary /usr/bin/docker-containerd -runtime-root /var/run/docker/runtime-runc -systemd-cgroup
+    root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-containerd-shim -namespace moby -workdir /var/lib/docker/containerd/daemon/io.containerd.runtime.v1.linux/moby/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86 -address /var/run/docker/containerd/docker-containerd.sock -containerd-binary /usr/bin/docker-containerd -runtime-root /var/run/docker/runtime-runc -systemd-cgroup
     
-注意这里显示了当前container的workdir为***/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86,这个就是container的id
+    注意这里显示了当前container的workdir为***/1a30d497c29a7cf245512ee15adf4a8fb9a880377611e5701d65ad9cf2f4db86,这个就是container的id
     
-随后就可以使用docker rm的方式删除该容器就行
-  </pre></td></tr></table>
+    随后就可以使用docker rm的方式删除该容器就行
+  
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
+</div>
     </div>
 
     <div class="post-copyright">
@@ -417,10 +329,9 @@ root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-contain
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-13 09:19:10 \x2b0800 CST',
+        id: '2019-05-13 09:19:10 \u002b0800 CST',
         title: 'Docker指令',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -432,6 +343,10 @@ root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-contain
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -487,7 +402,10 @@ root     16938  0.0  0.0  14180  8748 ?        Sl   8月27   0:50 docker-contain
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

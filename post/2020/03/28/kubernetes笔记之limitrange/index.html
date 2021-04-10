@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kubernetes笔记之LimitRange" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/" />
-<meta property="article:published_time" content="2020-03-28T11:21:13&#43;08:00"/>
-<meta property="article:modified_time" content="2020-03-28T11:21:13&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/03/28/kubernetes%E7%AC%94%E8%AE%B0%E4%B9%8Blimitrange/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-28T11:21:13&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-28T11:21:13&#43;08:00" />
 
 <meta itemprop="name" content="Kubernetes笔记之LimitRange">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-03-28T11:21:13&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-28T11:21:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-28T11:21:13&#43;08:00" />
-<meta itemprop="wordCount" content="1320">
-
-
-
-<meta itemprop="keywords" content="linux,kubernetes,笔记," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1334">
+<meta itemprop="keywords" content="linux,kubernetes,笔记," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes笔记之LimitRange"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1320 words </span>
+          <span class="more-meta"> 1334 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,51 +150,37 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#内存配额">内存配额</a>
-<ul>
-<li><a href="#创建命名空间">创建命名空间</a></li>
-<li><a href="#创建默认内存配额">创建默认内存配额</a></li>
-<li><a href="#测试">测试</a>
-<ul>
-<li><a href="#创建pod">创建pod</a></li>
-<li><a href="#查看pod详情">查看pod详情</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#内存最大和最小限制">内存最大和最小限制</a>
-<ul>
-<li><a href="#创建命名空间-1">创建命名空间</a></li>
-<li><a href="#创建limitrange">创建LimitRange</a></li>
-<li><a href="#测试-1">测试</a>
-<ul>
-<li><a href="#创建pod-1">创建pod</a></li>
-<li><a href="#查看pod详情-1">查看pod详情</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#cpu配额">CPU配额</a>
-<ul>
-<li><a href="#创建命名空间-2">创建命名空间</a></li>
-<li><a href="#创建默认cpu配额">创建默认cpu配额</a></li>
-<li><a href="#测试-2">测试</a>
-<ul>
-<li><a href="#创建pod-2">创建pod</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#cpu的最大和最小限制">CPU的最大和最小限制</a>
-<ul>
-<li><a href="#创建命名空间-3">创建命名空间</a></li>
-<li><a href="#创建limitrange-1">创建LimitRange</a></li>
-<li><a href="#测试-3">测试</a>
-<ul>
-<li><a href="#创建pod-3">创建pod</a></li>
-<li><a href="#查看pod详情-2">查看pod详情</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#完整示例">完整示例</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#内存配额">内存配额</a>
+      <ul>
+        <li><a href="#创建命名空间">创建命名空间</a></li>
+        <li><a href="#创建默认内存配额">创建默认内存配额</a></li>
+        <li><a href="#测试">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#内存最大和最小限制">内存最大和最小限制</a>
+      <ul>
+        <li><a href="#创建命名空间-1">创建命名空间</a></li>
+        <li><a href="#创建limitrange">创建LimitRange</a></li>
+        <li><a href="#测试-1">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#cpu配额">CPU配额</a>
+      <ul>
+        <li><a href="#创建命名空间-2">创建命名空间</a></li>
+        <li><a href="#创建默认cpu配额">创建默认cpu配额</a></li>
+        <li><a href="#测试-2">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#cpu的最大和最小限制">CPU的最大和最小限制</a>
+      <ul>
+        <li><a href="#创建命名空间-3">创建命名空间</a></li>
+        <li><a href="#创建limitrange-1">创建LimitRange</a></li>
+        <li><a href="#测试-3">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#完整示例">完整示例</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -198,27 +188,23 @@
       <blockquote>
 <p>limitRange:为命名空间配置默认的默认的资源请求和限制 如果在一个有默认资源限制的命名空间创建容器，
 该容器没有声明自己的资源限制时，将会被指定默认的资源限制.</p>
-
 <p>LimitRange是在pod和container级别的资源限制</p>
 </blockquote>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/Gk9Ttf.jpg" alt="Gk9Ttf.jpg" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/Gk9Ttf.jpg" alt="Gk9Ttf.jpg"></p>
 <h2 id="内存配额">内存配额</h2>
-
 <h3 id="创建命名空间">创建命名空间</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建默认内存配额">创建默认内存配额</h3>
+</div><h3 id="创建默认内存配额">创建默认内存配额</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -235,36 +221,36 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>mem-lr-demo.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim mem-lr-demo.yaml</span><span class="w">
 </span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>LimitRange<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>mem-limit-range<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>limits<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>default<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>512Mi<span class="w">
-</span><span class="w">    </span>defaultRequest<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>256Mi<span class="w">
-</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>Container</code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">LimitRange</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mem-limit-range</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">512Mi</span><span class="w">
+</span><span class="w">    </span><span class="nt">defaultRequest</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">256Mi</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Container</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f mem-lr-demo.yaml -n lr</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f mem-lr-demo.yaml -n lr
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="测试">测试</h3>
-
+</div><h3 id="测试">测试</h3>
 <h4 id="创建pod">创建pod</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -277,30 +263,31 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>mem-demo.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim mem-demo.yaml</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>default-mem-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>default-mem-demo<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>nginx</code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default-mem-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default-mem-demo</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f mem-demo.yaml -n lr</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f mem-demo.yaml -n lr
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="查看pod详情">查看pod详情</h4>
+</div><h4 id="查看pod详情">查看pod详情</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -327,30 +314,26 @@
           memory: 512Mi
         requests:
           memory: 256Mi
-.....</code></pre></td></tr></table>
+.....
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong><em>注意：</em></strong></p>
-
-<p><strong><em>如果创建容器时仅指定限制，不指定申请。那么容器里的申请值和限制值是一样，而不是LimitRange里的默认值256M。</em></strong></p>
-
-<p><strong><em>如果创建容器时仅指定申请，不指定限制时。那么容器里的申请值就是指定的值，而限制值是LimitRange的默认值</em></strong></p>
-
+</div><p><em><strong>注意：</strong></em></p>
+<p><em><strong>如果创建容器时仅指定限制，不指定申请。那么容器里的申请值和限制值是一样，而不是LimitRange里的默认值256M。</strong></em></p>
+<p><em><strong>如果创建容器时仅指定申请，不指定限制时。那么容器里的申请值就是指定的值，而限制值是LimitRange的默认值</strong></em></p>
 <h2 id="内存最大和最小限制">内存最大和最小限制</h2>
-
 <h3 id="创建命名空间-1">创建命名空间</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr-1</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr-1
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建limitrange">创建LimitRange</h3>
+</div><h3 id="创建limitrange">创建LimitRange</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -366,28 +349,27 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>maxmin-lr-demo.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim maxmin-lr-demo.yaml</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>LimitRange<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>mem-min-max-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>limits<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>max<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>1Gi<span class="w">
-</span><span class="w">    </span>min<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>500Mi<span class="w">
-</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>Container</code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">LimitRange</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mem-min-max-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">max</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">1Gi</span><span class="w">
+</span><span class="w">    </span><span class="nt">min</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">500Mi</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Container</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="测试-1">测试</h3>
-
+</div><h3 id="测试-1">测试</h3>
 <h4 id="创建pod-1">创建pod</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -405,35 +387,36 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>maxmin-demo.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim maxmin-demo.yaml</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>constraints-mem-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>constraints-mem-demo<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">    </span>resources<span class="p">:</span><span class="w">
-</span><span class="w">      </span>limits<span class="p">:</span><span class="w">
-</span><span class="w">        </span>memory<span class="p">:</span><span class="w"> </span><span class="s2">&#34;800Mi&#34;</span><span class="w">
-</span><span class="w">      </span>requests<span class="p">:</span><span class="w">
-</span><span class="w">        </span>memory<span class="p">:</span><span class="w"> </span><span class="s2">&#34;600Mi&#34;</span></code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">constraints-mem-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">constraints-mem-demo</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;800Mi&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;600Mi&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f maxmin-demo.yaml -n lr-1</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f maxmin-demo.yaml -n lr-1
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="查看pod详情-1">查看pod详情</h4>
+</div><h4 id="查看pod详情-1">查看pod详情</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -460,26 +443,24 @@
         memory: 800Mi
       requests:
         memory: 600Mi
-  ......</code></pre></td></tr></table>
+  ......
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong><em>注意：创建pod时资源请求值和限制值必须在LimitRange设置的范围内，否则创建pod时会报错。如果创建容器时没有声明请求和限制，它会从LimitRange那里获得默认的请求和限制</em></strong></p>
-
+</div><p><em><strong>注意：创建pod时资源请求值和限制值必须在LimitRange设置的范围内，否则创建pod时会报错。如果创建容器时没有声明请求和限制，它会从LimitRange那里获得默认的请求和限制</strong></em></p>
 <h2 id="cpu配额">CPU配额</h2>
-
 <h3 id="创建命名空间-2">创建命名空间</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr-2</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr-2
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建默认cpu配额">创建默认cpu配额</h3>
+</div><h3 id="创建默认cpu配额">创建默认cpu配额</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -505,23 +486,23 @@ spec:
   - default:
       cpu: <span class="m">1</span>
     defaultRequest:
-      cpu: <span class="m">0</span>.5
-    type: Container</code></pre></td></tr></table>
+      cpu: 0.5
+    type: Container
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f vim cpu-lr-demo.yaml -n lr-2</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f vim cpu-lr-demo.yaml -n lr-2
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="测试-2">测试</h3>
-
+</div><h3 id="测试-2">测试</h3>
 <h4 id="创建pod-2">创建pod</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -534,30 +515,31 @@ spec:
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>cpu-demo.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim cpu-demo.yaml</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>default-cpu-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>default-cpu-demo<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>nginx</code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default-cpu-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default-cpu-demo</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f cpu-demo.yaml -n lr-2</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f cpu-demo.yaml -n lr-2
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>#### 查看pod详情</p>
+</div><h4 id="查看pod详情-2">查看pod详情</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -586,30 +568,26 @@ spec:
           cpu: <span class="s2">&#34;1&#34;</span>
         requests:
           cpu: 500m
-......</code></pre></td></tr></table>
+......
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong><em>注意：</em></strong></p>
-
-<p><strong><em>如果创建容器时仅指定限制，不指定申请。那么容器里的申请值和限制值是一样，而不是LimitRange里的默认值0.5cpu。</em></strong></p>
-
-<p><strong><em>如果创建容器时仅指定申请，不指定限制时。那么容器里的申请值就是指定的值，而限制值是LimitRange的默认值</em></strong></p>
-
+</div><p><em><strong>注意：</strong></em></p>
+<p><em><strong>如果创建容器时仅指定限制，不指定申请。那么容器里的申请值和限制值是一样，而不是LimitRange里的默认值0.5cpu。</strong></em></p>
+<p><em><strong>如果创建容器时仅指定申请，不指定限制时。那么容器里的申请值就是指定的值，而限制值是LimitRange的默认值</strong></em></p>
 <h2 id="cpu的最大和最小限制">CPU的最大和最小限制</h2>
-
 <h3 id="创建命名空间-3">创建命名空间</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr-3</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create ns lr-3
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建limitrange-1">创建LimitRange</h3>
+</div><h3 id="创建limitrange-1">创建LimitRange</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -625,35 +603,35 @@ spec:
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>cpu-maxmin-lr-demo.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim cpu-maxmin-lr-demo.yaml</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>LimitRange<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>cpu-min-max-demo-lr<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>limits<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>max<span class="p">:</span><span class="w">
-</span><span class="w">      </span>cpu<span class="p">:</span><span class="w"> </span><span class="s2">&#34;800m&#34;</span><span class="w">
-</span><span class="w">    </span>min<span class="p">:</span><span class="w">
-</span><span class="w">      </span>cpu<span class="p">:</span><span class="w"> </span><span class="s2">&#34;200m&#34;</span><span class="w">
-</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>Container</code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">LimitRange</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cpu-min-max-demo-lr</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">max</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;800m&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">min</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;200m&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Container</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f cpu-maxmin-lr-demo.yaml -n lr-3</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f cpu-maxmin-lr-demo.yaml -n lr-3
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="测试-3">测试</h3>
-
+</div><h3 id="测试-3">测试</h3>
 <h4 id="创建pod-3">创建pod</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -671,35 +649,36 @@ spec:
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">vim<span class="w"> </span>cpu-maxmin.yaml<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">vim cpu-maxmin.yaml</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Pod<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>constraints-cpu-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>constraints-cpu-demo-ctr<span class="w">
-</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">    </span>resources<span class="p">:</span><span class="w">
-</span><span class="w">      </span>limits<span class="p">:</span><span class="w">
-</span><span class="w">        </span>cpu<span class="p">:</span><span class="w"> </span><span class="s2">&#34;800m&#34;</span><span class="w">
-</span><span class="w">      </span>requests<span class="p">:</span><span class="w">
-</span><span class="w">        </span>cpu<span class="p">:</span><span class="w"> </span><span class="s2">&#34;500m&#34;</span></code></pre></td></tr></table>
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">constraints-cpu-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">constraints-cpu-demo-ctr</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;800m&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;500m&#34;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f cpu-maxmin.yaml -n lr-3</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f cpu-maxmin.yaml -n lr-3
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="查看pod详情-2">查看pod详情</h4>
+</div><h4 id="查看pod详情-3">查看pod详情</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -724,15 +703,14 @@ spec:
         cpu: 800m
       requests:
         cpu: 500m
-  ......</code></pre></td></tr></table>
+  ......
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong><em>注意：创建pod时资源请求值和限制值必须在LimitRange设置的范围内，否则创建pod时会报错。如果创建容器时没有声明请求和限制，它会从LimitRange那里获得默认的请求和限制</em></strong></p>
-
+</div><p><em><strong>注意：创建pod时资源请求值和限制值必须在LimitRange设置的范围内，否则创建pod时会报错。如果创建容器时没有声明请求和限制，它会从LimitRange那里获得默认的请求和限制</strong></em></p>
 <h2 id="完整示例">完整示例</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -753,38 +731,35 @@ spec:
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>LimitRange<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>limit-range-demo<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>limits<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>default<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>512Mi<span class="w">
-</span><span class="w">      </span>cpu<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span><span class="w">    </span>defaultRequest<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>256Mi<span class="w">
-</span><span class="w">      </span>cpu<span class="p">:</span><span class="w"> </span><span class="m">0.5</span><span class="w">
-</span><span class="w">    </span>max<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>1024Mi<span class="w">
-</span><span class="w">      </span>cpu<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span><span class="w">    </span>min<span class="p">:</span><span class="w">
-</span><span class="w">      </span>memory<span class="p">:</span><span class="w"> </span>128Mi<span class="w">
-</span><span class="w">      </span>cpu<span class="p">:</span><span class="w"> </span><span class="m">0.5</span><span class="w">
-</span><span class="w">    </span>type<span class="p">:</span><span class="w"> </span>Container</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">LimitRange</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">limit-range-demo</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">512Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">    </span><span class="nt">defaultRequest</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">256Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="m">0.5</span><span class="w">
+</span><span class="w">    </span><span class="nt">max</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">1024Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">    </span><span class="nt">min</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">128Mi</span><span class="w">
+</span><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="m">0.5</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Container</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<p>说明：</p>
-
+</div><p>说明：</p>
 <ul>
 <li><code>default</code>：即该namespace配置resourceQuota时，创建container的默认limit上限</li>
 <li><code>defaultRequest</code>：即该namespace配置resourceQuota时，创建container的默认request上限</li>
 <li><code>max</code>：即该namespace下创建container的资源最大值</li>
 <li><code>min</code>：即该namespace下创建container的资源最小值</li>
 </ul>
-
 <p>其中： min &lt;= defaultRequest &lt;= default &lt;= max</p>
-
 <p><em>如果指定了 LimitRange 对象的 spec.limits.maxLimitRequestRatio 字段，名称空间中的 Pod/容器的 request 和 limit 都不能为 0，且 limit 除以 request 的结果必须小于或等于 LimitRange 的 spec.limits.maxLimitRequestRatio</em></p>
     </div>
 
@@ -844,10 +819,9 @@ spec:
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-03-28 11:21:13 \x2b0800 CST',
+        id: '2020-03-28 11:21:13 \u002b0800 CST',
         title: 'Kubernetes笔记之LimitRange',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -859,6 +833,10 @@ spec:
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -914,7 +892,10 @@ spec:
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

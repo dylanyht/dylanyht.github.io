@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Devops on I am dylan ...</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Devops on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jun 2019 14:17:14 +0800</lastBuildDate>
-    
-	<atom:link href="https://dylanyang.top/categories/devops/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 10 Jun 2019 14:17:14 +0800</lastBuildDate><atom:link href="https://dylanyang.top/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker环境下gitlab的迁移和升级</title>
       <link>https://dylanyang.top/post/2019/06/10/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bgitlab%E7%9A%84%E8%BF%81%E7%A7%BB%E5%92%8C%E5%8D%87%E7%BA%A7/</link>

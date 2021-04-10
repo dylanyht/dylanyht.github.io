@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/08/09/linux%E6%97%A5%E5%B8%B8%E5%91%BD%E4%BB%A4%E4%B8%80/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Linux日常命令一" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/08/09/linux%E6%97%A5%E5%B8%B8%E5%91%BD%E4%BB%A4%E4%B8%80/" />
-<meta property="article:published_time" content="2019-08-09T10:23:33&#43;08:00"/>
-<meta property="article:modified_time" content="2019-08-09T10:23:33&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/08/09/linux%E6%97%A5%E5%B8%B8%E5%91%BD%E4%BB%A4%E4%B8%80/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-08-09T10:23:33&#43;08:00" />
+<meta property="article:modified_time" content="2019-08-09T10:23:33&#43;08:00" />
 
 <meta itemprop="name" content="Linux日常命令一">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-08-09T10:23:33&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-08-09T10:23:33&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-09T10:23:33&#43;08:00" />
-<meta itemprop="wordCount" content="4251">
-
-
-
-<meta itemprop="keywords" content="linux,命令,centos," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="4281">
+<meta itemprop="keywords" content="linux,命令,centos," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux日常命令一"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> linux </a>
             </div>
-          <span class="more-meta"> 4251 words </span>
+          <span class="more-meta"> 4281 words </span>
           <span class="more-meta"> 9 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,28 +150,25 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#tr命令">tr命令</a></li>
-<li><a href="#cut命令">cut命令</a></li>
-<li><a href="#basename命令">basename命令</a></li>
-<li><a href="#dirname命令">dirname命令</a></li>
-<li><a href="#wc命令">wc命令</a></li>
-<li><a href="#tee命令">tee命令</a></li>
-<li><a href="#more命令">more命令</a></li>
-<li><a href="#less命令">less命令</a></li>
-<li><a href="#sort命令">sort命令</a></li>
-<li><a href="#uniq">uniq</a></li>
-<li><a href="#jobs命令">jobs命令</a></li>
-<li><a href="#fg命令">fg命令</a></li>
-<li><a href="#bg命令">bg命令</a></li>
-<li><a href="#split命令">split命令</a></li>
-<li><a href="#uptime命令">uptime命令</a></li>
-<li><a href="#ps命令">ps命令</a></li>
-<li><a href="#netstat命令">netstat命令</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#tr命令">tr命令</a></li>
+    <li><a href="#cut命令">cut命令</a></li>
+    <li><a href="#basename命令">basename命令</a></li>
+    <li><a href="#dirname命令">dirname命令</a></li>
+    <li><a href="#wc命令">wc命令</a></li>
+    <li><a href="#tee命令">tee命令</a></li>
+    <li><a href="#more命令">more命令</a></li>
+    <li><a href="#less命令">less命令</a></li>
+    <li><a href="#sort命令">sort命令</a></li>
+    <li><a href="#uniq">uniq</a></li>
+    <li><a href="#jobs命令">jobs命令</a></li>
+    <li><a href="#fg命令">fg命令</a></li>
+    <li><a href="#bg命令">bg命令</a></li>
+    <li><a href="#split命令">split命令</a></li>
+    <li><a href="#uptime命令">uptime命令</a></li>
+    <li><a href="#ps命令">ps命令</a></li>
+    <li><a href="#netstat命令">netstat命令</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -175,88 +176,82 @@
       <blockquote>
 <p>此文档记录一些日常工作中能用到的linux命令</p>
 </blockquote>
-
 <h2 id="tr命令">tr命令</h2>
-
 <blockquote>
 <p><strong>tr命令</strong>可以对来自标准输入的字符进行替换、压缩和删除。它可以将一组字符变成另一组字符，经常用来编写优美的单行命令，作用很强大。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>将输入字符由大写转换为小写</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;HELLO WORLD&#34;</span> <span class="p">|</span> tr <span class="s1">&#39;A-Z&#39;</span> <span class="s1">&#39;a-z&#39;</span>
-hello world</code></pre></td></tr></table>
+hello world
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>使用tr删除符字</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;hello 123 world 456&#34;</span> <span class="p">|</span> tr -d <span class="s1">&#39;0-9&#39;</span>
-hello  world </code></pre></td></tr></table>
+hello  world 
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="3">
 <li>将制表符转换为空格</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">cat text <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39; &#39;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">cat text <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39; &#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="4">
 <li>字符集补集，从输入文本中将不在补集中的所有字符删除</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> aa.,a <span class="m">1</span> b#<span class="nv">$bb</span> <span class="m">2</span> c*/cc <span class="m">3</span> ddd <span class="m">4</span> <span class="p">|</span> tr -d -c <span class="s1">&#39;0-9 \n&#39;</span>
- <span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>  <span class="m">4</span></code></pre></td></tr></table>
+ <span class="m">1</span>  <span class="m">2</span>  <span class="m">3</span>  <span class="m">4</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="5">
 <li>用tr压缩字符，可以压缩输入中重复的字符</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;thissss is      a text linnnnnnne.&#34;</span> <span class="p">|</span> tr -s <span class="s1">&#39; sn&#39;</span>
-this is a text line.</code></pre></td></tr></table>
+this is a text line.
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="cut命令">cut命令</h2>
-
+</div><h2 id="cut命令">cut命令</h2>
 <blockquote>
 <p><strong>cut命令</strong>用来显示行中的指定部分，删除文件中指定字段。cut经常用来显示文件的内容</p>
 </blockquote>
-
 <p>常用实例</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -264,20 +259,20 @@ this is a text line.</code></pre></td></tr></table>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cat test.txt</span> 
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cat test.txt </span>
 abcdefghijklmnopqrstuvwxyz
 abcdefghijklmnopqrstuvwxyz
 abcdefghijklmnopqrstuvwxyz
 abcdefghijklmnopqrstuvwxyz
-abcdefghijklmnopqrstuvwxyz</code></pre></td></tr></table>
+abcdefghijklmnopqrstuvwxyz
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol>
 <li>打印第1个到第3个字符</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -285,20 +280,20 @@ abcdefghijklmnopqrstuvwxyz</code></pre></td></tr></table>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -c1-3 test.txt</span> 
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -c1-3 test.txt </span>
 abc
 abc
 abc
 abc
-abc</code></pre></td></tr></table>
+abc
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>打印前2个字符：</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -306,20 +301,20 @@ abc</code></pre></td></tr></table>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -c-2 test.txt</span> 
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -c-2 test.txt </span>
 ab
 ab
 ab
 ab
-ab</code></pre></td></tr></table>
+ab
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="3">
 <li>打印从第5个字符开始到结尾</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -327,20 +322,20 @@ ab</code></pre></td></tr></table>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -c5- test.txt</span> 
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -c5- test.txt </span>
 efghijklmnopqrstuvwxyz
 efghijklmnopqrstuvwxyz
 efghijklmnopqrstuvwxyz
 efghijklmnopqrstuvwxyz
-efghijklmnopqrstuvwxyz</code></pre></td></tr></table>
+efghijklmnopqrstuvwxyz
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="4">
 <li>使用 <strong>-f</strong> 选项提取指定字段：</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -350,145 +345,135 @@ efghijklmnopqrstuvwxyz</code></pre></td></tr></table>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cat test.txt</span> 
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cat test.txt </span>
 No Name Mark Percent
 <span class="m">01</span> tom <span class="m">69</span> <span class="m">91</span>
 <span class="m">02</span> jack <span class="m">71</span> <span class="m">87</span>
-<span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -f 1 test.txt</span> 
+<span class="o">[</span>root@localhost text<span class="o">]</span><span class="c1"># cut -f 1 test.txt </span>
 No
 <span class="m">01</span>
-<span class="m">02</span></code></pre></td></tr></table>
+<span class="m">02</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="basename命令">basename命令</h2>
-
+</div><h2 id="basename命令">basename命令</h2>
 <blockquote>
 <p><strong>basename命令</strong>用于打印目录或者文件的基本名称。basename和<a href="http://man.linuxde.net/dirname">dirname</a>命令通常用于shell脚本中的命令替换来指定和指定的输入文件名称有所差异的输出文件名称。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>显示出文件名称</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># basename /root/shell/test.txt</span>
-test.txt</code></pre></td></tr></table>
+test.txt
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>显示出不带后缀的文件名称</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># basename /root/shell/test.txt .txt</span>
-test</code></pre></td></tr></table>
+<span class="nb">test</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="dirname命令">dirname命令</h2>
-
+</div><h2 id="dirname命令">dirname命令</h2>
 <blockquote>
 <p><strong>dirname命令</strong>去除文件名中的非目录部分，仅显示与目录有关的内容。dirname命令读取指定路径名保留最后一个<code>/</code>及其后面的字符，删除其他部分，并写结果到标准输出。如果最后一个<code>/</code>后无字符，dirname 命令使用倒数第二个<code>/</code>，并忽略其后的所有字符。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li></li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1">#  dirname /root/shell/test.txt</span>
-/root/shell</code></pre></td></tr></table>
+/root/shell
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li></li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1">#  dirname /root/shell/</span>
-/root</code></pre></td></tr></table>
+/root
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
-<li><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">[root@localhost shell]# dirname test.txt
-.</pre></td></tr></table>
-</div>
-</div></li>
+</div><ol start="3">
+<li></li>
 </ol>
-
-<h2 id="wc命令">wc命令</h2>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[root@localhost shell]# dirname test.txt
+.
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="wc命令">wc命令</h2>
 <blockquote>
 <p><strong>wc命令</strong>用来计算数字。利用wc指令我们可以计算文件的Byte数、字数或是列数，若不指定文件名称，或是所给予的文件名为“-”，则wc指令会从标准输入设备读取数据。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>统计文件信息</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost shell<span class="o">]</span><span class="c1"># wc test.txt</span>
- <span class="m">19</span>  <span class="m">15</span> <span class="m">252</span> test.txt  <span class="c1">#文件的行数为19、单词数15、字节数252</span></code></pre></td></tr></table>
+ <span class="m">19</span>  <span class="m">15</span> <span class="m">252</span> test.txt  <span class="c1">#文件的行数为19、单词数15、字节数252</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>统计行数</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@localhost shell<span class="o">]</span><span class="c1"># wc -l test.txt</span>
-<span class="m">19</span> test.txt</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="tee命令">tee命令</h2>
+<span class="m">19</span> test.txt
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="tee命令">tee命令</h2>
 <blockquote>
 <p><strong>tee命令</strong>用于将数据重定向到文件，另一方面还可以提供一份重定向数据的副本作为后续命令的stdin。简单的说就是把数据重定向到给定文件和屏幕上</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>输出的信息同时写入指定文件</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -501,29 +486,31 @@ test</code></pre></td></tr></table>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ping www.baidu.com |tee out.txt</span>
-PING www.a.shifen.com <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
+PING www.a.shifen.com <span class="o">(</span>61.135.169.121<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
 ^C<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># cat out.txt</span>
-PING www.a.shifen.com <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span>#</code></pre></td></tr></table>
+PING www.a.shifen.com <span class="o">(</span>61.135.169.121<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1">#</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>输出的信息追加到指定文件   默认情况下，在同一个文件下再次使用 <code>tee</code> 命令会覆盖之前的信息 可以通过 <code>-a</code> 命令选项改变默认设置。</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -541,45 +528,49 @@ PING www.a.shifen.com <span class="o">(</span><span class="m">61</span>.135.169.
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ping www.souhu.com |tee -a out.txt</span>
-PING cndm.com <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+PING cndm.com <span class="o">(</span>103.232.215.131<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
 ^C<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># cat out.txt</span>
-PING www.a.shifen.com <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.7 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.7 ms
-<span class="m">64</span> bytes from <span class="m">61</span>.135.169.121 <span class="o">(</span><span class="m">61</span>.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span><span class="m">12</span>.6 ms
-PING cndm.com <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="m">64</span> bytes from <span class="m">103</span>.232.215.131 <span class="o">(</span><span class="m">103</span>.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
-<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span>#</code></pre></td></tr></table>
+PING www.a.shifen.com <span class="o">(</span>61.135.169.121<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.7 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.7 ms
+<span class="m">64</span> bytes from 61.135.169.121 <span class="o">(</span>61.135.169.121<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">54</span> <span class="nv">time</span><span class="o">=</span>12.6 ms
+PING cndm.com <span class="o">(</span>103.232.215.131<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="m">64</span> bytes from 103.232.215.131 <span class="o">(</span>103.232.215.131<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span><span class="m">200</span> ms
+<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1">#</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="3">
 <li>写入多个文件</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ping www.souhu.com |tee out.txt out1.txt out2.txt</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ping www.souhu.com |tee out.txt out1.txt out2.txt</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="4">
 <li>tee命令的输出内容直接作为另一个命令的输入内容</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -589,28 +580,27 @@ PING cndm.com <span class="o">(</span><span class="m">103</span>.232.215.131<spa
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ll file* |tee output.txt |wc -l</span>
 <span class="m">6</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># cat output.txt</span>
--rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> <span class="m">09</span>:22 file1
--rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> <span class="m">09</span>:22 file2
--rw-r--r--. <span class="m">1</span> root root <span class="m">2110</span> 5月  <span class="m">14</span> <span class="m">11</span>:05 file.2019-05-14
--rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> <span class="m">09</span>:22 file3
--rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> <span class="m">09</span>:22 file4
--rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> <span class="m">09</span>:22 file5
-<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span>#</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="more命令">more命令</h2>
+-rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> 09:22 file1
+-rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> 09:22 file2
+-rw-r--r--. <span class="m">1</span> root root <span class="m">2110</span> 5月  <span class="m">14</span> 11:05 file.2019-05-14
+-rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> 09:22 file3
+-rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> 09:22 file4
+-rw-r--r--. <span class="m">1</span> root root    <span class="m">0</span> 6月  <span class="m">11</span> 09:22 file5
+<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1">#</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="more命令">more命令</h2>
 <blockquote>
 <p><strong>more命令</strong>是一个基于<a href="http://man.linuxde.net/vi">vi</a>编辑器文本过滤器，它以全屏幕的方式按页显示文本文件的内容，支持vi中的关键字定位操作。more名单中内置了若干快捷键</p>
 </blockquote>
-
 <p>常用快捷键使用方法：</p>
-
 <ul>
 <li>按Space键：显示文本的下一屏内容。</li>
 <li>按Enier键：只显示文本的下一行内容。</li>
@@ -619,18 +609,14 @@ PING cndm.com <span class="o">(</span><span class="m">103</span>.232.215.131<spa
 <li>按B键：显示上一屏内容。</li>
 <li>按Q键：退出rnore命令。</li>
 </ul>
-
 <h2 id="less命令">less命令</h2>
-
 <blockquote>
 <p>less 与 more 类似，但使用 less 可以随意浏览文件，而 more 仅能向前移动，却不能向后移动，而且 less 在查看之前不会加载整个文件。</p>
 </blockquote>
-
 <p>常用快捷键使用方法：</p>
-
 <ul>
-<li>/字符串：向下搜索&rdquo;字符串&rdquo;的功能</li>
-<li>?字符串：向上搜索&rdquo;字符串&rdquo;的功能</li>
+<li>/字符串：向下搜索&quot;字符串&quot;的功能</li>
+<li>?字符串：向上搜索&quot;字符串&quot;的功能</li>
 <li>n：重复前一个搜索（与 / 或 ? 有关）</li>
 <li>N：反向重复前一个搜索（与 / 或 ? 有关）</li>
 <li>b 向后翻一页</li>
@@ -642,47 +628,45 @@ PING cndm.com <span class="o">(</span><span class="m">103</span>.232.215.131<spa
 <li>空格键 滚动一页</li>
 <li>回车键 滚动一行</li>
 </ul>
-
 <p>常用实例</p>
-
 <ol>
 <li>查看文件</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># less /var/log/messages</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># less /var/log/messages</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>查看进程信息并用less分页显示</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ps -ef |less</span></code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="sort命令">sort命令</h2>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># ps -ef |less</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="sort命令">sort命令</h2>
 <blockquote>
 <p><strong>sort命令</strong>是在Linux里非常有用，它将文件进行排序，并将排序结果标准输出。sort命令既可以从特定的文件，也可以从stdin中获取输入</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>文件内容排序</li>
 </ol>
-
 <p>默认的比较原则是从首字符向后，依次按<a href="http://zh.wikipedia.org/zh/ASCII">ASCII</a>码值进行比较，最后将他们按升序输出。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -696,6 +680,7 @@ PING cndm.com <span class="o">(</span><span class="m">103</span>.232.215.131<spa
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># cat sort.txt</span>
@@ -711,15 +696,16 @@ bbb:20:2.2
 ccc:30:3.3
 ddd:40:4.4
 eee:50:5.5
-eee:50:5.5</code></pre></td></tr></table>
+eee:50:5.5
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>使用-u或uniq忽略相同行</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -732,6 +718,7 @@ eee:50:5.5</code></pre></td></tr></table>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># cat sort.txt</span>
@@ -746,23 +733,21 @@ aaa:10:1.1
 bbb:20:2.2
 ccc:30:3.3
 ddd:40:4.4
-eee:50:5.5</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="uniq">uniq</h2>
+eee:50:5.5
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="uniq">uniq</h2>
 <blockquote>
 <p><strong>uniq命令</strong>用于报告或忽略文件中的重复行，一般与<a href="http://man.linuxde.net/sort">sort</a>命令结合使用。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>删除重复行</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -775,6 +760,7 @@ eee:50:5.5</code></pre></td></tr></table>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># cat sort.txt</span>
@@ -789,39 +775,43 @@ aaa:10:1.1
 ccc:30:3.3
 ddd:40:4.4
 bbb:20:2.2
-eee:50:5.5</code></pre></td></tr></table>
+eee:50:5.5
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>只显示出单一行</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># uniq -u sort.txt</span>
 aaa:10:1.1
 ccc:30:3.3
 ddd:40:4.4
-bbb:20:2.2</code></pre></td></tr></table>
+bbb:20:2.2
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="3">
 <li>统计各行在文件中出现的次数</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># uniq -c sort.txt</span>
@@ -829,126 +819,129 @@ bbb:20:2.2</code></pre></td></tr></table>
       <span class="m">1</span> ccc:30:3.3
       <span class="m">1</span> ddd:40:4.4
       <span class="m">1</span> bbb:20:2.2
-      <span class="m">2</span> eee:50:5.5</code></pre></td></tr></table>
+      <span class="m">2</span> eee:50:5.5
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="4">
 <li>在文件中找出重复的行</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># uniq -d sort.txt</span>
-eee:50:5.5</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="jobs命令">jobs命令</h2>
+eee:50:5.5
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="jobs命令">jobs命令</h2>
 <blockquote>
 <p><strong>jobs命令</strong>用于显示Linux中的任务列表及任务状态，包括后台运行的任务。该命令可以显示任务号及其对应的进程号。其中，任务号是以普通用户的角度进行的，而进程号则是从系统管理员的角度来看的。一个任务可以对应于一个或者多个进程号。 这一序列的操作将会使用到 jobs、<a href="http://man.linuxde.net/bg">bg</a>、和 <a href="http://man.linuxde.net/fg">fg</a> 三个命令以及两个快捷键来完成。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>显示当前系统任务列表</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># sleep 3000 &amp;</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">11015</span>
+<span class="o">[</span>1<span class="o">]</span> <span class="m">11015</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span></code></pre></td></tr></table>
+<span class="o">[</span>1<span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>显示对应任务的进程号</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs -l</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+ <span class="m">11015</span> 运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span></code></pre></td></tr></table>
+<span class="o">[</span>1<span class="o">]</span>+ <span class="m">11015</span> 运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>使用kill %job_ID杀死后台进程</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
+<span class="o">[</span>1<span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># kill %1</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  已终止               sleep <span class="m">3000</span>
+<span class="o">[</span>1<span class="o">]</span>+  已终止               sleep <span class="m">3000</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span>#</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="fg命令">fg命令</h2>
+<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1">#</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="fg命令">fg命令</h2>
 <blockquote>
 <p><strong>fg命令</strong>用于将后台作业（在后台运行的或者在后台挂起的作业）放到前台终端运行。与<a href="http://man.linuxde.net/bg">bg</a>命令一样，若后台任务中只有一个，则使用该命令时，可以省略任务号。</p>
 </blockquote>
-
 <p>使用实例</p>
-
 <ol>
 <li>将任务号为1的任务从后台转为前台执行</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># sleep 3000 &amp;</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">10208</span>
+<span class="o">[</span>1<span class="o">]</span> <span class="m">10208</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
+<span class="o">[</span>1<span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># fg 1</span>
-sleep <span class="m">3000</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>使用ctrl+z会让任务再次回到后台  不过是停止状态</p>
+sleep <span class="m">3000</span>
 
+
+</code></pre></td></tr></table>
+</div>
+</div><p>使用ctrl+z会让任务再次回到后台  不过是停止状态</p>
 <h2 id="bg命令">bg命令</h2>
-
 <blockquote>
 <p><strong>bg命令</strong>用于将作业放到后台运行，使前台可以执行其他任务。该命令的运行效果与在指令后面添加符号<code>&amp;</code>的效果是相同的，都是将其放到系统后台执行。</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>将任务号为1的任务放在后台继续执行</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -961,45 +954,46 @@ sleep <span class="m">3000</span></code></pre></td></tr></table>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
+<span class="o">[</span>1<span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># fg 1   #转到前台</span>
 sleep <span class="m">3000</span>
 ^Z                             <span class="c1">#ctrl+z回到后台停止</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  已停止               sleep <span class="m">3000</span>
+<span class="o">[</span>1<span class="o">]</span>+  已停止               sleep <span class="m">3000</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  已停止               sleep <span class="m">3000</span>
+<span class="o">[</span>1<span class="o">]</span>+  已停止               sleep <span class="m">3000</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># bg 1  #继续执行</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+ sleep <span class="m">3000</span> <span class="p">&amp;</span>
+<span class="o">[</span>1<span class="o">]</span>+ sleep <span class="m">3000</span> <span class="p">&amp;</span>
 <span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1"># jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
-<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span>#</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="split命令">split命令</h2>
+<span class="o">[</span>1<span class="o">]</span>+  运行中               sleep <span class="m">3000</span> <span class="p">&amp;</span>
+<span class="o">[</span>root@k8s-77-162 shell<span class="o">]</span><span class="c1">#</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="split命令">split命令</h2>
 <blockquote>
 <p><strong>split命令</strong>可以将一个大文件分割成很多个小文件，有时需要将文件分割成更小的片段，比如为提高可读性，生成日志等。</p>
 </blockquote>
-
 <p>使用实例</p>
-
 <ol>
-<li>分割文件</li>
-</ol>
-
+<li>
+<p>分割文件</p>
 <p>默认为1000切割成一个小文件</p>
+</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 test<span class="o">]</span><span class="c1"># split messages</span>
@@ -1008,32 +1002,34 @@ messages  xae  xaj  xao  xat  xay  xbd  xbi  xbn  xbs  xbx  xcc  xch  xcm  xcr  
 xaa       xaf  xak  xap  xau  xaz  xbe  xbj  xbo  xbt  xby  xcd  xci  xcn  xcs  xcx  xdc  xdh  xdm  xdr  xdw  xeb  xeg  xel  xeq  xev
 xab       xag  xal  xaq  xav  xba  xbf  xbk  xbp  xbu  xbz  xce  xcj  xco  xct  xcy  xdd  xdi  xdn  xds  xdx  xec  xeh  xem  xer  xew
 xac       xah  xam  xar  xaw  xbb  xbg  xbl  xbq  xbv  xca  xcf  xck  xcp  xcu  xcz  xde  xdj  xdo  xdt  xdy  xed  xei  xen  xes  xex
-xad       xai  xan  xas  xax  xbc  xbh  xbm  xbr  xbw  xcb  xcg  xcl  xcq  xcv  xda  xdf  xdk  xdp  xdu  xdz  xee  xej  xeo  xet  xey</code></pre></td></tr></table>
+xad       xai  xan  xas  xax  xbc  xbh  xbm  xbr  xbw  xcb  xcg  xcl  xcq  xcv  xda  xdf  xdk  xdp  xdu  xdz  xee  xej  xeo  xet  xey
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="2">
 <li>指定xx行切割成一个小文件</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 test<span class="o">]</span><span class="c1"># split -10000 messages</span>
 <span class="o">[</span>root@k8s-77-162 test<span class="o">]</span><span class="c1"># ls</span>
-messages  xaa  xab  xac  xad  xae  xaf  xag  xah  xai  xaj  xak  xal  xam</code></pre></td></tr></table>
+messages  xaa  xab  xac  xad  xae  xaf  xag  xah  xai  xaj  xak  xal  xam
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="3">
 <li>使用数字做后缀</li>
 </ol>
-
 <p>用-d参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1051,9 +1047,10 @@ messages  xaa  xab  xac  xad  xae  xaf  xag  xah  xai  xaj  xak  xal  xam</code>
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span></pre></td>
+</span><span class="lnt">19
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[root@k8s-77-162 test]# split -10000  messages test.txt -d
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[root@k8s-77-162 test]# split -10000  messages test.txt -d
 [root@k8s-77-162 test]# ll
 总用量 28264
 -rw-------. 1 root root 14456185 6月  11 16:54 messages
@@ -1070,82 +1067,59 @@ messages  xaa  xab  xac  xad  xae  xaf  xag  xah  xai  xaj  xak  xal  xam</code>
 -rw-r--r--. 1 root root  1086159 6月  11 17:26 test.txt10
 -rw-r--r--. 1 root root  1112624 6月  11 17:26 test.txt11
 -rw-r--r--. 1 root root  1119029 6月  11 17:26 test.txt12
-[root@k8s-77-162 test]#</pre></td></tr></table>
-</div>
-</div>
-<h2 id="uptime命令">uptime命令</h2>
+[root@k8s-77-162 test]#
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="uptime命令">uptime命令</h2>
 <blockquote>
 <p>uptime命令能够打印系统总共运行了多长时间和系统的平均负载。uptime命令可以显示的信息显示依次为：</p>
-
 <p>现在时间、系统已经运行了多长时间、目前有多少登录用户、系统在过去的一分钟、5分钟和15分钟内的凭据负载</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ul>
 <li>查看系统负载</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># uptime</span>
- <span class="m">15</span>:14:14 up <span class="m">56</span> days,  <span class="m">9</span>:23,  <span class="m">2</span> users,  load average: <span class="m">0</span>.24, <span class="m">0</span>.22, <span class="m">0</span>.19</code></pre></td></tr></table>
+ 15:14:14 up <span class="m">56</span> days,  9:23,  <span class="m">2</span> users,  load average: 0.24, 0.22, 0.19
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>显示内容说明：</p>
+</div><p>显示内容说明：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">15</span>:14:14  <span class="c1">#系统当前时间</span>
-up <span class="m">56</span> days,  <span class="m">9</span>:23 <span class="c1"># 主机运行时间，时间越长 说明主机越稳定</span>
+<pre class="chroma"><code class="language-shell" data-lang="shell">15:14:14  <span class="c1">#系统当前时间</span>
+up <span class="m">56</span> days,  9:23 <span class="c1"># 主机运行时间，时间越长 说明主机越稳定</span>
 <span class="m">2</span> users <span class="c1">#用户连接数  是总连接数 不是用户数</span>
-load average: <span class="m">0</span>.24, <span class="m">0</span>.22, <span class="m">0</span>.19 <span class="c1">#系统平均负载 统计1、5、15分钟的系统平均负载</span></code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="ps命令">ps命令</h2>
+load average: 0.24, 0.22, 0.19 <span class="c1">#系统平均负载 统计1、5、15分钟的系统平均负载</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="ps命令">ps命令</h2>
 <blockquote>
 <p>ps命令用于报告当前系统的进程状态</p>
 </blockquote>
-
 <p>常用实例</p>
-
 <ol>
 <li>显示进程信息</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -A</span>
-  PID TTY          TIME CMD
-    <span class="m">1</span> ?        <span class="m">00</span>:29:40 systemd
-    <span class="m">2</span> ?        <span class="m">00</span>:00:07 kthreadd
-    <span class="m">3</span> ?        <span class="m">00</span>:04:18 ksoftirqd/0
-    ...</code></pre></td></tr></table>
-</div>
-</div>
-<ol>
-<li>显示指定用户信息</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1154,21 +1128,46 @@ load average: <span class="m">0</span>.24, <span class="m">0</span>.22, <span cl
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -A</span>
+  PID TTY          TIME CMD
+    <span class="m">1</span> ?        00:29:40 systemd
+    <span class="m">2</span> ?        00:00:07 kthreadd
+    <span class="m">3</span> ?        00:04:18 ksoftirqd/0
+    ...
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>显示指定用户信息</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -u root #显示root用户的进程信息</span>
   PID TTY          TIME CMD
-    <span class="m">1</span> ?        <span class="m">00</span>:29:40 systemd
-    <span class="m">2</span> ?        <span class="m">00</span>:00:07 kthreadd
-    <span class="m">3</span> ?        <span class="m">00</span>:04:18 ksoftirqd/0
-    <span class="m">5</span> ?        <span class="m">00</span>:00:00 kworker/0:0H
-    ...</code></pre></td></tr></table>
+    <span class="m">1</span> ?        00:29:40 systemd
+    <span class="m">2</span> ?        00:00:07 kthreadd
+    <span class="m">3</span> ?        00:04:18 ksoftirqd/0
+    <span class="m">5</span> ?        00:00:00 kworker/0:0H
+    ...
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="3">
 <li>显示所有进程信息，连同命令行 及查找特定进程</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1180,28 +1179,136 @@ load average: <span class="m">0</span>.24, <span class="m">0</span>.22, <span cl
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -ef</span> 
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -ef </span>
 UID        PID  PPID  C STIME TTY          TIME CMD
-root         <span class="m">1</span>     <span class="m">0</span>  <span class="m">0</span> 4月19 ?       <span class="m">00</span>:29:40 /usr/lib/systemd/systemd --switched-root --system --deserialize <span class="m">22</span>
-root         <span class="m">2</span>     <span class="m">0</span>  <span class="m">0</span> 4月19 ?       <span class="m">00</span>:00:07 <span class="o">[</span>kthreadd<span class="o">]</span>
-root         <span class="m">3</span>     <span class="m">2</span>  <span class="m">0</span> 4月19 ?       <span class="m">00</span>:04:18 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+root         <span class="m">1</span>     <span class="m">0</span>  <span class="m">0</span> 4月19 ?       00:29:40 /usr/lib/systemd/systemd --switched-root --system --deserialize <span class="m">22</span>
+root         <span class="m">2</span>     <span class="m">0</span>  <span class="m">0</span> 4月19 ?       00:00:07 <span class="o">[</span>kthreadd<span class="o">]</span>
+root         <span class="m">3</span>     <span class="m">2</span>  <span class="m">0</span> 4月19 ?       00:04:18 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
 ...
 <span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -ef |grep ssh #查找ssh进程</span>
-root      <span class="m">6298</span>     <span class="m">1</span>  <span class="m">0</span> 4月19 ?       <span class="m">00</span>:00:01 /usr/sbin/sshd -D
-root     <span class="m">11202</span>  <span class="m">6298</span>  <span class="m">0</span> <span class="m">14</span>:18 ?        <span class="m">00</span>:00:00 sshd: root@pts/0
-root     <span class="m">11795</span> <span class="m">11791</span>  <span class="m">0</span> 6月03 ?       <span class="m">00</span>:00:00 runsv sshd
-root     <span class="m">11796</span> <span class="m">11795</span>  <span class="m">0</span> 6月03 ?       <span class="m">00</span>:00:00 svlogd -tt /var/log/gitlab/sshd
-...</code></pre></td></tr></table>
+root      <span class="m">6298</span>     <span class="m">1</span>  <span class="m">0</span> 4月19 ?       00:00:01 /usr/sbin/sshd -D
+root     <span class="m">11202</span>  <span class="m">6298</span>  <span class="m">0</span> 14:18 ?        00:00:00 sshd: root@pts/0
+root     <span class="m">11795</span> <span class="m">11791</span>  <span class="m">0</span> 6月03 ?       00:00:00 runsv sshd
+root     <span class="m">11796</span> <span class="m">11795</span>  <span class="m">0</span> 6月03 ?       00:00:00 svlogd -tt /var/log/gitlab/sshd
+...
+
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol start="4">
 <li>列出当前所有正在内存中的进程</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -aux</span>
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         <span class="m">1</span>  0.0  0.0 <span class="m">194376</span>  <span class="m">5296</span> ?        Ss   4月19  29:41 /usr/lib/systemd/systemd --switched-root --system --deserialize <span class="m">22</span>
+root         <span class="m">2</span>  0.0  0.0      <span class="m">0</span>     <span class="m">0</span> ?        S    4月19   0:07 <span class="o">[</span>kthreadd<span class="o">]</span>
+root         <span class="m">3</span>  0.0  0.0      <span class="m">0</span>     <span class="m">0</span> ?        S    4月19   4:18 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
+root         <span class="m">5</span>  0.0  0.0      <span class="m">0</span>     <span class="m">0</span> ?        S&lt;   4月19   0:00 <span class="o">[</span>kworker/0:0H<span class="o">]</span>
+...
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="netstat命令">netstat命令</h2>
+<blockquote>
+<p>netstat命令用来打印linux中网络系统的状态信息，可让你得知整个linux系统的网络情况。</p>
+</blockquote>
+<p>常用实例</p>
+<ol>
+<li>列出所有端口(包括监听和未监听的)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">netstat -a    <span class="c1">#列出所有端口</span>
+netstat -at   <span class="c1">#列出所有tcp端口</span>
+netstat -au   <span class="c1">#列出所有udp端口</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>列出处于监听状态下的sockets</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">netstat -l        <span class="c1">#只显示监听端口</span>
+netstat -lt       <span class="c1">#只列出所有监听tcp端口</span>
+netstat -lu       <span class="c1">#只列出所有监听udp端口</span>
+netstat -lx       <span class="c1">#只列出所有监听unix端口</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>显示每个协议的统计信息</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">netstat -s    <span class="c1">#显示所有端口的统计信息</span>
+netstat -st   <span class="c1">#显示tcp端口的统计信息</span>
+netstat -su   <span class="c1">#显示udp端口的统计信息</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>在netstat输出中显示PID和进程名称</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[root@k8s-77-162 ~]# netstat -pt 
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 k8s-77-162:36698        172.16.77.:sun-sr-https ESTABLISHED 30174/kubelet
+tcp        0      0 k8s-77-162:55140        172.16.77.:sun-sr-https ESTABLISHED 7235/kube-proxy
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>在netstat输出中不显示主机，端口和用户名(host，prot，user)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1210,108 +1317,14 @@ root     <span class="m">11796</span> <span class="m">11795</span>  <span class=
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># ps -aux</span>
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         <span class="m">1</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">194376</span>  <span class="m">5296</span> ?        Ss   4月19  <span class="m">29</span>:41 /usr/lib/systemd/systemd --switched-root --system --deserialize <span class="m">22</span>
-root         <span class="m">2</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    4月19   <span class="m">0</span>:07 <span class="o">[</span>kthreadd<span class="o">]</span>
-root         <span class="m">3</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    4月19   <span class="m">4</span>:18 <span class="o">[</span>ksoftirqd/0<span class="o">]</span>
-root         <span class="m">5</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S&lt;   4月19   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0H<span class="o">]</span>
-...</code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="netstat命令">netstat命令</h2>
-
-<blockquote>
-<p>netstat命令用来打印linux中网络系统的状态信息，可让你得知整个linux系统的网络情况。</p>
-</blockquote>
-
-<p>常用实例</p>
-
-<ol>
-<li>列出所有端口(包括监听和未监听的)</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">netstat -a    <span class="c1">#列出所有端口</span>
-netstat -at   <span class="c1">#列出所有tcp端口</span>
-netstat -au   <span class="c1">#列出所有udp端口</span></code></pre></td></tr></table>
-</div>
-</div>
-<ol>
-<li>列出处于监听状态下的sockets</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">netstat -l        <span class="c1">#只显示监听端口</span>
-netstat -lt       <span class="c1">#只列出所有监听tcp端口</span>
-netstat -lu       <span class="c1">#只列出所有监听udp端口</span>
-netstat -lx       <span class="c1">#只列出所有监听unix端口</span></code></pre></td></tr></table>
-</div>
-</div>
-<ol>
-<li>显示每个协议的统计信息</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">netstat -s    <span class="c1">#显示所有端口的统计信息</span>
-netstat -st   <span class="c1">#显示tcp端口的统计信息</span>
-netstat -su   <span class="c1">#显示udp端口的统计信息</span></code></pre></td></tr></table>
-</div>
-</div>
-<ol>
-<li>在netstat输出中显示PID和进程名称</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># netstat -pt</span> 
-Active Internet connections <span class="o">(</span>w/o servers<span class="o">)</span>
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-tcp        <span class="m">0</span>      <span class="m">0</span> k8s-77-162:36698        <span class="m">172</span>.16.77.:sun-sr-https ESTABLISHED <span class="m">30174</span>/kubelet
-tcp        <span class="m">0</span>      <span class="m">0</span> k8s-77-162:55140        <span class="m">172</span>.16.77.:sun-sr-https ESTABLISHED <span class="m">7235</span>/kube-proxy</code></pre></td></tr></table>
-</div>
-</div>
-<ol>
-<li>在netstat输出中不显示主机，端口和用户名(host，prot，user)</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-162 ~<span class="o">]</span><span class="c1"># netstat -an</span>
 Active Internet connections <span class="o">(</span>servers and established<span class="o">)</span>
 Proto Recv-Q Send-Q Local Address           Foreign Address         State
-tcp        <span class="m">0</span>      <span class="m">0</span> <span class="m">127</span>.0.0.1:33639         <span class="m">0</span>.0.0.0:*               LISTEN
-tcp        <span class="m">0</span>      <span class="m">0</span> <span class="m">127</span>.0.0.1:10248         <span class="m">0</span>.0.0.0:*               LISTEN
-tcp        <span class="m">0</span>      <span class="m">0</span> <span class="m">127</span>.0.0.1:10249         <span class="m">0</span>.0.0.0:*               LISTEN</code></pre></td></tr></table>
+tcp        <span class="m">0</span>      <span class="m">0</span> 127.0.0.1:33639         0.0.0.0:*               LISTEN
+tcp        <span class="m">0</span>      <span class="m">0</span> 127.0.0.1:10248         0.0.0.0:*               LISTEN
+tcp        <span class="m">0</span>      <span class="m">0</span> 127.0.0.1:10249         0.0.0.0:*               LISTEN
+
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -1372,10 +1385,9 @@ tcp        <span class="m">0</span>      <span class="m">0</span> <span class="m
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-08-09 10:23:33 \x2b0800 CST',
+        id: '2019-08-09 10:23:33 \u002b0800 CST',
         title: 'Linux日常命令一',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -1387,6 +1399,10 @@ tcp        <span class="m">0</span>      <span class="m">0</span> <span class="m
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -1442,7 +1458,10 @@ tcp        <span class="m">0</span>      <span class="m">0</span> <span class="m
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

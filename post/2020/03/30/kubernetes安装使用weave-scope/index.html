@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/03/30/kubernetes%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8weave-scope/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kubernetes安装使用Weave Scope" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/03/30/kubernetes%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8weave-scope/" />
-<meta property="article:published_time" content="2020-03-30T17:25:13&#43;08:00"/>
-<meta property="article:modified_time" content="2020-03-30T17:25:13&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/03/30/kubernetes%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8weave-scope/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-30T17:25:13&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-30T17:25:13&#43;08:00" />
 
 <meta itemprop="name" content="Kubernetes安装使用Weave Scope">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-03-30T17:25:13&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-30T17:25:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-30T17:25:13&#43;08:00" />
 <meta itemprop="wordCount" content="715">
-
-
-
-<meta itemprop="keywords" content="linux,kubernetes," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,kubernetes," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes安装使用Weave Scope"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,16 +150,13 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#weave-scope功能及组成">Weave Scope功能及组成</a></li>
-<li><a href="#weave-scope安装">Weave Scope安装</a></li>
-<li><a href="#访问weave-scope">访问Weave Scope</a></li>
-<li><a href="#使用weave-scope">使用Weave Scope</a></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#weave-scope功能及组成">Weave Scope功能及组成</a></li>
+    <li><a href="#weave-scope安装">Weave Scope安装</a></li>
+    <li><a href="#访问weave-scope">访问Weave Scope</a></li>
+    <li><a href="#使用weave-scope">使用Weave Scope</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -163,11 +164,8 @@
       <blockquote>
 <p>Weave Scope是Docker和Kubernetes可是化监控工具。Scope提供了至上而下的集群基础设施和应用的完整视图，使你能够直观地理解，监视和控制相关应用程序。</p>
 </blockquote>
-
 <h2 id="weave-scope功能及组成">Weave Scope功能及组成</h2>
-
 <p>提供的功能包括：</p>
-
 <ul>
 <li>交互式拓扑界面</li>
 <li>图形模式和表格模式</li>
@@ -177,22 +175,18 @@
 <li>容器排错</li>
 <li>插件扩展</li>
 </ul>
-
 <p>Weave Scope由App和probe两部分组成：</p>
-
 <ul>
 <li>probe负责收集容器和宿主机的信息，并发送给App</li>
 <li>App负责处理这些信息，并生成相应的报告，并以交互界面的形式展示</li>
 </ul>
-
 <h2 id="weave-scope安装">Weave Scope安装</h2>
-
 <ul>
 <li>安装Weave Scope</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -211,15 +205,15 @@ clusterrolebinding.rbac.authorization.k8s.io/weave-scope created
 deployment.apps/weave-scope-app created
 service/weave-scope-app created
 deployment.apps/weave-scope-cluster-agent created
-daemonset.apps/weave-scope-agent created</code></pre></td></tr></table>
+daemonset.apps/weave-scope-agent created
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看资源</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -244,37 +238,36 @@ daemonset.apps/weave-scope-agent created</code></pre></td></tr></table>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-40 ~<span class="o">]</span><span class="c1"># kubectl get all -n weave</span>
 NAME                                             READY   STATUS    RESTARTS   AGE
-pod/weave-scope-agent-8gbhj                      <span class="m">1</span>/1     Running   <span class="m">0</span>          78s
-pod/weave-scope-agent-n466h                      <span class="m">1</span>/1     Running   <span class="m">0</span>          78s
-pod/weave-scope-agent-w4zrc                      <span class="m">1</span>/1     Running   <span class="m">0</span>          78s
-pod/weave-scope-app-7b679dfc-8k6kz               <span class="m">1</span>/1     Running   <span class="m">0</span>          78s
-pod/weave-scope-cluster-agent-6c64567585-sncd6   <span class="m">1</span>/1     Running   <span class="m">0</span>          78s
+pod/weave-scope-agent-8gbhj                      1/1     Running   <span class="m">0</span>          78s
+pod/weave-scope-agent-n466h                      1/1     Running   <span class="m">0</span>          78s
+pod/weave-scope-agent-w4zrc                      1/1     Running   <span class="m">0</span>          78s
+pod/weave-scope-app-7b679dfc-8k6kz               1/1     Running   <span class="m">0</span>          78s
+pod/weave-scope-cluster-agent-6c64567585-sncd6   1/1     Running   <span class="m">0</span>          78s
 
 NAME                      TYPE        CLUSTER-IP    EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
-service/weave-scope-app   ClusterIP   <span class="m">10</span>.69.23.30   &lt;none&gt;        <span class="m">80</span>/TCP    78s
+service/weave-scope-app   ClusterIP   10.69.23.30   &lt;none&gt;        80/TCP    78s
 
 NAME                               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
 daemonset.apps/weave-scope-agent   <span class="m">3</span>         <span class="m">3</span>         <span class="m">3</span>       <span class="m">3</span>            <span class="m">3</span>           &lt;none&gt;          78s
 
 NAME                                        READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/weave-scope-app             <span class="m">1</span>/1     <span class="m">1</span>            <span class="m">1</span>           78s
-deployment.apps/weave-scope-cluster-agent   <span class="m">1</span>/1     <span class="m">1</span>            <span class="m">1</span>           78s
+deployment.apps/weave-scope-app             1/1     <span class="m">1</span>            <span class="m">1</span>           78s
+deployment.apps/weave-scope-cluster-agent   1/1     <span class="m">1</span>            <span class="m">1</span>           78s
 
 NAME                                                   DESIRED   CURRENT   READY   AGE
 replicaset.apps/weave-scope-app-7b679dfc               <span class="m">1</span>         <span class="m">1</span>         <span class="m">1</span>       78s
-replicaset.apps/weave-scope-cluster-agent-6c64567585   <span class="m">1</span>         <span class="m">1</span>         <span class="m">1</span>       78s</code></pre></td></tr></table>
+replicaset.apps/weave-scope-cluster-agent-6c64567585   <span class="m">1</span>         <span class="m">1</span>         <span class="m">1</span>       78s
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>设置对外访问</li>
 </ul>
-
 <blockquote>
 <p>默认的service是ClusterIP方式，需要改成NodePort</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -299,7 +292,7 @@ replicaset.apps/weave-scope-cluster-agent-6c64567585   <span class="m">1</span> 
 
 ......
 spec:
-  clusterIP: <span class="m">10</span>.69.23.30
+  clusterIP: 10.69.23.30
   ports:
   - name: app
     port: <span class="m">80</span>
@@ -313,84 +306,63 @@ spec:
     weave-scope-component: app
   sessionAffinity: None
   type: NodePort  <span class="c1"># 此处修改为NodePort，默认是ClusterIP</span>
-  ......</code></pre></td></tr></table>
+  ......
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>查看svc</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-40 ~<span class="o">]</span><span class="c1"># kubectl get svc -n weave</span>
 NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
-weave-scope-app   NodePort   <span class="m">10</span>.69.23.30   &lt;none&gt;        <span class="m">80</span>:31080/TCP   6m53s</code></pre></td></tr></table>
+weave-scope-app   NodePort   10.69.23.30   &lt;none&gt;        80:31080/TCP   6m53s
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="访问weave-scope">访问Weave Scope</h2>
-
+</div><h2 id="访问weave-scope">访问Weave Scope</h2>
 <ul>
-<li>url：<a href="http://172.16.77.40:31080">http://172.16.77.40:31080</a></li>
+<li>url：http://172.16.77.40:31080</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/Gkq9Te.png" alt="Gkq9Te.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/Gkq9Te.png" alt="Gkq9Te.png"></p>
 <h2 id="使用weave-scope">使用Weave Scope</h2>
-
 <ul>
 <li>图表模式</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkLDUg.png" alt="GkLDUg.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkLDUg.png" alt="GkLDUg.png"></p>
 <ul>
 <li>表格模式</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkLI54.png" alt="GkLI54.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkLI54.png" alt="GkLI54.png"></p>
 <ul>
 <li>pod信息查看</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkO0Q1.png" alt="GkO0Q1.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkO0Q1.png" alt="GkO0Q1.png"></p>
 <ul>
 <li>日志查看</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkO2JH.png" alt="GkO2JH.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkO2JH.png" alt="GkO2JH.png"></p>
 <ul>
 <li>yaml描述查看</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkOoef.png" alt="GkOoef.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkOoef.png" alt="GkOoef.png"></p>
 <ul>
 <li>资源伸缩</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkXFfJ.png" alt="GkXFfJ.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkXFfJ.png" alt="GkXFfJ.png"></p>
 <ul>
 <li>容器操作</li>
 </ul>
-
 <blockquote>
 <p>可以对容器进行attach、exec shell、restart、paus、stop操作</p>
 </blockquote>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkXdAS.png" alt="GkXdAS.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkXdAS.png" alt="GkXdAS.png"></p>
 <p><strong>Weave Scope界面及其友好，操作简介流畅，更多功能可以自己去仔细探索一下</strong></p>
-
 <h2 id="参考链接">参考链接</h2>
-
 <p><a href="https://www.weave.works/docs/scope/latest/installing/#k8s">官方文档</a></p>
     </div>
 
@@ -449,10 +421,9 @@ weave-scope-app   NodePort   <span class="m">10</span>.69.23.30   &lt;none&gt;  
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-03-30 17:25:13 \x2b0800 CST',
+        id: '2020-03-30 17:25:13 \u002b0800 CST',
         title: 'Kubernetes安装使用Weave Scope',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -464,6 +435,10 @@ weave-scope-app   NodePort   <span class="m">10</span>.69.23.30   &lt;none&gt;  
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -519,7 +494,10 @@ weave-scope-app   NodePort   <span class="m">10</span>.69.23.30   &lt;none&gt;  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

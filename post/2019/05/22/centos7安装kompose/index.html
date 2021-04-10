@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Centos7安装Kompose" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/" />
-<meta property="article:published_time" content="2019-05-22T18:20:02&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-22T18:20:02&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/22/centos7%E5%AE%89%E8%A3%85kompose/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-22T18:20:02&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-22T18:20:02&#43;08:00" />
 
 <meta itemprop="name" content="Centos7安装Kompose">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-22T18:20:02&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-22T18:20:02&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-22T18:20:02&#43;08:00" />
 <meta itemprop="wordCount" content="224">
-
-
-
-<meta itemprop="keywords" content="Kompose,linux,centos,Kubernetes,容器," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Kompose,linux,centos,Kubernetes,容器," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Centos7安装Kompose"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,22 +150,21 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#下载安装">下载安装</a>
-<ul>
-<li><a href="#下载">下载</a></li>
-<li><a href="#安装">安装</a></li>
-<li><a href="#使用">使用</a></li>
-</ul></li>
-<li><a href="#可能出现的问题">可能出现的问题</a>
-<ul>
-<li><a href="#使用时提示错误">使用时提示错误</a></li>
-<li><a href="#解决办法">解决办法</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#下载安装">下载安装</a>
+      <ul>
+        <li><a href="#下载">下载</a></li>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#使用">使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#可能出现的问题">可能出现的问题</a>
+      <ul>
+        <li><a href="#使用时提示错误">使用时提示错误</a></li>
+        <li><a href="#解决办法">解决办法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -169,55 +172,50 @@
       <blockquote>
 <p>kompose是一个可以在kubernetes运行docker-compose.yml的工具，也可以将docker-compose.yml转换为kubernetes的相应文件，非常便利。</p>
 </blockquote>
-
-<hr />
-
+<hr>
 <h2 id="下载安装">下载安装</h2>
-
 <h3 id="下载">下载</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">curl -L https://github.com/kubernetes/kompose/releases/download/v1.18.0/kompose-linux-amd64 -o kompose </code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">curl -L https://github.com/kubernetes/kompose/releases/download/v1.18.0/kompose-linux-amd64 -o kompose 
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="安装">安装</h3>
+</div><h3 id="安装">安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">chmod +x kompose sudo
-mv ./kompose /usr/local/bin/kompose</code></pre></td></tr></table>
+mv ./kompose /usr/local/bin/kompose
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用">使用</h3>
+</div><h3 id="使用">使用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#将docker-compose转成kubernetes yaml</span>
-kompose -f docker-compose.yml convert</code></pre></td></tr></table>
+kompose -f docker-compose.yml convert
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="可能出现的问题">可能出现的问题</h2>
-
+</div><h2 id="可能出现的问题">可能出现的问题</h2>
 <h3 id="使用时提示错误">使用时提示错误</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">FATA Version <span class="m">3</span>.7 of Docker Compose is not supported. Please use version <span class="m">1</span>, <span class="m">2</span> or <span class="m">3</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">FATA Version 3.7 of Docker Compose is not supported. Please use version 1, <span class="m">2</span> or <span class="m">3</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="解决办法">解决办法</h3>
-
+</div><h3 id="解决办法">解决办法</h3>
 <p>将docker-compose.yml文件的version改成3或3以下</p>
     </div>
 
@@ -279,10 +277,9 @@ kompose -f docker-compose.yml convert</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-22 18:20:02 \x2b0800 CST',
+        id: '2019-05-22 18:20:02 \u002b0800 CST',
         title: 'Centos7安装Kompose',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -294,6 +291,10 @@ kompose -f docker-compose.yml convert</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -349,7 +350,10 @@ kompose -f docker-compose.yml convert</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

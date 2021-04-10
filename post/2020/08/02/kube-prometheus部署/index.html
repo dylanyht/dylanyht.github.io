@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Kube-Prometheus部署" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/" />
-<meta property="article:published_time" content="2020-08-02T16:55:40&#43;08:00"/>
-<meta property="article:modified_time" content="2020-08-02T16:55:40&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/08/02/kube-prometheus%E9%83%A8%E7%BD%B2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-08-02T16:55:40&#43;08:00" />
+<meta property="article:modified_time" content="2020-08-02T16:55:40&#43;08:00" />
 
 <meta itemprop="name" content="Kube-Prometheus部署">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-08-02T16:55:40&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-08-02T16:55:40&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-02T16:55:40&#43;08:00" />
-<meta itemprop="wordCount" content="1954">
-
-
-
-<meta itemprop="keywords" content="kubernetes,prometheus,kube-prometheus,监控," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1953">
+<meta itemprop="keywords" content="kubernetes,prometheus,kube-prometheus,监控," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kube-Prometheus部署"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/%E7%9B%91%E6%8E%A7/"> 监控 </a>
             </div>
-          <span class="more-meta"> 1954 words </span>
+          <span class="more-meta"> 1953 words </span>
           <span class="more-meta"> 4 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,55 +150,37 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#兼容性参考">兼容性参考</a></li>
-<li><a href="#前期准备">前期准备</a>
-<ul>
-<li><a href="#下载">下载</a></li>
-<li><a href="#配置nodeport">配置NodePort</a></li>
-</ul></li>
-<li><a href="#安装">安装</a></li>
-<li><a href="#问题处理">问题处理</a>
-<ul>
-<li><a href="#问题一">问题一</a>
-<ul>
-<li><a href="#prometheus的页面上发现-kube-controller-manager-和-kube-scheduler-的target为0-0-如下图所示">prometheus的页面上发现<code>kube-controller-manager</code>和<code>kube-scheduler</code>的target为0/0，如下图所示</a></li>
-<li><a href="#解决办法">解决办法</a></li>
-</ul></li>
-<li><a href="#问题二">问题二</a></li>
-<li><a href="#问题三">问题三</a>
-<ul>
-<li><a href="#缺少饼形图插件grafana-piechart-panel">缺少饼形图插件grafana-piechart-panel</a></li>
-<li><a href="#解决办法-1">解决办法</a>
-<ul>
-<li><a href="#方法一">方法一</a></li>
-<li><a href="#方法二">方法二</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#兼容性参考">兼容性参考</a></li>
+    <li><a href="#前期准备">前期准备</a>
+      <ul>
+        <li><a href="#下载">下载</a></li>
+        <li><a href="#配置nodeport">配置NodePort</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#问题处理">问题处理</a>
+      <ul>
+        <li><a href="#问题一">问题一</a></li>
+        <li><a href="#创建kube-controller-manager和kube-scheduler的svc和ep">创建kube-controller-manager和kube-scheduler的svc和ep</a></li>
+        <li><a href="#问题二">问题二</a></li>
+        <li><a href="#问题三">问题三</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><a href="https://imgchr.com/i/aOZLSU"><img src="https://s1.ax1x.com/2020/08/11/aOZLSU.jpg" alt="aOZLSU.jpg" /></a></p>
-
+      <p><a href="https://imgchr.com/i/aOZLSU"><img src="https://s1.ax1x.com/2020/08/11/aOZLSU.jpg" alt="aOZLSU.jpg"></a></p>
 <blockquote>
 <p>此文档用于记录kube-prometheus的部署过程</p>
-
 <p>环境：</p>
-
 <p>​    Kubernetes1.14.3、 安装方式：二进制</p>
-
 <p>​    kube-prometheus-0.3</p>
 </blockquote>
-
 <h2 id="兼容性参考">兼容性参考</h2>
-
 <table>
 <thead>
 <tr>
@@ -206,7 +192,6 @@
 <th>Kubernetes 1.18</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>release-0.3</code></td>
@@ -216,7 +201,6 @@
 <td>✔</td>
 <td>✗</td>
 </tr>
-
 <tr>
 <td><code>release-0.4</code></td>
 <td>✗</td>
@@ -225,7 +209,6 @@
 <td>✔</td>
 <td>✗</td>
 </tr>
-
 <tr>
 <td><code>release-0.5</code></td>
 <td>✗</td>
@@ -234,7 +217,6 @@
 <td>✗</td>
 <td>✔</td>
 </tr>
-
 <tr>
 <td><code>HEAD</code></td>
 <td>✗</td>
@@ -245,26 +227,23 @@
 </tr>
 </tbody>
 </table>
-
 <h2 id="前期准备">前期准备</h2>
-
 <h3 id="下载">下载</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ wget https://github.com/coreos/kube-prometheus/archive/v0.3.0.tar.gz
-$ tar -zxvf v0.3.0.tar.gz</code></pre></td></tr></table>
+$ tar -zxvf v0.3.0.tar.gz
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="配置nodeport">配置NodePort</h3>
-
+</div><h3 id="配置nodeport">配置NodePort</h3>
 <p>为了Kubernetes集群外访问，可以根据情况配置NodePort或者ingress，此处直接修改为NodePort。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -321,13 +300,13 @@ $ vim alertmanager-service.yaml
   - name: web
     port: <span class="m">9093</span>
     nodePort: <span class="m">39093</span>
-.......</code></pre></td></tr></table>
+.......
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="安装">安装</h2>
+</div><h2 id="安装">安装</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -354,11 +333,12 @@ clusterrole.rbac.authorization.k8s.io/prometheus-operator created
 clusterrolebinding.rbac.authorization.k8s.io/prometheus-operator created
 deployment.apps/prometheus-operator created
 service/prometheus-operator created
-serviceaccount/prometheus-operator created</code></pre></td></tr></table>
+serviceaccount/prometheus-operator created
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -525,13 +505,13 @@ servicemonitor.monitoring.coreos.com/kube-apiserver created
 servicemonitor.monitoring.coreos.com/coredns created
 servicemonitor.monitoring.coreos.com/kube-controller-manager created
 servicemonitor.monitoring.coreos.com/kube-scheduler created
-servicemonitor.monitoring.coreos.com/kubelet created</code></pre></td></tr></table>
+servicemonitor.monitoring.coreos.com/kubelet created
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看状态</p>
+</div><p>查看状态</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -550,43 +530,36 @@ servicemonitor.monitoring.coreos.com/kubelet created</code></pre></td></tr></tab
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get pods -n monitoring
 NAME                                   READY   STATUS    RESTARTS   AGE
-alertmanager-main-0                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-alertmanager-main-1                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-alertmanager-main-2                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-grafana-5db74b88f4-wl4gv               <span class="m">1</span>/1     Running   <span class="m">0</span>          1h
-kube-state-metrics-54f98c4687-7796f    <span class="m">3</span>/3     Running   <span class="m">0</span>          1h
-node-exporter-s9j2q                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-node-exporter-sjtpz                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-node-exporter-wgh7z                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-node-exporter-wrn9c                    <span class="m">2</span>/2     Running   <span class="m">0</span>          1h
-prometheus-adapter-8667948d79-dwblv    <span class="m">1</span>/1     Running   <span class="m">0</span>          1h
-prometheus-k8s-0                       <span class="m">3</span>/3     Running   <span class="m">1</span>          1h
-prometheus-k8s-1                       <span class="m">3</span>/3     Running   <span class="m">1</span>          1h
-prometheus-operator-5f759fd859-7xs76   <span class="m">1</span>/1     Running   <span class="m">0</span>          1h</code></pre></td></tr></table>
+alertmanager-main-0                    2/2     Running   <span class="m">0</span>          1h
+alertmanager-main-1                    2/2     Running   <span class="m">0</span>          1h
+alertmanager-main-2                    2/2     Running   <span class="m">0</span>          1h
+grafana-5db74b88f4-wl4gv               1/1     Running   <span class="m">0</span>          1h
+kube-state-metrics-54f98c4687-7796f    3/3     Running   <span class="m">0</span>          1h
+node-exporter-s9j2q                    2/2     Running   <span class="m">0</span>          1h
+node-exporter-sjtpz                    2/2     Running   <span class="m">0</span>          1h
+node-exporter-wgh7z                    2/2     Running   <span class="m">0</span>          1h
+node-exporter-wrn9c                    2/2     Running   <span class="m">0</span>          1h
+prometheus-adapter-8667948d79-dwblv    1/1     Running   <span class="m">0</span>          1h
+prometheus-k8s-0                       3/3     Running   <span class="m">1</span>          1h
+prometheus-k8s-1                       3/3     Running   <span class="m">1</span>          1h
+prometheus-operator-5f759fd859-7xs76   1/1     Running   <span class="m">0</span>          1h
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="问题处理">问题处理</h2>
-
+</div><h2 id="问题处理">问题处理</h2>
 <blockquote>
 <p>安装完成之后，在使用过程中可能会发现有些问题，这里记录几个常见问题</p>
 </blockquote>
-
 <h3 id="问题一">问题一</h3>
-
-<h4 id="prometheus的页面上发现-kube-controller-manager-和-kube-scheduler-的target为0-0-如下图所示">prometheus的页面上发现<code>kube-controller-manager</code>和<code>kube-scheduler</code>的target为0/0，如下图所示</h4>
-
-<p><img src="https://s1.ax1x.com/2020/06/03/tUMJ9P.png" alt="tUMJ9P.png" /></p>
-
+<h4 id="prometheus的页面上发现kube-controller-manager和kube-scheduler的target为00如下图所示">prometheus的页面上发现<code>kube-controller-manager</code>和<code>kube-scheduler</code>的target为0/0，如下图所示</h4>
+<p><img src="https://s1.ax1x.com/2020/06/03/tUMJ9P.png" alt="tUMJ9P.png"></p>
 <h4 id="解决办法">解决办法</h4>
-
 <p>（注意：我的集群是二进制安装，kubeadm部署的集群处理方法有些不同，可以查看文章最后参考链接处理）</p>
-
 <ul>
-<li>所有master修改<code>kube-controller-manager</code>和<code>kube-scheduler</code>的systemd配置文件</li>
-</ul>
+<li>
+<p>所有master修改<code>kube-controller-manager</code>和<code>kube-scheduler</code>的systemd配置文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -604,30 +577,32 @@ prometheus-operator-5f759fd859-7xs76   <span class="m">1</span>/1     Running   
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  $ vim /etc/systemd/system/kube-controller-manager.service
-  ......
-    --address<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\
-</span><span class="se"></span>    --bind-address<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\
-</span><span class="se"></span>  ......
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ vim /etc/systemd/system/kube-controller-manager.service
+......
+  --address<span class="o">=</span>0.0.0.0 <span class="se">\
+</span><span class="se"></span>  --bind-address<span class="o">=</span>0.0.0.0 <span class="se">\
+</span><span class="se"></span>......
   
-  $ systemctl daemon-reload 
-  $ systemctl restart kube-controller-manager.service
+$ systemctl daemon-reload 
+$ systemctl restart kube-controller-manager.service
   
-  $ vim /etc/systemd/system/kube-scheduler.service
-  ......
-    --address<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\
-</span><span class="se"></span>  ......
+$ vim /etc/systemd/system/kube-scheduler.service
+......
+  --address<span class="o">=</span>0.0.0.0 <span class="se">\
+</span><span class="se"></span>......
   
-  $ systemctl daemon-reload 
-  $ systemctl restart kube-scheduler.service</code></pre></td></tr></table>
+$ systemctl daemon-reload 
+$ systemctl restart kube-scheduler.service
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>### 创建kube-controller-manager和kube-scheduler的svc和ep</li>
+</div></li>
+<li>
+<h3 id="创建kube-controller-manager和kube-scheduler的svc和ep">创建kube-controller-manager和kube-scheduler的svc和ep</h3>
+</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -740,8 +715,8 @@ metadata:
   namespace: kube-system
 subsets:
 - addresses:
-  - ip: <span class="m">172</span>.16.77.86
-  - ip: <span class="m">172</span>.16.77.36
+  - ip: 172.16.77.86
+  - ip: 172.16.77.36
   ports:
   - name: http-metrics
     port: <span class="m">10252</span>
@@ -756,33 +731,28 @@ metadata:
   namespace: kube-system
 subsets:
 - addresses:
-  - ip: <span class="m">172</span>.16.77.86
-  - ip: <span class="m">172</span>.16.77.36
+  - ip: 172.16.77.86
+  - ip: 172.16.77.36
   ports:
   - name: http-metrics
     port: <span class="m">10251</span>
     protocol: TCP
     
  $ kubectl apply -f controller-manager-scheduler-svc.yaml
- $ kubectl apply -f controller-manager-scheduler-ep.yaml</code></pre></td></tr></table>
+ $ kubectl apply -f controller-manager-scheduler-ep.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>再次查看prometheus页面，显示就正常了</p>
-
-<p><img src="https://s1.ax1x.com/2020/06/03/tUlEQK.png" alt="tUlEQK.png" /></p>
-
+</div><p>再次查看prometheus页面，显示就正常了</p>
+<p><img src="https://s1.ax1x.com/2020/06/03/tUlEQK.png" alt="tUlEQK.png"></p>
 <h3 id="问题二">问题二</h3>
-
 <p>默认的serviceMonitor实际上就只能选三个namespacs，default、Kube-system和monitoring，可以查看一下prometheus-roleSpecificNamespaces.yaml，需要其他的ns自行创建role</p>
-
-<p><img src="https://s1.ax1x.com/2020/06/03/tU3oZD.png" alt="tU3oZD.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/06/03/tU3oZD.png" alt="tU3oZD.png"></p>
 <ul>
 <li>示例——增加namespaces为test的serviceMonitor</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -827,28 +797,21 @@ rules:
   - list
   - watch
 
-$ kubectl apply -f ns-test-role.yaml</code></pre></td></tr></table>
+$ kubectl apply -f ns-test-role.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>在test的命名空间创建个pod之后，查看grafana。可以看到已经有test命名空间了</p>
-
-<p><img src="https://s1.ax1x.com/2020/06/03/tUJ1r6.png" alt="tUJ1r6.png" /></p>
-
+</div><p>在test的命名空间创建个pod之后，查看grafana。可以看到已经有test命名空间了</p>
+<p><img src="https://s1.ax1x.com/2020/06/03/tUJ1r6.png" alt="tUJ1r6.png"></p>
 <h3 id="问题三">问题三</h3>
-
 <h4 id="缺少饼形图插件grafana-piechart-panel">缺少饼形图插件grafana-piechart-panel</h4>
-
-<p><img src="https://s1.ax1x.com/2020/06/03/tUtRuq.png" alt="tUtRuq.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/06/03/tUtRuq.png" alt="tUtRuq.png"></p>
 <h4 id="解决办法-1">解决办法</h4>
-
 <h5 id="方法一">方法一</h5>
-
 <p>在grafana的pod中，安装grafana-piechart-panel插件，然后去pod所在的node上用docker重启对应容器
- 注意：插件是安装到grafana数据库的目录，所以重启pod的前提是这个/var/lib/grafana目录持久化了。否则pod重置后还是会提示Panel plugin not found: grafana-piechart-panel</p>
+注意：插件是安装到grafana数据库的目录，所以重启pod的前提是这个/var/lib/grafana目录持久化了。否则pod重置后还是会提示Panel plugin not found: grafana-piechart-panel</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -860,22 +823,21 @@ $ kubectl apply -f ns-test-role.yaml</code></pre></td></tr></table>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">bash-5.0$ grafana-cli plugins install grafana-piechart-panel
-installing grafana-piechart-panel @ <span class="m">1</span>.5.0
+installing grafana-piechart-panel @ 1.5.0
 from: https://grafana.com/api/plugins/grafana-piechart-panel/versions/1.5.0/download
 into: /var/lib/grafana/plugins
 
 ✔ Installed grafana-piechart-panel successfully
 
 Restart grafana after installing plugins . &lt;service grafana-server restart&gt;
-<span class="c1"># 注意 虽然上面提示你service grafana-server restart 但是容器里是没有service命令的。要实现重启的目的 需要到该pod所在的node上去执行 docker restart &lt;CONTAINER ID&gt;</span> </code></pre></td></tr></table>
+<span class="c1"># 注意 虽然上面提示你service grafana-server restart 但是容器里是没有service命令的。要实现重启的目的 需要到该pod所在的node上去执行 docker restart &lt;CONTAINER ID&gt; </span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h5 id="方法二">方法二</h5>
-
+</div><h5 id="方法二">方法二</h5>
 <p>添加个<code>initContainer</code>，安装<code>grafana-piechart-panel</code>（目前使用办法）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -910,21 +872,15 @@ $ vim grafana-deployment.yaml
           name: grafana-storage
           readOnly: <span class="nb">false</span>
 ......
-$ kubectl apply -f grafana-deployment.yaml</code></pre></td></tr></table>
+$ kubectl apply -f grafana-deployment.yaml
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>查看grafana，看到已经正常了</p>
-
-<p><img src="https://s1.ax1x.com/2020/06/03/tU0Sc4.png" alt="tU0Sc4.png" /></p>
-
+</div><p>查看grafana，看到已经正常了</p>
+<p><img src="https://s1.ax1x.com/2020/06/03/tU0Sc4.png" alt="tU0Sc4.png"></p>
 <h2 id="参考链接">参考链接</h2>
-
 <p><a href="https://zhangguanzhang.github.io/2018/10/12/prometheus-operator/">张馆长的博客</a></p>
-
 <p><a href="https://blog.csdn.net/twingao/article/details/105261641">https://blog.csdn.net/twingao/article/details/105261641</a></p>
-
 <p><a href="https://blog.csdn.net/tangwei0928/article/details/99711322">https://blog.csdn.net/tangwei0928/article/details/99711322</a></p>
-
 <p><a href="https://github.com/coreos/kube-prometheus/issues/305">https://github.com/coreos/kube-prometheus/issues/305</a></p>
     </div>
 
@@ -985,10 +941,9 @@ $ kubectl apply -f grafana-deployment.yaml</code></pre></td></tr></table>
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-08-02 16:55:40 \x2b0800 CST',
+        id: '2020-08-02 16:55:40 \u002b0800 CST',
         title: 'Kube-Prometheus部署',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -1000,6 +955,10 @@ $ kubectl apply -f grafana-deployment.yaml</code></pre></td></tr></table>
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -1055,7 +1014,10 @@ $ kubectl apply -f grafana-deployment.yaml</code></pre></td></tr></table>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

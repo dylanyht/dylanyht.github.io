@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/08/24/%E4%B8%80%E4%BA%9B%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84linux%E6%93%8D%E4%BD%9C/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="一些工作中用到的linux操作" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/08/24/%E4%B8%80%E4%BA%9B%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84linux%E6%93%8D%E4%BD%9C/" />
-<meta property="article:published_time" content="2019-08-24T08:25:34&#43;08:00"/>
-<meta property="article:modified_time" content="2019-08-24T08:25:34&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/08/24/%E4%B8%80%E4%BA%9B%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84linux%E6%93%8D%E4%BD%9C/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-08-24T08:25:34&#43;08:00" />
+<meta property="article:modified_time" content="2019-08-24T08:25:34&#43;08:00" />
 
 <meta itemprop="name" content="一些工作中用到的linux操作">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-08-24T08:25:34&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-08-24T08:25:34&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-24T08:25:34&#43;08:00" />
 <meta itemprop="wordCount" content="1480">
-
-
-
-<meta itemprop="keywords" content="linux,centos,命令," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,centos,命令," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="一些工作中用到的linux操作"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,22 +150,19 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#清理缓存">清理缓存</a></li>
-<li><a href="#查看cpu的个数-核数">查看CPU的个数，核数</a></li>
-<li><a href="#查看文件内容的几种方法">查看文件内容的几种方法</a></li>
-<li><a href="#查看磁盘空间的操作">查看磁盘空间的操作</a></li>
-<li><a href="#压缩和解压缩的操作">压缩和解压缩的操作</a></li>
-<li><a href="#同步服务器时间">同步服务器时间</a></li>
-<li><a href="#crontab定时任务">crontab定时任务</a></li>
-<li><a href="#删除文件不释放磁盘问题">删除文件不释放磁盘问题</a></li>
-<li><a href="#linux清空删除大文件的方法">linux清空删除大文件的方法</a></li>
-<li><a href="#centos修改ip">centos修改ip</a></li>
-<li><a href="#命令自动补全问题">命令自动补全问题</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#清理缓存">清理缓存</a></li>
+    <li><a href="#查看cpu的个数核数">查看CPU的个数，核数</a></li>
+    <li><a href="#查看文件内容的几种方法">查看文件内容的几种方法</a></li>
+    <li><a href="#查看磁盘空间的操作">查看磁盘空间的操作</a></li>
+    <li><a href="#压缩和解压缩的操作">压缩和解压缩的操作</a></li>
+    <li><a href="#同步服务器时间">同步服务器时间</a></li>
+    <li><a href="#crontab定时任务">crontab定时任务</a></li>
+    <li><a href="#删除文件不释放磁盘问题">删除文件不释放磁盘问题</a></li>
+    <li><a href="#linux清空删除大文件的方法">linux清空删除大文件的方法</a></li>
+    <li><a href="#centos修改ip">centos修改ip</a></li>
+    <li><a href="#命令自动补全问题">命令自动补全问题</a></li>
+  </ul>
 </nav>
   </div>
 </div>
@@ -169,172 +170,171 @@
       <blockquote>
 <p>此文档记录一些本人平常工作用到的一些命令操作。有些是比较常用的，有些是修改一次就不会再做改动的配置。此文档后期会不定期更新</p>
 </blockquote>
-
 <h2 id="清理缓存">清理缓存</h2>
-
 <ul>
 <li>仅清理页面缓存(PageCache)</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">sync
 <span class="c1">#sync命令可用来强制将内存缓冲区中的数据立即写入磁盘中</span>
-<span class="nb">echo</span> <span class="m">1</span> &gt; /proc/sys/vm/drop_caches</code></pre></td></tr></table>
+<span class="nb">echo</span> <span class="m">1</span> &gt; /proc/sys/vm/drop_caches
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>清除目录项和inode</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">sync
-<span class="nb">echo</span> <span class="m">2</span> &gt; /proc/sys/vm/drop_caches</code></pre></td></tr></table>
+<span class="nb">echo</span> <span class="m">2</span> &gt; /proc/sys/vm/drop_caches
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>清除页面缓存，目录项和inode</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">sync
-<span class="nb">echo</span> <span class="m">3</span> &gt; /proc/sys/vm/drop_caches</code></pre></td></tr></table>
+<span class="nb">echo</span> <span class="m">3</span> &gt; /proc/sys/vm/drop_caches
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>非root用户操作</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">sync
-sudo sh -c <span class="s1">&#39;echo 3 &gt; /proc/sys/vm/drop_caches&#39;</span></code></pre></td></tr></table>
+sudo sh -c <span class="s1">&#39;echo 3 &gt; /proc/sys/vm/drop_caches&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="查看cpu的个数-核数">查看CPU的个数，核数</h2>
-
+</div><h2 id="查看cpu的个数核数">查看CPU的个数，核数</h2>
 <ul>
-<li><p>查看CPU物理个数</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">grep &#39;physical id&#39; /proc/cpuinfo | sort -u |wc -l</pre></td></tr></table>
-</div>
-</div></li>
-
-<li><p>查看每个物理CPU的核数</p></li>
+<li>查看CPU物理个数</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">grep <span class="s1">&#39;core id&#39;</span> /proc/cpuinfo <span class="p">|</span> sort -u <span class="p">|</span> wc -l</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">grep &#39;physical id&#39; /proc/cpuinfo | sort -u |wc -l
+</code></pre></td></tr></table>
 </div>
+</div><ul>
+<li>查看每个物理CPU的核数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">grep <span class="s1">&#39;core id&#39;</span> /proc/cpuinfo <span class="p">|</span> sort -u <span class="p">|</span> wc -l
+</code></pre></td></tr></table>
 </div>
-<ul>
+</div><ul>
 <li>查看总的逻辑CPU个数</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">grep <span class="s1">&#39;processor&#39;</span> /proc/cpuinfo <span class="p">|</span> sort -u <span class="p">|</span> wc -l</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">grep <span class="s1">&#39;processor&#39;</span> /proc/cpuinfo <span class="p">|</span> sort -u <span class="p">|</span> wc -l
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="查看文件内容的几种方法">查看文件内容的几种方法</h2>
-
+</div><h2 id="查看文件内容的几种方法">查看文件内容的几种方法</h2>
 <ul>
 <li>cat</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#cat 查看文件的所有内容</span>
 cat install.sh
-cat install.sh -n <span class="c1">#加上行号查看内容</span></code></pre></td></tr></table>
+cat install.sh -n <span class="c1">#加上行号查看内容</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li><p>tac</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">#tac 反向查看文件所有内容
-tac install.sh</pre></td></tr></table>
-</div>
-</div></li>
-
-<li><p>more</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">#more 一页一页的显示内容
-more install.sh # 空格向下滚动一屏。 Enter 向下n行，需要定义。默认为1行</pre></td></tr></table>
-</div>
-</div></li>
-
-<li><p>less</p></li>
+</div><ul>
+<li>tac</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#tac 反向查看文件所有内容
+tac install.sh
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>more</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#more 一页一页的显示内容
+more install.sh # 空格向下滚动一屏。 Enter 向下n行，需要定义。默认为1行
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>less</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#less 与more类似 不过支持向前翻页</span>
-less install.sh <span class="c1">#ctrl + F - 向前移动一屏。ctrl + B - 向后移动一屏。ctrl + D - 向前移动半屏。ctrl + U - 向后移动半屏。</span></code></pre></td></tr></table>
+less install.sh <span class="c1">#ctrl + F - 向前移动一屏。ctrl + B - 向后移动一屏。ctrl + D - 向前移动半屏。ctrl + U - 向后移动半屏。</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>head</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#head 查看头几行</span>
 head install.sh <span class="c1">#默认查看前10行</span>
-head -20 install.sh <span class="c1">#查看前20行</span></code></pre></td></tr></table>
+head -20 install.sh <span class="c1">#查看前20行</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>tail</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -343,43 +343,42 @@ head -20 install.sh <span class="c1">#查看前20行</span></code></pre></td></t
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#tail 查看文件的最后N行</span>
 tail install.sh <span class="c1">#默认查看后10行</span>
 tail -20 install.sh <span class="c1">#查看后20行</span>
-tail -f filename <span class="c1">#循环读取</span></code></pre></td></tr></table>
+tail -f filename <span class="c1">#循环读取</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>nl</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#nl打印出来行号来查看内容</span>
-nl install.sh</code></pre></td></tr></table>
+nl install.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="查看磁盘空间的操作">查看磁盘空间的操作</h2>
-
+</div><h2 id="查看磁盘空间的操作">查看磁盘空间的操作</h2>
 <ul>
 <li>df</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#df 查看文件系统占用的磁盘空间</span>
-df -h <span class="c1">#以易读的方式显示出来</span></code></pre></td></tr></table>
+df -h <span class="c1">#以易读的方式显示出来</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>du</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -392,51 +391,47 @@ du -s <span class="c1">#显示总和大小</span>
 du -h <span class="nb">test</span> <span class="c1">#以易读的方式显示出来</span>
 du -c test1 test2 <span class="c1">#显示几个文件或目录各自占用的磁盘空间----并在最后一行统计它们的总和</span>
 du<span class="p">|</span>sort -nr<span class="p">|</span>more <span class="c1">#按照空间大小排序</span>
-du -h  --max-depth<span class="o">=</span><span class="m">1</span> <span class="c1">#输出当前目录下的各个子目录所使用的磁盘空间</span></code></pre></td></tr></table>
+du -h  --max-depth<span class="o">=</span><span class="m">1</span> <span class="c1">#输出当前目录下的各个子目录所使用的磁盘空间</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="压缩和解压缩的操作">压缩和解压缩的操作</h2>
-
+</div><h2 id="压缩和解压缩的操作">压缩和解压缩的操作</h2>
 <ul>
 <li>baip2</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">bzip2 filename <span class="c1">#压缩指定文件filename</span>
 bzip2 -k filename <span class="c1">#bzip2在压缩和解压缩后 会删除原始文件 ，若想要保留原始文件 请使用此参数</span>
-bzip2 -d filename <span class="c1">#解压缩指定文件filename</span></code></pre></td></tr></table>
+bzip2 -d filename <span class="c1">#解压缩指定文件filename</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="同步服务器时间">同步服务器时间</h2>
-
+</div><h2 id="同步服务器时间">同步服务器时间</h2>
 <ul>
 <li>rdate</li>
 </ul>
-
 <p>上海交大ntp服务器：ntp.sjtu.edu.cn</p>
-
 <p>美国授时中心：time.nist.gov</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">rdate -p time.nist.gov <span class="c1">#打印出远程服务器time.nist.gov的时间</span>
 sudo rdate -s time.nist.gov <span class="c1">#同步远程服务器的时间</span>
-timedatectl set-ntp no  <span class="c1">#关闭时间同步</span></code></pre></td></tr></table>
+timedatectl set-ntp no  <span class="c1">#关闭时间同步</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><em>设置定时任务</em></p>
+</div><p><em>设置定时任务</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -445,17 +440,16 @@ timedatectl set-ntp no  <span class="c1">#关闭时间同步</span></code></pre>
 <pre class="chroma"><code class="language-shell" data-lang="shell">crontab -e <span class="c1">#输入一下内容</span>
 <span class="m">00</span> <span class="m">01</span> * * * sudo rdate –s time.nist.gov <span class="c1">#然后保存</span>
 <span class="c1"># 00 01 * * * sudo rdate –s time.nist.gov每天凌晨1点钟同步一次。</span>
-crontab -l <span class="c1">#查看定时任务</span></code></pre></td></tr></table>
+crontab -l <span class="c1">#查看定时任务</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="crontab定时任务">crontab定时任务</h2>
-
+</div><h2 id="crontab定时任务">crontab定时任务</h2>
 <ul>
 <li>服务状态相关</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -466,71 +460,69 @@ crontab -l <span class="c1">#查看定时任务</span></code></pre></td></tr></t
 sudo service crond stop <span class="c1">#关闭服务</span>
 sudo service crond restart <span class="c1">#重启服务</span>
 sudo service crond reload <span class="c1">#重新载入配置</span>
-sudo service crond status <span class="c1">#查看服务状态</span></code></pre></td></tr></table>
+sudo service crond status <span class="c1">#查看服务状态</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>crontab命令</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">crontab -l <span class="c1">#查看crontab定时任务</span>
-crontab -e <span class="c1">#编辑定时任务</span></code></pre></td></tr></table>
+crontab -e <span class="c1">#编辑定时任务</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="删除文件不释放磁盘问题">删除文件不释放磁盘问题</h2>
-
+</div><h2 id="删除文件不释放磁盘问题">删除文件不释放磁盘问题</h2>
 <p>有些大文件使用rm -rf删除后，磁盘空间并没有释放，可能是有进程还在占用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">lsof <span class="p">|</span>grep delete <span class="c1">#找到删除却没有释放的文件  记下pid</span>
-<span class="nb">kill</span> -9 pid <span class="c1">#根据lsof列出的进程号 kill掉相关的进程，空间就释放出来了</span></code></pre></td></tr></table>
+<span class="nb">kill</span> -9 pid <span class="c1">#根据lsof列出的进程号 kill掉相关的进程，空间就释放出来了</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="linux清空删除大文件的方法">linux清空删除大文件的方法</h2>
-
+</div><h2 id="linux清空删除大文件的方法">linux清空删除大文件的方法</h2>
 <ul>
 <li>重定向</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#通过重定向到null来清空文件</span>
-&gt; access.log</code></pre></td></tr></table>
+&gt; access.log
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>true命令</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#使用true命令重定向清理</span>
 : &gt; access.log
-<span class="nb">true</span> &gt; access.log</code></pre></td></tr></table>
+<span class="nb">true</span> &gt; access.log
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>使用/dev/null</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -543,61 +535,58 @@ cat /dev/null &gt; access.log
 <span class="c1">#使用cp命令重定向到/dev/null</span>
 cp /dev/null access.log
 <span class="c1">#使用dd命令，在下面的命令中，** if ** 是输入文件，** of ** 是输出文件。</span>
-dd <span class="k">if</span><span class="o">=</span>/dev/null <span class="nv">of</span><span class="o">=</span>access.log</code></pre></td></tr></table>
+dd <span class="k">if</span><span class="o">=</span>/dev/null <span class="nv">of</span><span class="o">=</span>access.log
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="centos修改ip">centos修改ip</h2>
-
+</div><h2 id="centos修改ip">centos修改ip</h2>
 <p>查看DNS</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">cat /etc/resolv.conf  <span class="c1">#修改的话直接vi这个文件</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">cat /etc/resolv.conf  <span class="c1">#修改的话直接vi这个文件</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>修改ip</p>
+</div><p>修改ip</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /etc/sysconfig/network-scripts/  <span class="c1">#选择对应的网卡文件编辑</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /etc/sysconfig/network-scripts/  <span class="c1">#选择对应的网卡文件编辑</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="命令自动补全问题">命令自动补全问题</h2>
-
+</div><h2 id="命令自动补全问题">命令自动补全问题</h2>
 <ul>
 <li>问题：自动补全时按tab键提示bash: _get_comp_words_by_ref: command not found</li>
 </ul>
-
 <p>解决办法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"> yum -y install bash-completion <span class="c1">#下载bash-completion</span>
-<span class="nb">source</span> /usr/share/bash-completion/bash_completion</code></pre></td></tr></table>
+<span class="nb">source</span> /usr/share/bash-completion/bash_completion
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>执行配置补全</li>
 </ul>
-
 <blockquote>
 <p>以kubectl为例</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">source</span> &lt;<span class="o">(</span>kubectl completion bash<span class="o">)</span>
-<span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubectl completion bash)&#34;</span> &gt;&gt; ~/.bashrc</code></pre></td></tr></table>
+<span class="nb">echo</span> <span class="s2">&#34;source &lt;(kubectl completion bash)&#34;</span> &gt;&gt; ~/.bashrc
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -658,10 +647,9 @@ dd <span class="k">if</span><span class="o">=</span>/dev/null <span class="nv">o
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-08-24 08:25:34 \x2b0800 CST',
+        id: '2019-08-24 08:25:34 \u002b0800 CST',
         title: '一些工作中用到的linux操作',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -673,6 +661,10 @@ dd <span class="k">if</span><span class="o">=</span>/dev/null <span class="nv">o
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -728,7 +720,10 @@ dd <span class="k">if</span><span class="o">=</span>/dev/null <span class="nv">o
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

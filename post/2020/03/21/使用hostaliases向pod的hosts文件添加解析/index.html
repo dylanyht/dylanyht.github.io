@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/03/21/%E4%BD%BF%E7%94%A8hostaliases%E5%90%91pod%E7%9A%84hosts%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="使用HostAliases向Pod的hosts文件添加解析" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/03/21/%E4%BD%BF%E7%94%A8hostaliases%E5%90%91pod%E7%9A%84hosts%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90/" />
-<meta property="article:published_time" content="2020-03-21T14:12:09&#43;08:00"/>
-<meta property="article:modified_time" content="2020-03-21T14:12:09&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/03/21/%E4%BD%BF%E7%94%A8hostaliases%E5%90%91pod%E7%9A%84hosts%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-21T14:12:09&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-21T14:12:09&#43;08:00" />
 
 <meta itemprop="name" content="使用HostAliases向Pod的hosts文件添加解析">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-03-21T14:12:09&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-03-21T14:12:09&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-21T14:12:09&#43;08:00" />
-<meta itemprop="wordCount" content="717">
-
-
-
-<meta itemprop="keywords" content="centos,Kubernetes,docker," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="534">
+<meta itemprop="keywords" content="centos,Kubernetes,docker," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用HostAliases向Pod的hosts文件添加解析"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -136,7 +140,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> Kubernetes </a>
             </div>
-          <span class="more-meta"> 717 words </span>
+          <span class="more-meta"> 534 words </span>
           <span class="more-meta"> 2 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -146,31 +150,24 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#默认的hosts文件内容">默认的hosts文件内容</a></li>
-<li><a href="#通过hostaliases增加额外的解析">通过HostAliases增加额外的解析</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#默认的hosts文件内容">默认的hosts文件内容</a></li>
+    <li><a href="#通过hostaliases增加额外的解析">通过HostAliases增加额外的解析</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <blockquote>
 <p>工作中遇到需要在容器中配置hosts文件。直接写在镜像里是没有用的，因为容器启动时会覆盖镜像中的hosts文件 。所以使用此方法来做配置。下面引用的官方文档的说明。</p>
-
 <p>当 DNS 配置以及其它选项不合理的时候，通过向 Pod 的 /etc/hosts 文件中添加条目，可以在 Pod 级别覆盖对主机名的解析。</p>
-
 <p>建议通过使用 HostAliases 来进行修改，因为该文件由 Kubelet 管理，并且可以在 Pod 创建/重启过程中被重写</p>
 </blockquote>
-
-<p><img src="https://s1.ax1x.com/2020/03/21/8WRhge.jpg" alt="8WRhge.jpg" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/21/8WRhge.jpg" alt="8WRhge.jpg"></p>
 <h2 id="默认的hosts文件内容">默认的hosts文件内容</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -185,23 +182,22 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-40 k8s<span class="o">]</span><span class="c1"># kubectl exec -it nginx-test-5f8d8ff4bf-2d8fs /bin/bash</span>
 root@nginx-test-5f8d8ff4bf-2d8fs:/# cat /etc/hosts
 <span class="c1"># Kubernetes-managed hosts file.</span>
-<span class="m">127</span>.0.0.1	localhost
+127.0.0.1	localhost
 ::1	localhost ip6-localhost ip6-loopback
 fe00::0	ip6-localnet
 fe00::0	ip6-mcastprefix
 fe00::1	ip6-allnodes
 fe00::2	ip6-allrouters
-<span class="m">172</span>.21.1.9	nginx-test-5f8d8ff4bf-2d8fs</code></pre></td></tr></table>
+172.21.1.9	nginx-test-5f8d8ff4bf-2d8fs
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="通过hostaliases增加额外的解析">通过HostAliases增加额外的解析</h2>
-
+</div><h2 id="通过hostaliases增加额外的解析">通过HostAliases增加额外的解析</h2>
 <ul>
 <li>修改相关yaml， 其中spec.template.spec.hostAliases为添加内容。增加了两个地址解析</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -234,56 +230,56 @@ fe00::2	ip6-allrouters
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Deployment<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>nginx-test<span class="w">
-</span><span class="w">  </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">    </span>app<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>replicas<span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
-</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">
-</span><span class="w">      </span>app<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">  </span>template<span class="p">:</span><span class="w">
-</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">        </span>app<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-test</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span><span class="w">     </span><span class="c"># hostname: test</span><span class="w">
-</span><span class="w">      </span>hostAliases<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>ip<span class="p">:</span><span class="w"> </span><span class="s2">&#34;172.16.2.57&#34;</span><span class="w">
-</span><span class="w">        </span>hostnames<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;saps4dev.test.com&#34;</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>ip<span class="p">:</span><span class="w"> </span><span class="s2">&#34;172.16.7.176&#34;</span><span class="w">
-</span><span class="w">        </span>hostnames<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span><span class="s2">&#34;saps4prd.test.com&#34;</span><span class="w">
-</span><span class="w">      </span>terminationGracePeriodSeconds<span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c">#k8s将会给应用发送SIGTERM信号，可以用来正确、优雅地关闭应用,默认为30秒</span><span class="w">
-</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>nginx<span class="w">
-</span><span class="w">        </span>image<span class="p">:</span><span class="w"> </span>nginx<span class="p">:</span><span class="m">1.17</span>.<span class="m">6</span><span class="w">
-</span><span class="w">        </span>imagePullPolicy<span class="p">:</span><span class="w"> </span>Always<span class="w">
-</span><span class="w">        </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">          </span>-<span class="w"> </span>containerPort<span class="p">:</span><span class="w"> </span><span class="m">80</span></code></pre></td></tr></table>
+</span><span class="w">      </span><span class="nt">hostAliases</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;172.16.2.57&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;saps4dev.test.com&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;172.16.7.176&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;saps4prd.test.com&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="c">#k8s将会给应用发送SIGTERM信号，可以用来正确、优雅地关闭应用,默认为30秒</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:1.17.6</span><span class="w">
+</span><span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Always</span><span class="w">
+</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>更新</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-40 k8s<span class="o">]</span><span class="c1"># kubectl apply -f nginx.yaml</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-40 k8s<span class="o">]</span><span class="c1"># kubectl apply -f nginx.yaml</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>再次查看对应的hosts文件</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -302,20 +298,20 @@ fe00::2	ip6-allrouters
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@k8s-77-40 k8s<span class="o">]</span><span class="c1"># kubectl exec -it nginx-test-6bcb84f7c5-9zwx5 /bin/bash</span>
 root@nginx-test-6bcb84f7c5-9zwx5:/# cat /etc/hosts
 <span class="c1"># Kubernetes-managed hosts file.</span>
-<span class="m">127</span>.0.0.1	localhost
+127.0.0.1	localhost
 ::1	localhost ip6-localhost ip6-loopback
 fe00::0	ip6-localnet
 fe00::0	ip6-mcastprefix
 fe00::1	ip6-allnodes
 fe00::2	ip6-allrouters
-<span class="m">172</span>.21.2.11	nginx-test-6bcb84f7c5-9zwx5
+172.21.2.11	nginx-test-6bcb84f7c5-9zwx5
 
 <span class="c1"># Entries added by HostAliases.</span>
-<span class="m">172</span>.16.2.57	saps4dev.test.com
-<span class="m">172</span>.16.7.176	saps4prd.test.com</code></pre></td></tr></table>
+172.16.2.57	saps4dev.test.com
+172.16.7.176	saps4prd.test.com
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>至此  hosts修改成功</p>
+</div><p>至此  hosts修改成功</p>
     </div>
 
     <div class="post-copyright">
@@ -374,10 +370,9 @@ fe00::2	ip6-allrouters
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-03-21 14:12:09 \x2b0800 CST',
+        id: '2020-03-21 14:12:09 \u002b0800 CST',
         title: '使用HostAliases向Pod的hosts文件添加解析',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -389,6 +384,10 @@ fe00::2	ip6-allrouters
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -444,7 +443,10 @@ fe00::2	ip6-allrouters
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

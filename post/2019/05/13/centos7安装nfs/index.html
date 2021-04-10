@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Centos7安装nfs" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/" />
-<meta property="article:published_time" content="2019-05-13T09:10:30&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-13T09:10:30&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2019/05/13/centos7%E5%AE%89%E8%A3%85nfs/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-05-13T09:10:30&#43;08:00" />
+<meta property="article:modified_time" content="2019-05-13T09:10:30&#43;08:00" />
 
 <meta itemprop="name" content="Centos7安装nfs">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-05-13T09:10:30&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2019-05-13T09:10:30&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-13T09:10:30&#43;08:00" />
 <meta itemprop="wordCount" content="726">
-
-
-
-<meta itemprop="keywords" content="linux,centos,nfs," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,centos,nfs," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Centos7安装nfs"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,188 +150,157 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#需求">需求</a></li>
-<li><a href="#准备">准备</a>
-<ul>
-<li><a href="#两台centos7服务器-一个做服务器端-一个做客户端">两台centos7服务器。一个做服务器端，一个做客户端</a></li>
-</ul></li>
-<li><a href="#nfs服务器配置">NFS服务器配置</a>
-<ul>
-<li><a href="#1-安装nfs服务">1、安装NFS服务</a></li>
-<li><a href="#2-创建共享目录">2、创建共享目录</a></li>
-<li><a href="#3-配置nfs">3、配置NFS</a></li>
-<li><a href="#4-启动服务">4、启动服务</a></li>
-</ul></li>
-<li><a href="#客户端配置">客户端配置</a>
-<ul>
-<li><a href="#1-安装rpcbind">1、安装rpcbind</a></li>
-<li><a href="#2-查看远程nfs文件系统">2、查看远程nfs文件系统</a></li>
-<li><a href="#3-创建挂载目录-执行挂载命令">3、创建挂载目录，执行挂载命令</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#需求">需求</a></li>
+        <li><a href="#准备">准备</a></li>
+        <li><a href="#nfs服务器配置">NFS服务器配置</a></li>
+        <li><a href="#客户端配置">客户端配置</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <h3 id="需求">需求</h3>
-
 <p>搭建nfs共享存储</p>
-
 <h3 id="准备">准备</h3>
-
-<h4 id="两台centos7服务器-一个做服务器端-一个做客户端">两台centos7服务器。一个做服务器端，一个做客户端</h4>
-
-<p>NFS服务器ip：172.16.77.40 <br/>
+<h4 id="两台centos7服务器一个做服务器端一个做客户端">两台centos7服务器。一个做服务器端，一个做客户端</h4>
+<p>NFS服务器ip：172.16.77.40 <!-- raw HTML omitted -->
 客户端ip：172.16.77.189</p>
-
 <h3 id="nfs服务器配置">NFS服务器配置</h3>
-
-<h4 id="1-安装nfs服务">1、安装NFS服务</h4>
-
+<h4 id="1安装nfs服务">1、安装NFS服务</h4>
 <p>首先使用yum安装nfs服务</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">yum -y install rpcbind nfs-utils</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">yum -y install rpcbind nfs-utils
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="2-创建共享目录">2、创建共享目录</h4>
-
+</div><h4 id="2创建共享目录">2、创建共享目录</h4>
 <p>在服务器上创建共享目录，并设置权限</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">mkdir /data/share/
-chmod 755 -R /data/share/</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir /data/share/
+chmod 755 -R /data/share/
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="3-配置nfs">3、配置NFS</h4>
-
+</div><h4 id="3配置nfs">3、配置NFS</h4>
 <p>nfs的配置文件是etc/exports，在配置文件中加入一行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">/data/share/ *(rw,sync,no_root_squash)</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/data/share/ *(rw,sync,no_root_squash)
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>rw 表示设置目录可读写。</li>
 <li>sync 表示数据会同步写入到内存和硬盘中，相反 rsync 表示数据会先暂存于内存中，而非直接写入到硬盘中。</li>
 <li>no_root_squash NFS客户端连接服务端时如果使用的是root的话，那么对服务端分享的目录来说，也拥有root权限。</li>
 <li>no_all_squash 不论NFS客户端连接服务端时使用什么用户，对服务端分享的目录来说都不会拥有匿名用户权限。</li>
 </ul>
-
 <p>如果有多个共享目录配置，则使用多行，一行一个配置。保存好配置文件后，需要执行一下命令使配置生效：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">exportfs -r</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">exportfs -r
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="4-启动服务">4、启动服务</h4>
-
+</div><h4 id="4启动服务">4、启动服务</h4>
 <p>按顺序启动rpcbind和nfs服务</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">systemctl start rpcbind
-systemctl start nfs</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">systemctl start rpcbind
+systemctl start nfs
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>加入开机启动</p>
+</div><p>加入开机启动</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">systemctl enable rpcbind
-systemctl enable nfs</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">systemctl enable rpcbind
+systemctl enable nfs
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>nfs服务器启动后，可以使用命令rpcinfo -p查看端口是否生效 <br/>
+</div><p>nfs服务器启动后，可以使用命令rpcinfo -p查看端口是否生效 <!-- raw HTML omitted -->
 服务启动后，我们可以使用showmount命令来查看服务端（本机）是否可连接</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[root@k8s-77-40 ~]# showmount -e localhost
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[root@k8s-77-40 ~]# showmount -e localhost
 Export list for localhost:
-/data/share *</pre></td></tr></table>
+/data/share *
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="客户端配置">客户端配置</h3>
-
-<h4 id="1-安装rpcbind">1、安装rpcbind</h4>
-
+</div><h3 id="客户端配置">客户端配置</h3>
+<h4 id="1安装rpcbind">1、安装rpcbind</h4>
 <p>客户端只需要安装rpcbind服务即可，无需安装nfs或开启nfs服务</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">yum -y install rpcbind </pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">yum -y install rpcbind 
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="2-查看远程nfs文件系统">2、查看远程nfs文件系统</h4>
-
+</div><h4 id="2查看远程nfs文件系统">2、查看远程nfs文件系统</h4>
 <p>查看服务端已共享的目录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">[root@k8s-77-189 ~]# showmount -e 172.16.77.40
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[root@k8s-77-189 ~]# showmount -e 172.16.77.40
 Export list for 172.16.77.40:
-/data/share *</pre></td></tr></table>
+/data/share *
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>显示出远程共享的目录说明正常</p>
-
-<h4 id="3-创建挂载目录-执行挂载命令">3、创建挂载目录，执行挂载命令</h4>
+</div><p>显示出远程共享的目录说明正常</p>
+<h4 id="3创建挂载目录执行挂载命令">3、创建挂载目录，执行挂载命令</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">mkdir -p /mnt/share
-mount -t nfs 172.16.77.40:/data/share /mnt/share/ -o nolock,nfsvers=3,vers=3</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir -p /mnt/share
+mount -t nfs 172.16.77.40:/data/share /mnt/share/ -o nolock,nfsvers=3,vers=3
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>如果不加 -onolock,nfsvers=3 则在挂载目录下的文件属主和组都是nobody，如果指定nfsvers=3则显示root。</p>
-
+</div><p>如果不加 -onolock,nfsvers=3 则在挂载目录下的文件属主和组都是nobody，如果指定nfsvers=3则显示root。</p>
 <p>如果需要解除挂载，可执行命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">umount /mnt/share </pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">umount /mnt/share 
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -388,10 +361,9 @@ mount -t nfs 172.16.77.40:/data/share /mnt/share/ -o nolock,nfsvers=3,vers=3</pr
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2019-05-13 09:10:30 \x2b0800 CST',
+        id: '2019-05-13 09:10:30 \u002b0800 CST',
         title: 'Centos7安装nfs',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -403,6 +375,10 @@ mount -t nfs 172.16.77.40:/data/share /mnt/share/ -o nolock,nfsvers=3,vers=3</pr
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -458,7 +434,10 @@ mount -t nfs 172.16.77.40:/data/share /mnt/share/ -o nolock,nfsvers=3,vers=3</pr
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

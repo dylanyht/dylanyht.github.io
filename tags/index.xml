@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on I am dylan ...</title>
@@ -6,20 +6,7 @@
     <description>Recent content in Tags on I am dylan ...</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Aug 2020 09:39:49 +0800</lastBuildDate>
-    
-	<atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title></title>
-      <link>https://dylanyang.top/tags/</link>
-      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Thu, 27 Aug 2020 09:39:49 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>kt-connect</title>
       <link>https://dylanyang.top/tags/kt-connect/</link>
@@ -30,7 +17,7 @@
     </item>
     
     <item>
-      <title>kubernetes</title>
+      <title>Kubernetes</title>
       <link>https://dylanyang.top/tags/kubernetes/</link>
       <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
       
@@ -480,15 +467,6 @@
     </item>
     
     <item>
-      <title>CI/CD</title>
-      <link>https://dylanyang.top/tags/ci/cd/</link>
-      <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/ci/cd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Devops</title>
       <link>https://dylanyang.top/tags/devops/</link>
       <pubDate>Mon, 10 Jun 2019 14:17:14 +0800</pubDate>
@@ -611,6 +589,15 @@
       <pubDate>Wed, 08 May 2019 09:12:32 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI/CD</title>
+      <link>https://dylanyang.top/tags/ci/cd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ci/cd/</guid>
       <description></description>
     </item>
     

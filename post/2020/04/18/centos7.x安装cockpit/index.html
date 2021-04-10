@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
 
 
 <link rel="canonical" href="https://dylanyang.top/post/2020/04/18/centos7.x%E5%AE%89%E8%A3%85cockpit/" />
@@ -34,29 +34,23 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Centos7.x安装Cockpit" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/centos7.x%E5%AE%89%E8%A3%85cockpit/" />
-<meta property="article:published_time" content="2020-04-18T08:58:12&#43;08:00"/>
-<meta property="article:modified_time" content="2020-04-18T08:58:12&#43;08:00"/>
+<meta property="og:url" content="https://dylanyang.top/post/2020/04/18/centos7.x%E5%AE%89%E8%A3%85cockpit/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-18T08:58:12&#43;08:00" />
+<meta property="article:modified_time" content="2020-04-18T08:58:12&#43;08:00" />
 
 <meta itemprop="name" content="Centos7.x安装Cockpit">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2020-04-18T08:58:12&#43;08:00" />
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-04-18T08:58:12&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-18T08:58:12&#43;08:00" />
 <meta itemprop="wordCount" content="524">
-
-
-
-<meta itemprop="keywords" content="linux,centos," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="linux,centos," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Centos7.x安装Cockpit"/>
 <meta name="twitter:description" content=""/>
 
@@ -97,12 +91,21 @@
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Dylan</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -121,6 +124,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -146,37 +150,32 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#安装cockpit">安装cockpit</a></li>
-<li><a href="#web登录">web登录</a>
-<ul>
-<li><a href="#系统信息">系统信息</a></li>
-<li><a href="#容器">容器</a></li>
-<li><a href="#集群">集群</a></li>
-</ul></li>
-<li><a href="#参考链接">参考链接</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#安装cockpit">安装cockpit</a></li>
+    <li><a href="#web登录">web登录</a>
+      <ul>
+        <li><a href="#系统信息">系统信息</a></li>
+        <li><a href="#容器">容器</a></li>
+        <li><a href="#集群">集群</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <blockquote>
 <p>Cockpit是一个RedHat赞助的开源项目，它是一个网页式用户界面，让用户可以通过浏览器来管理和监控Linux服务器。除了一些常规操作外，cockpit还支持Docker、Kubernetes和KVM。通过cockpit Web ui可以轻松启动容器、管理存储、配置网络和检查日志。</p>
-
 <p>此文档当做一个记录。可以测试使用</p>
 </blockquote>
-
 <h2 id="安装cockpit">安装cockpit</h2>
-
 <ul>
 <li>查询可安装的cockpit软件包</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -202,101 +201,85 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># yum list |grep cockpit</span>
 Repodata is over <span class="m">2</span> weeks old. Install yum-cron? Or run: yum makecache fast
-cockpit.x86_64                            <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-bridge.x86_64                     <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-composer.noarch                   <span class="m">1</span>-1.el7                      extras
-cockpit-dashboard.x86_64                  <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-doc.x86_64                        <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-docker.x86_64                     <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-kubernetes.x86_64                 <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-machines.x86_64                   <span class="m">176</span>-4.el7.centos             extras
-cockpit-machines.noarch                   <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-machines-ovirt.noarch             <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-packagekit.x86_64                 <span class="m">176</span>-4.el7.centos             extras
-cockpit-packagekit.noarch                 <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-pcp.x86_64                        <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-storaged.noarch                   <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-subscriptions.noarch              <span class="m">160</span>-1.el7.centos             extras
-cockpit-system.noarch                     <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-tests.x86_64                      <span class="m">195</span>.1-1.el7.centos.0.1       extras
-cockpit-ws.i686                           <span class="m">195</span>.1-1.el7.centos           base
-cockpit-ws.x86_64                         <span class="m">195</span>.1-1.el7.centos.0.1       extras
-subscription-manager-cockpit.noarch       <span class="m">1</span>.24.13-3.el7.centos         updates</code></pre></td></tr></table>
+cockpit.x86_64                            195.1-1.el7.centos.0.1       extras
+cockpit-bridge.x86_64                     195.1-1.el7.centos.0.1       extras
+cockpit-composer.noarch                   1-1.el7                      extras
+cockpit-dashboard.x86_64                  195.1-1.el7.centos.0.1       extras
+cockpit-doc.x86_64                        195.1-1.el7.centos.0.1       extras
+cockpit-docker.x86_64                     195.1-1.el7.centos.0.1       extras
+cockpit-kubernetes.x86_64                 195.1-1.el7.centos.0.1       extras
+cockpit-machines.x86_64                   176-4.el7.centos             extras
+cockpit-machines.noarch                   195.1-1.el7.centos.0.1       extras
+cockpit-machines-ovirt.noarch             195.1-1.el7.centos.0.1       extras
+cockpit-packagekit.x86_64                 176-4.el7.centos             extras
+cockpit-packagekit.noarch                 195.1-1.el7.centos.0.1       extras
+cockpit-pcp.x86_64                        195.1-1.el7.centos.0.1       extras
+cockpit-storaged.noarch                   195.1-1.el7.centos.0.1       extras
+cockpit-subscriptions.noarch              160-1.el7.centos             extras
+cockpit-system.noarch                     195.1-1.el7.centos.0.1       extras
+cockpit-tests.x86_64                      195.1-1.el7.centos.0.1       extras
+cockpit-ws.i686                           195.1-1.el7.centos           base
+cockpit-ws.x86_64                         195.1-1.el7.centos.0.1       extras
+subscription-manager-cockpit.noarch       1.24.13-3.el7.centos         updates
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>安装cockpit所有模块</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># yum install -y cockpit*</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># yum install -y cockpit*</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>启动cockpit</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># systemctl enable cockpit.socket</span>
-<span class="c1"># systemctl start cockpit.socket</span></code></pre></td></tr></table>
+<span class="c1"># systemctl start cockpit.socket</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>如果防火墙开启的话，需要设置防火墙</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># firewall-cmd --permanent --zone=public --add-service=cockpit  &amp;&amp; firewall-cmd --reload</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># firewall-cmd --permanent --zone=public --add-service=cockpit  &amp;&amp; firewall-cmd --reload</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="web登录">web登录</h2>
-
+</div><h2 id="web登录">web登录</h2>
 <ul>
-<li>访问<a href="https://IP:9090（用户名和密码和用于登录linux">https://IP:9090（用户名和密码和用于登录linux</a> 服务器的用户名和密码相同）</li>
+<li>访问https://IP:9090（用户名和密码和用于登录linux 服务器的用户名和密码相同）</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkRGyd.png" alt="GkRGyd.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkRGyd.png" alt="GkRGyd.png"></p>
 <h3 id="系统信息">系统信息</h3>
-
 <p>可以看到很多系统信息，可以逐个选项查看操作</p>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkWS6H.png" alt="GkWS6H.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkWS6H.png" alt="GkWS6H.png"></p>
 <h3 id="容器">容器</h3>
-
 <p>在容器界面不仅可以看到运行中的容器及所有的镜像，还可以在页面直接基于镜像来启动容器</p>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/GkWLuj.png" alt="GkWLuj.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/GkWLuj.png" alt="GkWLuj.png"></p>
 <h3 id="集群">集群</h3>
-
 <ul>
 <li>可以看到服务器上Kubernetes集群的信息</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/Gkf1rd.png" alt="Gkf1rd.png" /></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/Gkf1rd.png" alt="Gkf1rd.png"></p>
 <ul>
 <li>可以进入到对应的pod里操作</li>
 </ul>
-
-<p><img src="https://s1.ax1x.com/2020/03/28/Gkfyaq.png" alt="Gkfyaq.png" /></p>
-
-<p><strong><em>更多的操作可以自己上手试试</em></strong></p>
-
+<p><img src="https://s1.ax1x.com/2020/03/28/Gkfyaq.png" alt="Gkfyaq.png"></p>
+<p><em><strong>更多的操作可以自己上手试试</strong></em></p>
 <h2 id="参考链接">参考链接</h2>
-
 <p><a href="https://cockpit-project.org/running#centos">官方文档</a></p>
     </div>
 
@@ -355,10 +338,9 @@ subscription-manager-cockpit.noarch       <span class="m">1</span>.24.13-3.el7.c
         <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
-    
     <script type="text/javascript">
       var gitalk = new Gitalk({
-        id: '2020-04-18 08:58:12 \x2b0800 CST',
+        id: '2020-04-18 08:58:12 \u002b0800 CST',
         title: 'Centos7.x安装Cockpit',
         clientID: '5d6603232ea74e82a0b0',
         clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
@@ -370,6 +352,10 @@ subscription-manager-cockpit.noarch       <span class="m">1</span>.24.13-3.el7.c
       gitalk.render('gitalk-container');
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
 
       </div>
     </main>
@@ -425,7 +411,10 @@ subscription-manager-cockpit.noarch       <span class="m">1</span>.24.13-3.el7.c
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 
