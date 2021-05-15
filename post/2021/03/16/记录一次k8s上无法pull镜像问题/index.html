@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>记录一次k8s上无法pull镜像问题 - dylan blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="hugo, 分享, 博客, 技术, 文档" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2021/03/16/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1k8s%E4%B8%8A%E6%97%A0%E6%B3%95pull%E9%95%9C%E5%83%8F%E9%97%AE%E9%A2%98/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="记录一次k8s上无法pull镜像问题" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2021/03/16/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1k8s%E4%B8%8A%E6%97%A0%E6%B3%95pull%E9%95%9C%E5%83%8F%E9%97%AE%E9%A2%98/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-16T15:51:59&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-16T15:51:59&#43;08:00" />
+
+<meta itemprop="name" content="记录一次k8s上无法pull镜像问题">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-03-16T15:51:59&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-16T15:51:59&#43;08:00" />
+<meta itemprop="wordCount" content="864">
+<meta itemprop="keywords" content="kubernetes,镜像,linux," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="记录一次k8s上无法pull镜像问题"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">dylan blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">search</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">dylan blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">search</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">记录一次k8s上无法pull镜像问题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-16 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> kubernetes </a>
+            </div>
+          <span class="more-meta"> 864 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题现象">问题现象</a></li>
+    <li><a href="#问题解决">问题解决</a>
+      <ul>
+        <li><a href="#方案一">方案一</a></li>
+        <li><a href="#方案二">方案二</a></li>
+        <li><a href="#方案三">方案三</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><img src="https://s1.ax1x.com/2020/09/08/wKL9pR.jpg" alt="wKL9pR.jpg"></p>
+<blockquote>
+<p>由于某些不可名状的因素导致我们原来的镜像私服仓库不能用了，所以将镜像都存放在了阿里云的容器镜像服务。然后然在服务发布时发现pull镜像有问题，此文档用于记录问题解决过程。</p>
+</blockquote>
+<h2 id="问题现象">问题现象</h2>
+<ul>
+<li>容器拉取镜像失败</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl describe pods bxpp-6426-657b7ff794-gppfv
+......
+Warning  Failed     2s <span class="o">(</span>x2 over 17s<span class="o">)</span>  kubelet, 172.16.77.189  Failed to pull image <span class="s2">&#34;registry.cn-hangzhou.aliyuncs.com/cotte-internal/bl-trex-bxpp-dev:9311&#34;</span>: rpc error: <span class="nv">code</span> <span class="o">=</span> Unknown <span class="nv">desc</span> <span class="o">=</span> Error response from daemon: pull access denied <span class="k">for</span> registry.cn-hangzhou.aliyuncs.com/cotte-internal/bl-trex-bxpp-dev, repository does not exist or may require <span class="s1">&#39;docker login&#39;</span>
+......
+</code></pre></td></tr></table>
+</div>
+</div><p>报错信息为访问被拒绝，需要登录仓库，但是在pod所在的node节点已经登录了，而且使用docker pull是可以拉取的，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="o">[</span>root@k8s-77-189 ~<span class="o">]</span><span class="c1"># docker pull registry.cn-hangzhou.aliyuncs.com/cotte-internal/bl-trex-bxpp-dev:9311</span>
+9311: Pulling from cotte-internal/bl-trex-bxpp-dev
+b8e0383d5f94: Already exists
+dbfdecf77fbc: Already exists
+c422ba8ef74a: Already exists
+b1694b232e8c: Already exists
+a3cbd3004bf0: Already exists
+27fa098e67c0: Already exists
+d44aa4b2cfed: Already exists
+7ce0daded1f5: Already exists
+f7426546b5c4: Already exists
+ef745c7a9450: Already exists
+54d66b1b14e6: Already exists
+2177c4e892bd: Pull <span class="nb">complete</span>
+1dfaf8ad1ef8: Pull <span class="nb">complete</span>
+ae4bf6fc0e55: Pull <span class="nb">complete</span>
+c2d967a1704b: Pull <span class="nb">complete</span>
+74fb1d311005: Pull <span class="nb">complete</span>
+d4b854d780f8: Extracting <span class="o">[==============================</span>&gt;                    <span class="o">]</span>  64.62MB/107MB
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="问题解决">问题解决</h2>
+<h3 id="方案一">方案一</h3>
+<p>查看<a href="https://kubernetes.io/docs/concepts/containers/images/#using-a-private-regist">官方文档</a>，发现kubelet在提取镜像时会读取<code>${home}/.docker/config.json</code>中的认证密钥，但是上述报错情况，显然没有读取到/root/.docker/config.json的密钥，重启kubelet也没有效果。根据官方文档所写，将<code>${home}/.docker/config.json</code>文件复制到<code>/var/lib/kubelet</code>下。如下操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cp ${home}/.docker/config.json /var/lib/kubelet/
+$ systemctl restart kubelet.service
+</code></pre></td></tr></table>
+</div>
+</div><p>执行完以上操作之后，再重新部署服务，就可以正常拉取镜像了。</p>
+<h3 id="方案二">方案二</h3>
+<p>参考github上一个<a href="https://github.com/kubernetes/kubernetes/issues/45487#issuecomment-464516064">issues</a>,以root用户登录docker仓库(一登录)，在kubelet的systemd unit文件中加入User=root，重启kubelet。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#注意，我这里是用二进制安装的集群，如果你是用kubeadm安装的，需要找到对应的文件</span>
+$ vim /etc/systemd/system/kubelet.service
+......
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">User</span><span class="o">=</span>root  <span class="c1">#加入此行</span>
+......
+
+$ systemctl daemon-reload
+$ systemctl restart kubelet
+</code></pre></td></tr></table>
+</div>
+</div><p>执行完以上操作之后，再重新部署服务，就可以正常拉取镜像了。</p>
+<h3 id="方案三">方案三</h3>
+<p>创建docker registry认证的Secret。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 注意secret不会同步到所有的命名空间  如果是多个命名空间 需要单独都创建</span>
+$ kubectl create secret docker-registry aliyunregistry --docker-server<span class="o">=</span>XXXXXXX --docker-username<span class="o">=</span>xxxx --docker-password<span class="o">=</span>xxxxx --docker-email<span class="o">=</span>test@gmail.com
+$ vim bxpp.yaml
+......
+    spec:
+      imagePullSecrets:  <span class="c1"># 加入这个参数</span>
+      - name: aliyunregistry
+      containers:
+......
+$ kubectl apply -f bxpp-test.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>执行完以上操作之后，再重新部署服务，就可以正常拉取镜像了。</p>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://kubernetes.io/docs/concepts/containers/images/#using-a-private-registry">官方文档</a></p>
+<p><a href="https://github.com/kubernetes/kubernetes/issues/45487#issuecomment-464516064">官方issues</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-03-16
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/kubernetes/">kubernetes</a>
+          <a href="/tags/%E9%95%9C%E5%83%8F/">镜像</a>
+          <a href="/tags/linux/">linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021/04/05/kubernetes%E4%BD%BF%E7%94%A8nfs%E5%81%9A%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kubernetes使用nfs做持久化存储</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2021/03/12/k8s%E4%B8%AD%E5%AE%89%E8%A3%85minio/">
+            <span class="next-text nav-default">K8s中安装minio</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-03-16 15:51:59 \u002b0800 CST',
+        title: '记录一次k8s上无法pull镜像问题',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    <a href="https://beian.miit.gov.cn">鲁ICP备2021012093号</a>
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
+

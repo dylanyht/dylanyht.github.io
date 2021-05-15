@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ceph问题处理 - dylan blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="hugo, 分享, 博客, 技术, 文档" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2021/04/25/ceph%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Ceph问题处理" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2021/04/25/ceph%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-25T16:11:14&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-25T16:11:14&#43;08:00" />
+
+<meta itemprop="name" content="Ceph问题处理">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-04-25T16:11:14&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-25T16:11:14&#43;08:00" />
+<meta itemprop="wordCount" content="488">
+<meta itemprop="keywords" content="linux,ceph,centos," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ceph问题处理"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">dylan blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">search</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">dylan blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">search</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Ceph问题处理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-25 </span>
+        <div class="post-category">
+            <a href="/categories/ceph/"> ceph </a>
+            </div>
+          <span class="more-meta"> 488 words </span>
+          <span class="more-meta"> 1 min read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题现象">问题现象</a></li>
+    <li><a href="#查看原因">查看原因</a></li>
+    <li><a href="#解决办法">解决办法</a></li>
+    <li><a href="#参考文档">参考文档</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><a href="https://imgtu.com/i/g6Axvd"><img src="https://z3.ax1x.com/2021/05/15/g6Axvd.jpg" alt="g6Axvd.jpg"></a></p>
+<h2 id="问题现象">问题现象</h2>
+<p>前几天使用ceph-ansible安装了N版的ceph。今天有个东西想测试一下，然后搭建了一个小的测试的ceph集群。搭建完查看状态的时候显示下面的错误</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ ceph -s
+  cluster:
+    id:     f1731b79-1e9e-447e-9bc4-36b834c19582
+    health: HEALTH_WARN
+            mons are allowing insecure global_id reclaim
+
+  services:
+    mon: <span class="m">3</span> daemons, quorum bxpp-master-1,bxpp-worker-1,bxpp-worker-2 <span class="o">(</span>age 25m<span class="o">)</span>
+    mgr: bxpp-worker-1<span class="o">(</span>active, since 17m<span class="o">)</span>, standbys: bxpp-master-1, bxpp-worker-2
+    mds: cephfs:1 <span class="o">{</span><span class="nv">0</span><span class="o">=</span>bxpp-master-1<span class="o">=</span>up:active<span class="o">}</span> <span class="m">2</span> up:standby
+    osd: <span class="m">3</span> osds: <span class="m">3</span> up <span class="o">(</span>since 16m<span class="o">)</span>, <span class="m">3</span> in <span class="o">(</span>since 16m<span class="o">)</span>
+    rgw: <span class="m">3</span> daemons active <span class="o">(</span>bxpp-master-1.rgw0, bxpp-worker-1.rgw0, bxpp-worker-2.rgw0<span class="o">)</span>
+
+  task status:
+    scrub status:
+        mds.bxpp-master-1: idle
+
+  data:
+    pools:   <span class="m">6</span> pools, <span class="m">168</span> pgs
+    objects: <span class="m">211</span> objects, 4.1 KiB
+    usage:   <span class="m">328</span> MiB used, <span class="m">15</span> GiB / <span class="m">15</span> GiB avail
+    pgs:     <span class="m">168</span> active+clean
+
+</code></pre></td></tr></table>
+</div>
+</div><p>ceph的设置和上个集群是一样的，但是上个集群就没有这样的警告。</p>
+<h2 id="查看原因">查看原因</h2>
+<p>和以前的集群对比了一下，发现上次安装的N版的版本号为14.2.19，这次的版本号变成了14.2.20。看来是新版的原因，查看一下github发现前几天更新了新版本（其实在安装上次时就发布了新版本，可能是用的国内的源，导致版本更新有延迟）。</p>
+<p>查询相关文档在此<a href="https://ceph.io/releases/v14-2-20-nautilus-released/">文档</a>中发现，14.2.20修复了一个ceph身份验证框架中的安全漏洞，增加了相关警告。相关信息，请参考<a href="https://docs.ceph.com/en/latest/security/CVE-2021-20288/">CVE-2021-20288</a>。可以通过设置将其禁用，文档建议升级到O版后在禁用此设置。</p>
+<h2 id="解决办法">解决办法</h2>
+<blockquote>
+<p>这里集群做测试使用，就直接禁用掉此设置。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ ceph config <span class="nb">set</span> mon mon_warn_on_insecure_global_id_reclaim_allowed <span class="nb">false</span>
+$ ceph config <span class="nb">set</span> mon auth_allow_insecure_global_id_reclaim <span class="nb">false</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考文档">参考文档</h2>
+<p><a href="https://ceph.io/releases/v14-2-20-nautilus-released/">https://ceph.io/releases/v14-2-20-nautilus-released/</a></p>
+<p><a href="https://docs.ceph.com/en/latest/security/CVE-2021-20288/">https://docs.ceph.com/en/latest/security/CVE-2021-20288/</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-04-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/ceph/">ceph</a>
+          <a href="/tags/centos/">centos</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021/05/10/docker%E6%90%AD%E5%BB%BAmysql%E9%9B%86%E7%BE%A4pxc%E6%96%B9%E6%A1%88/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker搭建mysql集群(pxc方案)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2021/04/05/kubernetes%E4%BD%BF%E7%94%A8nfs%E5%81%9A%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/">
+            <span class="next-text nav-default">Kubernetes使用nfs做持久化存储</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-04-25 16:11:14 \u002b0800 CST',
+        title: 'Ceph问题处理',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    <a href="https://beian.miit.gov.cn">鲁ICP备2021012093号</a>
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
+

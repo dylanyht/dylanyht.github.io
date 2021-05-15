@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker搭建mysql集群(pxc方案) - dylan blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="hugo, 分享, 博客, 技术, 文档" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2021/05/10/docker%E6%90%AD%E5%BB%BAmysql%E9%9B%86%E7%BE%A4pxc%E6%96%B9%E6%A1%88/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Docker搭建mysql集群(pxc方案)" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2021/05/10/docker%E6%90%AD%E5%BB%BAmysql%E9%9B%86%E7%BE%A4pxc%E6%96%B9%E6%A1%88/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-05-10T15:55:14&#43;08:00" />
+<meta property="article:modified_time" content="2021-05-10T15:55:14&#43;08:00" />
+
+<meta itemprop="name" content="Docker搭建mysql集群(pxc方案)">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-05-10T15:55:14&#43;08:00" />
+<meta itemprop="dateModified" content="2021-05-10T15:55:14&#43;08:00" />
+<meta itemprop="wordCount" content="3228">
+<meta itemprop="keywords" content="linux,docker,mysql,数据库," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker搭建mysql集群(pxc方案)"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">dylan blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">search</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">dylan blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">search</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker搭建mysql集群(pxc方案)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-10 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 3228 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pxc介绍">pxc介绍</a></li>
+    <li><a href="#环境">环境</a></li>
+    <li><a href="#搭建pxc集群">搭建pxc集群</a>
+      <ul>
+        <li><a href="#拉取pxc镜像">拉取PXC镜像</a></li>
+        <li><a href="#创建docker内部网络">创建docker内部网络</a></li>
+        <li><a href="#创建docker卷">创建docker卷</a></li>
+        <li><a href="#创建pxc容器">创建pxc容器</a></li>
+      </ul>
+    </li>
+    <li><a href="#负载均衡方案">负载均衡方案</a>
+      <ul>
+        <li><a href="#负载均衡的必要性">负载均衡的必要性</a></li>
+        <li><a href="#安装haproxy">安装Haproxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#高可用负载均衡方案">高可用负载均衡方案</a>
+      <ul>
+        <li><a href="#单节点haproxy不具备高可用需要有冗余设计">单节点haproxy不具备高可用，需要有冗余设计</a></li>
+        <li><a href="#虚拟ip技术">虚拟IP技术</a></li>
+        <li><a href="#利用keepalived实现双机热备">利用keepalived实现双机热备</a></li>
+        <li><a href="#haproxy双机热备方案">Haproxy双机热备方案</a></li>
+        <li><a href="#安装keepalived">安装keepalived</a></li>
+        <li><a href="#宿主机安装配置keeplived">宿主机安装配置keeplived</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关问题处理">相关问题处理</a>
+      <ul>
+        <li><a href="#mysql节点启动闪退">mysql节点启动闪退</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading"></a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><a href="https://imgtu.com/i/g6AqUK"><img src="https://z3.ax1x.com/2021/05/15/g6AqUK.jpg" alt="g6AqUK.jpg"></a></p>
+<blockquote>
+<p>此文档用于记录基于docker搭建mysql集群的过程。这里不介绍docker的安装，如有需要请移步到<a href="https://dylanyang.top/post/2019/05/09/centos7%E5%AE%89%E8%A3%85docker/">电梯直达</a>。</p>
+<p>环境： centos7.6   docker-ce19.03.12  percona/percona-xtradb-cluster：5.7.20</p>
+</blockquote>
+<h2 id="pxc介绍">pxc介绍</h2>
+<p>PXC全称Percona XtraDB Cluster，它提供了MySQL高可用的一种实现方案。PXC集群是以节点组成，推荐奇数个节点（至少3个以上），集群中的每个节点都包含完整的数据，并且所有节点都是可读可写的。PXC集群方案能够保证数据的强一致性，事务在所有集群节点要么同时提交，要么同时不提交。</p>
+<h2 id="环境">环境</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主机ip</th>
+<th style="text-align:center">主服务</th>
+<th style="text-align:center">安装方式</th>
+<th style="text-align:center">主机系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">172.16.77.46</td>
+<td style="text-align:center">mysql</td>
+<td style="text-align:center">docker-ce</td>
+<td style="text-align:center">Centos7.6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="搭建pxc集群">搭建pxc集群</h2>
+<h3 id="拉取pxc镜像">拉取PXC镜像</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 拉取镜像</span>
+$ docker pull percona/percona-xtradb-cluster:5.7.20
+<span class="c1">#修改镜像名称</span>
+$ docker tag percona/percona-xtradb-cluster:5.7.20 pxc
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建docker内部网络">创建docker内部网络</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建内部网段</span>
+$ docker network create --subnet<span class="o">=</span>172.18.0.0/24 net1
+<span class="c1"># 查看网段相关信息</span>
+$ docker network inspect net1
+<span class="c1"># 下面为删除网段</span>
+<span class="c1"># $ docker network rm net1</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建docker卷">创建docker卷</h3>
+<blockquote>
+<p>pxc运行在docker容器中，如果直接使用宿主机目录映射数据目录，会导致容器启动闪退。这里就需要使用docker卷来映射目录。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建数据卷</span>
+$ docker volume create v1
+$ docker volume create v2
+$ docker volume create v3
+$ docker volume create v4
+$ docker volume create v5
+<span class="c1"># 查看docker卷信息</span>
+$ docker volume inspect volume_name
+<span class="c1"># 下面命令为删除docker卷</span>
+<span class="c1"># $ docker volume rm volume_name</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建pxc容器">创建pxc容器</h3>
+<blockquote>
+<p>注意：这里启动时，我将mysql的配置文件的目录映射到本地目录了，因为我们可能有修改配置文件的需要。经实际操作发现映射到本地时会清除容器内对应目录下的文件，需要提前单独起一个容器将该目录下的文件取出来放在宿主机的对应目录下即可。如果没有此需求，就将下面命令中的<code>-v /home/mysql/conf.d:/etc/mysql/conf.d</code>删除</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ docker run -d -p 3306:3306 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_NAME</span><span class="o">=</span>PXC -e <span class="nv">XTRABACKUP_PASSWORD</span><span class="o">=</span>bnsbdlmysql -v v1:/var/lib/mysql -v /home/mysql/conf.d:/etc/mysql/conf.d  --privileged --name<span class="o">=</span>node1 --net<span class="o">=</span>net1 --ip 172.18.0.2 pxc
+$ docker run -d -p 3307:3306 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_NAME</span><span class="o">=</span>PXC -e <span class="nv">XTRABACKUP_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_JOIN</span><span class="o">=</span>node1 -v v2:/var/lib/mysql -v /home/mysql/conf.d:/etc/mysql/conf.d  --privileged --name<span class="o">=</span>node2 --net<span class="o">=</span>net1 --ip 172.18.0.3 pxc
+$ docker run -d -p 3308:3306 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_NAME</span><span class="o">=</span>PXC -e <span class="nv">XTRABACKUP_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_JOIN</span><span class="o">=</span>node1 -v v3:/var/lib/mysql -v /home/mysql/conf.d:/etc/mysql/conf.d  --privileged --name<span class="o">=</span>node3 --net<span class="o">=</span>net1 --ip 172.18.0.4 pxc
+$ docker run -d -p 3309:3306 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_NAME</span><span class="o">=</span>PXC -e <span class="nv">XTRABACKUP_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_JOIN</span><span class="o">=</span>node1 -v v4:/var/lib/mysql -v /home/mysql/conf.d:/etc/mysql/conf.d  --privileged --name<span class="o">=</span>node4 --net<span class="o">=</span>net1 --ip 172.18.0.5 pxc
+$ docker run -d -p 3310:3306 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_NAME</span><span class="o">=</span>PXC -e <span class="nv">XTRABACKUP_PASSWORD</span><span class="o">=</span>bnsbdlmysql -e <span class="nv">CLUSTER_JOIN</span><span class="o">=</span>node1 -v v5:/var/lib/mysql -v /home/mysql/conf.d:/etc/mysql/conf.d  --privileged --name<span class="o">=</span>node5 --net<span class="o">=</span>net1 --ip 172.18.0.6 pxc
+
+<span class="c1"># 查看正在运行的容器</span>
+$ docker ps
+</code></pre></td></tr></table>
+</div>
+</div><p>使用Navicat测试连接pxc集群节点</p>
+<p><a href="https://imgchr.com/i/wDt92t"><img src="https://s1.ax1x.com/2020/09/14/wDt92t.jpg" alt="wDt92t.jpg"></a></p>
+<p>可以创建个数据库看看是否其他节点都有，测试成功后再进行以下配置。</p>
+<h2 id="负载均衡方案">负载均衡方案</h2>
+<h3 id="负载均衡的必要性">负载均衡的必要性</h3>
+<ul>
+<li>如果不使用数据库负载均衡，单节点处理所有请求，负载高，性能差</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDUSjP.jpg" alt="wDUSjP.jpg"></p>
+<ul>
+<li>使用Haproxy做负载均衡，请求被均匀分发给每个节点，单节点负载低，性能好</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDUWb8.jpg" alt="wDUWb8.jpg"></p>
+<h3 id="安装haproxy">安装Haproxy</h3>
+<ul>
+<li>创建编写配置文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir /home/haproxy
+$ vim /home/haproxy/haproxy.cfg
+
+global
+    <span class="c1"># 工作目录</span>
+    chroot /usr/local/etc/haproxy
+    <span class="c1"># 日志文件，使用rsyslog服务中local5日志设备（/var/log/local5），等级info</span>
+    log 127.0.0.1 local5 info
+    <span class="c1"># 守护进程运行</span>
+    daemon
+
+defaults
+    log global
+    mode http
+    <span class="c1"># 日志格式</span>
+    option httplog
+    <span class="c1"># 日志中不记录负载均衡的心跳检测记录</span>
+    option dontlognull
+    <span class="c1"># 连接超时（毫秒）</span>
+    timeout connect <span class="m">5000</span>
+    <span class="c1"># 客户端超时（毫秒）</span>
+    timeout client <span class="m">50000</span>
+    <span class="c1"># 服务器超时（毫秒）</span>
+    timeout server <span class="m">50000</span>
+
+<span class="c1"># 监控界面</span>
+listen admin_stats
+    <span class="c1"># 监控界面的访问的IP和端口</span>
+    <span class="nb">bind</span> 0.0.0.0:8888
+    <span class="c1"># 访问协议</span>
+    mode http
+    <span class="c1"># URI相对地址</span>
+    stats uri /dbs
+    <span class="c1"># 统计报告格式</span>
+    stats realm Clobal<span class="se">\ </span>statistics
+    <span class="c1"># 登录账户信息</span>
+    stats auth admin:123456
+<span class="c1"># 数据库负载均衡</span>
+listen proxy-mysql
+    <span class="c1"># 访问的IP和端口</span>
+    <span class="nb">bind</span> 0.0.0.0:3306
+    <span class="c1"># 网络协议</span>
+    mode tcp
+    <span class="c1"># 负载均衡算法（轮询算法）</span>
+    <span class="c1"># 轮询算法：roundrobin</span>
+    <span class="c1"># 权重算法：static-rr</span>
+    <span class="c1"># 最少连接算法：leastconn</span>
+    <span class="c1"># 请求源IP算法：source</span>
+    balance roundrobin
+    <span class="c1"># 日志格式</span>
+    option tcplog
+    <span class="c1"># 在MySQL中创建一个没有权限的haproxy用户，密码为空。Haproxy使用这个账户对MySQL数据库心跳检测</span>
+    option mysql-check user haproxy
+    server MySQL_1 172.18.0.2:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+    server MySQL_2 172.18.0.3:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+    server MySQL_3 172.18.0.4:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+    server MySQL_4 172.18.0.5:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+    server MySQL_5 172.18.0.6:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+    <span class="c1"># 使用keepalive检测死链</span>
+    option tcpka
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>创建haproxy容器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ docker run -it -d -p 4001:8888 -p 4002:3306 -v /home/haproxy:/usr/local/etc/haproxy --name haproxy-1 --privileged --net<span class="o">=</span>net1 --ip 172.18.0.7 haproxy
+
+<span class="c1">#进入容器后，加载配置文件</span>
+$ docker <span class="nb">exec</span> -it haproxy-1 /bin/bash
+$ haproxy -f /usr/local/etc/haproxy/haproxy.cfg 
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在数据库创建一个haproxy的用户，不需要设置密码。Haproxy使用这个账号对mysql数据库心跳检测</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDfNYn.png" alt="wDfNYn.png"></p>
+<ul>
+<li>登录haproxy网页端，http://172.16.77.46:4001/dbs</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDhCkj.png" alt="wDhCkj.png"></p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDhn74.png" alt="wDhn74.png"></p>
+<ul>
+<li>客户端连接haproxy-mysql数据库</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/14/wD4uKf.png" alt="wD4uKf.png"></p>
+<h2 id="高可用负载均衡方案">高可用负载均衡方案</h2>
+<h3 id="单节点haproxy不具备高可用需要有冗余设计">单节点haproxy不具备高可用，需要有冗余设计</h3>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDoxoD.png" alt="wDoxoD.png"></p>
+<h3 id="虚拟ip技术">虚拟IP技术</h3>
+<p><em>haproxy双机互备离不开一个关键的技术，这个技术是虚拟IP，linux可以在一个网卡内定义多个虚拟IP，得把这些IP地址定义到一个虚拟IP。</em></p>
+<h3 id="利用keepalived实现双机热备">利用keepalived实现双机热备</h3>
+<p><em>定义出来一个虚拟IP，这个方案叫双机热备，准备2个keepalived，keepalived 就是为了抢占虚拟IP的，谁手快谁能抢到，没抢到的处于等待的状态。抢到的叫做主服务器，未抢到的叫做备服务器。两个keepalived之前有心跳检测的，当备用的检测到主服务挂了，就立马抢占虚拟IP。</em></p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wDTlyq.png" alt="wDTlyq.png"></p>
+<h3 id="haproxy双机热备方案">Haproxy双机热备方案</h3>
+<p><img src="https://s1.ax1x.com/2020/09/14/wD7mB6.jpg" alt="wD7mB6.jpg"></p>
+<h3 id="安装keepalived">安装keepalived</h3>
+<ul>
+<li>keepalived必须在haproxy所在的容器之内，也可以在docker仓库里面下载一个haproxy-keepalived的镜像。这里直接在容器内安装keepalived。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ docker <span class="nb">exec</span> -it haproxy-1 /bin/bash
+$ apt-get update -y
+$ apt-get install iputils-ping vim   net-tools procps -y
+$ apt-get install keepalived -y
+
+<span class="c1"># 编写keeplived配置文件，路径为/etc/keepalived/keepalived.conf</span>
+$ vi /etc/keepalived/keepalived.conf
+    <span class="c1"># VI_1 名称可以自定义</span>
+vrrp_instance  VI_1 <span class="o">{</span>
+  <span class="c1">#定义节点属性 Keepalived的身份（MASTER主服务，BACKUP备服务器）。主服务要抢占虚拟IP，备服务器不会抢占虚拟IP。</span>
+  state  MASTER
+  <span class="c1">#定义网卡设备 eth0是网卡名字，Docker虚拟机的网卡。可以在容器用 ip a查看</span>
+  interface  eth0
+  <span class="c1">#定义组vriid 虚拟路由标识，MASTER和BACKUP的虚拟路由标识必须一致。标识可以是0~255</span>
+  virtual_router_id  <span class="m">51</span>
+  <span class="c1">#定义权重 MASTER权重 要 高于BACKUP，数据越大优先级越高</span>
+  priority  <span class="m">100</span>
+  <span class="c1">#定义心跳检测时间1秒 MASTER与BACKUP节点间同步检查（心跳检测）的时间间隔，单位为秒。主备之间必须一致。</span>
+  advert_int  <span class="m">1</span>
+  <span class="c1">#定义组用户密码 主从服务器验证方式。主备必须使用相同的密码才能正常通信。心跳检测登录Keepalived节点，开放账号密码。</span>
+  authentication <span class="o">{</span>
+      auth_type  PASS
+      auth_pass  <span class="m">123456</span>
+  <span class="o">}</span>
+  <span class="c1">#定义docker内ip地址，必须要在和haproxy同一个网段  两个keepalived同时抢一个虚拟ip  可以设置多个虚拟IP地址，每行一个</span>
+  virtual_ipaddress <span class="o">{</span>
+      172.18.0.201
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>启动keeplived，容器内启动</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ service keepalived start
+
+<span class="c1"># 宿主机ping这个ip</span>
+$ ping 172.18.0.201
+PING 172.18.0.201 <span class="o">(</span>172.18.0.201<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 172.18.0.201: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.044 ms
+<span class="m">64</span> bytes from 172.18.0.201: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.038 ms
+</code></pre></td></tr></table>
+</div>
+</div><p>创建haproxy2容器。并配置和haproxy相同的环境，这里不再过多赘述。</p>
+<p><em><strong>注意：每次如果某一个haproxy服务宕机，重启的时候需要重新进入paroxy容器加载配置文件 并且重启keepalived</strong></em></p>
+<h3 id="宿主机安装配置keeplived">宿主机安装配置keeplived</h3>
+<ul>
+<li>安装keeplived</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yum -y install keepalived$ mv /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak$ vi /etc/keepalived/keepalived.confvrrp_instance VI_1 <span class="o">{</span>    state MASTER    interface eth0    virtual_router_id <span class="m">51</span>    priority <span class="m">100</span>    advert_int <span class="m">1</span>    authentication <span class="o">{</span>        auth_type PASS        auth_pass <span class="m">1111</span>    <span class="o">}</span>    virtual_ipaddress <span class="o">{</span>       	172.16.77.47  <span class="c1">#虚拟ip 需要和宿主机ip在同一网段    }}#接受监听数据来源的端口，网页入口使用virtual_server 172.16.77.47 8888 {    delay_loop 3    lb_algo rr    lb_kind NAT    persistence_timeout 50    protocol TCP#把接受到的数据转发给docker服务的网段及端口，由于是发给docker服务，所以和docker服务数据要一致    real_server 172.18.0.201 8888 {        weight 1    }}#接受数据库数据端口，宿主机数据库端口是3306，所以这里也要和宿主机数据接受端口一致virtual_server 172.16.77.47 3306 {    delay_loop 3    lb_algo rr    lb_kind NAT    persistence_timeout 50    protocol TCP#同理转发数据库给服务的端口和ip要求和docker服务中的数据一致    real_server 172.18.0.201 3306 {        weight 1    }}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>启动keeplived</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"> $ systemctl start keepalived $ systemctl <span class="nb">enable</span> keepalived
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>访问haproxy页面，http://172.16.77.47:8888/dbs</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/15/wsfBm8.png" alt="wsfBm8.png"></p>
+<ul>
+<li>连接mysql</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/15/wsfXX6.png" alt="wsfXX6.png"></p>
+<h2 id="相关问题处理">相关问题处理</h2>
+<h3 id="mysql节点启动闪退">mysql节点启动闪退</h3>
+<ul>
+<li>现象：重启pxc节点发现节点容器无法启动</li>
+<li>解决办法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 进入到容器挂载点的目录下,例如node1 这里取决于你的docker存储目录</span>
+$ <span class="nb">cd</span>  /home/docker/docker-data/volumes/v1/_data
+$ vi grastate.dat
+<span class="c1"># GALERA saved state</span>
+version: 2.1
+uuid:    dfc7776f-f628-11ea-907f-9f2f320bb959
+seqno:   -1
+safe_to_bootstrap: <span class="m">0</span>  <span class="c1">#将这里的0改为1 然后保存再启动</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="heading"></h2>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://idig8.com/2019/02/01/shizhanpiankaiyuanxiangmudockerhuayunweibushu-dajianmysqljiqunsi/">https://idig8.com/2019/02/01/shizhanpiankaiyuanxiangmudockerhuayunweibushu-dajianmysqljiqunsi/</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-05-10
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/docker/">docker</a>
+          <a href="/tags/mysql/">mysql</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021/05/15/centos%E4%B8%8B%E6%8C%82%E8%BD%BDcephfs/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Centos下挂载cephfs</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2021/04/25/ceph%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">
+            <span class="next-text nav-default">Ceph问题处理</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-05-10 15:55:14 \u002b0800 CST',
+        title: 'Docker搭建mysql集群(pxc方案)',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    <a href="https://beian.miit.gov.cn">鲁ICP备2021012093号</a>
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
+

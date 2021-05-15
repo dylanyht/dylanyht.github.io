@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>镜像 on dylan blog</title>
+    <link>https://dylanyang.top/tags/%E9%95%9C%E5%83%8F/</link>
+    <description>Recent content in 镜像 on dylan blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Mar 2021 15:51:59 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/%E9%95%9C%E5%83%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记录一次k8s上无法pull镜像问题</title>
+      <link>https://dylanyang.top/post/2021/03/16/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1k8s%E4%B8%8A%E6%97%A0%E6%B3%95pull%E9%95%9C%E5%83%8F%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 16 Mar 2021 15:51:59 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2021/03/16/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1k8s%E4%B8%8A%E6%97%A0%E6%B3%95pull%E9%95%9C%E5%83%8F%E9%97%AE%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nfs on dylan blog</title>
+    <link>https://dylanyang.top/categories/nfs/</link>
+    <description>Recent content in nfs on dylan blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 05 Apr 2021 15:58:57 +0800</lastBuildDate><atom:link href="https://dylanyang.top/categories/nfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes使用nfs做持久化存储</title>
+      <link>https://dylanyang.top/post/2021/04/05/kubernetes%E4%BD%BF%E7%94%A8nfs%E5%81%9A%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/</link>
+      <pubDate>Mon, 05 Apr 2021 15:58:57 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2021/04/05/kubernetes%E4%BD%BF%E7%94%A8nfs%E5%81%9A%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

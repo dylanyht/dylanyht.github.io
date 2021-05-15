@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>minio on dylan blog</title>
+    <link>https://dylanyang.top/tags/minio/</link>
+    <description>Recent content in minio on dylan blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 12 Mar 2021 15:41:42 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/minio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K8s中安装minio</title>
+      <link>https://dylanyang.top/post/2021/03/12/k8s%E4%B8%AD%E5%AE%89%E8%A3%85minio/</link>
+      <pubDate>Fri, 12 Mar 2021 15:41:42 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2021/03/12/k8s%E4%B8%AD%E5%AE%89%E8%A3%85minio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos7安装minio</title>
+      <link>https://dylanyang.top/post/2020/10/14/centos7%E5%AE%89%E8%A3%85minio/</link>
+      <pubDate>Wed, 14 Oct 2020 15:38:29 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/10/14/centos7%E5%AE%89%E8%A3%85minio/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

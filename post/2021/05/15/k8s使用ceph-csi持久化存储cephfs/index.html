@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>K8s使用ceph-csi持久化存储cephfs - dylan blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="dylan" /><meta name="description" content="" /><meta name="keywords" content="hugo, 分享, 博客, 技术, 文档" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
+
+
+<link rel="canonical" href="https://dylanyang.top/post/2021/05/15/k8s%E4%BD%BF%E7%94%A8ceph-csi%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8cephfs/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="K8s使用ceph-csi持久化存储cephfs" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dylanyang.top/post/2021/05/15/k8s%E4%BD%BF%E7%94%A8ceph-csi%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8cephfs/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-05-15T16:18:03&#43;08:00" />
+<meta property="article:modified_time" content="2021-05-15T16:18:03&#43;08:00" />
+
+<meta itemprop="name" content="K8s使用ceph-csi持久化存储cephfs">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-05-15T16:18:03&#43;08:00" />
+<meta itemprop="dateModified" content="2021-05-15T16:18:03&#43;08:00" />
+<meta itemprop="wordCount" content="1184">
+<meta itemprop="keywords" content="linux,ceph,centos,kubernetes,ceph-csi,cephfs," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="K8s使用ceph-csi持久化存储cephfs"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">dylan blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">Links</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">search</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">dylan blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">Links</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">search</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">K8s使用ceph-csi持久化存储cephfs</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-15 </span>
+        <div class="post-category">
+            <a href="/categories/ceph/"> ceph </a>
+            </div>
+          <span class="more-meta"> 1184 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#部署">部署</a></li>
+    <li><a href="#验证">验证</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><a href="https://imgtu.com/i/g6MF3V"><img src="https://z3.ax1x.com/2021/05/15/g6MF3V.jpg" alt="g6MF3V.jpg"></a></p>
+<blockquote>
+<p>以前的<a href="https://dylanyang.top/post/2020/03/21/kubernetes%E9%9B%86%E7%BE%A4%E4%BD%BF%E7%94%A8cephfs%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/">文档</a>中，是使用社区中提供的cephfs provisioner进行动态分配的pv。此文档使用ceph官方的ceph-csi来做持久化，ceph-csi包含RBD和cephfs两种方式。这里仅介绍cephfs方式。</p>
+<p>k8s：v1.18.3</p>
+<p>ceph：14.2.19 nautilus (stable)</p>
+<p>ceph-csi：v3.3.1</p>
+</blockquote>
+<h2 id="部署">部署</h2>
+<ul>
+<li>拉取代码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git clone https://github.com/ceph/ceph-csi.git
+$ git checkout v3.3.1
+$ ceph-csi/deploy/cephfs/kubernetes
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>修改并yaml文件</p>
+<ul>
+<li>
+<p>csi-config-map.yaml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim csi-config-map.yaml
+---
+apiVersion: v1
+kind: ConfigMap
+data:
+  config.json: |-
+    [
+      {
+        &#34;clusterID&#34;: &#34;71057bd8-9a18-42ea-95e0-7596901370fe&#34;, # 此内容可以使用ceph mon dump来查看，clusterID对应fsid
+        &#34;monitors&#34;: [
+          &#34;172.16.77.67:6789&#34;
+        ]
+      }
+    ]
+metadata:
+  name: ceph-csi-config
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>csi-provisioner-rbac.yaml和csi-nodeplugin-rbac.yaml里面的命名空间改为ceph</p>
+</li>
+</ul>
+</li>
+<li>
+<p>部署cephfs csi</p>
+<blockquote>
+<p>这里的集群没有开启PodSecurityPolicy 准入控制器，所以不部署psp那两个yaml文件</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建ceph的命名空间 ceph的想东西都部署在此命名空间中</span>
+$ kubectl create ns ceph
+$ kubectl apply -f csi-config-map.yaml -n ceph
+$ kubectl create -f csi-provisioner-rbac.yaml -n ceph
+$ kubectl create -f csi-nodeplugin-rbac.yaml -n ceph
+$ kubectl create -f csi-cephfsplugin-provisioner.yaml -n ceph
+$ kubectl create -f csi-cephfsplugin.yaml -n ceph
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>查看状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl get pods -n ceph <span class="c1">#由于是单节点，这里将csi-cephfsplugin-provisioner设置为了一个副本</span>
+NAME                                            READY   STATUS    RESTARTS   AGE
+csi-cephfsplugin-p8qfk                          3/3     Running   <span class="m">0</span>          21s
+csi-cephfsplugin-provisioner-5f9c4db495-qsq8w   6/6     Running   <span class="m">0</span>          8s
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="验证">验证</h2>
+<blockquote>
+<p>注意，这里ceph集群已经创建好存储池和文件系统，不再单独创建</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ceph fs ls # 查看文件系统
+name: cephfs, metadata pool: cephfs_metadata, data pools: [cephfs_data ]
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>创建密钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nb">cd</span> ceph-csi/examples/cephfs
+$ vim secret.yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: csi-cephfs-secret
+  namespace: ceph
+stringData:
+  <span class="c1"># 通过ceph auth get client.admin查看</span>
+  <span class="c1"># Required for statically provisioned volumes</span>
+  userID: admin              
+  userKey: AQBgCIpg8OC9LRAAcl8XOfU9/71WiZNLGgnjgA<span class="o">==</span>
+  
+  <span class="c1"># Required for dynamically provisioned volumes</span>
+  adminID: admin
+  adminKey: AQBgCIpg8OC9LRAAcl8XOfU9/71WiZNLGgnjgA<span class="o">==</span>
+    
+$ kubectl apply -f secret.yaml
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>创建storageclass.yaml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ vim storageclass.yaml
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-cephfs-sc
+provisioner: cephfs.csi.ceph.com
+parameters:
+  <span class="c1"># (required) String representing a Ceph cluster to provision storage from.</span>
+  <span class="c1"># Should be unique across all Ceph clusters in use for provisioning,</span>
+  <span class="c1"># cannot be greater than 36 bytes in length, and should remain immutable for</span>
+  <span class="c1"># the lifetime of the StorageClass in use.</span>
+  <span class="c1"># Ensure to create an entry in the configmap named ceph-csi-config, based on</span>
+  <span class="c1"># csi-config-map-sample.yaml, to accompany the string chosen to</span>
+  <span class="c1"># represent the Ceph cluster in clusterID below</span>
+  clusterID: 71057bd8-9a18-42ea-95e0-7596901370fe  <span class="c1">#此处就是填写上面的clusterID</span>
+  
+  <span class="c1"># (required) CephFS filesystem name into which the volume shall be created</span>
+  <span class="c1"># eg: fsName: myfs</span>
+  fsName: cephfs <span class="c1">#填写上面的文件系统</span>
+  
+  <span class="c1"># (optional) Ceph pool into which volume data shall be stored</span>
+  <span class="c1"># pool: &lt;cephfs-data-pool&gt;</span>
+  
+  <span class="c1"># (optional) Comma separated string of Ceph-fuse mount options.</span>
+  <span class="c1"># For eg:</span>
+  <span class="c1"># fuseMountOptions: debug</span>
+  
+  <span class="c1"># (optional) Comma separated string of Cephfs kernel mount options.</span>
+  <span class="c1"># Check man mount.ceph for mount options. For eg:</span>
+  <span class="c1"># kernelMountOptions: readdir_max_bytes=1048576,norbytes</span>
+  
+  <span class="c1"># The secrets have to contain user and/or Ceph admin credentials.</span>
+  <span class="c1"># 注意，这里的命名空间都改为ceph</span>
+  csi.storage.k8s.io/provisioner-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: ceph 
+  csi.storage.k8s.io/controller-expand-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: ceph
+  csi.storage.k8s.io/node-stage-secret-name: csi-cephfs-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: ceph
+  
+  <span class="c1"># (optional) The driver can use either ceph-fuse (fuse) or</span>
+  <span class="c1"># ceph kernelclient (kernel).</span>
+  <span class="c1"># If omitted, default volume mounter will be used - this is</span>
+  <span class="c1"># determined by probing for ceph-fuse and mount.ceph</span>
+  <span class="c1"># mounter: kernel</span>
+  
+  <span class="c1"># (optional) Prefix to use for naming subvolumes.</span>
+  <span class="c1"># If omitted, defaults to &#34;csi-vol-&#34;.</span>
+  <span class="c1"># volumeNamePrefix: &#34;foo-bar-&#34;</span>
+  
+reclaimPolicy: Delete
+allowVolumeExpansion: <span class="nb">true</span>
+mountOptions:
+  - discard
+    
+$ kubectl apply -f storageclass.yaml
+$ kubectl get sc
+NAME                    PROVISIONER           RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+csi-cephfs-sc           cephfs.csi.ceph.com   Delete          Immediate           <span class="nb">true</span>                   4s
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>创建pvc</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f pvc.yaml
+$ kubectl get pvc
+NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+csi-cephfs-pvc                 Bound    pvc-5c5fb10a-c8db-48da-b71c-b1cefc9ebb6e   1Gi        RWX            csi-cephfs-sc   18s
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>创建pod</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f pod.yaml$ kubectl get pods
+NAME                  READY   STATUS    RESTARTS   AGEcsi-cephfs-demo-pod   1/1     Running   <span class="m">0</span>          30s
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><em><strong>至此，验证成功。官方文档还有针对pvc快照的内容，不过好像需要O版以上的ceph集群，对服务器内核好像也有要求。后期再研究</strong></em></p>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://github.com/ceph/ceph-csi/blob/devel/docs/deploy-cephfs.md">https://github.com/ceph/ceph-csi/blob/devel/docs/deploy-cephfs.md</a></p>
+<p><a href="https://github.com/ceph/ceph-csi/blob/devel/examples/README.md#deploying-the-storage-class">https://github.com/ceph/ceph-csi/blob/devel/examples/README.md#deploying-the-storage-class</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">dylan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-05-15
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content">如需转载请注明文章作者和出处。谢谢！</span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/wechatpay.jpeg">
+        <span>wechat</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/alipay.jpeg">
+        <span>alipay</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          <a href="/tags/ceph/">ceph</a>
+          <a href="/tags/centos/">centos</a>
+          <a href="/tags/kubernetes/">kubernetes</a>
+          <a href="/tags/ceph-csi/">ceph-csi</a>
+          <a href="/tags/cephfs/">cephfs</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2021/05/15/ceph-dashboard%E9%85%8D%E7%BD%AE/">
+            <span class="next-text nav-default">Ceph Dashboard配置</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-05-15 16:18:03 \u002b0800 CST',
+        title: 'K8s使用ceph-csi持久化存储cephfs',
+        clientID: '5d6603232ea74e82a0b0',
+        clientSecret: '3b9fa8d8f1d88b8c4bb1e98b6de616d032afe123',
+        repo: 'blog-comment',
+        owner: 'dylanyht',
+        admin: ['dylanyht'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:dylan.yanght@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.facebook.com/profile.php?id=100036015953982" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://www.google.com/" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/dylanyht" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5490951717" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/dylan-90-93-31/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.instagram.com/yanght123/" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://space.bilibili.com/396702604" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://dylanyang.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+
+  </div>
+
+  <span class="copyright-year">
+    <a href="https://beian.miit.gov.cn">鲁ICP备2021012093号</a>
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">dylan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
+

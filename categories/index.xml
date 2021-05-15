@@ -6,13 +6,76 @@
     <description>Recent content in Categories on dylan blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Aug 2020 09:39:49 +0800</lastBuildDate><atom:link href="https://dylanyang.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 May 2021 16:18:03 +0800</lastBuildDate><atom:link href="https://dylanyang.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ceph</title>
+      <link>https://dylanyang.top/categories/ceph/</link>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/ceph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Mon, 10 May 2021 15:55:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nfs</title>
+      <link>https://dylanyang.top/categories/nfs/</link>
+      <pubDate>Mon, 05 Apr 2021 15:58:57 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/nfs/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Kubernetes</title>
       <link>https://dylanyang.top/categories/kubernetes/</link>
-      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      <pubDate>Tue, 16 Mar 2021 15:51:59 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>minio</title>
+      <link>https://dylanyang.top/categories/minio/</link>
+      <pubDate>Fri, 12 Mar 2021 15:41:42 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/minio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kt</title>
+      <link>https://dylanyang.top/categories/kt/</link>
+      <pubDate>Thu, 18 Feb 2021 15:44:21 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/kt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>csi</title>
+      <link>https://dylanyang.top/categories/csi/</link>
+      <pubDate>Mon, 15 Feb 2021 15:18:32 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/csi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loki</title>
+      <link>https://dylanyang.top/categories/loki/</link>
+      <pubDate>Mon, 24 Aug 2020 13:50:19 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/categories/loki/</guid>
       <description></description>
     </item>
     
@@ -22,15 +85,6 @@
       <pubDate>Sun, 02 Aug 2020 16:55:40 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/%E7%9B%91%E6%8E%A7/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数据库</title>
-      <link>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     
@@ -85,15 +139,6 @@
       <pubDate>Sat, 28 Mar 2020 14:17:00 +0800</pubDate>
       
       <guid>https://dylanyang.top/categories/nginx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>loki</title>
-      <link>https://dylanyang.top/categories/loki/</link>
-      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/categories/loki/</guid>
       <description></description>
     </item>
     

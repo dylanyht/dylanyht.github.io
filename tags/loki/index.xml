@@ -6,7 +6,16 @@
     <description>Recent content in loki on dylan blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2020 15:11:30 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/loki/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Aug 2020 13:50:19 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/loki/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes安装loki</title>
+      <link>https://dylanyang.top/post/2020/08/24/kubernetes%E5%AE%89%E8%A3%85loki/</link>
+      <pubDate>Mon, 24 Aug 2020 13:50:19 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2020/08/24/kubernetes%E5%AE%89%E8%A3%85loki/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Grafana日志聚合工具Loki搭建使用</title>
       <link>https://dylanyang.top/post/2020/03/21/grafana%E6%97%A5%E5%BF%97%E8%81%9A%E5%90%88%E5%B7%A5%E5%85%B7loki%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/</link>

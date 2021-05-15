@@ -6,22 +6,184 @@
     <description>Recent content in Tags on dylan blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Aug 2020 09:39:49 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 May 2021 16:18:03 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>kt-connect</title>
-      <link>https://dylanyang.top/tags/kt-connect/</link>
-      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      <title>centos</title>
+      <link>https://dylanyang.top/tags/centos/</link>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
       
-      <guid>https://dylanyang.top/tags/kt-connect/</guid>
+      <guid>https://dylanyang.top/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ceph</title>
+      <link>https://dylanyang.top/tags/ceph/</link>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ceph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ceph-csi</title>
+      <link>https://dylanyang.top/tags/ceph-csi/</link>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/ceph-csi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cephfs</title>
+      <link>https://dylanyang.top/tags/cephfs/</link>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/cephfs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes</title>
       <link>https://dylanyang.top/tags/kubernetes/</link>
-      <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://dylanyang.top/tags/linux/</link>
+      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dashboard</title>
+      <link>https://dylanyang.top/tags/dashboard/</link>
+      <pubDate>Sat, 15 May 2021 16:13:38 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/dashboard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://dylanyang.top/tags/docker/</link>
+      <pubDate>Mon, 10 May 2021 15:55:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://dylanyang.top/tags/mysql/</link>
+      <pubDate>Mon, 10 May 2021 15:55:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Mon, 10 May 2021 15:55:14 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nfs</title>
+      <link>https://dylanyang.top/tags/nfs/</link>
+      <pubDate>Mon, 05 Apr 2021 15:58:57 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>存储</title>
+      <link>https://dylanyang.top/tags/%E5%AD%98%E5%82%A8/</link>
+      <pubDate>Mon, 05 Apr 2021 15:58:57 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E5%AD%98%E5%82%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>镜像</title>
+      <link>https://dylanyang.top/tags/%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Tue, 16 Mar 2021 15:51:59 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E9%95%9C%E5%83%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>minio</title>
+      <link>https://dylanyang.top/tags/minio/</link>
+      <pubDate>Fri, 12 Mar 2021 15:41:42 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/minio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>对象存储</title>
+      <link>https://dylanyang.top/tags/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/</link>
+      <pubDate>Fri, 12 Mar 2021 15:41:42 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kt</title>
+      <link>https://dylanyang.top/tags/kt/</link>
+      <pubDate>Thu, 18 Feb 2021 15:44:21 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mac</title>
+      <link>https://dylanyang.top/tags/mac/</link>
+      <pubDate>Thu, 18 Feb 2021 15:44:21 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>csi</title>
+      <link>https://dylanyang.top/tags/csi/</link>
+      <pubDate>Mon, 15 Feb 2021 15:18:32 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/csi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nas</title>
+      <link>https://dylanyang.top/tags/nas/</link>
+      <pubDate>Mon, 15 Feb 2021 15:18:32 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/nas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>阿里云</title>
+      <link>https://dylanyang.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+      <pubDate>Mon, 15 Feb 2021 15:18:32 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
       <description></description>
     </item>
     
@@ -31,6 +193,24 @@
       <pubDate>Thu, 27 Aug 2020 09:39:49 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loki</title>
+      <link>https://dylanyang.top/tags/loki/</link>
+      <pubDate>Mon, 24 Aug 2020 13:50:19 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/loki/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>日志</title>
+      <link>https://dylanyang.top/tags/%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Mon, 24 Aug 2020 13:50:19 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/%E6%97%A5%E5%BF%97/</guid>
       <description></description>
     </item>
     
@@ -89,15 +269,6 @@
     </item>
     
     <item>
-      <title>linux</title>
-      <link>https://dylanyang.top/tags/linux/</link>
-      <pubDate>Mon, 13 Jul 2020 16:44:37 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>metrics-server</title>
       <link>https://dylanyang.top/tags/metrics-server/</link>
       <pubDate>Mon, 13 Jul 2020 16:44:37 +0800</pubDate>
@@ -125,33 +296,6 @@
     </item>
     
     <item>
-      <title>mysql</title>
-      <link>https://dylanyang.top/tags/mysql/</link>
-      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/mysql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数据库</title>
-      <link>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-      <pubDate>Fri, 10 Jul 2020 16:39:13 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>centos</title>
-      <link>https://dylanyang.top/tags/centos/</link>
-      <pubDate>Thu, 02 Jul 2020 16:30:30 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/centos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>nexus</title>
       <link>https://dylanyang.top/tags/nexus/</link>
       <pubDate>Tue, 23 Jun 2020 16:13:31 +0800</pubDate>
@@ -175,15 +319,6 @@
       <pubDate>Mon, 15 Jun 2020 15:52:49 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/oracle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://dylanyang.top/tags/docker/</link>
-      <pubDate>Wed, 03 Jun 2020 15:20:56 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -287,38 +422,11 @@
     </item>
     
     <item>
-      <title>loki</title>
-      <link>https://dylanyang.top/tags/loki/</link>
-      <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/loki/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>promtail</title>
       <link>https://dylanyang.top/tags/promtail/</link>
       <pubDate>Sat, 21 Mar 2020 15:11:30 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/promtail/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ceph</title>
-      <link>https://dylanyang.top/tags/ceph/</link>
-      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/ceph/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cephfs</title>
-      <link>https://dylanyang.top/tags/cephfs/</link>
-      <pubDate>Sat, 21 Mar 2020 15:00:05 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/cephfs/</guid>
       <description></description>
     </item>
     
@@ -476,15 +584,6 @@
     </item>
     
     <item>
-      <title>dashboard</title>
-      <link>https://dylanyang.top/tags/dashboard/</link>
-      <pubDate>Mon, 10 Jun 2019 13:56:52 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/dashboard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tomcat</title>
       <link>https://dylanyang.top/tags/tomcat/</link>
       <pubDate>Thu, 23 May 2019 15:01:14 +0800</pubDate>
@@ -562,15 +661,6 @@
       <pubDate>Mon, 13 May 2019 09:14:04 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/harbor/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nfs</title>
-      <link>https://dylanyang.top/tags/nfs/</link>
-      <pubDate>Mon, 13 May 2019 09:10:30 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/nfs/</guid>
       <description></description>
     </item>
     
