@@ -6,11 +6,11 @@
     <description>Recent content in Tags on dylan blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 May 2021 16:18:03 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 May 2021 14:04:48 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>centos</title>
       <link>https://dylanyang.top/tags/centos/</link>
-      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/centos/</guid>
       <description></description>
@@ -19,7 +19,7 @@
     <item>
       <title>ceph</title>
       <link>https://dylanyang.top/tags/ceph/</link>
-      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/ceph/</guid>
       <description></description>
@@ -28,9 +28,36 @@
     <item>
       <title>ceph-csi</title>
       <link>https://dylanyang.top/tags/ceph-csi/</link>
-      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/ceph-csi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://dylanyang.top/tags/kubernetes/</link>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://dylanyang.top/tags/linux/</link>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rbd</title>
+      <link>https://dylanyang.top/tags/rbd/</link>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/tags/rbd/</guid>
       <description></description>
     </item>
     
@@ -40,24 +67,6 @@
       <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
       
       <guid>https://dylanyang.top/tags/cephfs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://dylanyang.top/tags/kubernetes/</link>
-      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://dylanyang.top/tags/linux/</link>
-      <pubDate>Sat, 15 May 2021 16:18:03 +0800</pubDate>
-      
-      <guid>https://dylanyang.top/tags/linux/</guid>
       <description></description>
     </item>
     

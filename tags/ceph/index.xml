@@ -6,7 +6,16 @@
     <description>Recent content in ceph on dylan blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 May 2021 16:18:03 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/ceph/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 May 2021 14:04:48 +0800</lastBuildDate><atom:link href="https://dylanyang.top/tags/ceph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K8s使用ceph Csi持久化存储rbd</title>
+      <link>https://dylanyang.top/post/2021/05/17/k8s%E4%BD%BF%E7%94%A8ceph-csi%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8rbd/</link>
+      <pubDate>Mon, 17 May 2021 14:04:48 +0800</pubDate>
+      
+      <guid>https://dylanyang.top/post/2021/05/17/k8s%E4%BD%BF%E7%94%A8ceph-csi%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8rbd/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>K8s使用ceph-csi持久化存储cephfs</title>
       <link>https://dylanyang.top/post/2021/05/15/k8s%E4%BD%BF%E7%94%A8ceph-csi%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8cephfs/</link>

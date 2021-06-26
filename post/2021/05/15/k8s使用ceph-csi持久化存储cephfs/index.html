@@ -49,7 +49,7 @@
 <meta itemprop="name" content="K8s使用ceph-csi持久化存储cephfs">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-05-15T16:18:03&#43;08:00" />
 <meta itemprop="dateModified" content="2021-05-15T16:18:03&#43;08:00" />
-<meta itemprop="wordCount" content="1184">
+<meta itemprop="wordCount" content="1187">
 <meta itemprop="keywords" content="linux,ceph,centos,kubernetes,ceph-csi,cephfs," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="K8s使用ceph-csi持久化存储cephfs"/>
 <meta name="twitter:description" content=""/>
@@ -87,6 +87,8 @@
         <li class="mobile-menu-item">Categories</li>
       </a><a href="/links/">
         <li class="mobile-menu-item">Links</li>
+      </a><a href="https://dylanyang.top/nav/">
+        <li class="mobile-menu-item">nav</li>
       </a><a href="/about/">
         <li class="mobile-menu-item">About</li>
       </a><a href="/search/">
@@ -122,6 +124,8 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/links/">Links</a>
       </li><li class="menu-item">
+        <a class="menu-item-link" href="https://dylanyang.top/nav/">nav</a>
+      </li><li class="menu-item">
         <a class="menu-item-link" href="/about/">About</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/search/">search</a>
@@ -144,7 +148,7 @@
         <div class="post-category">
             <a href="/categories/ceph/"> ceph </a>
             </div>
-          <span class="more-meta"> 1184 words </span>
+          <span class="more-meta"> 1187 words </span>
           <span class="more-meta"> 3 mins read </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
       </div>
@@ -188,7 +192,7 @@ $ ceph-csi/deploy/cephfs/kubernetes
 </div>
 </div><ul>
 <li>
-<p>修改并yaml文件</p>
+<p>修改yaml文件</p>
 <ul>
 <li>
 <p>csi-config-map.yaml</p>
@@ -494,10 +498,14 @@ csi-cephfs-pvc                 Bound    pvc-5c5fb10a-c8db-48da-b71c-b1cefc9ebb6e
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f pod.yaml$ kubectl get pods
-NAME                  READY   STATUS    RESTARTS   AGEcsi-cephfs-demo-pod   1/1     Running   <span class="m">0</span>          30s
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ kubectl apply -f pod.yaml
+$ kubectl get pods
+NAME                  READY   STATUS    RESTARTS   AGE
+csi-cephfs-demo-pod   1/1     Running   <span class="m">0</span>          30s
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -550,7 +558,11 @@ NAME                  READY   STATUS    RESTARTS   AGEcsi-cephfs-demo-pod   1/1 
           <a href="/tags/cephfs/">cephfs</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/2021/05/17/k8s%E4%BD%BF%E7%94%A8ceph-csi%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8rbd/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">K8s使用ceph Csi持久化存储rbd</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="/post/2021/05/15/ceph-dashboard%E9%85%8D%E7%BD%AE/">
             <span class="next-text nav-default">Ceph Dashboard配置</span>
             <span class="next-text nav-mobile">Next</span>
